@@ -1,16 +1,19 @@
-package collaborative_exams;
+package Entity;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question {
+ 
+public class Question implements MultipleChoiceQuestion {
 
 	private int idQuestion;
-	private String Question;
+	private String phrasing;
+	private String language;
 	private Author author;
-	private ArrayList<Answer> answer;
+	private List<Answer> answer;
 
+	
 	public int getIdQuestion() {
 		return idQuestion;
 	}
@@ -19,13 +22,6 @@ public class Question {
 		this.idQuestion = idQuestion;
 	}
 
-	public String getQuestion() {
-		return Question;
-	}
-
-	public void setQuestion(String question) {
-		Question = question;
-	}
 
 	public Author getAuthor() {
 		return author;
@@ -39,8 +35,31 @@ public class Question {
 		return answer;
 	}
 
-	public void setAnswer(ArrayList<Answer> answer) {
+	public void setAnswer(List<Answer> answer) {
 		this.answer =  answer;
+	}
+	
+	public Question addAnswer(Answer answer)
+	{
+		this.answer.add(answer);
+		
+		return this;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getPhrasing() {
+		return phrasing;
+	}
+
+	public void setPhrasing(String phrasing) {
+		this.phrasing = phrasing;
 	}
 
 }
