@@ -3,8 +3,20 @@ package Entity;
 public class Author  {
 
 	private int idAuthor;
-	private String email;
 	private String nameAuthor;
+	private String email;
+	
+	
+	public Author(int idAuthor,String nameAuthor, String email)
+	{
+		this.idAuthor = idAuthor; 
+		this.email = email; 
+		this.nameAuthor = nameAuthor; 
+	}
+
+	public Author() {
+		
+	}
 
 	public int getIdAuthor() {
 		return idAuthor;

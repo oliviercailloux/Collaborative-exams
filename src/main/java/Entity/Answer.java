@@ -2,17 +2,19 @@ package Entity;
 
 public class Answer {
 
-	private int Answer;
+	private int idAnswer;
 	private String text;
 	private boolean correct;
 	
-	
-	public int getAnswer() {
-		return Answer;
+	public Answer()
+	{
+		
 	}
-
-	public void setAnswer(int answer) {
-		Answer = answer;
+	
+	public Answer(int idAnswer, String text, boolean correct) {
+		this.idAnswer = idAnswer; 
+		this.text = text;
+		this.correct = correct; 
 	}
 
 	public String getText() {
@@ -29,6 +31,14 @@ public class Answer {
 
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
+	}
+
+	public int getIdAnswer() {
+		return idAnswer;
+	}
+
+	public void setIdAnswer(int idAnswer) {
+		this.idAnswer = idAnswer;
 	}
 
 }

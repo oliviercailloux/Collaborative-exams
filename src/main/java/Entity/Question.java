@@ -1,7 +1,8 @@
 package Entity;
 
 
-import java.util.ArrayList;
+
+import java.util.LinkedList;
 import java.util.List;
 
  
@@ -11,8 +12,26 @@ public class Question implements MultipleChoiceQuestion {
 	private String phrasing;
 	private String language;
 	private Author author;
-	private List<Answer> answer;
+	private List<Answer> answers;
+	
+	public Question()
+	{
+		answers = new LinkedList<>();
+	}
 
+	public Question(int idQuestion, String phrasing, String language, Author author, List<Answer> answers) {
+		this.idQuestion = idQuestion; 
+		this.phrasing = phrasing; 
+		this.language= language;
+		this.author = author; 
+		
+		
+		this.answers = new LinkedList<>(); 
+		for (Answer answer : answers)
+		{
+			this.answers.add(answer);
+		}
+	}
 	
 	public int getIdQuestion() {
 		return idQuestion;
@@ -31,17 +50,17 @@ public class Question implements MultipleChoiceQuestion {
 		this.author = author;
 	}
 
-	public List<Answer> getAnswer() {
-		return answer;
+	public List<Answer> getAnswers() {
+		return answers;
 	}
 
-	public void setAnswer(List<Answer> answer) {
-		this.answer =  answer;
+	public void setAnswers(List<Answer> answers) {
+		this.answers =  answers;
 	}
 	
 	public Question addAnswer(Answer answer)
 	{
-		this.answer.add(answer);
+		this.answers.add(answer);
 		
 		return this;
 	}
