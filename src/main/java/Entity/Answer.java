@@ -40,5 +40,10 @@ public class Answer {
 	public void setIdAnswer(int idAnswer) {
 		this.idAnswer = idAnswer;
 	}
+	
+	@Override
+	public String toString() {
+	return "[idAnswer: " + this.getIdAnswer() + ", Text: " + this.getText() + ", Correct? : "+this.isCorrect() + "]";
+	}
 
 }

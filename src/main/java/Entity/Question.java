@@ -80,5 +80,10 @@ public class Question implements MultipleChoiceQuestion {
 	public void setPhrasing(String phrasing) {
 		this.phrasing = phrasing;
 	}
+	
+	@Override
+	public String toString() {
+	return "[Question id: " + this.getIdQuestion() + ", Phrasing:" + this.getPhrasing() +  ", Language:" + this.getLanguage() + ", Author: "+this.getAuthor() + ", Answers:" + this.getAnswers() +"]";
+	}
 
 }
