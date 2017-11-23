@@ -1,4 +1,13 @@
-package GsonHandler;
+package Controler;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,11 +15,14 @@ import com.google.gson.GsonBuilder;
 import Entity.Answer;
 import Entity.Author;
 import Entity.Question;
+import GsonHandler.AnswerSerialization;
+import GsonHandler.AuthorSerialization;
+import GsonHandler.QuestionSerialization;
 
-public class GsonHandlerMain {
-/*
-	public static void main(String[] args) {
-		// Parametrages
+@WebServlet("/Question")
+public class GsonGetServlet extends HttpServlet {
+
+	public String getGsonQuestion() {
 		final GsonBuilder gsonBuilder = new GsonBuilder();
 
 		gsonBuilder.registerTypeAdapter(Author.class, new AuthorSerialization());
@@ -20,7 +32,6 @@ public class GsonHandlerMain {
 		gsonBuilder.setPrettyPrinting();
 
 		final Gson gson = gsonBuilder.create();
-
 		// Author:
 		final Author myAuthor = new Author();
 		myAuthor.setIdAuthor(1);
@@ -47,33 +58,16 @@ public class GsonHandlerMain {
 		myQuestion.setLanguage("Français");
 		myQuestion.setPhrasing("Est ce que .........?");
 
-		// Answer Serializer
-		final String jsonAnswer = gson.toJson(myAnswer1);
-		System.out.println(jsonAnswer);
-
-		// Author Serializer
-		final String jsonAuthor = gson.toJson(myAuthor);
-		System.out.println(jsonAuthor);
-
-		// Question Serializer
-		final String jsonQuestion = gson.toJson(myQuestion);
-		System.out.println(jsonQuestion);
-
-		// Answer Deserializer
-		final Answer answerDeserialized = gson.fromJson(jsonAnswer, Answer.class);
-		System.out.println(answerDeserialized);
-
-		// Author Deserializer
-		final Author authorDeserialized = gson.fromJson(jsonAuthor, Author.class);
-		System.out.println(authorDeserialized);
-
-		// Question Deserializer
-		final Question questionDeserialized = gson.fromJson(jsonQuestion, Question.class);
-		System.out.println(questionDeserialized);
-
-		Answer testAnswer = questionDeserialized.getAnswers().get(0);
-		System.out.println(testAnswer + " Test final___");
-
+		return gson.toJson(myQuestion);
 	}
-*/
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("application/json;charset=UTF-8");
+		try (PrintWriter out = response.getWriter()) {
+			out.print(getGsonQuestion());
+		}
+	}
+
 }
