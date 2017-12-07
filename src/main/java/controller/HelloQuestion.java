@@ -14,7 +14,7 @@ import model.entity.question.Question;
  * Servlet implementation class GetQuestion
  */
 @WebServlet("/hello")
-public class GetQuestion extends HttpServlet {
+public class HelloQuestion extends HttpServlet {
 	
        
 
