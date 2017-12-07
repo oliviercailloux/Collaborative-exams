@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,7 @@ public class ChangeQuestionLanguage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
-		String lang = request.getParameter("language");
+		Locale lang = Locale.forLanguageTag(request.getParameter("language")); // a verifier
 		Question question = TextQuestion.getQuestion(id);
 		Person author = new Person();
 		author.setId(authorId);

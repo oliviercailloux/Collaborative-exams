@@ -1,7 +1,7 @@
 package model.entity.question;
 
 public enum QuestionType {
-	MultippleChoice,
+	MultipleChoice,
 	TF,
 	YN,
 	Free

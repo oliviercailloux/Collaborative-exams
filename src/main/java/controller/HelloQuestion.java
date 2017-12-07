@@ -28,7 +28,7 @@ public class HelloQuestion extends HttpServlet {
 		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();
-		out.println("<h1>" + "Hello Question" + "</h1>");
+		out.println("Hello Question");
 	
 	}
 

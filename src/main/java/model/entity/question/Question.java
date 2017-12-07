@@ -1,14 +1,38 @@
 package model.entity.question;
 
+import java.util.Locale;
+
+import javax.json.bind.annotation.JsonbPropertyOrder;
+
+import model.entity.Person;
+
+
+
+
+@JsonbPropertyOrder({"id","phrasing","language","author","answers","type"})
 public class Question {
 	
-	private int id = 0;
-    private String phrasing = null;
-	private String language = null;
-	private model.entity.Person author = null;
-	private java.util.ArrayList<Answer> answers = null;
-	private QuestionType type = null;
-	public static int questionCount = 0;
+	private int id ;
+    private String phrasing ;
+	private Locale language ;
+	private model.entity.Person author ;
+	private java.util.ArrayList<Answer> answers;
+	private QuestionType type;
+	public static int questionCount;
+	
+	
+	public Question()
+	{
+		
+	}
+	
+	public Question(int id, String Phrasing){
+		
+		this.id = id ;
+		this.phrasing = phrasing;
+		this.author = new Person(1,"jeha@tmenyik.dz");
+		
+	}
 	
 	
 	public int getId() {
@@ -23,10 +47,10 @@ public class Question {
 	public void setPhrasing(String phrasing) {
 		this.phrasing = phrasing;
 	}
-	public String getLanguage() {
+	public Locale getLanguage() {
 		return language;
 	}
-	public void setLanguage(String language) {
+	public void setLanguage(Locale language) {
 		this.language = language;
 	}
 	public model.entity.Person getAuthor() {
