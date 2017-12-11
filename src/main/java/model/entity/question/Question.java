@@ -1,5 +1,6 @@
 package model.entity.question;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
@@ -16,9 +17,9 @@ public class Question {
     private String phrasing ;
 	private Locale language ;
 	private model.entity.Person author ;
-	private java.util.ArrayList<Answer> answers;
+	private java.util.List<Answer> answers;
 	private QuestionType type;
-	public static int questionCount;
+//	public static int questionCount;
 	
 	
 	public Question()
@@ -26,11 +27,16 @@ public class Question {
 		
 	}
 	
-	public Question(int id, String Phrasing){
+	public Question(int id, String phrasing){
 		
 		this.id = id ;
 		this.phrasing = phrasing;
 		this.author = new Person(1,"jeha@tmenyik.dz");
+		ArrayList<Answer> a = new ArrayList<Answer>();
+		a.add(new Answer(true,"première reponse"));
+		this.answers = a;
+		this.type = QuestionType.Free;
+		
 		
 	}
 	
@@ -59,7 +65,7 @@ public class Question {
 	public void setAuthor(model.entity.Person author) {
 		this.author = author;
 	}
-	public java.util.ArrayList<Answer> getAnswers() {
+	public java.util.List<Answer> getAnswers() {
 		return answers;
 	}
 	public void setAnswers(java.util.ArrayList<Answer> answers) {
@@ -68,8 +74,17 @@ public class Question {
 	public QuestionType getType() {
 		return type;
 	}
+	
+	
 	public void setType(QuestionType type) {
 		this.type = type;
+	}
+	
+	
+	public String toString()
+	{
+		return this.getPhrasing();
+		
 	}
 	
 	

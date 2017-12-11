@@ -5,6 +5,16 @@ public class Answer {
 	private  boolean correct;
     private String text = null;
     
+    
+    
+    
+    public Answer(boolean correct,String text)
+    {
+    	this.correct = correct;
+    	this.text = text;
+    }
+    
+    
 	public boolean isCorrect() {
 		return correct;
 	}
