@@ -19,7 +19,7 @@ public class Question {
 	private model.entity.Person author ;
 	private java.util.List<Answer> answers;
 	private QuestionType type;
-//	public static int questionCount;
+	public static int questionCount;
 	
 	
 	public Question()

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import helper.JSONhelper;
+import helper.QuestionText;
 import helper.TextQuestion;
 import model.entity.question.Question;
 
@@ -32,10 +33,17 @@ public class NewQuestion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int questionCount = Question.questionCount++;
-		Question question = (Question)JSONhelper.JsonToObject(request.getParameter("question"), Question.class);
-		question.setId(questionCount);
-		TextQuestion.writeQuestion(question);
-		request.setAttribute("id", questionCount);
+		Question question;
+		try {
+			question = QuestionText.JsonToQuestion(request.getParameter("question"));
+			question.setId(questionCount);
+			TextQuestion.writeQuestion(question);
+			request.setAttribute("id", questionCount);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 
 	/**
