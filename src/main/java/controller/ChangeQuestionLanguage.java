@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import helper.TextQuestion;
 import model.entity.Person;
+import model.entity.data;
 import model.entity.question.Question;
 
 /**
@@ -36,13 +36,13 @@ public class ChangeQuestionLanguage extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
 		Locale lang = Locale.forLanguageTag(request.getParameter("language")); // a verifier
-		Question question = TextQuestion.getQuestion(id);
+		Question question = data.getQuestion(id);
 		Person author = new Person();
 		author.setId(authorId);
 		question.setAuthor(author);
 		question.setId(Question.questionCount++);
 		question.setLanguage(lang);
-		TextQuestion.writeQuestion(question);	
+		//TextQuestion.writeQuestion(question);	
 		request.setAttribute("id", question.getId());
 	}
 

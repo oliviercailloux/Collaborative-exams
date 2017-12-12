@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import helper.TextQuestion;
+
 import model.entity.Person;
+import model.entity.data;
 import model.entity.question.Answer;
 import model.entity.question.Question;
 import model.entity.question.QuestionType;
@@ -36,7 +37,7 @@ public class ChangeResponseTypeTF extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
-		Question question = TextQuestion.getQuestion(id);
+		Question question = data.getQuestion(id);
 		ArrayList<Answer> answers = question.getAnswers();
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		int i = 0;

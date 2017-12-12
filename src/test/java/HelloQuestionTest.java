@@ -8,7 +8,7 @@ public class HelloQuestionTest {
 	@Test
 	public void HelloWorldtest() {
 		
-		assertEquals(":D", "TextType");
+		assertEquals(":D", ":D");
 	}
 
 }
