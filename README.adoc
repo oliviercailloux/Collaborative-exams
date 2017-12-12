@@ -1,2 +1,4 @@
-Collaborative exams
-https://travis-ci.org/badga/Collaborative-exams.svg?branch=master
+= Collaborative exams
+:sectanchors:
+
+image:https://travis-ci.org/badga/Collaborative-exams.svg?branch=master["Build Status", link="https://travis-ci.org/badga/Collaborative-exams"]
