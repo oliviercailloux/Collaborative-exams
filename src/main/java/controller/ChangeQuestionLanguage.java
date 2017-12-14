@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import helper.TextQuestion;
-import model.entity.Person;
+import model.entity.People;
 import model.entity.question.Question;
 
 /**
@@ -37,7 +37,7 @@ public class ChangeQuestionLanguage extends HttpServlet {
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
 		Locale lang = Locale.forLanguageTag(request.getParameter("language")); // a verifier
 		Question question = TextQuestion.getQuestion(id);
-		Person author = new Person();
+		People author = new People();
 		author.setId(authorId);
 		question.setAuthor(author);
 		question.setId(Question.questionCount++);

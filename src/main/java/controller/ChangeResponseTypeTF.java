@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import helper.TextQuestion;
-import model.entity.Person;
+import model.entity.People;
 import model.entity.question.Answer;
 import model.entity.question.Question;
 import model.entity.question.QuestionType;
@@ -37,7 +37,7 @@ public class ChangeResponseTypeTF extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
 		Question question = TextQuestion.getQuestion(id);
-		ArrayList<Answer> answers = question.getAnswers();
+		ArrayList<Answer> answers = (ArrayList<Answer>) question.getAnswers();
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		int i = 0;
 		for (Answer a : answers) {
@@ -46,7 +46,7 @@ public class ChangeResponseTypeTF extends HttpServlet {
 			newQuestion.setPhrasing(a.getText());
 			newQuestion.setType(QuestionType.TF);
 			newQuestion.setId(Question.questionCount++);
-			Person author = new Person();
+			People author = new People();
 			author.setId(authorId);
 			newQuestion.setAuthor(author);
 			ids.add(newQuestion.getId());

@@ -5,7 +5,7 @@ import java.util.Locale;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
 
-import model.entity.Person;
+import model.entity.People;
 
 
 
@@ -16,10 +16,10 @@ public class Question {
 	private int id ;
     private String phrasing ;
 	private Locale language ;
-	private model.entity.Person author ;
+	private model.entity.People author ;
 	private java.util.List<Answer> answers;
 	private QuestionType type;
-//	public static int questionCount;
+	public static int questionCount;
 	
 	
 	public Question()
@@ -31,7 +31,7 @@ public class Question {
 		
 		this.id = id ;
 		this.phrasing = phrasing;
-		this.author = new Person(1,"jeha@tmenyik.dz");
+		this.author = new People("jeha@tmenyik.dz");
 		ArrayList<Answer> a = new ArrayList<Answer>();
 		a.add(new Answer(true,"première reponse"));
 		this.answers = a;
@@ -59,10 +59,10 @@ public class Question {
 	public void setLanguage(Locale language) {
 		this.language = language;
 	}
-	public model.entity.Person getAuthor() {
+	public model.entity.People getAuthor() {
 		return author;
 	}
-	public void setAuthor(model.entity.Person author) {
+	public void setAuthor(model.entity.People author) {
 		this.author = author;
 	}
 	public java.util.List<Answer> getAnswers() {
