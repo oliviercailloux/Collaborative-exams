@@ -12,12 +12,10 @@ public class QuestionText {
 	public static Question JsonToQuestion(String json) throws Exception {
 
 		try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-			Question q = new Question();
-			q = jsonb.fromJson(json, q.getClass());
-			return q;
-
+			Question question = new Question();
+			question = jsonb.fromJson(json, question.getClass());
+			return question;
 		}
-
 	}
 
 	public static String QuestionToJson(Question question) throws Exception {

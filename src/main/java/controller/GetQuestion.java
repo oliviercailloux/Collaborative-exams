@@ -1,5 +1,6 @@
 package controller;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -14,9 +15,10 @@ import model.entity.question.Question;
 public class GetQuestion {
 
 	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getQuestion() throws Exception {
-		Question question = data.getQuestion(1);
+	public String getQuestion(int id) throws Exception {
+		Question question = data.getQuestion(id);
 
 		return QuestionText.QuestionToJson(question);
 	}

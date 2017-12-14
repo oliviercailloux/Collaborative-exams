@@ -26,7 +26,7 @@ public class Question {
 		
 	}
 	
-	public Question(int id, String Phrasing){
+	public Question(int id, String phrasing){
 		
 		this.id = id ;
 		this.phrasing = phrasing;

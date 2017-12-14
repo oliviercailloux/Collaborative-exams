@@ -9,12 +9,12 @@ public class data {
 
 	public static List<Question> questions = new ArrayList<Question>() {
 		{
-			add(new Question(1, "abouche"));
+			add(new Question(1, "abouche"));  
 			add(new Question(2, "ahechoune"));
 		}
 	};
 	
-	public static int questionCount = 3;
+	public static int questionCount = 2;
 
 	public List<Question> getQuestions() {
 		return questions;
@@ -24,7 +24,7 @@ public class data {
 		return questions.get(pos);
 	}
 
-	public void addQuestion(Question question) {
+	public static void addQuestion(Question question) {
 		questions.add(question);
 		questionCount++;
 	}

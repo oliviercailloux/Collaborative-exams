@@ -1,58 +1,25 @@
 package controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import helper.QuestionText;
+import model.entity.data;
 import model.entity.question.Question;
 
-/**
- * Servlet implementation class NewQuestion
- */
-@WebServlet("/NewQuestion")
-public class NewQuestion extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@Path("NewQuestion")
+public class NewQquestion {
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public NewQuestion() {
-		super();
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String newQuestion(Question question) throws Exception {
+		//Question question = data.getQuestion(1);
 
+		return QuestionText.QuestionToJson(question);
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		int questionCount = Question.questionCount++;
-		Question question;
-		try {
-			question = QuestionText.JsonToQuestion(request.getParameter("question"));
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		}
-
-		question.setId(questionCount);
-		// TextQuestion.writeQuestion(question);
-		request.setAttribute("id", questionCount);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
