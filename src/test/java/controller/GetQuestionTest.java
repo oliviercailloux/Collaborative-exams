@@ -24,7 +24,7 @@ import model.entity.data;
 import model.entity.question.Question;
 
 @RunWith(Arquillian.class)
-public class NewQuestionTest {
+public class GetQuestionTest {
 
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(NewQuestionTest.class.getCanonicalName());
@@ -40,22 +40,18 @@ public class NewQuestionTest {
 	private URL baseURL;
 
 	@Test
-	public void NewQuestionServletTest() throws Exception {
+	public void getQuestionServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget target = client.target(baseURL.toString()).path("/v1/NewQuestion");
+		final WebTarget target = client.target(baseURL.toString()).path("/v1/GetQuestion/Get").queryParam("id", 1);
+
 		LOGGER.info(target.getUri().toString());
 
-		final String ResultID = target.request(MediaType.TEXT_PLAIN).post(
-				Entity.entity(QuestionText.QuestionToJson(data.getQuestionByID(1)), MediaType.APPLICATION_JSON),
-				String.class);
-		
-		//assertEquals(3,data.getQuestionCount());
-		//assertEquals(data.getQuestionByID(1).getLanguage(), data.getQuestionByID(Integer.parseInt(ResultID)).getLanguage());
-		System.out.println(QuestionText.QuestionToJson(data.getQuestionByID(Integer.parseInt(ResultID))));
-		
-		System.out.println(QuestionText.QuestionToJson(data.getQuestionByID(1)));
+		final String Result = target.request(MediaType.APPLICATION_JSON).get(String.class);
+		System.out.println("Le resultat est : " + Result);
+
+		assertEquals(QuestionText.QuestionToJson(data.getQuestionByID(1)), Result);
+
 		client.close();
 	}
-
 
 }

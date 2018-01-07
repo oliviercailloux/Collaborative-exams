@@ -1,5 +1,8 @@
 package model.entity.question;
 
+import javax.json.bind.annotation.JsonbPropertyOrder;
+
+@JsonbPropertyOrder({"text","correct"})
 public class Answer {
 	
 	private  boolean correct;
@@ -17,5 +20,5 @@ public class Answer {
 	public void setText(String text) {
 		this.text = text;
 	}
-
+	
 }

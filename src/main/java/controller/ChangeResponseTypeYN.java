@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,9 +40,9 @@ public class ChangeResponseTypeYN extends HttpServlet {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
-		Question question = data.getQuestion(id);
-		ArrayList<Answer> answers = question.getAnswers();
-		ArrayList<Integer> ids = new ArrayList<Integer>();
+		Question question = data.getQuestionByID(id);
+		List<Answer> answers = question.getAnswers();
+		List<Integer> ids = new ArrayList<Integer>();
 		int i = 0;
 		for (Answer a : answers) {
 			if (a.isCorrect()) {

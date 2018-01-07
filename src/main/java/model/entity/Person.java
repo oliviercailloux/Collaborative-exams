@@ -1,11 +1,12 @@
 package model.entity;
 
+import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
+@JsonbPropertyOrder({"id","email"})
 @Entity
 public class Person {
 	@Id

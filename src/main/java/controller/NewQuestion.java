@@ -13,13 +13,19 @@ import model.entity.data;
 import model.entity.question.Question;
 
 @Path("NewQuestion")
-public class NewQquestion {
+public class NewQuestion {
 
 	@POST
+	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String newQuestion(Question question) throws Exception {
-		//Question question = data.getQuestion(1);
-
-		return QuestionText.QuestionToJson(question);
+	public int newQuestion(String question) throws Exception {
+		Question questionFormatted = QuestionText.JsonToQuestion(question);
+		int newID = questionFormatted.getId() * 100;
+		questionFormatted.setId(newID);
+		data.addQuestion(questionFormatted);
+		int i = data.getQuestionCount();
+		
+		return newID;
 	}
+
 }

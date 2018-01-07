@@ -2,13 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import model.entity.Person;
 import model.entity.data;
@@ -35,11 +35,16 @@ public class ChangeResponseTypeTF extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
-		Question question = data.getQuestion(id);
-		ArrayList<Answer> answers = question.getAnswers();
+		
+		Question question = data.getQuestionByID(id);
+		List<Answer> answers = question.getAnswers();
+		
+		
 		ArrayList<Integer> ids = new ArrayList<Integer>();
+		
 		int i = 0;
 		for (Answer a : answers) {
 			if (a.isCorrect()) {
