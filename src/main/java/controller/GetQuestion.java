@@ -13,6 +13,7 @@ import model.entity.data;
 import model.entity.question.Question;
 
 @Path("GetQuestion")
+
 public class GetQuestion {
 
 	@Path("Get")
