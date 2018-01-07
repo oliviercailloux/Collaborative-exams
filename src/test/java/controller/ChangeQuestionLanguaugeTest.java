@@ -58,12 +58,10 @@ public class ChangeQuestionLanguaugeTest {
 			target = target.queryParam(key, params.getFirst(key));
 		}	
 		
-
 		LOGGER.info(target.getUri().toString());
 
 		final String Result = target.request(MediaType.APPLICATION_JSON).get(String.class);
-		System.out.println("Le resultat est : " + Result);
-
+		
 		assertEquals(QuestionText.QuestionToJson(data.getQuestionByID(2 * 100)), Result);
 
 		client.close();

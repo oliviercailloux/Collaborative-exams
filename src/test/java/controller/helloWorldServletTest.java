@@ -40,6 +40,7 @@ public class helloWorldServletTest {
 		final WebTarget target = client.target(baseURL.toString()).path("/v1/hello");
 		LOGGER.info(target.getUri().toString());
 		final String result = target.request(MediaType.TEXT_PLAIN).get(String.class);
+		
 		assertEquals("Hello World", result);
 		client.close();
 	}
