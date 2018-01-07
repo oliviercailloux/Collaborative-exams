@@ -1,9 +1,11 @@
-langue : java 
-git :
-   profondeur : 1 
-jdk :
-  - openjdk8 
-dist : cache fiable
- :
-   répertoires :
-    - $ MAISON / .m2
+﻿language: java
+git:
+  depth: 1
+jdk:
+  - openjdk8
+dist: trusty
+cache:
+  directories:
+    - $HOME/.m2
+
+
