@@ -47,8 +47,7 @@ public class GetQuestionTest {
 		LOGGER.info(target.getUri().toString());
 
 		final String Result = target.request(MediaType.APPLICATION_JSON).get(String.class);
-		System.out.println("Le resultat est : " + Result);
-
+		
 		assertEquals(QuestionText.QuestionToJson(data.getQuestionByID(1)), Result);
 
 		client.close();

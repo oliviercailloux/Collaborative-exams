@@ -1,5 +1,7 @@
 package controller;
 
-public class ChangeResponseTypeYNN {
 
+public class ChangeResponseTypeYNN {
+ 
+ 
 }

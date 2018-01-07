@@ -50,10 +50,9 @@ public class NewQuestionTest {
 				String.class);
 		
 		//assertEquals(3,data.getQuestionCount());
-		//assertEquals(data.getQuestionByID(1).getLanguage(), data.getQuestionByID(Integer.parseInt(ResultID)).getLanguage());
+		assertEquals(data.getQuestionByID(1).getLanguage(), data.getQuestionByID(Integer.parseInt(ResultID)).getLanguage());
 		System.out.println(QuestionText.QuestionToJson(data.getQuestionByID(Integer.parseInt(ResultID))));
 		
-		System.out.println(QuestionText.QuestionToJson(data.getQuestionByID(1)));
 		client.close();
 	}
 
