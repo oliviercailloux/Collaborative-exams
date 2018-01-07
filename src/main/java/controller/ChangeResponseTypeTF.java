@@ -38,6 +38,7 @@ public class ChangeResponseTypeTF extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
+<<<<<<< HEAD
 		
 		Question question = data.getQuestionByID(id);
 		List<Answer> answers = question.getAnswers();
@@ -46,6 +47,12 @@ public class ChangeResponseTypeTF extends HttpServlet {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		
 		int i = 0;
+=======
+		Question question = TextQuestion.getQuestion(id);
+		List<Answer> answers = question.getAnswers();
+		List<Integer> ids = new ArrayList<Integer>();
+		
+>>>>>>> master
 		for (Answer a : answers) {
 			if (a.isCorrect()) {
 			Question newQuestion = new Question();
