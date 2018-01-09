@@ -9,7 +9,10 @@ public class Answer {
     private String text = null;
     
     
-    
+    public Answer()
+    {
+    	
+    }
     
     public Answer(boolean correct,String text)
     {

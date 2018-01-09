@@ -1,12 +1,13 @@
-﻿package model.entity.question;
+package model.entity.question;
 
 
 import java.util.List;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import model.entity.Person;
-import model.entity.question.*;
+import model.entity.question.Answer;
+import model.entity.question.QuestionType;
 
-@JsonbPropertyOrder({ "id", "phrasing", "language", "author", "answers", "type" })
+
 public class Question {
 
 	private int id;
@@ -34,7 +35,7 @@ public class Question {
 	public Question(int id, String phrasing, String language) {
 		this.id = id;
 		this.phrasing = phrasing;
-		this.language = language; // à changer ?
+		this.language = language; 
 
 	}
 
