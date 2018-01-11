@@ -7,10 +7,14 @@ import java.util.ListIterator;
 import helper.QuestionText;
 import model.entity.question.Answer;
 import model.entity.question.Question;
+import model.entity.question.SameAbility;
 
 public class data {
 
 	public static int questionCount = 0;
+	public static int sameAbilityCount = 0;
+	
+	private static List<SameAbility>  sameAbility  = new ArrayList<SameAbility>();
 
 	private static List<Person> authors = new ArrayList<Person>() {
 		{
@@ -97,4 +101,32 @@ public class data {
 	public static int getQuestionCount() {
 		return questionCount;
 	}
+	
+
+	public static int getSameAbilityCount() {
+		return sameAbilityCount;
+	}
+	
+	
+	
+	public static void addSameAbility(SameAbility s)
+	{
+		sameAbility.add(s);
+		sameAbilityCount++;	
+	}
+	
+	public static boolean isSameAbilities(int q1,int q2)
+	{
+		for (SameAbility s : data.sameAbility) {
+			
+			if(s.isSameAbility( data.getQuestionByID(q1) , data.getQuestionByID(q2) ) )
+				return true;
+				
+		}
+		
+		return false;
+		
+	}
+	
+	
 }
