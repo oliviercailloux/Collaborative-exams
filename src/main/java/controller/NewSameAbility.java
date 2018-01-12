@@ -19,9 +19,9 @@ import model.entity.question.SameAbility;
 @Path("NewSameAbility")
 public class NewSameAbility {
 	
-	@POST
+	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.TEXT_PLAIN)
 	public int newSameAbility(@QueryParam("id_q1") int id_q1,@QueryParam("id_q2") int id_q2,@QueryParam("id_p") int id_p) throws Exception {
 
 		SameAbility s = new SameAbility(data.sameAbilityCount+1,data.getQuestionByID(id_q1),data.getQuestionByID(id_q2),data.getAuthorByID(id_p));
@@ -29,7 +29,6 @@ public class NewSameAbility {
 		data.addSameAbility(s);	
 		return data.sameAbilityCount;
 		
-
 	}
 
 }

@@ -10,6 +10,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -42,15 +44,21 @@ public class NewSameAbilityTest {
 	@Test
 	public void NewSameAbilityServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget target = client.target(baseURL.toString()).path("/v1/NewSameAbility").queryParam("id_q1",1).queryParam("id_q2",2).queryParam("id_p", 1);
-		LOGGER.info(target.getUri().toString());
-
+		WebTarget target = client.target(baseURL.toString()).path("/v1/NewSameAbility");
+		
+		MultivaluedMap<String,String> params = new MultivaluedHashMap<>();
+		params.add("id_q1","1");
+		params.add("id_q2","2");
+		params.add("id_p", "1");
+		
+		for(String key : params.keySet()) {				
+			target = target.queryParam(key, params.getFirst(key));
+		}	
 		
 
-		final String Result = target.request(MediaType.APPLICATION_JSON).get(String.class);
+		final String Result = target.request(MediaType.TEXT_PLAIN).get(String.class);
 		
-		assertEquals(0, Integer.parseInt(Result));
-
+		assertEquals(1, Integer.parseInt(Result));
 		client.close();
 		
 		
