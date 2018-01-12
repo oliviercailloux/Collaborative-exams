@@ -8,4 +8,13 @@ cache:
   directories:
     - $HOME/.m2
 
+deploy:
+  provider: bluemixcloudfoundry
+  skip_cleanup: true
+  username: sid-ahmed.imloul@dauphine.fr
+  password: $BLUEMIX_PASSWORD
+  organization: sid-ahmed.imloul@dauphine.fr
+  space: dev
+  region: eu-gb
+
 

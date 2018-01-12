@@ -1,0 +1,5 @@
+applications:
+ - name: Collaborative-exams
+   path: target/Collaborative-exams-0.0.1-SNAPSHOT.war
+   instances: 1
+random-route: true
