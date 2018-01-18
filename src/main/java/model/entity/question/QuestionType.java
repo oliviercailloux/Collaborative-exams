@@ -1,8 +1,25 @@
 package model.entity.question;
 
+
+/**
+ * 
+ * this respresente the Type of response of question 
+ * 
+ * @author badga
+ *
+ */
 public enum QuestionType {
-	MultipleChoice,
+	/**
+	 * true-false response
+	 */
 	TF,
+	/**
+	 * yes-no response
+	 */
 	YN,
+	/**
+	 * free response
+	 * 
+	 */
 	Free
 }

@@ -6,6 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+/**
+ * Question is the class represente person  
+ * 
+ * @author badga
+ *
+ */
 @JsonbPropertyOrder({"id","email"})
 @Entity
 public class Person {
@@ -19,23 +26,37 @@ public class Person {
 
 	}
 	
+	/**
+	 * Contruct Person
+	 * @param id
+	 * @param email
+	 */
+	
 	public Person(int id, String email) {
 		this.id = id;
 		this.email = email;
 	}
 
+	
+	
 	public int getId() {
 		return id;
 	}
 
+	
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	
+	
 	public String getEmail() {
 		return email;
 	}
 
+	
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}

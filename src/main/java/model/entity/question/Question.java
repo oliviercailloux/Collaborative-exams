@@ -1,90 +1,157 @@
 package model.entity.question;
 
 
-import java.util.List;
-import javax.json.bind.annotation.JsonbPropertyOrder;
+import java.util.*;
 import model.entity.Person;
-import model.entity.question.Answer;
 import model.entity.question.QuestionType;
 
-
+/**
+ * Question is the class represente Question 
+ * 
+ * Question is immuable
+ * 
+ * @author badga
+ *
+ */
 public class Question {
 
-	private int id;
-	private String phrasing;
+	protected int id;
+	
+	/**
+	 * 
+	 * 
+	 */
+	protected String phrasing;
+	
+	/**
+	 * respresente the language of Question
+	 * 
+	 * 
+	 * Not <code>null</code>, may be empty.
+	 * 
+	 */
 	private String language;
-	private Person author;
-	private List<Answer> answers;
-	private QuestionType type;
-	public static int questionCount;
+	
+	
+	
+	/**
+	 * respresente the Author
+	 * 
+	 * @see Person
+	 *   Not <code>null</code>, may be empty.
+	 */
+	protected Person author;
 
+	
+	/**
+	 * 
+	 * @see QuestionType
+	 *   Not <code>null</code>, may be empty.
+	 */
+	private QuestionType type;
+	
+	
+	/**
+	 * count how many questions in the application
+	 *  Not <code>null</code>, may be empty.
+	 */
+    public static int questionCount;	
+    
+	/**
+	 * Returns a new Question.
+	 *   Not <code>null</code>, may be empty.
+	 */
 	public Question() {
 
 	}
-
-	public Question(Question question) {
-		this.id = question.id;
-		this.phrasing = question.phrasing;
-		this.author = question.author;
-		this.language = question.language;
-		this.type = question.type;
-		this.answers = question.answers;
-
+	
+    /**
+     * 
+     * return new Question
+     * 
+     * @param id
+     * @param phrasing
+     * @param language
+     * @param author
+     * @param type
+     *           
+     *           not <code>null</code>.
+     *           
+     */
+	public Question(int id,String phrasing,String language,Person author,QuestionType type)
+	{
+		this.id = Objects.requireNonNull(id);
+		this.phrasing = Objects.requireNonNull(language);
+		this.author = Objects.requireNonNull(author);
+		this.type = Objects.requireNonNull(type);
+		
 	}
+	
+	
 
-	public Question(int id, String phrasing, String language) {
-		this.id = id;
-		this.phrasing = phrasing;
-		this.language = language; 
-
-	}
-
+	
+	/**
+	 * Returns this Question’s id.
+	 *
+	 * @return not <code>null</code>.
+	 */
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
+	
+	/**
+	 * Returns this Question’s id.
+	 *
+	 * @return String not <code>null</code>.
+	 */
 	public String getPhrasing() {
 		return phrasing;
 	}
-
-	public void setPhrasing(String phrasing) {
-		this.phrasing = phrasing;
-	}
-
+	
+	
+	
+	/**
+	 * Returns this Question’s language.
+	 *
+	 * @return String not <code>null</code>.
+	 */
 	public String getLanguage() {
 		return language;
 	}
 
+	
+	/**
+	 * Returns this Question’s id.
+	 *
+	 * @return String not <code>null</code>.
+	 */
 	public void setLanguage(String language) {
 		this.language = language;
 	}
 
+	
+	
+	/**
+	 * Returns this Question’s author.
+	 *
+	 * @return Person not <code>null</code> and immuable.
+	 */
 	public model.entity.Person getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Person author) {
-		this.author = author;
-	}
 
-	public List<Answer> getAnswers() {
-		return answers;
-	}
 
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
-	}
-
+	/**
+	 * Returns this Question’s id.
+	 *
+	 * @return String not <code>null</code>.
+	 */
 	public QuestionType getType() {
 		return type;
 	}
 
-	public void setType(QuestionType type) {
-		this.type = type;
-	}
 
 }
