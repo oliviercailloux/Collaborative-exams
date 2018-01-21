@@ -19,7 +19,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answe
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
-@Path("ChangeQuestionLanguage")
+@Path("ChangeResponseTypeTF")
 public class ChangeResponseTypeTFF {
 
 

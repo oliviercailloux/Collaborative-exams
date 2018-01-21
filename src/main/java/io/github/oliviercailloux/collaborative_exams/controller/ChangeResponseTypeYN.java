@@ -21,7 +21,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 /**
  * Servlet implementation class ChangeResponseTypeYN
  */
-@WebServlet("/ChangeResponseTypeYN")
+@WebServlet("/ChangeResponseTypeYN-OLD")
 public class ChangeResponseTypeYN extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

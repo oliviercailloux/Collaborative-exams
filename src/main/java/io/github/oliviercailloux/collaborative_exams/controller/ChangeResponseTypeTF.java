@@ -19,7 +19,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 /**
  * Servlet implementation class ChangeResponseTypeTF
  */
-@WebServlet("/ChangeResponseTypeTF")
+@WebServlet("/ChangeResponseTypeTF-OLD")
 public class ChangeResponseTypeTF extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
