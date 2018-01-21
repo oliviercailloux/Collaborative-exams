@@ -41,6 +41,15 @@ public class Question {
 	 *   Not <code>null</code>, may be empty.
 	 */
 	protected Person author;
+	
+	
+	
+	/**
+	 * respresente if the response whas correct in T/F or Y/N question
+	 * 
+	 * Not <code>null</code>, may be empty.
+	 */
+	private boolean correct; 
 
 	
 	/**
@@ -86,10 +95,7 @@ public class Question {
 		this.type = Objects.requireNonNull(type);
 		
 	}
-	
-	
-
-	
+		
 	/**
 	 * Returns this Question’s id.
 	 *
@@ -151,6 +157,16 @@ public class Question {
 	 */
 	public QuestionType getType() {
 		return type;
+	}
+	
+	
+	/**
+	 * 
+	 * @Return boolean 
+	 */
+	public boolean getCorrect()
+	{
+		return correct;
 	}
 
 
