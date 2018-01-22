@@ -6,6 +6,7 @@ import java.util.ListIterator;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.MultipleChoiceQuestion;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.SameAbility;
 
@@ -14,9 +15,12 @@ public class data {
 	public static int questionCount = 0;
 	public static int sameAbilityCount = 0;
 	
-	private static List<SameAbility>  sameAbility  = new ArrayList<SameAbility>();
+	private static List<SameAbility>  sameAbility  = new ArrayList<>();
 
 	private static List<Person> authors = new ArrayList<Person>() {
+		/**
+		 * 
+		 */
 		{
 			add(new Person(1, "Dupon@gmail.com"));
 			add(new Person(2, "toto@gmail.com"));
@@ -28,7 +32,10 @@ public class data {
 	private static List<Question> questions = new ArrayList<>();
 
 	public static void constructData() {
-		Question question1 = new Question(1, "Que mange la baleine ?", "french");
+		
+		Question question1 = new Question();
+		String phrasing = "Que mange la baleine ?";
+		String language = "French";
 		List<Answer> answers1 = new ArrayList<>();
 
 		Answer answer1 = new Answer();
@@ -43,14 +50,17 @@ public class data {
 		answers1.add(answer1);
 		answers1.add(answer2);
 
-		question1.setAuthor(getAuthorByID(1));
-		question1.setAnswers(answers1);
-		addQuestion(question1);
-
+		Person author = getAuthorByID(1);
+		MultipleChoiceQuestion mquestion1 = new MultipleChoiceQuestion(1,phrasing,language,author,answers1);
+		
+		addQuestion(mquestion1);
+		
 		Answer answer3 = new Answer();
 		Answer answer4 = new Answer();
 
-		Question question2 = new Question(2, "Que mangent les chiens ?", "french");
+		Question question2 = new Question();
+		String phrasing2 = "Que mangent les chiens ?";
+		
 		List<Answer> answers2 = new ArrayList<>();
 
 		answer3.setText("de la viande");
@@ -62,9 +72,11 @@ public class data {
 		answers2.add(answer3);
 		answers2.add(answer4);
 
-		question1.setAuthor(getAuthorByID(2));
+		Person author2 = getAuthorByID(2);
+		
+		MultipleChoiceQuestion mquestion2 = new MultipleChoiceQuestion(2,phrasing2,language,author2,answers2);
 
-		addQuestion(question2);
+		questions.add(mquestion2);
 	}
 
 	public List<Question> getQuestions() {
@@ -127,6 +139,12 @@ public class data {
 		return false;
 		
 	}
+	
+	public static void main(String[] args) throws Exception{
+			constructData();
+			
+			System.out.println(QuestionText.QuestionToJson(questions.get(0)));
+		} 
 	
 	
 }

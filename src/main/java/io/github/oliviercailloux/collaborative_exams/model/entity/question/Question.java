@@ -2,17 +2,21 @@ package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 
 import java.util.*;
+
+import javax.json.bind.annotation.JsonbPropertyOrder;
+
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
 /**
- * Question is the class represente Question 
+ * Question is the class which represente Question 
  * 
  * Question is immuable
  * 
  * @author badga
  *
  */
+@JsonbPropertyOrder({"id","author","language","phrasing","type"})
 public class Question {
 
 	protected int id;
@@ -30,7 +34,7 @@ public class Question {
 	 * Not <code>null</code>, may be empty.
 	 * 
 	 */
-	private String language;
+	protected String language;
 	
 	
 	
@@ -102,7 +106,7 @@ public class Question {
 	
 	
 	/**
-	 * Returns this Question’s id.
+	 * Returns this Question’s phrasing.
 	 *
 	 * @return String not <code>null</code>.
 	 */
@@ -123,7 +127,7 @@ public class Question {
 
 	
 	/**
-	 * Returns this Question’s id.
+	 * Returns this Question’s language.
 	 *
 	 * @return String not <code>null</code>.
 	 */
@@ -145,7 +149,7 @@ public class Question {
 
 
 	/**
-	 * Returns this Question’s id.
+	 * Returns this Question’s type.
 	 *
 	 * @return String not <code>null</code>.
 	 */

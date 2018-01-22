@@ -7,11 +7,11 @@ import java.util.Objects;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
- * MultipleChoiceQuestion is the class represente Question whith Multiple response.  
+ * MultipleChoiceQuestion the class which represente Question whith Multiple responses.  
  * 
  * MultipleChoiceQuestion is immuable
  * 
- * @author badga
+ * @author Sid Ahmed
  *
  */
 public class MultipleChoiceQuestion extends Question {
@@ -39,10 +39,10 @@ public class MultipleChoiceQuestion extends Question {
 	public MultipleChoiceQuestion(int id,String phrasing,String language,Person author,List<Answer> answers)
 	{
 		this.id = Objects.requireNonNull(id);
-		this.phrasing = Objects.requireNonNull(language);
+		this.phrasing = Objects.requireNonNull(phrasing);
+		this.language = Objects.requireNonNull(language);
 	    this.author = Objects.requireNonNull(author);
 		this.answers = Objects.requireNonNull(answers);
-		
 	}
 	
 	/**
