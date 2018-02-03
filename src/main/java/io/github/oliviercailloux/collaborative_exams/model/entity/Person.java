@@ -13,11 +13,12 @@ import javax.persistence.Id;
  * @author badga
  *
  */
+
 @JsonbPropertyOrder({"id","email"})
 @Entity
 public class Person {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	private String email;
@@ -26,39 +27,62 @@ public class Person {
 
 	}
 	
+	
 	/**
 	 * Contruct Person
 	 * @param id
 	 * @param email
 	 */
-	
 	public Person(int id, String email) {
 		this.id = id;
 		this.email = email;
 	}
 
 	
-	
+
+	/**
+	 * Returns this Person’s Id.
+	 *
+	 * @return Int not <code>null</code>.
+	 */
 	public int getId() {
 		return id;
 	}
 
-	
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	
-	
+	/**
+	 * Returns this Person’s email.
+	 *
+	 * @return String not <code>null</code>.
+	 */
 	public String getEmail() {
 		return email;
 	}
-
 	
 	
+	/**
+	 * Sets this Person's email.
+	 *
+	 * @param id
+	 *            Int not <code>null</code>
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+	/**
+	 * Sets this Person's email.
+	 *
+	 * @param email
+	 *            String not <code>null</code>
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
+
+	
+	
 
 }

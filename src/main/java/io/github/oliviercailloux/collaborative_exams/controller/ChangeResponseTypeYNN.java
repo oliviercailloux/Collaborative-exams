@@ -27,10 +27,10 @@ public class ChangeResponseTypeYNN {
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Integer> changeResponse(@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor)
+	public int changeResponse(@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor)
 	throws Exception {
 		Question question = data.getQuestionByID(idQuestion);
-		
+		/*
 		List<Answer> answers = question.getAnswers();
 		
 		ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -51,8 +51,9 @@ public class ChangeResponseTypeYNN {
 		question.setId(idQuestion * 100);
 
 		data.addQuestion(question);
-
-		return ids;
+	*/
+		return 1;
+				//ids;
 	}
 		
 		

@@ -27,13 +27,16 @@ public class ChangeQuestionLanguage {
 	public String getQuestion(@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor,@QueryParam("lang") String newLanguage) 
 	throws Exception {
 		data.constructData();
+		
+		Question question = data.getQuestionByID(idQuestion);
+		/*
 		Question question = new Question(data.getQuestionByID(idQuestion)); // A verifier
 		
 		question.setLanguage(newLanguage);
 		question.setId(idQuestion * 100);
 
 		data.addQuestion(question);
-
+*/
 		return QuestionText.QuestionToJson(question);
 	}
 }

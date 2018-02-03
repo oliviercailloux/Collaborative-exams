@@ -21,5 +21,10 @@ public enum QuestionType {
 	 * free response
 	 * 
 	 */
-	Free
+	Free,
+	/**
+	 * multiple choice response
+	 * 
+	 */
+	QCM
 }

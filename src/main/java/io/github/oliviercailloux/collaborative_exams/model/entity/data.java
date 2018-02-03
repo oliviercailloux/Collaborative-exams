@@ -6,8 +6,8 @@ import java.util.ListIterator;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.MultipleChoiceQuestion;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.SameAbility;
 
 public class data {
@@ -36,29 +36,23 @@ public class data {
 		Question question1 = new Question();
 		String phrasing = "Que mange la baleine ?";
 		String language = "French";
+		QuestionType type = QuestionType.QCM;
 		List<Answer> answers1 = new ArrayList<>();
 
-		Answer answer1 = new Answer();
-		Answer answer2 = new Answer();
+		Answer answer1 = new Answer("krill / crevettes", true);
+		Answer answer2 = new Answer("Allgues / plantes marines",false);
 
-		answer1.setText("krill / crevettes");
-		answer1.setCorrect(true);
-
-		answer2.setText("Allgues / plantes marines");
-		answer2.setCorrect(false);
-
+		
 		answers1.add(answer1);
 		answers1.add(answer2);
-
-		Person author = getAuthorByID(1);
-		MultipleChoiceQuestion mquestion1 = new MultipleChoiceQuestion(1,phrasing,language,author,answers1);
 		
-		addQuestion(mquestion1);
+	
+		Person author1 = getAuthorByID(1);
+		Question mquestion1 = new Question(1,phrasing,language,author1,type,answers1);
 		
 		Answer answer3 = new Answer();
 		Answer answer4 = new Answer();
 
-		Question question2 = new Question();
 		String phrasing2 = "Que mangent les chiens ?";
 		
 		List<Answer> answers2 = new ArrayList<>();
@@ -74,12 +68,19 @@ public class data {
 
 		Person author2 = getAuthorByID(2);
 		
-		MultipleChoiceQuestion mquestion2 = new MultipleChoiceQuestion(2,phrasing2,language,author2,answers2);
-
-		questions.add(mquestion2);
+		Question mquestion2 = new Question(2,phrasing2,language,author2,type,answers2);
+		
+		String phrasing3= "2 + 2 =?= 4";
+		
+		Question question3 = new Question(3,phrasing3, language,author1, QuestionType.TF, true);
+		
+		addQuestion(mquestion1);
+		addQuestion(mquestion2);
+		addQuestion(question3);
 	}
 
-	public List<Question> getQuestions() {
+	
+	public static List<Question> getQuestions() {
 		return questions;
 	}
 
@@ -140,11 +141,19 @@ public class data {
 		
 	}
 	
+	
 	public static void main(String[] args) throws Exception{
 			constructData();
-			
+			/*
 			System.out.println(QuestionText.QuestionToJson(questions.get(0)));
+			System.out.println(QuestionText.QuestionToJson(questions.get(1)));
+			System.out.println(QuestionText.QuestionToJson(questions.get(2)));
+			*/
+			Question q111 = questions.get(0);
+			System.out.println(QuestionText.QuestionToJson(q111));
 		} 
+	
+	
 	
 	
 }

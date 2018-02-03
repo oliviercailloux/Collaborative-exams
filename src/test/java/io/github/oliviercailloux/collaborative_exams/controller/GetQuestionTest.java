@@ -42,7 +42,7 @@ public class GetQuestionTest {
 	@Test
 	public void getQuestionServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget target = client.target(baseURL.toString()).path("/v1/GetQuestion/Get").queryParam("id", 1);
+		final WebTarget target = client.target(baseURL.toString()).path("/rest/Questions/Get/"+1);
 
 		LOGGER.info(target.getUri().toString());
 

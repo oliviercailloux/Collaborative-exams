@@ -10,6 +10,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -20,8 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
 @RunWith(Arquillian.class)
 public class NewQuestionTest {
@@ -42,19 +45,45 @@ public class NewQuestionTest {
 	@Test
 	public void NewQuestionServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		final WebTarget target = client.target(baseURL.toString()).path("/v1/NewQuestion");
+		final WebTarget target = client.target(baseURL.toString()).path("/rest/Add");
 		LOGGER.info(target.getUri().toString());
 
-		final String ResultID = target.request(MediaType.TEXT_PLAIN).post(
-				Entity.entity(QuestionText.QuestionToJson(data.getQuestionByID(1)), MediaType.APPLICATION_JSON),
-				String.class);
-		
-		//assertEquals(3,data.getQuestionCount());
-		assertEquals(data.getQuestionByID(1).getLanguage(), data.getQuestionByID(Integer.parseInt(ResultID)).getLanguage());
-		System.out.println(QuestionText.QuestionToJson(data.getQuestionByID(Integer.parseInt(ResultID))));
-		
+		MultivaluedHashMap<String, String> formValues = new MultivaluedHashMap<>();
+
+		int id = 9;
+		String phrasing = "Est ce que 2 * 4 = 12 ?";
+		String language = "Francais";
+		int author = 1;
+		String type = "YN";
+		boolean isCorrect = false;
+
+		formValues.add("id", Integer.toString(id));
+		formValues.add("phrasing", phrasing);
+		formValues.add("language", language);
+		formValues.add("author", "1");
+		formValues.add("type", type);
+		formValues.add("isCorrect", Boolean.toString(isCorrect));
+
+		// int id, String phrasing, String language, Person author, QuestionType type,
+		// boolean isCorrect
+	//	final String result = target.request().post(Entity.form(formValues), String.class);
+
+		//Question questionCreatedFromForm = data.getQuestionByID(id);
+		//Question questionCreatedFromValues = new Question(id, phrasing, language, data.getAuthorByID(author),
+	//			QuestionType.YN, isCorrect);
+
+	//	assertEquals(true, questionCreatedFromForm.equalz(questionCreatedFromValues));
+
+	//	System.out.println(QuestionText.QuestionToJson(questionCreatedFromForm));
+	//	System.out.println(QuestionText.QuestionToJson(questionCreatedFromValues));
+
+		/*
+		 * final String ResultID = target.request(MediaType.TEXT_PLAIN).post(
+		 * Entity.entity(QuestionText.QuestionToJson(data.getQuestionByID(1)),
+		 * MediaType.APPLICATION_JSON), String.class);
+		 */
+		//System.out.println(result);
 		client.close();
 	}
-
 
 }

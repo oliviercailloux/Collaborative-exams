@@ -1,11 +1,91 @@
 <html>
-  <head>
-    <title>Collaborative Exams</title>
-  </head>
-  <body>
-  <header>
-    <h1>Collaborative Exams</h1>
-    <h3>Bienvenue sur le projet :)</h3>
-  </header>
-  </body>
+<head>
+<title>Collaborative Exams</title>
+</head>
+<body>
+	<header>
+		<h1>Collaborative Exams</h1>
+		<h3>Bienvenue sur le projet :)</h3>
+	</header>
+
+	<form action="v1/NewQuestion/new" method="post">
+		<p>
+			IdQuestion : <input type="text" name="id" />
+		</p>
+
+		<p>
+			phrasing : <input type="text" name="phrasing" />
+		</p>
+		<p>
+			Language : <input type="text" name="language" />
+		</p>
+
+		<p>
+			Author : <input type="text" name="idAuthor" />
+		</p>
+
+		<p>
+			Type : <select id="type" name="type">
+				<option value="TF">True / false</option>
+				<option value="YN" selected>Yes / no</option>
+				<option value="Free">Free</option>
+				<option value="QCM">Multiple Choice Question</option>
+			</select>
+
+		</p>
+
+		<input type="radio" id="contactChoice1" name="isCorrect" value="true">
+		<label for="contactChoice1">True</label> <input type="radio"
+			id="contactChoice2" name="isCorrect" value="false"> <label
+			for="contactChoice2">False</label>
+
+		<p>
+			free: <input type="text" name="freeAnswer" />
+		</p>
+
+
+		<p>
+			AnswersText : <input type="text" name="answersText" /> <input
+				type="text" name="answersText" /> <input type="text"
+				name="answersText" />
+		</p>
+
+
+		<p>
+			MultipleChoicesAnswers : <select id="answer1" name="answersCorrect">
+				<option value="true">True</option>
+				<option value="false" selected>False</option>
+			</select> <select id="answer2" name="answersCorrect">
+				<option value="true">True</option>
+				<option value="false" selected>False</option>
+			</select> <select id="answer3" name="answersCorrect">
+				<option value="true">True</option>
+				<option value="false" selected>False</option>
+			</select>
+
+
+		</p>
+
+		<input type="submit" value="Add Question" />
+	</form>
+	
+	
+	
+	<form action="v1/Questions/Get/" method="get">
+	<p>
+			Id: <input type="text" name="id" />
+		</p>
+	
+	
+	<input type="submit" value="Display the Question ID !" />
+	</form>
+	
+	
+	<form action="v1/Questions/all" method="get">
+		<input type="submit" value="Display all Questions" />
+	</form>
+	
+</body>
 </html>
+
+

@@ -38,7 +38,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
   
   int id = Integer.parseInt(request.getParameter("id"));
   int authorId = Integer.parseInt(request.getParameter("authorId"));
-  
+  /*
   Question question = data.getQuestionByID(id);
   List<Answer> answers = question.getAnswers();
   
@@ -57,8 +57,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         newQuestion.setAuthor(author);
         ids.add(newQuestion.getId());
         }
-      }
-      request.setAttribute("id", ids);
+      }*/
+      request.setAttribute("id",4); //ids);
     }
    
     /**

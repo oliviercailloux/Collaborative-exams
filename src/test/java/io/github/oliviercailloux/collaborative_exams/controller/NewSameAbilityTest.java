@@ -44,7 +44,7 @@ public class NewSameAbilityTest {
 	@Test
 	public void NewSameAbilityServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(baseURL.toString()).path("/v1/NewSameAbility");
+		WebTarget target = client.target(baseURL.toString()).path("/rest/NewSameAbility");
 		
 		MultivaluedMap<String,String> params = new MultivaluedHashMap<>();
 		params.add("id_q1","1");

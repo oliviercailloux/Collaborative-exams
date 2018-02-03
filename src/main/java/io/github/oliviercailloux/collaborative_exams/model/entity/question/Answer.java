@@ -1,12 +1,21 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@JsonbPropertyOrder({"text","correct"})
+@Entity
 public class Answer {
 	
-	private  boolean correct;
-    private String text = null;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
+	
+	private boolean correct;
+	
+    private String text;
     
     
     public Answer()
@@ -14,7 +23,7 @@ public class Answer {
     	
     }
     
-    public Answer(boolean correct,String text)
+    public Answer(String text, boolean correct)
     {
     	this.correct = correct;
     	this.text = text;

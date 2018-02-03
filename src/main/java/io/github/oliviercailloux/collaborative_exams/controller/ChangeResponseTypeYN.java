@@ -38,6 +38,7 @@ public class ChangeResponseTypeYN extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		/*
 		int id = Integer.parseInt(request.getParameter("id"));
 		int authorId = Integer.parseInt(request.getParameter("authorId"));
 		Question question = data.getQuestionByID(id);
@@ -55,8 +56,10 @@ public class ChangeResponseTypeYN extends HttpServlet {
 			newQuestion.setAuthor(author);
 			ids.add(newQuestion.getId());
 			}
-		}
-		request.setAttribute("id", ids);
+		} 
+		*/
+		request.setAttribute("id",1);
+		//ids);
 	}
 
 	/**
