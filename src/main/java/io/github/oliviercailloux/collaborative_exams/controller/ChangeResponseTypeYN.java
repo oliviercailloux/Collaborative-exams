@@ -1,49 +1,40 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
-
+import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
-/**
- * Servlet implementation class ChangeResponseTypeYN
- */
-@WebServlet("/ChangeResponseTypeYN-OLD")
-public class ChangeResponseTypeYN extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ChangeResponseTypeYN() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+@Path("ChangeResponseTypeYN")
+public class ChangeResponseTypeYN {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.TEXT_PLAIN)
+	public int changeResponse(@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor)
+	throws Exception {
+		Question question = data.getQuestionByID(idQuestion);
 		/*
-		int id = Integer.parseInt(request.getParameter("id"));
-		int authorId = Integer.parseInt(request.getParameter("authorId"));
-		Question question = data.getQuestionByID(id);
 		List<Answer> answers = question.getAnswers();
-		List<Integer> ids = new ArrayList<Integer>();
+		
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		
 		int i = 0;
 		for (Answer a : answers) {
 			if (a.isCorrect()) {
@@ -51,23 +42,20 @@ public class ChangeResponseTypeYN extends HttpServlet {
 			newQuestion.setPhrasing(a.getText());
 			newQuestion.setType(QuestionType.YN);
 			newQuestion.setId(Question.questionCount++);
-			Person author = new Person();
-			author.setId(authorId);
-			newQuestion.setAuthor(author);
+			
+			newQuestion.setAuthor(data.getAuthorByID(idAuthor));
 			ids.add(newQuestion.getId());
 			}
-		} 
-		*/
-		request.setAttribute("id",1);
-		//ids);
-	}
+		}
+		
+		question.setId(idQuestion * 100);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		data.addQuestion(question);
+	*/
+		return 1;
+				//ids;
 	}
-
+		
+		
 }
+	
