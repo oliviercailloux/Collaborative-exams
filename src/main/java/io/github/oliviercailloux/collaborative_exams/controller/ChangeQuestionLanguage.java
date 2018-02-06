@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.controller.ServletsModify;
+package io.github.oliviercailloux.collaborative_exams.controller;
 
 import java.util.Locale;
 
@@ -24,11 +24,11 @@ public class ChangeQuestionLanguage {
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getQuestion()//@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor,@QueryParam("lang") String newLanguage) 
+	public String getQuestion(@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor,@QueryParam("lang") String newLanguage) 
 	throws Exception {
 		data.constructData();
 		
-		Question question = data.getQuestionByID(1);
+		Question question = data.getQuestions().get(0);
 		/*
 		Question question = new Question(data.getQuestionByID(idQuestion)); // A verifier
 		

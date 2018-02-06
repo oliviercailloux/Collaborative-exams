@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.controller.Servlets;
+package io.github.oliviercailloux.collaborative_exams.controller;
 
 import java.util.List;
 
@@ -7,14 +7,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
-import com.sun.mail.iap.Response;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+
+
 
 @Path("Questions")
 public class GetQuestion {

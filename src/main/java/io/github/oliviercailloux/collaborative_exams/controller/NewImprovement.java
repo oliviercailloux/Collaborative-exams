@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.controller.ServletImprovements;
+package io.github.oliviercailloux.collaborative_exams.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -7,9 +7,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Improvement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
-import io.github.oliviercailloux.collaborative_exams.model.relation.Improvement;
-import io.github.oliviercailloux.collaborative_exams.model.relation.SameAbility;
 
 
 @Path("Improvement")

@@ -8,8 +8,6 @@ import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
-import io.github.oliviercailloux.collaborative_exams.model.relation.Improvement;
-import io.github.oliviercailloux.collaborative_exams.model.relation.SameAbility;
 
 public class data {
 

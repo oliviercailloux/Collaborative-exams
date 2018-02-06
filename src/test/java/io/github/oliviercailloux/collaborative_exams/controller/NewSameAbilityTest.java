@@ -21,7 +21,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import io.github.oliviercailloux.collaborative_exams.controller.ServletAbilities.NewSameAbility;
+import io.github.oliviercailloux.collaborative_exams.controller.NewSameAbility;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
@@ -45,21 +45,25 @@ public class NewSameAbilityTest {
 	@Test
 	public void NewSameAbilityServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
+		data.constructData();
+		
 		WebTarget target = client.target(baseURL.toString()).path("/rest/NewSameAbility");
 		
 		MultivaluedMap<String,String> params = new MultivaluedHashMap<>();
-		params.add("id_q1","1");
-		params.add("id_q2","2");
-		params.add("id_p", "1");
+		params.add("idQuestion1","1");
+		params.add("idQuestion2","2");
+		params.add("idAuthor", "1");
 		
 		for(String key : params.keySet()) {				
 			target = target.queryParam(key, params.getFirst(key));
 		}	
 		
 
-		final String Result = target.request(MediaType.TEXT_PLAIN).get(String.class);
+		final String Result = target.request().post(Entity.form(params), String.class);
 		
 		assertEquals(1, Integer.parseInt(Result));
+		
+		
 		client.close();
 		
 		

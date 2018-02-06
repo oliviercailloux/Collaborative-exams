@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.model.relation;
+package io.github.oliviercailloux.collaborative_exams.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
