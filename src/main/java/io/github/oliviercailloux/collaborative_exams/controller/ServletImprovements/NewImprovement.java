@@ -27,7 +27,7 @@ public class NewImprovement {
 
 		Improvement i = new Improvement(data.getAuthorByID(idAuthor),data.getQuestionByID(idQuestion1),data.getQuestionByID(idQuestion2));
 		
-		data.addSameAbility(s);	
+		data.addImprovement(i);	
 		return data.sameAbilityCount;
 		
 	}
