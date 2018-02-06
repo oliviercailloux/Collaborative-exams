@@ -43,8 +43,7 @@ public class Person {
 	 * @param id
 	 * @param email
 	 */
-	public Person(int id, String email) {
-		this.id = id;
+	public Person(String email) {
 		this.email = email;
 	}
 
@@ -64,16 +63,6 @@ public class Person {
 	 */
 	public String getEmail() {
 		return email;
-	}
-
-	/**
-	 * Sets this Person's email.
-	 *
-	 * @param id
-	 *            Int not <code>null</code>
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	/**

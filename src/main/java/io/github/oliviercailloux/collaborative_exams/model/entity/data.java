@@ -24,9 +24,9 @@ public class data {
 		 * 
 		 */
 		{
-			add(new Person(1, "Dupon@gmail.com"));
-			add(new Person(2, "toto@gmail.com"));
-			add(new Person(3, "laforet@gmail.com"));
+			add(new Person("Dupon@gmail.com"));
+			add(new Person("toto@gmail.com"));
+			add(new Person("laforet@gmail.com"));
 		}
 
 	};

@@ -1,34 +1,35 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.SynchronizationType;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
+import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 
 
 
 @Path("hello")
 public class HelloQuestion {
 
-	@PersistenceUnit
-	private EntityManagerFactory emFactory;
-	
+	@PersistenceContext
+	private EntityManager em;
+
+	@Inject
+	private PersonService personService;
+
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayHello() {
 		
-		final EntityManager em = emFactory.createEntityManager();	
+		Person person = new Person("toto@test.com");
+		personService.persist(person);
 		
-		return "Hello World";
+		return "Hello World" + personService.getAll().get(0).getId() + " email : " + personService.getAll().get(0).getEmail();
 	}
 }
