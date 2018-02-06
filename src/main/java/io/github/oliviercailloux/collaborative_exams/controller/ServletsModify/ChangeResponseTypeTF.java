@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.controller;
+package io.github.oliviercailloux.collaborative_exams.controller.ServletsModify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +19,17 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answe
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
-@Path("ChangeResponseTypeYN")
-public class ChangeResponseTypeYN {
+@Path("ChangeResponseTypeTF")
+public class ChangeResponseTypeTF {
 
 
 
 	@GET
-	@Consumes(MediaType.TEXT_PLAIN)
+	//@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	public int changeResponse(@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor)
+	public int changeResponse()//@QueryParam("id") int idQuestion, @QueryParam("idAuthor") int idAuthor)
 	throws Exception {
-		Question question = data.getQuestionByID(idQuestion);
+		//Question question = data.getQuestionByID(idQuestion);
 		/*
 		List<Answer> answers = question.getAnswers();
 		
@@ -40,7 +40,7 @@ public class ChangeResponseTypeYN {
 			if (a.isCorrect()) {
 			Question newQuestion = new Question();
 			newQuestion.setPhrasing(a.getText());
-			newQuestion.setType(QuestionType.YN);
+			newQuestion.setType(QuestionType.TF);
 			newQuestion.setId(Question.questionCount++);
 			
 			newQuestion.setAuthor(data.getAuthorByID(idAuthor));
@@ -51,8 +51,8 @@ public class ChangeResponseTypeYN {
 		question.setId(idQuestion * 100);
 
 		data.addQuestion(question);
-	*/
-		return 1;
+*/
+		return 2;
 				//ids;
 	}
 		

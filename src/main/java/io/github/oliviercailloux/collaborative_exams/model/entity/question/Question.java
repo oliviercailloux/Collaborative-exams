@@ -1,15 +1,19 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
 /**
  * Question is the class which represente Question
@@ -20,34 +24,38 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
  *
  */
 @JsonbPropertyOrder({"id", "author","phrasing", "language", "type", "isCorrect", "answers"})
+
 @Entity
 public class Question {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	protected int id;
+	private int id;
 
 	/**
+	 * represent the phrasing of the question
 	 * 
-	 * 
+	 * Not <code>null</code>.
 	 */
-	protected String phrasing;
+	private String phrasing;
 
 	/**
-	 * respresente the language of Question
+	 * represent the language of Question
 	 * 
 	 * 
 	 * Not <code>null</code>, may be empty.
 	 * 
 	 */
-	protected String language;
+	private String language;
 
+	
 	/**
 	 * respresente the Author
 	 * 
 	 * @see Person Not <code>null</code>, may be empty.
 	 */
-	protected Person author;
-
+	@ManyToOne
+	private Person author;
 	/**
 	 * respresente if the response whas correct in T/F or Y/N question
 	 * 
@@ -65,6 +73,8 @@ public class Question {
 	/**
 	 * Represent the possible answers of a MQC Question
 	 */
+	
+	@OneToMany(mappedBy = "question")
 	private List<Answer> answers;
 	/**
 	 * count how many questions in the application Not <code>null</code>, may be
@@ -83,7 +93,6 @@ public class Question {
 	 * 
 	 * return new Question
 	 * 
-	 * @param id
 	 * @param phrasing
 	 * @param language
 	 * @param author
@@ -92,8 +101,7 @@ public class Question {
 	 *            not <code>null</code>.
 	 * 
 	 */
-	public Question(int id, String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
-		this.id = Objects.requireNonNull(id);
+	public Question(String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);
@@ -114,8 +122,7 @@ public class Question {
 	 *            not <code>null</code>.
 	 * 
 	 */
-	public Question(int id, String phrasing, String language, Person author, QuestionType type, List<Answer> answers) {
-		this.id = Objects.requireNonNull(id);
+	public Question(String phrasing, String language, Person author, QuestionType type, List<Answer> answers) {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);

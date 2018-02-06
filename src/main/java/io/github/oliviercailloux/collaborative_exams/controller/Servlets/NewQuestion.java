@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.controller;
+package io.github.oliviercailloux.collaborative_exams.controller.Servlets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,14 +62,14 @@ public class NewQuestion {
 		if (type.equals("YN") || type.equals("TF")) {
 
 			Boolean isCorrect = Boolean.valueOf(form.getFirst("isCorrect"));
-			question = new Question(id, phrasing, language, data.getAuthorByID(idAuthor), qType, isCorrect);
+			question = new Question(phrasing, language, data.getAuthorByID(idAuthor), qType, isCorrect);
 
 		} else if (type.equals("free")) {
 			String freeAnswer = form.getFirst("freeAnswer");
 			List<Answer> answers = new ArrayList<>();
 			answers.add(new Answer(freeAnswer, true));
 
-			question = new Question(id, phrasing, language, data.getAuthorByID(idAuthor), qType, answers);
+			question = new Question(phrasing, language, data.getAuthorByID(idAuthor), qType, answers);
 		} else {
 			// multipleChoiceQuestion creation
 			List<String> AnswersText = form.get("answersText");
@@ -82,7 +82,7 @@ public class NewQuestion {
 				answers.add(new Answer(s, Boolean.valueOf(answersCorrect.get(i))));
 				i++;
 			}
-			question = new Question(id, phrasing, language, data.getAuthorByID(idAuthor), qType, answers);
+			question = new Question(phrasing, language, data.getAuthorByID(idAuthor), qType, answers);
 
 		}
 		data.addQuestion(question);
@@ -90,18 +90,6 @@ public class NewQuestion {
 		return QuestionText.QuestionToJson(question);
 	}
 
-	@Path("old")
-	@POST
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public int newQuestion(String question) throws Exception {
-		Question questionFormatted = QuestionText.JsonToQuestion(question);
-
-		data.addQuestion(questionFormatted);
-		int i = data.getQuestionCount();
-
-		return 1;
-
-	}
+	
 
 }

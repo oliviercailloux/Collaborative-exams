@@ -1,35 +1,45 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity;
 
+import java.beans.Transient;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 /**
- * Question is the class represente person  
+ * Question is the class represente person
  * 
  * @author badga
  *
  */
-
-@JsonbPropertyOrder({"id","email"})
+@JsonbPropertyOrder({ "id", "email" })
 @Entity
 public class Person {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
-	
-	private String email;
 
+	@OneToMany(mappedBy = "author")
+	private List<Question> questions;
+
+	private String email;
+	
 	public Person() {
 
 	}
-	
-	
+
 	/**
 	 * Contruct Person
+	 * 
 	 * @param id
 	 * @param email
 	 */
@@ -37,8 +47,6 @@ public class Person {
 		this.id = id;
 		this.email = email;
 	}
-
-	
 
 	/**
 	 * Returns this Person’s Id.
@@ -57,8 +65,7 @@ public class Person {
 	public String getEmail() {
 		return email;
 	}
-	
-	
+
 	/**
 	 * Sets this Person's email.
 	 *
@@ -68,8 +75,7 @@ public class Person {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
 	/**
 	 * Sets this Person's email.
 	 *
@@ -79,10 +85,19 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
+	public void addQuestion(Question q) {
+		if (q != null)
+			this.questions.add(q);
+	}
 	
-	
+	@Transient
+	public List<Question> getQuestions() {
+		return this.questions;
+	}
+
+	public void initateQuestionsList() {
+		this.questions = new ArrayList<>();
+	}
 
 }

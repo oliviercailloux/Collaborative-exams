@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.collaborative_exams.controller;
+package io.github.oliviercailloux.collaborative_exams.controller.Servlets;
 
 import java.util.List;
 

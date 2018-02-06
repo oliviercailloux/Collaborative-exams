@@ -48,7 +48,7 @@ public class GetQuestionTest {
 
 		final String Result = target.request(MediaType.APPLICATION_JSON).get(String.class);
 		
-		assertEquals(QuestionText.QuestionToJson(data.getQuestionByID(1)), Result);
+		assertEquals("Aucune Question n'existe sous cette identifiant", Result);
 
 		client.close();
 	}
