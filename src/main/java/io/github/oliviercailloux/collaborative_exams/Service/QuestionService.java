@@ -10,9 +10,10 @@ import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 @RequestScoped
-public class PersonService {
+public class QuestionService {
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -21,17 +22,18 @@ public class PersonService {
 	private QueryHelper helper;
 
 	@Transactional
-	public List<Person> getAll() {
-		return em.createQuery(helper.selectAll(Person.class)).getResultList();
+	public List<Question> getAll() {
+		return em.createQuery(helper.selectAll(Question.class)).getResultList();
 	}
 
 	@Transactional
-	public void persist(Person person) {
-		em.persist(person);
+	public void persist(Question question) {
+		em.persist(question);
 	}
 	
 	@Transactional
-	public void findPerson(int id) {
-		em.find(Person.class, id);
+	public void findPerson(Person question, int id) {
+		em.find(question.getClass(), id);
 	}
+
 }
