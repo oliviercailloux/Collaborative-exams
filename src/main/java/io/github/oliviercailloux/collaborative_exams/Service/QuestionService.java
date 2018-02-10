@@ -20,7 +20,7 @@ public class QuestionService {
 
 	@Inject
 	private QueryHelper helper;
-
+	
 	@Transactional
 	public List<Question> getAll() {
 		return em.createQuery(helper.selectAll(Question.class)).getResultList();
@@ -32,7 +32,7 @@ public class QuestionService {
 	}
 	
 	@Transactional
-	public void findPerson(Person question, int id) {
+	public void findQuestion(Person question, int id) {
 		em.find(question.getClass(), id);
 	}
 

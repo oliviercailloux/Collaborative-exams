@@ -12,7 +12,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 public class SameAbility {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSameAbility;
 	
 	private Question question1;
@@ -22,7 +22,6 @@ public class SameAbility {
 	private Person author;
 	
 	public SameAbility() {
-		
 	}
 	
 	public SameAbility(Question q1,Question q2,Person author)

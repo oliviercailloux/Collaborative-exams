@@ -12,7 +12,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 public class Improvement {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idImprovement;
 	
 	private Question question1;

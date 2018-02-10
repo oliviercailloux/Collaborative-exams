@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +26,10 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 public class Person {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@OneToMany(mappedBy = "author")
+	@OneToMany(mappedBy = "author", cascade= CascadeType.PERSIST)
 	private List<Question> questions;
 
 	private String email;
@@ -36,7 +37,6 @@ public class Person {
 	public Person() {
 
 	}
-
 	/**
 	 * Contruct Person
 	 * 
@@ -45,7 +45,7 @@ public class Person {
 	 */
 	public Person(String email) {
 		this.email = email;
-	}
+		}
 
 	/**
 	 * Returns this Person’s Id.
@@ -77,7 +77,10 @@ public class Person {
 
 	public void addQuestion(Question q) {
 		if (q != null)
+		{
+			initiateQuestionsList();
 			this.questions.add(q);
+		}
 	}
 	
 	@Transient
@@ -85,8 +88,9 @@ public class Person {
 		return this.questions;
 	}
 
-	public void initateQuestionsList() {
-		this.questions = new ArrayList<>();
+	public void initiateQuestionsList() {
+		if (this.questions == null)
+		this.questions = new ArrayList<Question>();
 	}
 
 }

@@ -13,20 +13,20 @@ import javax.persistence.ManyToOne;
 public class Answer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	private boolean correct;
-	
+
 	private String text;
-	
+
 	@ManyToOne
 	private Question question;
 
 	public Answer() {
 
 	}
-	
+
 	public Answer(String text, boolean correct) {
 		this.correct = correct;
 		this.text = text;
@@ -47,14 +47,18 @@ public class Answer {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 	public void setQuestion(Question question) {
-		this.question = question; 
+		this.question = question;
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
 	@Transient
 	public Question getQuestion() {
-		return this.question; 
+		return this.question;
 	}
 
 }

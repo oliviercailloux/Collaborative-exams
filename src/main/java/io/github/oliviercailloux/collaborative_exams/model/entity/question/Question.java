@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 public class Question {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	/**
@@ -54,8 +55,10 @@ public class Question {
 	 * 
 	 * @see Person Not <code>null</code>, may be empty.
 	 */
+	
 	@ManyToOne
 	private Person author;
+	
 	/**
 	 * respresente if the response whas correct in T/F or Y/N question
 	 * 
@@ -74,8 +77,9 @@ public class Question {
 	 * Represent the possible answers of a MQC Question
 	 */
 	
-	@OneToMany(mappedBy = "question")
+	@OneToMany(mappedBy = "question" , cascade= CascadeType.PERSIST)
 	private List<Answer> answers;
+	
 	/**
 	 * count how many questions in the application Not <code>null</code>, may be
 	 * empty.
@@ -128,10 +132,10 @@ public class Question {
 		this.author = Objects.requireNonNull(author);
 		this.type = Objects.requireNonNull(type);
 		this.answers = Objects.requireNonNull(answers);
+		//ajouter la question à chaque answer de answers
 	}
 	
 	
-
 	/**
 	 * Returns this Question’s id.
 	 *
