@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
@@ -52,6 +54,7 @@ public class Person {
 	 *
 	 * @return Int not <code>null</code>.
 	 */
+	@XmlAttribute
 	public int getId() {
 		return id;
 	}

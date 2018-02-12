@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 @RequestScoped
@@ -28,12 +29,22 @@ public class QuestionService {
 
 	@Transactional
 	public void persist(Question question) {
+		if(null == em.find(Person.class,question.getAuthor().getId()))
+		{
+			em.persist(question.getAuthor());
+		}
 		em.persist(question);
+
+		for (Answer a:question.getAnswers()
+			 ) {
+			em.persist(a);
+
+		}
 	}
 	
 	@Transactional
-	public void findQuestion(Person question, int id) {
-		em.find(question.getClass(), id);
+	public Question findQuestion(int id) {
+		return em.find(Question.class, id);
 	}
 
 }

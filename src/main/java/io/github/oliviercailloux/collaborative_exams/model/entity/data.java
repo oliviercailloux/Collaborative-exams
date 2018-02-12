@@ -46,7 +46,7 @@ public class data {
 		answers1.add(answer1);
 		answers1.add(answer2);
 
-		Person author1 = getAuthorByID(1);
+		Person author1 = getAuthorByPosition(0);
 		Question mquestion1 = new Question(phrasing, language, author1, type, answers1);
 
 		Answer answer3 = new Answer();
@@ -65,7 +65,7 @@ public class data {
 		answers2.add(answer3);
 		answers2.add(answer4);
 
-		Person author2 = getAuthorByID(2);
+		Person author2 = getAuthorByID(1);
 
 		Question mquestion2 = new Question(phrasing2, language, author2, type, answers2);
 
@@ -92,6 +92,11 @@ public class data {
 		}
 		return new Question();
 	}
+
+	public static Person getAuthorByPosition(int position) {
+		return authors.get(position);
+	}
+
 
 	public static void addQuestion(Question question) {
 		questions.add(question);

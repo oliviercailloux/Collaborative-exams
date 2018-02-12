@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
@@ -26,6 +29,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
  */
 @JsonbPropertyOrder({"id", "author","phrasing", "language", "type", "isCorrect", "answers"})
 
+@XmlRootElement
 @Entity
 public class Question {
 	
@@ -141,6 +145,7 @@ public class Question {
 	 *
 	 * @return not <code>null</code>.
 	 */
+	@XmlAttribute
 	public int getId() {
 		return id;
 	}
@@ -150,6 +155,7 @@ public class Question {
 	 *
 	 * @return String not <code>null</code>.
 	 */
+	@XmlElement
 	public String getLanguage() {
 		return language;
 	}
@@ -159,6 +165,7 @@ public class Question {
 	 *
 	 * @return Person not <code>null</code> and immuable.
 	 */
+	@XmlElement
 	public Person getAuthor() {
 		return author;
 	}
@@ -168,6 +175,7 @@ public class Question {
 	 *
 	 * @return String not <code>null</code>.
 	 */
+	@XmlElement
 	public QuestionType getType() {
 		return type;
 	}
@@ -177,6 +185,7 @@ public class Question {
 	 *
 	 * @return String not <code>null</code>.
 	 */
+	@XmlElement
 	public String getPhrasing() {
 		return this.phrasing;
 	}
@@ -186,6 +195,7 @@ public class Question {
 	 *
 	 * @return String can be <code>null</code>. if the Question is TF/ YN / QCM
 	 */
+	@XmlElement
 	public List<Answer> getAnswers(){
 		return this.answers;
 	}
@@ -194,6 +204,7 @@ public class Question {
 	 * 
 	 * @Return boolean
 	 */
+	@XmlElement
 	public boolean getCorrect() {
 		return isCorrect;
 	}

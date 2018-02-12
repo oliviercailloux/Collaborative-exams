@@ -32,7 +32,7 @@ public class ImprovementService {
 	}
 	
 	@Transactional
-	public Improvement findPerson(int id) {
+	public Improvement findImprovement(int id) {
 		return em.find(Improvement.class, id);
 	}
 }
