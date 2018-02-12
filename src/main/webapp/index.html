@@ -8,10 +8,7 @@
 		<h3>Bienvenue sur le projet :)</h3>
 	</header>
 
-	<form action="rest/NewQuestion/new" method="post">
-		<p>
-			IdQuestion : <input type="text" name="id" />
-		</p>
+	<form action="rest/NewQuestion" method="post">
 
 		<p>
 			phrasing : <input type="text" name="phrasing" />
@@ -68,23 +65,23 @@
 
 		<input type="submit" value="Add Question" />
 	</form>
-	
-	
-	
+
+
+
 	<form action="v1/Questions/Get/" method="get">
-	<p>
+		<p>
 			Id: <input type="text" name="id" />
 		</p>
-	
-	
-	<input type="submit" value="Display the Question ID !" />
+
+
+		<input type="submit" value="Display the Question ID !" />
 	</form>
-	
-	
+
+
 	<form action="v1/Questions/all" method="get">
 		<input type="submit" value="Display all Questions" />
 	</form>
-	
+
 </body>
 </html>
 

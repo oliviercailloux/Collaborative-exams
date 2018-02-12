@@ -2,7 +2,6 @@ package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import java.beans.Transient;
 
-import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement(name = "answer")
 public class Answer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    @XmlAttribute
-    private int id;
-
+	@XmlAttribute
+	private int id;
+	
 	private boolean correct;
 
 	private String text;
@@ -34,7 +35,7 @@ public class Answer {
 		this.correct = correct;
 		this.text = text;
 	}
-
+	
 	public boolean isCorrect() {
 		return correct;
 	}
@@ -42,7 +43,7 @@ public class Answer {
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
 	}
-
+	
 	public String getText() {
 		return text;
 	}
@@ -54,7 +55,7 @@ public class Answer {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

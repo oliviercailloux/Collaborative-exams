@@ -4,27 +4,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 @Entity
+@XmlRootElement(name = "RelationSameAbility")
 public class SameAbility {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
 	private int idSameAbility;
 	
+	
+	@XmlElement(name = "question")
 	private Question question1;
 	
+	@XmlElement(name = "question")
 	private Question question2;
 	
+	@XmlElement(name = "author")
 	private Person author;
 	
 	public SameAbility() {
 	}
 	
-	public SameAbility(Question q1,Question q2,Person author)
+	public SameAbility(Person author, Question q1,Question q2)
 	{
 		this.question1=q1;
 		this.question2=q2;

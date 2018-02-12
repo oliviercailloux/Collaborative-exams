@@ -5,42 +5,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 /**
- * Question is the class represente person
+ * This Class represent a Person
  * 
- * @author badga
+ * @author badga & Sid
  *
  */
 @JsonbPropertyOrder({ "id", "email" })
 @Entity
+@XmlRootElement(name = "author")
 public class Person {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
+	/**
+	 * Represents the person's Id
+	 */
 	private int id;
 
-	@OneToMany(mappedBy = "author", cascade= CascadeType.PERSIST)
+	@OneToMany(mappedBy = "author")
 	private List<Question> questions;
-
+	/**
+	 * Represents the person's email
+	 */
 	private String email;
 	
 	public Person() {
 
 	}
+	
 	/**
-	 * Contruct Person
+	 * Construct a Person
 	 * 
 	 * @param id
 	 * @param email
@@ -50,26 +58,27 @@ public class Person {
 		}
 
 	/**
-	 * Returns this Person’s Id.
+	 * Returns this Person Id.
 	 *
 	 * @return Int not <code>null</code>.
 	 */
-	@XmlAttribute
+	
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * Returns this Person’s email.
+	 * Returns this Person email.
 	 *
 	 * @return String not <code>null</code>.
 	 */
+	
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * Sets this Person's email.
+	 * Sets this Person email.
 	 *
 	 * @param email
 	 *            String not <code>null</code>
@@ -78,19 +87,30 @@ public class Person {
 		this.email = email;
 	}
 
-	public void addQuestion(Question q) {
-		if (q != null)
+	/**
+	 * Add the @param to this persons's questions list
+	 * @param question
+	 */
+	public void addQuestion(Question question) {
+		if (question != null)
 		{
 			initiateQuestionsList();
-			this.questions.add(q);
+			this.questions.add(question);
 		}
 	}
 	
 	@Transient
+	/**
+	 * 
+	 * @return this person's questions list
+	 */
 	public List<Question> getQuestions() {
 		return this.questions;
 	}
-
+	
+	/**
+	 * Initiate this person's questions list
+	 */
 	public void initiateQuestionsList() {
 		if (this.questions == null)
 		this.questions = new ArrayList<Question>();

@@ -6,25 +6,24 @@ import java.util.Objects;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
- * Question is the class which represente Question
+ * This Class represents Question
  * 
  * Question is immuable
  * 
- * @author badga
+ * @author badga & Sid
  *
  */
 @JsonbPropertyOrder({"id", "author","phrasing", "language", "type", "isCorrect", "answers"})
@@ -35,6 +34,7 @@ public class Question {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
 	private int id;
 
 	/**
@@ -42,6 +42,7 @@ public class Question {
 	 * 
 	 * Not <code>null</code>.
 	 */
+	@XmlElement
 	private String phrasing;
 
 	/**
@@ -51,6 +52,7 @@ public class Question {
 	 * Not <code>null</code>, may be empty.
 	 * 
 	 */
+	@XmlElement
 	private String language;
 
 	
@@ -61,6 +63,7 @@ public class Question {
 	 */
 	
 	@ManyToOne
+	@XmlElement(name = "author")
 	private Person author;
 	
 	/**
@@ -74,6 +77,7 @@ public class Question {
 	 * 
 	 * @see QuestionType Not <code>null</code>, may be empty.
 	 */
+	@XmlElement
 	private QuestionType type;
 
 	
@@ -82,6 +86,8 @@ public class Question {
 	 */
 	
 	@OneToMany(mappedBy = "question" , cascade= CascadeType.PERSIST)
+	@XmlElementWrapper(name = "answers")
+	@XmlElement(name = "answer")
 	private List<Answer> answers;
 	
 	/**
@@ -145,7 +151,7 @@ public class Question {
 	 *
 	 * @return not <code>null</code>.
 	 */
-	@XmlAttribute
+	
 	public int getId() {
 		return id;
 	}
@@ -155,7 +161,7 @@ public class Question {
 	 *
 	 * @return String not <code>null</code>.
 	 */
-	@XmlElement
+	
 	public String getLanguage() {
 		return language;
 	}
@@ -165,7 +171,7 @@ public class Question {
 	 *
 	 * @return Person not <code>null</code> and immuable.
 	 */
-	@XmlElement
+	
 	public Person getAuthor() {
 		return author;
 	}
@@ -175,7 +181,7 @@ public class Question {
 	 *
 	 * @return String not <code>null</code>.
 	 */
-	@XmlElement
+	
 	public QuestionType getType() {
 		return type;
 	}
@@ -185,7 +191,7 @@ public class Question {
 	 *
 	 * @return String not <code>null</code>.
 	 */
-	@XmlElement
+	
 	public String getPhrasing() {
 		return this.phrasing;
 	}
@@ -195,7 +201,7 @@ public class Question {
 	 *
 	 * @return String can be <code>null</code>. if the Question is TF/ YN / QCM
 	 */
-	@XmlElement
+	
 	public List<Answer> getAnswers(){
 		return this.answers;
 	}
@@ -204,18 +210,17 @@ public class Question {
 	 * 
 	 * @Return boolean
 	 */
-	@XmlElement
+	
 	public boolean getCorrect() {
 		return isCorrect;
 	}
 
-	
-	public boolean equalz(Object obj) {
+	public boolean equals(Question question) {
 		
-		if (obj== this) return true;
-		if (obj != null && (obj.getClass().equals(this.getClass()))) {
+		if (question== this) return true;
+		if (question != null && (question.getClass().equals(this.getClass()))) {
 
-			Question question = (Question) obj;
+			
 			return (this.phrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
 					&& (this.id == question.getId()) && (this.getCorrect() == question.getCorrect())
 					&& (this.getLanguage().equals(question.getLanguage())));

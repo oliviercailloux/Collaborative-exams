@@ -26,7 +26,6 @@ public class NewQuestion {
 	@Inject
 	QuestionService questionService;
 
-	@Path("new")
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)

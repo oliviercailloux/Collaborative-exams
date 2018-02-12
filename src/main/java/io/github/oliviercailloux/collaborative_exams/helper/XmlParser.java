@@ -1,7 +1,8 @@
 package io.github.oliviercailloux.collaborative_exams.helper;
 
-
+import io.github.oliviercailloux.collaborative_exams.model.entity.Improvement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
@@ -10,74 +11,49 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.*;
 
-
-
-
+/**
+ * 
+ * @author Sid
+ *
+ */
 public class XmlParser {
 
- static private String stringPath = "QuestionXml";
+	static private String FILEPATH = "QuestionXml";
 
+	public static <T> void ToXml(Class<T> className, T objectT) throws JAXBException, FileNotFoundException {
+		
+		JAXBContext jaxbContext = JAXBContext.newInstance(className);
+		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+		// output pretty printed
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-    public static File QuestionToXml(Question question) throws Exception {
-        try {
+		jaxbMarshaller.marshal(objectT, new File(FILEPATH));
+		/*
+		 * to use String :
+		 * 
+		 * String result = "";
+		 * Writer writer = new StringWriter(); jaxbMarshaller.marshal(objectT, writer);
+		 * result = writer.toString();
+		 */
+		jaxbMarshaller.marshal(objectT, System.out);
+	}
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(Question.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+	@SuppressWarnings({ "resource", "unchecked" })
+	public static <T> T FromXml(Class<T> className) throws JAXBException, FileNotFoundException {
 
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		JAXBContext jaxbContext = JAXBContext.newInstance(className);
 
-            jaxbMarshaller.marshal(question, new File(stringPath));
-            jaxbMarshaller.marshal(question, System.out);
-
-
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Question question2  = (Question) jaxbUnmarshaller.unmarshal(new FileReader(
-                    stringPath));
-
-
-            System.out.print(QuestionText.QuestionToJson(question));
-
-            return null;
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-        return null ;
-    }
-
-
-    public static Question XmlToQuestion(File file) throws Exception {
-
-        //Question question = JAXB.unmarshal(new StringReader(xml), Question.class);
-        JAXBContext jaxbContext = JAXBContext.newInstance(Question.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        Question question  = (Question) jaxbUnmarshaller.unmarshal(new FileReader(
-                stringPath));
-
-
-        System.out.print(QuestionText.QuestionToJson(question));
-
-        return question;
-
-    }
-
-
-
-    public static void main(String[] args) throws Exception {
-        data.constructData();
-
-        Question question = data.getQuestions().get(0);
-        File file = QuestionToXml(question);
-
-        Question questionTransformed = XmlToQuestion(file);
-
-        System.out.print(questionTransformed.getLanguage());
-
-    }
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		T objectUnmarshalled = (T) jaxbUnmarshaller.unmarshal(new FileReader(FILEPATH));
+		
+		return objectUnmarshalled;
+	}
 
 }
