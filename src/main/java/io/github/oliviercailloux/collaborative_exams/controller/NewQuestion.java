@@ -3,6 +3,7 @@ package io.github.oliviercailloux.collaborative_exams.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
@@ -21,13 +23,15 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 @Path("NewQuestion")
 public class NewQuestion {
 
+	@Inject
+	QuestionService questionService;
+
 	@Path("new")
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String addBook(MultivaluedMap<String, String> form) throws Exception {
 
-		int id = Integer.valueOf(form.getFirst("id"));
 		String type = form.getFirst("type");
 		int idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
 		String phrasing = form.getFirst("phrasing");
@@ -59,12 +63,13 @@ public class NewQuestion {
 
 		Question question;
 
-		if (type.equals("YN") || type.equals("TF")) {
+		if (qType == QuestionType.YN ||qType == QuestionType.TF ) {
 
 			Boolean isCorrect = Boolean.valueOf(form.getFirst("isCorrect"));
 			question = new Question(phrasing, language, data.getAuthorByID(idAuthor), qType, isCorrect);
 
-		} else if (type.equals("free")) {
+
+		} else if (qType == QuestionType.Free) {
 			String freeAnswer = form.getFirst("freeAnswer");
 			List<Answer> answers = new ArrayList<>();
 			answers.add(new Answer(freeAnswer, true));
@@ -83,13 +88,11 @@ public class NewQuestion {
 				i++;
 			}
 			question = new Question(phrasing, language, data.getAuthorByID(idAuthor), qType, answers);
-
 		}
 		data.addQuestion(question);
+		questionService.persist(question);
 
 		return QuestionText.QuestionToJson(question);
 	}
-
-	
 
 }
