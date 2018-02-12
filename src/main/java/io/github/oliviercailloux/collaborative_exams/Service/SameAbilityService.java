@@ -40,6 +40,7 @@ public class SameAbilityService {
 		return em.find(SameAbility.class, id);
 	}
 
+
 	@Transactional
 	public SameAbility isSameAbility(Person idAuthor, Question idQuestion1, Question idQuestion2) {
 		TypedQuery<SameAbility> query = em.createQuery(
@@ -49,6 +50,12 @@ public class SameAbilityService {
 		query.setParameter("idQuestion1", idQuestion1);
 		query.setParameter("idQuestion2", idQuestion2);
 
-		return query.getSingleResult();
+		List<SameAbility> results = query.getResultList();
+		if (results.isEmpty()) return null;
+		else  return results.get(0);
+
+
+
+
 	}
 }

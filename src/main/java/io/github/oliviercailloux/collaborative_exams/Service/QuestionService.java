@@ -27,6 +27,8 @@ public class QuestionService {
 		return em.createQuery(helper.selectAll(Question.class)).getResultList();
 	}
 
+
+
 	@Transactional
 	public void persist(Question question) {
 		if(null == em.find(Person.class,question.getAuthor().getId()))
@@ -41,7 +43,9 @@ public class QuestionService {
 
 		}
 	}
-	
+
+
+
 	@Transactional
 	public Question findQuestion(int id) {
 		return em.find(Question.class, id);

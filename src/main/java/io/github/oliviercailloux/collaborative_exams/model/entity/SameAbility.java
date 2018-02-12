@@ -31,8 +31,8 @@ public class SameAbility {
 	
 	public SameAbility() {
 	}
-	
-	public SameAbility(Person author, Question q1,Question q2)
+
+	public SameAbility(Question q1,Question q2,Person author)
 	{
 		this.question1=q1;
 		this.question2=q2;

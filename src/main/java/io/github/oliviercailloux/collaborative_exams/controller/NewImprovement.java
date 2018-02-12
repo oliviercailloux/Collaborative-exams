@@ -44,7 +44,6 @@ public class NewImprovement {
 		int idAuthor  = Integer.valueOf(form.getFirst("idAuthor"));
 
 
-
 		if(questionService.findQuestion(idQuestion1)==null)
 			return "ID Q1 : " + idQuestion1 + " n\'existe pas ";
 		else

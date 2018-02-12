@@ -32,8 +32,8 @@ public class Improvement {
 	public Improvement() {
 		
 	}
-	
-	public Improvement(Person author, Question q1,Question q2)
+
+	public Improvement(Question q1,Question q2,Person author)
 	{
 		this.question1=q1;
 		this.question2=q2;
