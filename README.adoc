@@ -4,11 +4,7 @@
 
 image:https://travis-ci.org/badga/Collaborative-exams.svg?branch=master["Build Status", link="https://travis-ci.org/badga/Collaborative-exams"]
 
-Ce projet permettra � des enseignants de cr�er des ensembles de questions et r�ponses. Ces questions peuvent �tre r�utilis�es par d�autres enseignants et combin�es pour cr�er des questionnaires ou des sondages. Les �tudiants pourront se servir de ces ensembles de questions pour s�entrainer.
+-Ce projet permettra à des enseignants de créer des ensembles de questions et réponses. Ces questions peuvent être réutilisées par d’autres enseignants et combinées pour créer des questionnaires ou des sondages. Les étudiants pourront se servir de ces ensembles de questions pour s’entrainer.
 
-L�application laissera la place � la subjectivit� des enseignants, en leur permettant par exemple de privil�gier certaines questions.
-
-
-
-
-== http://collaborative-exams.eu-gb.mybluemix.net/
+=== Retrouvez notre application en suivant le lien ci dessous : 
+===== http://collaborative-exams.eu-gb.mybluemix.net/
