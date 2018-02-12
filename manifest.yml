@@ -1,4 +1,4 @@
 applications:
  - name: collaborative-exams
-   path: target/collaborative-exams-0.0.1-SNAPSHOT.war
+   path: target/collaborative-exams.war
    instances: 1
