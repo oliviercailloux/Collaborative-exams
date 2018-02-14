@@ -3,6 +3,7 @@ package io.github.oliviercailloux.collaborative_exams.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -13,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
@@ -24,39 +26,24 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 public class ChangeResponseTypeYN {
 
 
+    @Inject
+    QuestionService questionService;
 
-	@GET
-	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
-	public int changeResponse()//@FormParam("id") int idQuestion, @FormParam("idAuthor") int idAuthor)
-	throws Exception {
-		//Question question = data.getQuestionByID(idQuestion);
-		/*
-		List<Answer> answers = question.getAnswers();
-		
-		ArrayList<Integer> ids = new ArrayList<Integer>();
-		
-		int i = 0;
-		for (Answer a : answers) {
-			if (a.isCorrect()) {
-			Question newQuestion = new Question();
-			newQuestion.setPhrasing(a.getText());
-			newQuestion.setType(QuestionType.YN);
-			newQuestion.setId(Question.questionCount++);
-			
-			newQuestion.setAuthor(data.getAuthorByID(idAuthor));
-			ids.add(newQuestion.getId());
-			}
-		}
-		
-		question.setId(idQuestion * 100);
+    @GET
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getQuestion(@PathParam("id") int id) throws Exception {
+        data.constructData();
+        Question question = data.getQuestionByID(id);
+        Question myQuestion;
 
-		data.addQuestion(question);
-	*/
-		return 1;
-				//ids;
-	}
-		
-		
+        myQuestion = new Question(question.getPhrasing(), question.getLanguage(), question.getAuthor(), QuestionType.YN, question.getCorrect());
+
+        data.addQuestion(myQuestion);
+        questionService.persist(myQuestion);
+        return QuestionText.QuestionToJson(myQuestion);
+    }
+
+
 }
 	

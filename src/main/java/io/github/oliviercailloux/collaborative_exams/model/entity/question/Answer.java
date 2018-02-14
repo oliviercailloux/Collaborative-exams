@@ -2,67 +2,78 @@ package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import java.beans.Transient;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import javax.json.bind.annotation.JsonbPropertyOrder;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Answer is immuable, you can add the question the first time
+ */
+@JsonbPropertyOrder({"id", "text", "correct"})
 @Entity
 @XmlRootElement(name = "answer")
 public class Answer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@XmlAttribute
-	private int id;
-	
-	private boolean correct;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @XmlAttribute
+    private int id;
 
-	private String text;
+    @Column(nullable = false)
+    private boolean correct;
 
-	@ManyToOne
-	private Question question;
+    @Column(nullable = false)
+    private String text;
 
-	public Answer() {
+    @ManyToOne
+    private Question question;
 
-	}
+    public Answer() {
 
-	public Answer(String text, boolean correct) {
-		this.correct = correct;
-		this.text = text;
-	}
-	
-	public boolean isCorrect() {
-		return correct;
-	}
+    }
 
-	public void setCorrect(boolean correct) {
-		this.correct = correct;
-	}
-	
-	public String getText() {
-		return text;
-	}
+    public Answer(String text, boolean correct) {
+        this.correct = correct;
+        this.text = text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public boolean isCorrect() {
+        return correct;
+    }
 
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
-	
-	public int getId() {
-		return id;
-	}
 
-	@Transient
-	public Question getQuestion() {
-		return this.question;
-	}
+    public String getText() {
+        return text;
+    }
+
+
+    /**
+     * add question to answers if question is null , else throw new exception, for add
+     *
+     * @param question the question how have this answer
+     */
+    public void setQuestionIfNull(Question question) throws Exception {
+        if (this.question == null) {
+            this.question = question;
+        } else {
+            throw new Exception("the Answer, have Question and it's immuable");
+        }
+
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+
+    @JsonbTransient
+    public Question getQuestion() {
+        return this.question;
+    }
 
 }

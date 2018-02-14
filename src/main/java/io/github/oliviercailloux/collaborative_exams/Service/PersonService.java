@@ -34,7 +34,5 @@ public class PersonService {
 	public Person findPerson(int id) {
 		return em.find(Person.class, id);
 	}
-	
-	
-	
+
 }

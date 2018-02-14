@@ -33,7 +33,7 @@ public class data {
 
 	private static List<Question> questions = new ArrayList<>();
 
-	public static void constructData() {
+	public static void constructData() throws Exception {
 
 		String phrasing = "Que mange la baleine ?";
 		String language = "French";
@@ -49,25 +49,19 @@ public class data {
 		Person author1 = getAuthorByPosition(0);
 		Question mquestion1 = new Question(phrasing, language, author1, type, answers1);
 
-		Answer answer3 = new Answer();
-		Answer answer4 = new Answer();
+		Answer answer3 = new Answer("de la viande", true);
+		Answer answer4 = new Answer("des croquettes",true );
 
 		String phrasing2 = "Que mangent les chiens ?";
 
 		List<Answer> answers2 = new ArrayList<>();
-
-		answer3.setText("de la viande");
-		answer3.setCorrect(true);
-
-		answer4.setText("des croquettes");
-		answer4.setCorrect(true);
 
 		answers2.add(answer3);
 		answers2.add(answer4);
 
 		Person author2 = getAuthorByID(1);
 
-		Question mquestion2 = new Question(phrasing2, language, author2, type, answers2);
+		Question mquestion2 = new Question(phrasing2, language, author2, QuestionType.Free, answer3);
 
 		String phrasing3 = "2 + 2 =?= 4";
 
@@ -142,15 +136,15 @@ public class data {
 		return false;
 	}
 
-	public static void main(String[] args) throws Exception {
+/*	public static void main(String[] args) throws Exception {
 		constructData();
 		/*
 		 * System.out.println(QuestionText.QuestionToJson(questions.get(0)));
 		 * System.out.println(QuestionText.QuestionToJson(questions.get(1)));
 		 * System.out.println(QuestionText.QuestionToJson(questions.get(2)));
 		 */
-		Question q111 = questions.get(0);
+	/*	Question q111 = questions.get(0);
 		System.out.println(QuestionText.QuestionToJson(q111));
-	}
+	}*/
 
 }

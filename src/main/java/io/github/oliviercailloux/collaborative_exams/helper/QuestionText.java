@@ -5,34 +5,73 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class QuestionText {
 
-	public static Question JsonToQuestion(String json) throws Exception {
+    public static Question JsonToQuestion(String json) throws Exception {
 
-		try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-			Question question = jsonb.fromJson(json, Question.class);
-			return question;
-		}
-	}
+        try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true).withAdapters(new QuestionAdapter()))) {
 
-	public static String QuestionToJson(Question question) throws Exception {
+            Question question = jsonb.fromJson(json, Question.class);
+            return question;
+        }
+    }
 
-		try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-			return jsonb.toJson(question);
-		}
-	}
+    public static String QuestionToJson(Question question) throws Exception {
 
-	public static void main(String[] args) throws Exception {
-		data.constructData();
+        try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            return jsonb.toJson(question);
+        }
+    }
 
-		Question q = data.getQuestionByID(1);
+  /*  public static <T> T JsonToObject(Class<T> className,String json) throws Exception {
+        try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true).withNullValues(true))) {
+            T objectMarshelled = jsonb.fromJson(json, className);
 
-		System.out.println(QuestionToJson(q));
+            return objectMarshelled;
+        }
+    }*/
 
-	}
+    public static <T> String ObjectToJson(Class<T> className, T objectT) throws Exception {
+        try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            return jsonb.toJson(objectT);
+        }
+    }
+
+    public static String QuestionsToJson(List<Question> question) throws Exception {
+
+        try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            return jsonb.toJson(question);
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        data.constructData();
+        Question q0 = data.getQuestions().get(0);
+        Question q = data.getQuestions().get(1);
+        Question q1 = data.getQuestions().get(2);
+
+
+        System.out.println(QuestionToJson(q));
+
+        System.out.println(QuestionToJson(JsonToQuestion(QuestionToJson(q))));
+
+
+
+
+
+
+
+    }
 }
+
+

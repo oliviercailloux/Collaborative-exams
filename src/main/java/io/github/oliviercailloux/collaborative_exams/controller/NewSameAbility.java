@@ -38,13 +38,13 @@ public class NewSameAbility {
 		int idAuthor  = Integer.valueOf(form.getFirst("idAuthor"));
 
 
-		if(questionService.findQuestion(idQuestion1)==null)
+		if(questionService.findQuestion(idQuestion1) == null)
 			return "ID Q1 : " + idQuestion1 + " n\'existe pas ";
 		else
-		if(questionService.findQuestion(idQuestion2)==null)
+		if(questionService.findQuestion(idQuestion2) == null)
 			return "ID Q2 : " + idQuestion2 + " n\'existe pas ";
 		else
-		if(personService.findPerson(idAuthor)==null)
+		if(personService.findPerson(idAuthor)== null)
 			return "ID Author : " + idAuthor + " n\'existe pas ";
 
 		SameAbility s = new SameAbility(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2),personService.findPerson(idAuthor));
