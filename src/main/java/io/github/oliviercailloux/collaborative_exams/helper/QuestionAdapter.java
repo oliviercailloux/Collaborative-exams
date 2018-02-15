@@ -2,14 +2,11 @@ package io.github.oliviercailloux.collaborative_exams.helper;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.PersonAdapter;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
-import javax.json.JsonValue;
-import javax.json.bind.Jsonb;
 import javax.json.bind.adapter.JsonbAdapter;
 import java.util.ArrayList;
 import java.util.List;

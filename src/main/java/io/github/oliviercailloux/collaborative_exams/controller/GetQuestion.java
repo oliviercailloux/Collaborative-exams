@@ -31,11 +31,7 @@ public class GetQuestion  {
 
         String result = "Les questions sont : ";
         List<Question> questions = questionService.getAll();
-
-        for (Question question : questions)
-            result += QuestionText.ObjectToJson(Question.class, question);
-
-        return result;
+        return QuestionText.QuestionsToJson(questions);
     }
 
     @Path("/{id}")

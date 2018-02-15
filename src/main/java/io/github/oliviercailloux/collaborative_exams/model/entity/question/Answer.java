@@ -24,9 +24,11 @@ public class Answer {
     private int id;
 
     @Column(nullable = false)
+    @XmlElement
     private boolean correct;
 
     @Column(nullable = false)
+    @XmlElement
     private String text;
 
     @ManyToOne
@@ -35,6 +37,7 @@ public class Answer {
     public Answer() {
 
     }
+
 
     public Answer(String text, boolean correct) {
         this.correct = correct;
@@ -62,8 +65,6 @@ public class Answer {
         } else {
             throw new Exception("the Answer, have Question and it's immuable");
         }
-
-
     }
 
     public int getId() {

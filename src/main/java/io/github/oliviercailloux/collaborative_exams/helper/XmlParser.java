@@ -19,41 +19,49 @@ import java.io.Writer;
 import java.util.*;
 
 /**
- * 
  * @author Sid
- *
  */
 public class XmlParser {
 
-	static private String FILEPATH = "QuestionXml";
+    static private String FILEPATH = "QuestionXml";
 
-	public static <T> void ToXml(Class<T> className, T objectT) throws JAXBException, FileNotFoundException {
-		
-		JAXBContext jaxbContext = JAXBContext.newInstance(className);
-		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-		// output pretty printed
-		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+    public static <T> void ToXml(Class<T> className, T objectT) throws JAXBException, FileNotFoundException {
 
-		jaxbMarshaller.marshal(objectT, new File(FILEPATH));
-		/*
-		 * to use String :
-		 * 
-		 * String result = "";
-		 * Writer writer = new StringWriter(); jaxbMarshaller.marshal(objectT, writer);
-		 * result = writer.toString();
-		 */
-		jaxbMarshaller.marshal(objectT, System.out);
-	}
+        JAXBContext jaxbContext = JAXBContext.newInstance(className);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        // output pretty printed
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-	@SuppressWarnings({ "resource", "unchecked" })
-	public static <T> T FromXml(Class<T> className) throws JAXBException, FileNotFoundException {
+        jaxbMarshaller.marshal(objectT, new File(FILEPATH));
+        /*
+         * to use String :
+         *
+         * String result = "";
+         * Writer writer = new StringWriter(); jaxbMarshaller.marshal(objectT, writer);
+         * result = writer.toString();
+         */
+        jaxbMarshaller.marshal(objectT, System.out);
+    }
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(className);
+    @SuppressWarnings({"resource", "unchecked"})
+    public static <T> T FromXml(Class<T> className) throws JAXBException, FileNotFoundException {
 
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		T objectUnmarshalled = (T) jaxbUnmarshaller.unmarshal(new FileReader(FILEPATH));
-		
-		return objectUnmarshalled;
-	}
+        JAXBContext jaxbContext = JAXBContext.newInstance(className);
 
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        T objectUnmarshalled = (T) jaxbUnmarshaller.unmarshal(new FileReader(FILEPATH));
+
+        return objectUnmarshalled;
+    }
+
+
+  /*  public static void main(String[] args) throws Exception {
+        data.constructData();
+        Question q = data.getQuestions().get(2);
+        System.out.println(QuestionText.QuestionToJson(q));
+        ToXml(Question.class, q);
+        Question q1 = FromXml(Question.class);
+        System.out.println(QuestionText.QuestionToJson(q1));
+
+    }*/
 }

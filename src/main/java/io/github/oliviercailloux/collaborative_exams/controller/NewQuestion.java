@@ -88,8 +88,6 @@ public class NewQuestion {
                 break;
 
         }
-        //IL FAUT L'ENLEVER ####################################### DATA ##################################
-       // data.addQuestion(question);
 
         questionService.persist(question);
 

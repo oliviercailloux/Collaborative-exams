@@ -54,8 +54,5 @@ public class SameAbilityService {
 		if (results.isEmpty()) return null;
 		else  return results.get(0);
 
-
-
-
 	}
 }

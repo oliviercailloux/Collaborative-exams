@@ -171,7 +171,7 @@ public class Question {
     /**
      * Returns this Question’s language.
      *
-     * @return String not <code>null</code>.
+     * @return String not null.
      */
 
     public String getLanguage() {
@@ -181,7 +181,7 @@ public class Question {
     /**
      * Returns this Question’s author.
      *
-     * @return Person not <code>null</code> and immuable.
+     * @return Person not null and immuable.
      */
 
     public Person getAuthor() {
@@ -191,7 +191,7 @@ public class Question {
     /**
      * Returns this Question’s type.
      *
-     * @return String not <code>null</code>.
+     * @return String not null.
      */
 
     public QuestionType getType() {
@@ -213,7 +213,7 @@ public class Question {
     /**
      * Returns this Question’s answers.
      *
-     * @return String can be <code>null</code>. if the Question is TF/ YN / QCM
+     * @return String can be null, if the Question is TF/ YN / QCM
      */
     public List<Answer> getAnswers() {
 
@@ -229,11 +229,6 @@ public class Question {
 
         return isCorrect;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
 
     public boolean equals(Question question) {

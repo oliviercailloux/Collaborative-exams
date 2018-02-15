@@ -53,25 +53,6 @@ public class QuestionText {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-
-        data.constructData();
-        Question q0 = data.getQuestions().get(0);
-        Question q = data.getQuestions().get(1);
-        Question q1 = data.getQuestions().get(2);
-
-
-        System.out.println(QuestionToJson(q));
-
-        System.out.println(QuestionToJson(JsonToQuestion(QuestionToJson(q))));
-
-
-
-
-
-
-
-    }
 }
 
 

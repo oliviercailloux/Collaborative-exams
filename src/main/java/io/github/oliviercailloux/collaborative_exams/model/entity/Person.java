@@ -40,7 +40,9 @@ public class Person {
      * Represents the person's email
      */
     @Column(nullable = false)
+    @XmlElement
     private String email;
+
 
     public Person() {
 
@@ -52,10 +54,10 @@ public class Person {
      * @param email
      */
     public Person(String email) {
+
         this.email = email;
+
     }
-
-
 
 
     /**
@@ -79,11 +81,9 @@ public class Person {
     }
 
     /**
-     *
      * @return this person's questions list
      */
     @JsonbTransient
-
     public List<Question> getQuestions() {
 
         return this.questions;
