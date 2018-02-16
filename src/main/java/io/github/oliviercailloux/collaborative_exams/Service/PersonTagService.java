@@ -36,8 +36,12 @@ public class PersonTagService {
 
 
 	@Transactional
-	public PersonTag findPersonTag(int id) {
-		return em.find(PersonTag.class, id);
+	public PersonTag findPersonTag(int id) throws Exception {
+
+		PersonTag personTag = em.find(PersonTag.class,id);
+		if(personTag==null)
+			throw new Exception("Don't find PersonTag for id :  "+ id);
+		return personTag;
 	}
 
 
