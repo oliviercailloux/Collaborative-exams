@@ -13,7 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
+import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
@@ -25,25 +27,53 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 @Path("ChangeResponseTypeYN")
 public class ChangeResponseTypeYN {
 
+	@Inject
+	QuestionService questionService;
+	
+	@Inject 
+	PersonService personService; 
 
-    @Inject
-    QuestionService questionService;
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getQuestion(MultivaluedMap<String, String> form) throws Exception {
 
-    @GET
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getQuestion(@PathParam("id") int id) throws Exception {
-        data.constructData();
-        Question question = data.getQuestionByID(id);
-        Question myQuestion;
+		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
+		int newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+		
 
-        myQuestion = new Question(question.getPhrasing(), question.getLanguage(), question.getAuthor(), QuestionType.YN, question.getCorrect());
+		Question question = questionService.findQuestion(idQuestion);
+		Person newAuthor = personService.findPerson(newAuthorId);
+		
+		QuestionType yn = QuestionType.YN;
+	
+		Question modifiedQuestion; 
 
-        data.addQuestion(myQuestion);
-        questionService.persist(myQuestion);
-        return QuestionText.QuestionToJson(myQuestion);
-    }
+		QuestionType questionType = question.getType();
 
+		if (questionType == QuestionType.TF) {
+			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, yn,
+					question.getCorrect());
+		} else if (questionType == QuestionType.Free) {
+			//Comment gerer les reponses ?
+			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, yn,
+					question.getAnswers().get(0));
 
+		} else if (questionType == QuestionType.QCM) {
+			//Comment gerer les reponses ?
+			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, yn,
+					question.getAnswers());
+		} else if (questionType == QuestionType.YN) {
+			throw new Exception("Question type is already YN ! ");
+		}else {
+			throw new Exception("Invalid Question Id ! ");
+		}
+		
+		questionService.persist(modifiedQuestion);
+		return String.valueOf(modifiedQuestion.getId());
+		
+	}
+		
+		
 }
 	
