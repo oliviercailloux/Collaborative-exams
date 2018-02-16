@@ -11,7 +11,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
+import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
@@ -19,31 +21,46 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
-
 @Path("ChangeQuestionLanguage")
 public class ChangeQuestionLanguage {
 
-    @Inject
-    QuestionService questionService;
+	@Inject
+	QuestionService questionService;
+	
+	@Inject 
+	PersonService personService; 
 
-    @GET
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getQuestion(@PathParam("id") int id) throws Exception {
-        data.constructData();
-        Question question = data.getQuestionByID(id);
-        Question myQuestion;
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getQuestion(MultivaluedMap<String, String> form) throws Exception {
 
-        if (question.getLanguage() == "French") {
-            myQuestion = new Question(question.getPhrasing(), "English", question.getAuthor(), question.getType(), question.getCorrect());
-        } else if (question.getLanguage() == "English") {
-            myQuestion = new Question(question.getPhrasing(), "French", question.getAuthor(), question.getType(), question.getCorrect());
-        } else {
-            throw new Exception("Invalid language exception! Please choose between 'French' or 'Enlish'");
-        }
+		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
+		int newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+		String newLanguage = form.getFirst("newLanguage");
 
-        data.addQuestion(myQuestion);
-        questionService.persist(myQuestion);
-        return QuestionText.QuestionToJson(myQuestion);
-    }
+		Question question = questionService.findQuestion(idQuestion);
+		Person newAuthor = personService.findPerson(newAuthorId);
+	
+		Question modifiedQuestion; 
+
+		QuestionType questionType = question.getType();
+
+		if (questionType == QuestionType.TF || questionType == QuestionType.YN) {
+			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),
+					question.getCorrect());
+		} else if (questionType == QuestionType.Free) {
+			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),
+					question.getAnswers().get(0));
+
+		} else if (questionType == QuestionType.QCM) {
+			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),
+					question.getAnswers());
+		} else {
+			throw new Exception("Invalid Question Id ! ");
+		}
+		
+		questionService.persist(modifiedQuestion);
+		return String.valueOf(modifiedQuestion.getId());
+	}
 }
