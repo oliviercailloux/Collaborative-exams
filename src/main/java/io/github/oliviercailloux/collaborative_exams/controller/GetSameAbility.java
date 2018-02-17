@@ -26,13 +26,16 @@ public class GetSameAbility {
 	@Inject
 	QuestionService questionService;
 
-	@Path("Get/{idQuestion1}/{idQuestion2}")
+	@Inject
+	PersonService personService;
+
+	@Path("Get/{idQuestion1}/{idQuestion2}/{idAuthor}")
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getSameAbility(@PathParam("idQuestion1") int idQuestion1,@PathParam("idQuestion2") int idQuestion2) throws Exception {
+	public String getSameAbility(@PathParam("idAuthor") int idAuthor,@PathParam("idQuestion1") int idQuestion1,@PathParam("idQuestion2") int idQuestion2) throws Exception {
 
-		SameAbility sameAbility = sameAbilityService.isSameAbility(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2));
+		SameAbility sameAbility = sameAbilityService.isSameAbility(personService.findPerson(idAuthor),questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2));
 		return QuestionText.ObjectToJson(SameAbility.class,sameAbility);
 		
 
