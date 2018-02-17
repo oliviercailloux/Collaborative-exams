@@ -40,40 +40,26 @@ public class ChangeResponseTypeYN {
 
 		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
 		int newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
-		
+
 
 		Question question = questionService.findQuestion(idQuestion);
 		Person newAuthor = personService.findPerson(newAuthorId);
-		
-		QuestionType yn = QuestionType.YN;
-	
+
 		Question modifiedQuestion; 
 
 		QuestionType questionType = question.getType();
 
-		if (questionType == QuestionType.TF) {
-			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, yn,
+		if(questionType == QuestionType.TF){
+			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, QuestionType.YN,
 					question.getCorrect());
-		} else if (questionType == QuestionType.Free) {
-			//Comment gerer les reponses ?
-			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, yn,
-					question.getAnswers().get(0));
 
-		} else if (questionType == QuestionType.QCM) {
-			//Comment gerer les reponses ?
-			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, yn,
-					question.getAnswers());
-		} else if (questionType == QuestionType.YN) {
+		}else if (questionType == QuestionType.YN) {
 			throw new Exception("Question type is already YN ! ");
-		}else {
-			throw new Exception("Invalid Question Id ! ");
-		}
-		
+		} else throw new Exception("This type of question can't change");
+
 		questionService.persist(modifiedQuestion);
 		return String.valueOf(modifiedQuestion.getId());
-		
+
 	}
-		
-		
 }
 	
