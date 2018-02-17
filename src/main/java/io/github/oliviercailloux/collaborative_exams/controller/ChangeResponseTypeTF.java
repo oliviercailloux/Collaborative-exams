@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -10,49 +8,57 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
-import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
+
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
+
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
+/**
+ * Jax-RS Servlet that allows to change a Yes/no question to a True/false question
+ */
 @Path("ChangeResponseTypeTF")
 public class ChangeResponseTypeTF {
-	
-	@Inject
-	QuestionService questionService;
-	
-	@Inject 
-	PersonService personService; 
 
-	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getQuestion(MultivaluedMap<String, String> form,@CookieParam("authorId") String cookie) throws Exception {
-		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
-		int newAuthorId ;
+    @Inject
+    private QuestionService questionService;
 
-		if(cookie==null)
-			newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
-		else
-			newAuthorId = Integer.valueOf(cookie);
+    @Inject
+    private PersonService personService;
 
-		Question question = questionService.findQuestion(idQuestion);
-		Person newAuthor = personService.findPerson(newAuthorId);
-        //Boolean correct =  ;
-		Question modifiedQuestion;
-		QuestionType questionType = question.getType();
+    /**
+     * @param form                  that contains the idQuestion and the new authorId that can be null if cookie is set
+     * @param newAuthorIdFromCookie contains the new authorId if the cookie is set
+     * @return the new Id of the question after modification
+     * @throws Exception if the type of the question is already TF or the type cannot be changed to TF or IdQuestion is invalid
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") String newAuthorIdFromCookie) throws Exception {
+        int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
+        int newAuthorId;
 
-        	if(questionType == QuestionType.YN){
-			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, QuestionType.TF,
-					question.getCorrect());
-		}else if (questionType == QuestionType.TF) {
-			throw new Exception("Question type is already TF ! ");
-		} else throw new Exception("This type of question can't change");
+        if (newAuthorIdFromCookie == null)
+            newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+        else
+            newAuthorId = Integer.valueOf(newAuthorIdFromCookie);
 
-		questionService.persist(modifiedQuestion);
-		return String.valueOf(modifiedQuestion.getId());
+        Question question = questionService.findQuestion(idQuestion);
+        Person newAuthor = personService.findPerson(newAuthorId);
+        Question modifiedQuestion;
+        QuestionType questionType = question.getType();
 
-	}
+        if (questionType == QuestionType.YN) {
+            modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, QuestionType.TF,
+                    question.getCorrect());
+        } else if (questionType == QuestionType.TF) {
+            throw new Exception("Question type is already TF ! ");
+        } else throw new Exception("This type of question can't change from" + question.getType() + " to TF");
+
+        questionService.persist(modifiedQuestion);
+        return String.valueOf(modifiedQuestion.getId());
+
+    }
 }
 	

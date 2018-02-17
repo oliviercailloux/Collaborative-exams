@@ -1,32 +1,35 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
 import io.github.oliviercailloux.collaborative_exams.Service.ImprovementService;
-import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Improvement;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
-
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
 
+
+/**
+ * JAX-RS Servlet that allows to get an improvement relation between two questions according to an author
+ */
 @Path("Improvement")
 public class GetImprovement {
 
     @Inject
-    ImprovementService improvementService;
+    private ImprovementService improvementService;
 
-
+    /**
+     *
+     * @param id represent the id of the Improvement relation
+     * @return the relation well formatted in json
+     * @throws Exception if the relation is not found
+     */
     @Path("/{id}")
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     public String getImprovement(@PathParam("id") int id) throws Exception {
         Improvement improvement = improvementService.findImprovement(id);
-        return QuestionText.ObjectToJson(Improvement.class,improvement);
+        return QuestionText.ObjectToJson(Improvement.class, improvement);
     }
 
 }
