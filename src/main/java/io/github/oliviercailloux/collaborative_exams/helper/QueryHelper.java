@@ -25,22 +25,4 @@ public class QueryHelper {
 		return query;
 	}
 
-
-	public <T> CriteriaQuery<SameAbility> selectSameAbility(int question1, int question2 ,int author) {
-		final CriteriaBuilder criteriaBuilder = emf.getCriteriaBuilder();
-		final CriteriaQuery<SameAbility> query = criteriaBuilder.createQuery(SameAbility.class);
-		final Root<SameAbility> from = query.from(SameAbility.class);
-		query.select(from);
-		ParameterExpression<Integer> idquestion1 = criteriaBuilder.parameter(Integer.class);
-
-		query.where(
-				criteriaBuilder.or(
-						criteriaBuilder.equal(from.get("idQuestion1"), idquestion1)
-				)
-		);
-		return query;
-	}
-
-
-
 }

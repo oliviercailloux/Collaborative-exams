@@ -21,17 +21,18 @@ public class QuestionAdapter implements JsonbAdapter<Question, JsonObject> {
 
     @Override
     public Question adaptFromJson(JsonObject obj) throws Exception {
+        Question question = new Question();
         String phrasing = obj.getString("phrasing");
         String language = obj.getString("language");
         String type = obj.getString("type");
 
-        Person author;
-        if (obj.isNull("author")) {
+        Person author = new Person();
+        if (!obj.isNull("author")) {
             author = personAdapter.adaptFromJson(obj.getJsonObject("author"));
         } else {
             author = new Person();
         }
-        Question question = new Question();
+
         Boolean isCorrect;
         QuestionType qType;
 

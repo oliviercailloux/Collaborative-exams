@@ -28,10 +28,8 @@ public class GetQuestion  {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String getQuestions() throws Exception {
-
-        String result = "Les questions sont : ";
         List<Question> questions = questionService.getAll();
-        return QuestionText.QuestionsToJson(questions);
+       return QuestionText.QuestionsToJson(questions);
     }
 
     @Path("/{id}")

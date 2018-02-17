@@ -32,13 +32,13 @@ public class QuestionText {
         }
     }
 
-  /*  public static <T> T JsonToObject(Class<T> className,String json) throws Exception {
+    public static <T> T JsonToObject(Class<T> className,String json) throws Exception {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true).withNullValues(true))) {
             T objectMarshelled = jsonb.fromJson(json, className);
 
             return objectMarshelled;
         }
-    }*/
+    }
 
     public static <T> String ObjectToJson(Class<T> className, T objectT) throws Exception {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
@@ -51,6 +51,18 @@ public class QuestionText {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
             return jsonb.toJson(question);
         }
+    }
+
+
+    public static void main(String arg[]) throws Exception {
+        data.constructData();
+
+        Question question =  JsonToObject(Question.class,QuestionToJson(data.getQuestions().get(0)));
+
+        System.out.println(QuestionToJson(data.getQuestions().get(0)));
+        System.out.println(QuestionToJson(question));
+
+
     }
 
 }

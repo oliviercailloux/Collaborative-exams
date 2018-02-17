@@ -53,6 +53,5 @@ public class SameAbilityService {
 		List<SameAbility> results = query.getResultList();
 		if (results.isEmpty()) return null;
 		else  return results.get(0);
-
 	}
 }
