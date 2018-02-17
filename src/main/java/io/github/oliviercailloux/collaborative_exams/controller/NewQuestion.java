@@ -3,10 +3,7 @@ package io.github.oliviercailloux.collaborative_exams.controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -31,12 +28,20 @@ public class NewQuestion {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String addBook(MultivaluedMap<String, String> form) throws Exception {
+    public String addBook(MultivaluedMap<String, String> form,@CookieParam("authorId") String cookie) throws Exception {
 
         String type = form.getFirst("type");
-        int idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
+
+        int idAuthor ;
+
+        if(cookie==null)
+            idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
+        else
+            idAuthor = Integer.valueOf(cookie);
         String phrasing = form.getFirst("phrasing");
         String language = form.getFirst("language");
+
+
 
         Question question = new Question();
         Boolean isCorrect;

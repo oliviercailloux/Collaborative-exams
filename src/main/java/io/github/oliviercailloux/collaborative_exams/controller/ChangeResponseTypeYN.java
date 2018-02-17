@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -36,11 +29,15 @@ public class ChangeResponseTypeYN {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getQuestion(MultivaluedMap<String, String> form) throws Exception {
+	public String getQuestion(MultivaluedMap<String, String> form,@CookieParam("authorId") String cookie) throws Exception {
 
 		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
-		int newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+		int newAuthorId;
 
+		if(cookie==null)
+			newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+		else
+			newAuthorId = Integer.valueOf(cookie);
 
 		Question question = questionService.findQuestion(idQuestion);
 		Person newAuthor = personService.findPerson(newAuthorId);
