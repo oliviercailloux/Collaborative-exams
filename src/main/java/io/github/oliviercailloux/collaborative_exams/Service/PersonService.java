@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
@@ -34,5 +35,18 @@ public class PersonService {
 	public Person findPerson(int id) {
 		return em.find(Person.class, id);
 	}
+
+
+	@Transactional
+	public Person findPersonByEmail(String email) throws Exception {
+		TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p WHERE p.email = :email", Person.class);
+		query.setParameter("email", email);
+		List<Person> results = query.getResultList();
+		if (results.isEmpty())
+			throw new Exception("Aucun utilisateur correspondant.");
+		return results.get(0);
+
+	}
+
 
 }

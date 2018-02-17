@@ -42,11 +42,10 @@ public class SameAbilityService {
 
 
 	@Transactional
-	public SameAbility isSameAbility(Person idAuthor, Question idQuestion1, Question idQuestion2) {
+	public SameAbility isSameAbility(Question idQuestion1, Question idQuestion2) {
 		TypedQuery<SameAbility> query = em.createQuery(
-				"SELECT s FROM SameAbility s WHERE s.author = :idAuthor and ((s.question1 = :idQuestion1 and s.question2 = :idQuestion2) or (s.question1 = :idQuestion2 and s.question2 = :idQuestion1)   )", SameAbility.class);
+				"SELECT s FROM SameAbility s WHERE ((s.question1 = :idQuestion1 and s.question2 = :idQuestion2) or (s.question1 = :idQuestion2 and s.question2 = :idQuestion1)   )", SameAbility.class);
 
-		query.setParameter("idAuthor", idAuthor);
 		query.setParameter("idQuestion1", idQuestion1);
 		query.setParameter("idQuestion2", idQuestion2);
 

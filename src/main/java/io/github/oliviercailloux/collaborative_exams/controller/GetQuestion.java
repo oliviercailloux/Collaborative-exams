@@ -3,11 +3,13 @@ package io.github.oliviercailloux.collaborative_exams.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
@@ -22,6 +24,8 @@ public class GetQuestion  {
     @Inject
     QuestionService questionService;
 
+    @Context
+    HttpServletRequest request;
 
     @Path("all")
     @GET

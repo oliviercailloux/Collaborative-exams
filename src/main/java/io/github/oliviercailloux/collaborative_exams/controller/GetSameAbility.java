@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,19 +9,32 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
+import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
+import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
+import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 @Path("GetSameAbility")
 public class GetSameAbility {
 
-	@Path("Get")
+	@Inject
+	SameAbilityService sameAbilityService;
+
+	@Inject
+	QuestionService questionService;
+
+	@Path("Get/{idQuestion1}/{idQuestion2}")
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
-	@Produces(MediaType.APPLICATION_JSON)
-	public boolean getSameAbility(@QueryParam("idQ1") int id_q1,@QueryParam("idQ2") int id_q2) throws Exception {
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getSameAbility(@PathParam("idQuestion1") int idQuestion1,@PathParam("idQuestion2") int idQuestion2) throws Exception {
+
+		SameAbility sameAbility = sameAbilityService.isSameAbility(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2));
+		return QuestionText.ObjectToJson(SameAbility.class,sameAbility);
 		
-		return data.isSameAbilities(id_q1, id_q2);
+
 	}
 }

@@ -4,6 +4,7 @@ import io.github.oliviercailloux.collaborative_exams.Service.ImprovementService;
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
+import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Improvement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 
@@ -45,22 +46,22 @@ public class NewImprovement {
 
 
 		if(questionService.findQuestion(idQuestion1)==null)
-			return "ID Q1 : " + idQuestion1 + " n\'existe pas ";
-		else
+			throw new Exception("the question id :"+idQuestion1+"is null");
+
 			if(questionService.findQuestion(idQuestion2)==null)
-				return "ID Q2 : " + idQuestion2 + " n\'existe pas ";
-		else
+				throw new Exception("the question id :"+idQuestion2+"is null");
+
 			if(personService.findPerson(idAuthor)==null)
-				return "ID Author : " + idAuthor + " n\'existe pas ";
+				throw new Exception("the author id :"+idAuthor+"is null");
 
 		SameAbility sameability = SameAbilityService.isSameAbility(personService.findPerson(idAuthor),questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
 		if (sameability == null)
-			return "La relation entre les deux questions nexiste pas ";
+			throw new Exception("this questions don't have the same ability");
 
-		Improvement s = new Improvement(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2),personService.findPerson(idAuthor));
-			ImprovementService.persist(s);
+		Improvement improvement = new Improvement(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2),personService.findPerson(idAuthor));
+		ImprovementService.persist(improvement);
 
-		return "id 1 : " + idQuestion1 + "id 2 :" + idQuestion2 + "id author : " + idAuthor;
+		return QuestionText.ObjectToJson(Improvement.class,improvement);
 		
 	}
 

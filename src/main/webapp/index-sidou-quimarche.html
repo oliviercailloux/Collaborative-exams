@@ -80,50 +80,8 @@
       </ul>
     </div>
   </nav>
-
-
-
-
-
-
-
   <div class="content-wrapper">
-
-
-
-
-
-
-
     <div class="container-fluid">
-
-    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addQuestionModal">
-                  <i class="fa fa-plus"> Add Question</i>
-                </button>
-
-      <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addAbilityModal">
-                  <i class="fa fa-plus"> Add Same Ability</i>
-                </button>
-
-                  <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addImprovementModal">
-                  <i class="fa fa-plus"> Add Improvement</i>
-                </button>
-
-                <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#editLanguageModal">
-                  <i class="fa fa-edit"> Edit Language</i>
-                </button>
-
-                <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#changeTypeTFModal">
-                  <i class="fa fa-edit"> Change Type to TF</i>
-                </button>
-
-                <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#changeTypeYNModal">
-                  <i class="fa fa-edit"> Change Type to YN</i>
-                </button>
-
-
-
-                <br><br>
     
 
  <!-- Example DataTables Card-->
@@ -131,7 +89,13 @@
         <div class="card-header">
           <i style="margin-top: 10px;" class="fa fa-table"></i> Questions
 
-       
+         <button class="btn btn-primary" type="button" style="float: right;" data-toggle="modal" data-target="#addRelationModal">
+                  <i class="fa fa-plus"> Add Relation</i>
+                </button>
+
+<button class="btn btn-primary" type="button" style="float: right; margin-right: 10px;" data-toggle="modal" data-target="#addQuestionModal">
+                  <i class="fa fa-plus"> Add Question</i>
+                </button>
                
           </div>
         <div class="card-body">
@@ -205,9 +169,9 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/newQuestion" method="post" enctype='application/json' id="NewQuestion">
+  <form action="rest/NewQuestion" method="post"> 
     <div class="form-group">
-      <label for="phrasing">Phasing:</label>
+      <label for="phrasing">Phrasing:</label>
       <input class="form-control" id="phrasing" placeholder="Type your question..." name="phrasing">
     </div>
     <div class="form-group">
@@ -260,19 +224,19 @@
                                     <button class="btn btn-default" id="addContent-1" type="button"><span class="fa fa-plus"></span></button>
                                 </span>
                             </div><!-- /input-group -->
+
+
 </div>
           </div>
 
           
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary">Submit</a>
-            <button type="submit" class="btn btn-default">Submit W3C</button>
             <input type="submit" value="Submit Question" />
             </form>
 
                <br>
             
-              <form action="v1/Questions/Get/" method="get">
+              <form action="rest/Questions/" method="get">
               <label for="content-1">ID:</label>
               <input type="text" class="form-control" name="id" placeholder="Enter question id...">
           <input type="submit" value="Display the Question from ID !" />
@@ -280,7 +244,7 @@
         
         <br>
             
-  <form action="v1/Questions/all" method="get">
+  <form action="rest/Questions/all" method="get">
     <input type="submit"  value="Display all Questions" />
   </form>
 
@@ -290,19 +254,26 @@
       </div>
     </div>
   </form></div>        
-          <!-- Add Ability Modal-->
-    <div class="modal fade" id="addAbilityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!-- Add Relation Modal-->
+    <div class="modal fade" id="addRelationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Ability</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add Relation</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/NewSameAbility" method="post" enctype='application/json' id="NewSameAbility">
+  <form action="rest/Improvement" method="post" enctype='application/json'>
+  <div class="form-group">
+     <label for="language">Relation Type:</label>
+      <select class="form-control" id="language">
+        <option name="sameAbility" value="sameAbility">Same Ability</option>
+        <option name="Improvement" value="Improvement">Improvement</option>
+      </select>
+      </div>
     <div class="form-group">
       <label for="authorID">Author ID:</label>
       <input class="form-control" id="authorID" placeholder="Enter Author ID..." name="authorID">
@@ -325,146 +296,7 @@
           </div>
         </div>
       </div>
-    </div> 
-
-    <!-- Add Improvement Modal-->
-    <div class="modal fade" id="addImprovementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Improvement</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/NewImprovement" method="post" enctype='application/json' id="NewImprovement">
-    <div class="form-group">
-      <label for="authorID">Author ID:</label>
-      <input class="form-control" id="authorID" placeholder="Enter Author ID..." name="authorID">
-    </div>
-     <div class="form-group">
-      <label for="questionID1">Question ID 1:</label>
-      <input class="form-control" id="questionID1" placeholder="Enter Question ID 1..." name="questionID1">
-    </div>
-     <div class="form-group">
-      <label for="questionID2">Question ID 2:</label>
-      <input class="form-control" id="questionID2" placeholder="Enter Question ID 2..." name="questionID2">
-    </div>
-
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-    <!-- Change Language Modal-->
-    <div class="modal fade" id="editLanguageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Language</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/ChangeQuestionLanguage" method="post" enctype='application/json' id="ChangeQuestionLanguage">
-    <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">New Author ID:</label>
-      <input class="form-control" id="newAuthorId" placeholder="Enter New Author ID..." name="newAuthorId">
-    </div>
-     <div class="form-group">
-      <label for="newLanguage">New Language:</label>
-      <input class="form-control" id="newLanguage" placeholder="Enter New Language..." name="newLanguage">
- </div>
-    
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-
-     <!-- Change Type TF Modal-->
-    <div class="modal fade" id="changeTypeTFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Change Type to TF</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/ChangeResponseTypeTF" method="post" enctype='application/json' id="ChangeResponseTypeTF">
-  <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">New Author ID:</label>
-      <input class="form-control" id="newAuthorId" placeholder="Enter New Author ID..." name="newAuthorId">
-    </div>
- 
-    
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>        
-
-     <!-- Change Type YN Modal-->
-    <div class="modal fade" id="changeTypeYNModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Change Type to YN</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/ChangeResponseTypeYN" method="post" enctype='application/json' id="ChangeResponseTypeYN">
-  <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">New Author ID:</label>
-      <input class="form-control" id="newAuthorId" placeholder="Enter New Author ID..." name="newAuthorId">
-    </div>
- 
-    
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>                                  
+    </div>              
     
         <!-- Delete Modal-->
     <div class="modal fade" id="deleteQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -497,7 +329,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="/collaborative-exams/rest/user/logout">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
