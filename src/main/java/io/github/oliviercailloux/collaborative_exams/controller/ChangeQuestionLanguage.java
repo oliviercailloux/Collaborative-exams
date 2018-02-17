@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -18,6 +20,7 @@ import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.data;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
@@ -41,8 +44,14 @@ public class ChangeQuestionLanguage {
 
 		Question question = questionService.findQuestion(idQuestion);
 		Person newAuthor = personService.findPerson(newAuthorId);
+
+		List<Answer> answers = new ArrayList<>();
+        for (Answer a:question.getAnswers()
+             ) {
+            answers.add(new Answer(a.getText(),a.isCorrect()));
+        }
 	
-		Question modifiedQuestion; 
+		Question modifiedQuestion;
 
 		QuestionType questionType = question.getType();
 
@@ -50,16 +59,15 @@ public class ChangeQuestionLanguage {
 			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),
 					question.getCorrect());
 		} else if (questionType == QuestionType.Free) {
-			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),
-					question.getAnswers().get(0));
+			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),answers.get(0)
+					);
 
 		} else if (questionType == QuestionType.QCM) {
-			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(),
-					question.getAnswers());
+			modifiedQuestion = new Question(question.getPhrasing(), newLanguage, newAuthor, question.getType(), answers);
 		} else {
 			throw new Exception("Invalid Question Id ! ");
 		}
-		
+
 		questionService.persist(modifiedQuestion);
 		return String.valueOf(modifiedQuestion.getId());
 	}
