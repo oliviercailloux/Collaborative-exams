@@ -37,8 +37,7 @@ public class UserAcces {
 		if (authorId == null) {
 			Person author = new Person(email);
 			personService.persist(author);
-			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100, false);
-			//NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()));
+			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100000, false);
 			return Response.temporaryRedirect(location).cookie(cookie).build();
 		}
 		// user already logged-in
@@ -55,8 +54,7 @@ public class UserAcces {
 		// new connection
 		if (authorId == null) {
 			Person author = personService.findPersonByEmail(email);
-			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100, false);
-			//NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()));
+			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100000, false);
 			return Response.temporaryRedirect(location).cookie(cookie).build();
 		}
 		// user already logged-in

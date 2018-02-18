@@ -16,6 +16,11 @@ import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
+/**
+ * Jax-RS servlet that allows to get a same ability relation between two 
+ * @author Sid
+ *
+ */
 @Path("GetSameAbility")
 public class GetSameAbility {
 

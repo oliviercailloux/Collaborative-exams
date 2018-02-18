@@ -44,8 +44,8 @@ public class ChangeResponseTypeYN {
         int newAuthorId;
         
         if (cookie == null) {
-			if (form.getFirst("idAuthor")== null)
-				throw new Exception("Both Cookie and the input Author Id's field are null.");
+			if (form.getFirst("idAuthor").isEmpty())
+				throw new Exception("Both Cookie and the input Author Id's field are null, please log-in or register again.");
 
 			newAuthorId = Integer.valueOf(form.getFirst("idAuthor"));
 		} else {

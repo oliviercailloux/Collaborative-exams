@@ -39,7 +39,7 @@ public class NewQuestion {
 
 		if (cookie == null) {
 			if (form.getFirst("idAuthor").isEmpty())
-				throw new Exception("Both Cookie and the input Author Id's field are null.");
+				throw new Exception("Both Cookie and the input Author Id's field are null, please log-in or register again.");
 
 			idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
 		} else {
