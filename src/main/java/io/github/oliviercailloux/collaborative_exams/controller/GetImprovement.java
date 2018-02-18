@@ -23,7 +23,7 @@ public class GetImprovement {
      * @return the relation well formatted in json
      * @throws Exception if the relation is not found
      */
-    @Path("/{id}")
+    @Path("/?id={id}")
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)

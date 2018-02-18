@@ -17,7 +17,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 /**
- * Jax-RS servlet that allows to get a same ability relation between two 
+ * Jax-RS servlet that allows to get a same ability relation between two question for an author !
  * @author Sid
  *
  */
@@ -33,7 +33,7 @@ public class GetSameAbility {
 	@Inject
 	PersonService personService;
 
-	@Path("Get/{idQuestion1}/{idQuestion2}/{idAuthor}")
+	@Path("/{idQuestion1}/{idQuestion2}/{idAuthor}")
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)

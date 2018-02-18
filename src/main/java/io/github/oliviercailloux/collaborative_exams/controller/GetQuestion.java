@@ -35,7 +35,7 @@ public class GetQuestion  {
        return QuestionText.QuestionsToJson(questions);
     }
 
-    @Path("/{id}")
+    @Path("/?id={id}")
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
