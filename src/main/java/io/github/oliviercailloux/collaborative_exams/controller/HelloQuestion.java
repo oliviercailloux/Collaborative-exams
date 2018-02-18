@@ -15,7 +15,6 @@ import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
@@ -28,16 +27,6 @@ public class HelloQuestion {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayHello() throws Exception {
-
-		data.constructData();
-
-
-		for (Question q:data.getQuestions()
-			 ) {
-
-			questionService.persist(q);
-		}
-
 		return ":D";
 	}
 	

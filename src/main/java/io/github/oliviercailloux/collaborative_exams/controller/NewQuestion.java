@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -11,7 +12,6 @@ import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
@@ -19,84 +19,85 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 @Path("NewQuestion")
 public class NewQuestion {
 
-    @Inject
-    private QuestionService questionService;
+	@Inject
+	private QuestionService questionService;
 
-    @Inject
-    private PersonService personService;
+	@Inject
+	private PersonService personService;
 
-    @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String addBook(MultivaluedMap<String, String> form,@CookieParam("authorId") String cookie) throws Exception {
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
+			throws Exception {
 
-        String type = form.getFirst("type");
+		String type = form.getFirst("type");
+		String phrasing = form.getFirst("phrasing");
+		String language = form.getFirst("language");
 
-        int idAuthor ;
+		int idAuthor;
 
-        if(cookie==null)
-            idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
-        else
-            idAuthor = Integer.valueOf(cookie);
-        String phrasing = form.getFirst("phrasing");
-        String language = form.getFirst("language");
+		if (cookie == null) {
+			if (form.getFirst("idAuthor").isEmpty())
+				throw new Exception("Both Cookie and the input Author Id's field are null.");
 
+			idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
+		} else {
+			idAuthor = Integer.valueOf(cookie.getValue());
+		}
+		Question question = new Question();
+		Boolean isCorrect;
+		QuestionType qType;
 
+		// Author get
+		Person author = personService.findPerson(idAuthor);
+		/*
+		 * if (author == null) throw new Exception("L'auteur saisi n'existe pas");
+		 */
+		if (author == null)
+			author = new Person("UnknownAuthor");
 
-        Question question = new Question();
-        Boolean isCorrect;
-        QuestionType qType;
+		switch (type) {
+		case "TF":
+			qType = QuestionType.TF;
+			isCorrect = Boolean.valueOf(form.getFirst("isCorrect"));
+			question = new Question(phrasing, language, author, qType, isCorrect);
+			break;
 
-        //Author get
-        Person author = personService.findPerson(idAuthor);
-        /*
-        if (author == null)
-            throw new Exception("L'auteur saisi n'existe pas");
-        */
-        if (author == null)
-            author = new Person("UnknownAuthor");
+		case "YN":
+			qType = QuestionType.YN;
+			isCorrect = Boolean.valueOf(form.getFirst("isCorrect"));
+			question = new Question(phrasing, language, author, qType, isCorrect);
+			break;
 
-        switch (type) {
-            case "TF":
-                qType = QuestionType.TF;
-                isCorrect = Boolean.valueOf(form.getFirst("isCorrect"));
-                question = new Question(phrasing, language, author, qType, isCorrect);
-                break;
+		case "Free":
+			qType = QuestionType.Free;
+			String freeAnswer = form.getFirst("freeAnswer");
+			question = new Question(phrasing, language, author, qType, (new Answer(freeAnswer, true)));
+			break;
 
-            case "YN":
-                qType = QuestionType.YN;
-                isCorrect = Boolean.valueOf(form.getFirst("isCorrect"));
-                question = new Question(phrasing, language, author, qType, isCorrect);
-                break;
+		case "QCM":
+			qType = QuestionType.QCM;
+			List<String> AnswersText = form.get("answersText");
+			List<String> answersCorrect = form.get("answersCorrect");
+			List<Answer> answers = new ArrayList<>();
 
-            case "Free":
-                qType = QuestionType.Free;
-                String freeAnswer = form.getFirst("freeAnswer");
-                question = new Question(phrasing, language, author, qType, (new Answer(freeAnswer, true)));
-                break;
+			int i = 0;
+			for (String s : AnswersText) {
+				answers.add(new Answer(s, Boolean.valueOf(answersCorrect.get(i))));
+				i++;
+			}
+			question = new Question(phrasing, language, author, qType, answers);
+			break;
 
-            case "QCM":
-                qType = QuestionType.QCM;
-                List<String> AnswersText = form.get("answersText");
-                List<String> answersCorrect = form.get("answersCorrect");
-                List<Answer> answers = new ArrayList<>();
+		default:
+			break;
 
-                int i = 0;
-                for (String s : AnswersText) {
-                    answers.add(new Answer(s, Boolean.valueOf(answersCorrect.get(i))));
-                    i++;
-                }
-                question = new Question(phrasing, language, author, qType, answers);
-                break;
+		}
 
-            default:
-                break;
+		questionService.persist(question);
 
-        }
-
-        questionService.persist(question);
-
-        return QuestionText.QuestionToJson(question);
-    }
+		return QuestionText.QuestionToJson(question);
+	}
 
 }

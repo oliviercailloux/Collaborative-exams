@@ -12,7 +12,7 @@ import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
 import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
-import io.github.oliviercailloux.collaborative_exams.model.entity.data;
+
 
 
 
@@ -34,18 +34,21 @@ public class NewSameAbility {
 		
 		int idQuestion1  = Integer.valueOf(form.getFirst("idQuestion1"));
 		int idQuestion2  = Integer.valueOf(form.getFirst("idQuestion2"));
-		
 		int idAuthor  = Integer.valueOf(form.getFirst("idAuthor"));
 
+		if(questionService.findQuestion(idQuestion1)==null)
+			throw new Exception("the question id :"+idQuestion1+"is null.");
 
-		if(questionService.findQuestion(idQuestion1) == null)
-			return "ID Q1 : " + idQuestion1 + " n\'existe pas ";
-		else
-		if(questionService.findQuestion(idQuestion2) == null)
-			return "ID Q2 : " + idQuestion2 + " n\'existe pas ";
-		else
-		if(personService.findPerson(idAuthor)== null)
-			return "ID Author : " + idAuthor + " n\'existe pas ";
+			if(questionService.findQuestion(idQuestion2)==null)
+				throw new Exception("the question id :"+idQuestion2+"is null.");
+
+			if(personService.findPerson(idAuthor)==null)
+				throw new Exception("the author id :"+idAuthor+"is null.");
+			
+			if (idQuestion1 == idQuestion2) {
+				throw new Exception("You indicated the same id Question for both of the questions.");
+				
+			}
 
 		SameAbility s = new SameAbility(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2),personService.findPerson(idAuthor));
 

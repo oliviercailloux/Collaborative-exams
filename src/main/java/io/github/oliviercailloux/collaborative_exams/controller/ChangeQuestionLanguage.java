@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -39,16 +40,21 @@ public class ChangeQuestionLanguage {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-		public String getQuestion(MultivaluedMap<String, String> form,@CookieParam("authorId") String authorIdFromCookie) throws Exception {
+		public String getQuestion(MultivaluedMap<String, String> form,@CookieParam("authorId") Cookie authorIdFromCookie) throws Exception {
 
 		int newAuthorId;
 		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
 		String newLanguage = form.getFirst("newLanguage");
 
 		if(authorIdFromCookie==null)
-		newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
-		else
-			newAuthorId = Integer.valueOf(authorIdFromCookie);
+		{
+			if (form.getFirst("newAuthorId")== null)
+				throw new Exception("Both Cookie and the input Author Id's field are null.");
+			newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+		}else
+		{
+			newAuthorId = Integer.valueOf(authorIdFromCookie.getValue());
+		}
 
 		Question question = questionService.findQuestion(idQuestion);
 		Person newAuthor = personService.findPerson(newAuthorId);
