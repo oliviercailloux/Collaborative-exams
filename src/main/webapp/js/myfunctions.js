@@ -52,7 +52,8 @@ $(document).ready(function(){
         var newDiv = $(document.createElement("div")).attr({id:"input-group-"+(contentCount+1), class:"input-group", style:"margin-bottom:10px;"});
         
         
-        newDiv.html( "<input type='checkbox' id='content-"+ (contentCount+1) +"'>&nbsp;&nbsp;<input type='text' name='answersText' class='form-control' id='content-"+ (contentCount+1) +"'>"
+        newDiv.html( "<select id='content-"+ (contentCount+1) +"' name='answersCorrect'> <option value='true'>True</option> <option value='false' selected>False</option> </select>"
+        		  + "&nbsp;&nbsp;<input type='text' name='answersText' class='form-control' id='content-"+ (contentCount+1) +"'>"
                     +"<span class='input-group-btn'>"
                     +   "<button class='btn btn-danger' id='removeContent-" + (contentCount+1) + "' type='button'>"
                     +       "<span class='fa fa-minus'></span>"

@@ -205,7 +205,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/newQuestion" method="post" enctype='application/json' id="NewQuestion">
+  <form action="rest/NewQuestion" method="post">
     <div class="form-group">
       <label for="phrasing">Phasing:</label>
       <input class="form-control" id="phrasing" placeholder="Type your question..." name="phrasing">
@@ -247,15 +247,19 @@
     </label>
     </div>
     <div class="form-group">
-    <textarea class="form-control" id="freeinput"></textarea>
+    <textarea class="form-control" id="freeinput" name="freeAnswer"></textarea>
     </div>
 
 
  <div class="form-group" id="mcinput">
                             <label for="content-1">Veuillez entrer vos choix et cocher la ou les bonnes réponses :</label>
                             <div class="input-group" id="input-group-1">
-                                <input type="checkbox" id="content-1">&nbsp;&nbsp;
-                                <input type="text" class="form-control" id="content-1" name="answersText">
+                            	
+                            	<select id="content-1" name="answersCorrect">
+								<option value="true">True</option>
+								<option value="false" selected>False</option>
+								</select> &nbsp;&nbsp;
+								<input type="text" class="form-control" id="content-1" name="answersText">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" id="addContent-1" type="button"><span class="fa fa-plus"></span></button>
                                 </span>
@@ -265,14 +269,12 @@
 
           
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary">Submit</a>
-            <button type="submit" class="btn btn-default">Submit W3C</button>
-            <input type="submit" value="Submit Question" />
+            <button type="submit" class="btn btn-default">Submit</button>
             </form>
 
                <br>
             
-              <form action="v1/Questions/Get/" method="get">
+              <form action="rest/Questions/" method="GET">
               <label for="content-1">ID:</label>
               <input type="text" class="form-control" name="id" placeholder="Enter question id...">
           <input type="submit" value="Display the Question from ID !" />
@@ -280,7 +282,7 @@
         
         <br>
             
-  <form action="v1/Questions/all" method="get">
+  <form action="rest/Questions/all" method="get">
     <input type="submit"  value="Display all Questions" />
   </form>
 
@@ -302,25 +304,25 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/NewSameAbility" method="post" enctype='application/json' id="NewSameAbility">
+  <form action="rest/NewSameAbility" method="post">
     <div class="form-group">
       <label for="authorID">Author ID:</label>
-      <input class="form-control" id="authorID" placeholder="Enter Author ID..." name="authorID">
+      <input class="form-control" id="idAuthor" placeholder="Enter Author ID..." name="idAuthor">
     </div>
      <div class="form-group">
       <label for="questionID1">Question ID 1:</label>
-      <input class="form-control" id="questionID1" placeholder="Enter Question ID 1..." name="questionID1">
+      <input class="form-control" id="idQuestion1" placeholder="Enter Question ID 1..." name="idQuestion1">
     </div>
      <div class="form-group">
       <label for="questionID2">Question ID 2:</label>
-      <input class="form-control" id="questionID2" placeholder="Enter Question ID 2..." name="questionID2">
+      <input class="form-control" id="idQuestion2" placeholder="Enter Question ID 2..." name="idQuestion2">
     </div>
  
-    
+   
 </div></div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
+            <button type="submit" class="btn btn-default">Submit</button>
             </form>
           </div>
         </div>
@@ -339,24 +341,24 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/NewImprovement" method="post" enctype='application/json' id="NewImprovement">
+  <form action="rest/NewImprovement" method="post" id="NewImprovement">
     <div class="form-group">
       <label for="authorID">Author ID:</label>
-      <input class="form-control" id="authorID" placeholder="Enter Author ID..." name="authorID">
+      <input class="form-control" id="idAuthor" placeholder="Enter Author ID..." name="idAuthor">
     </div>
      <div class="form-group">
       <label for="questionID1">Question ID 1:</label>
-      <input class="form-control" id="questionID1" placeholder="Enter Question ID 1..." name="questionID1">
+      <input class="form-control" id="idQuestion1" placeholder="Enter Question ID 1..." name="idQuestion1">
     </div>
      <div class="form-group">
       <label for="questionID2">Question ID 2:</label>
-      <input class="form-control" id="questionID2" placeholder="Enter Question ID 2..." name="questionID2">
+      <input class="form-control" id="idQuestion2" placeholder="Enter Question ID 2..." name="idQuestion2">
     </div>
 
 </div></div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
+            <button type="submit" class="btn btn-default">Submit</button>
             </form>
           </div>
         </div>
@@ -375,7 +377,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/ChangeQuestionLanguage" method="post" enctype='application/json' id="ChangeQuestionLanguage">
+  <form action="rest/ChangeQuestionLanguage" method="post">
     <div class="form-group">
       <label for="idQuestion">Question ID:</label>
       <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
@@ -392,7 +394,7 @@
 </div></div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
+            <button type="submit" class="btn btn-default">Submit</button>
             </form>
           </div>
         </div>
@@ -412,8 +414,8 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/ChangeResponseTypeTF" method="post" enctype='application/json' id="ChangeResponseTypeTF">
-  <div class="form-group">
+  <form action="rest/ChangeResponseTypeTF" method="post">
+     <div class="form-group">
       <label for="idQuestion">Question ID:</label>
       <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
     </div>
@@ -421,13 +423,11 @@
       <label for="newAuthorId">New Author ID:</label>
       <input class="form-control" id="newAuthorId" placeholder="Enter New Author ID..." name="newAuthorId">
     </div>
- 
-    
-</div></div>
+ 			</div></div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
-            </form>
+            <button type="submit" class="btn btn-default">Submit</button>
+   </form>
           </div>
         </div>
       </div>
@@ -459,7 +459,7 @@
 </div></div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a type="submit" class="btn btn-primary" href="#">Submit</a>
+            <button type="submit" class="btn btn-default">Submit</button>
             </form>
           </div>
         </div>
