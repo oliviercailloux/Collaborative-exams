@@ -16,7 +16,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
-
+/**
+ * JAX-RS Servlet that allows to create and to persist a new improvement relation between two questions for an author
+ * @author Sid
+ *
+ */
 @Path("NewImprovement")
 public class NewImprovement {
 
@@ -32,7 +36,12 @@ public class NewImprovement {
 	@Inject
 	private SameAbilityService SameAbilityService;
 
-
+	/**
+	 * 
+	 * @param form contains the question id of the two questions and the author id
+	 * @return the Id of the new improvement relation
+	 * @throws Exception if one / both of the questions is / are null or the author is null or the two questions don't have a sameAbility relation
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)

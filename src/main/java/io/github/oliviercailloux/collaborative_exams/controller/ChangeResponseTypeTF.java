@@ -41,7 +41,7 @@ public class ChangeResponseTypeTF {
         int newAuthorId;
         
         if (cookie == null) {
-			if (form.getFirst("idAuthor").isEmpty())
+			if (form.getFirst("idAuthor")==null)
 				throw new Exception("Both Cookie and the input Author Id's field are null.");
 
 			newAuthorId = Integer.valueOf(form.getFirst("idAuthor"));

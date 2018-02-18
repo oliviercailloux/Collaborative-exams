@@ -44,13 +44,14 @@ public class ChangeResponseTypeYN {
         int newAuthorId;
         
         if (cookie == null) {
-			if (form.getFirst("idAuthor").isEmpty())
+			if (form.getFirst("idAuthor")== null)
 				throw new Exception("Both Cookie and the input Author Id's field are null.");
 
 			newAuthorId = Integer.valueOf(form.getFirst("idAuthor"));
 		} else {
 			newAuthorId = Integer.valueOf(cookie.getValue());
 		}
+        
         Question question = questionService.findQuestion(idQuestion);
         Person newAuthor = personService.findPerson(newAuthorId);
 

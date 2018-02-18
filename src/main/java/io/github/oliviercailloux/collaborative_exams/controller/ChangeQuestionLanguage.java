@@ -48,7 +48,7 @@ public class ChangeQuestionLanguage {
 
 		if(authorIdFromCookie==null)
 		{
-			if (form.getFirst("newAuthorId")== null)
+			if (form.getFirst("newAuthorId") == null)
 				throw new Exception("Both Cookie and the input Author Id's field are null.");
 			newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
 		}else
