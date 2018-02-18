@@ -6,7 +6,6 @@ import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
@@ -51,18 +50,6 @@ public class QuestionText {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
             return jsonb.toJson(question);
         }
-    }
-
-
-    public static void main(String arg[]) throws Exception {
-        data.constructData();
-
-        Question question =  JsonToObject(Question.class,QuestionToJson(data.getQuestions().get(0)));
-
-        System.out.println(QuestionToJson(data.getQuestions().get(0)));
-        System.out.println(QuestionToJson(question));
-
-
     }
 
 }

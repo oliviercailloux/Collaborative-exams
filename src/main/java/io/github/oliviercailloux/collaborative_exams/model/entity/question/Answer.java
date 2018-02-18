@@ -63,7 +63,7 @@ public class Answer {
         if (this.question == null) {
             this.question = question;
         } else {
-            throw new Exception("the Answer, have Question and it's immuable");
+            throw new Exception("the Answer is already linked to a Question and it's immuable");
         }
     }
 

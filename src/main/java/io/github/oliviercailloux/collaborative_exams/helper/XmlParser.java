@@ -3,7 +3,6 @@ package io.github.oliviercailloux.collaborative_exams.helper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Improvement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
-import io.github.oliviercailloux.collaborative_exams.model.entity.data;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
@@ -53,15 +52,4 @@ public class XmlParser {
 
         return objectUnmarshalled;
     }
-
-
-  /*  public static void main(String[] args) throws Exception {
-        data.constructData();
-        Question q = data.getQuestions().get(2);
-        System.out.println(QuestionText.QuestionToJson(q));
-        ToXml(Question.class, q);
-        Question q1 = FromXml(Question.class);
-        System.out.println(QuestionText.QuestionToJson(q1));
-
-    }*/
 }
