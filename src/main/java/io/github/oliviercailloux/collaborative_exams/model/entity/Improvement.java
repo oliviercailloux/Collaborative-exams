@@ -53,6 +53,8 @@ public class Improvement {
 		
 		return false;
 	}
-		
 	
+	public int getId() {
+		return idImprovement;
+	}
 }

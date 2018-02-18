@@ -36,14 +36,13 @@ public class NewImprovement {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String newImprovement(MultivaluedMap<String, String> form) throws Exception {
+	public int newImprovement(MultivaluedMap<String, String> form) throws Exception {
 		
 		int idQuestion1  = Integer.valueOf(form.getFirst("idQuestion1"));
 
 		int idQuestion2  = Integer.valueOf(form.getFirst("idQuestion2"));
 		
 		int idAuthor  = Integer.valueOf(form.getFirst("idAuthor"));
-
 
 		if(questionService.findQuestion(idQuestion1)==null)
 			throw new Exception("the question id :"+idQuestion1+"is null");
@@ -61,7 +60,7 @@ public class NewImprovement {
 		Improvement improvement = new Improvement(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2),personService.findPerson(idAuthor));
 		ImprovementService.persist(improvement);
 
-		return QuestionText.ObjectToJson(Improvement.class,improvement);
+		return improvement.getId();
 		
 	}
 
