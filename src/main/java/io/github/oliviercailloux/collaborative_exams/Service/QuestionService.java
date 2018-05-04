@@ -16,39 +16,38 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 @RequestScoped
 public class QuestionService {
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    @Inject
-    private QueryHelper helper;
+	@Inject
+	private QueryHelper helper;
 
-    @Transactional
-    public List<Question> getAll() {
-        return em.createQuery(helper.selectAll(Question.class)).getResultList();
-    }
+	@Transactional
+	public List<Question> getAll() {
+		return em.createQuery(helper.selectAll(Question.class)).getResultList();
+	}
 
-    @Transactional
-    public void persist(Question question) {
-        if (null == em.find(Person.class, question.getAuthor().getId())) {
-            em.persist(question.getAuthor());
-        }
-        em.persist(question);
+	@Transactional
+	public void persist(Question question) {
+		if (null == em.find(Person.class, question.getAuthor().getId())) {
+			em.persist(question.getAuthor());
+		}
+		em.persist(question);
 
-        for (Answer a : question.getAnswers()
-                ) {
-            em.persist(a);
+		for (Answer a : question.getAnswers()) {
+			em.persist(a);
 
-        }
+		}
 
-    }
+	}
 
-    @Transactional
-    public Question findQuestion(int id) throws Exception {
-        Question questionResult = em.find(Question.class, id);
-        if (questionResult == null)
-            throw new Exception("Aucune question correspondante.");
+	@Transactional
+	public Question findQuestion(int id) throws Exception {
+		Question questionResult = em.find(Question.class, id);
+		if (questionResult == null)
+			throw new Exception("Aucune question correspondante.");
 
-        return questionResult;
-    }
+		return questionResult;
+	}
 
 }

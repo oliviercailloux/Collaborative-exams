@@ -12,9 +12,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
-
     <dependencies>
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>

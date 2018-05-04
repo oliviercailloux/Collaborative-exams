@@ -13,7 +13,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answe
 
 @RequestScoped
 public class AnswerService {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -29,7 +29,7 @@ public class AnswerService {
 	public void persist(Answer Answer) {
 		em.persist(Answer);
 	}
-	
+
 	@Transactional
 	public void findAnswer(int id) {
 		em.find(Answer.class, id);

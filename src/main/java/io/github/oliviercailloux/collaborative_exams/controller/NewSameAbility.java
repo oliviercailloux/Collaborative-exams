@@ -13,9 +13,6 @@ import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
 import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 
-
-
-
 @Path("NewSameAbility")
 public class NewSameAbility {
 	@Inject
@@ -31,31 +28,32 @@ public class NewSameAbility {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String newSameAbility(MultivaluedMap<String, String> form) throws Exception {
-		
-		int idQuestion1  = Integer.valueOf(form.getFirst("idQuestion1"));
-		int idQuestion2  = Integer.valueOf(form.getFirst("idQuestion2"));
-		int idAuthor  = Integer.valueOf(form.getFirst("idAuthor"));
 
-		if(questionService.findQuestion(idQuestion1)==null)
-			throw new Exception("the question id :"+idQuestion1+"is null.");
+		int idQuestion1 = Integer.valueOf(form.getFirst("idQuestion1"));
+		int idQuestion2 = Integer.valueOf(form.getFirst("idQuestion2"));
+		int idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
 
-			if(questionService.findQuestion(idQuestion2)==null)
-				throw new Exception("the question id :"+idQuestion2+"is null.");
+		if (questionService.findQuestion(idQuestion1) == null)
+			throw new Exception("the question id :" + idQuestion1 + "is null.");
 
-			if(personService.findPerson(idAuthor)==null)
-				throw new Exception("the author id :"+idAuthor+"is null.");
-			
-			if (idQuestion1 == idQuestion2) {
-				throw new Exception("You indicated the same id Question for both of the questions.");
-				
-			}
+		if (questionService.findQuestion(idQuestion2) == null)
+			throw new Exception("the question id :" + idQuestion2 + "is null.");
 
-		SameAbility s = new SameAbility(questionService.findQuestion(idQuestion1),questionService.findQuestion(idQuestion2),personService.findPerson(idAuthor));
+		if (personService.findPerson(idAuthor) == null)
+			throw new Exception("the author id :" + idAuthor + "is null.");
+
+		if (idQuestion1 == idQuestion2) {
+			throw new Exception("You indicated the same id Question for both of the questions.");
+
+		}
+
+		SameAbility s = new SameAbility(questionService.findQuestion(idQuestion1),
+				questionService.findQuestion(idQuestion2), personService.findPerson(idAuthor));
 
 		sameAbilityService.persist(s);
 
 		return "id 1" + idQuestion1 + "id 2" + idQuestion2 + "id author" + idAuthor;
-		
+
 	}
 
 }

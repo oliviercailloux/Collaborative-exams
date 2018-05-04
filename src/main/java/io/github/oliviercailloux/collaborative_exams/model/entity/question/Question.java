@@ -5,10 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbPropertyOrder;
-import javax.json.bind.annotation.JsonbTransient;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -23,229 +28,236 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
  *
  * @author badga & Sid
  */
-@JsonbPropertyOrder({"id", "author", "phrasing", "language", "type", "isCorrect", "answers"})
+@JsonbPropertyOrder({ "id", "author", "phrasing", "language", "type", "isCorrect", "answers" })
 
 @XmlRootElement
 @Entity
 public class Question {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @XmlAttribute
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
+	private int id;
 
-    /**
-     * represent the phrasing of the question
-     * <p>
-     * Not <code>null</code>.
-     */
-    @XmlElement
-    @Column(nullable = false)
-    private final String phrasing;
+	/**
+	 * represent the phrasing of the question
+	 * <p>
+	 * Not <code>null</code>.
+	 */
+	@XmlElement
+	@Column(nullable = false)
+	private final String phrasing;
 
-    /**
-     * represent the language of Question
-     * <p>
-     * <p>
-     * Not <code>null</code>, may be empty.
-     */
-    @XmlElement
-    @Column(nullable = false)
-    private String language;
+	/**
+	 * represent the language of Question
+	 * <p>
+	 * <p>
+	 * Not <code>null</code>, may be empty.
+	 */
+	@XmlElement
+	@Column(nullable = false)
+	private String language;
 
+	/**
+	 * respresente the Author
+	 *
+	 * @see Person Not <code>null</code>.
+	 */
 
-    /**
-     * respresente the Author
-     *
-     * @see Person Not <code>null</code>.
-     */
+	@ManyToOne
+	@XmlElement(name = "author")
+	private Person author;
 
-    @ManyToOne
-    @XmlElement(name = "author")
-    private Person author;
+	/**
+	 * respresente if the response whas correct in T/F or Y/N question
+	 * <p>
+	 * Null if type of question is Free or QCM
+	 */
+	@Column(nullable = true)
+	private boolean isCorrect;
 
-    /**
-     * respresente if the response whas correct in T/F or Y/N question
-     * <p>
-     * Null if type of question is Free or QCM
-     */
-    @Column(nullable = true)
-    private boolean isCorrect;
+	/**
+	 * Respresent the type of question
+	 *
+	 * @see QuestionType Not <code>null</code>.
+	 */
+	@XmlElement
+	@Column(nullable = false)
+	private QuestionType type;
 
-    /**
-     * Respresent the type of question
-     *
-     * @see QuestionType Not <code>null</code>.
-     */
-    @XmlElement
-    @Column(nullable = false)
-    private QuestionType type;
+	/**
+	 * Represent the possible answers of a MQC Question
+	 */
 
+	@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+	@XmlElementWrapper(name = "answers")
+	@XmlElement(name = "answer")
+	private List<Answer> answers;
 
-    /**
-     * Represent the possible answers of a MQC Question
-     */
+	/**
+	 * Returns a new Question. Not <code>null</code>.
+	 */
+	public Question() {
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
-    @XmlElementWrapper(name = "answers")
-    @XmlElement(name = "answer")
-    private List<Answer> answers;
+		phrasing = null;
+	}
 
+	/**
+	 * return new Question T/F or Y/N
+	 *
+	 * @param phrasing
+	 *            phrasing of question
+	 * @param language
+	 *            Language of question
+	 * @param author
+	 *            Person how represente the author of question
+	 * @param type
+	 *            Type of question
+	 */
+	public Question(String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
+		this.phrasing = Objects.requireNonNull(phrasing);
+		this.language = Objects.requireNonNull(language);
+		this.author = Objects.requireNonNull(author);
+		this.type = Objects.requireNonNull(type);
+		this.isCorrect = Objects.requireNonNull(isCorrect);
+	}
 
-    /**
-     * Returns a new Question. Not <code>null</code>.
-     */
-    public Question() {
+	/**
+	 * return Question Free
+	 *
+	 * @param phrasing
+	 *            phrasing of question
+	 * @param language
+	 *            Language of question
+	 * @param author
+	 *            Person how represente the author of question
+	 * @param type
+	 *            Type of question
+	 * @Param answer the answer of the free question
+	 */
+	public Question(String phrasing, String language, Person author, QuestionType type, Answer answer)
+			throws Exception {
+		this.phrasing = Objects.requireNonNull(phrasing);
+		this.language = Objects.requireNonNull(language);
+		this.author = Objects.requireNonNull(author);
+		this.type = Objects.requireNonNull(type);
+		this.answers = new ArrayList<>();
+		answer.setQuestionIfNull(this);
+		this.answers.add(answer);
+	}
 
-        phrasing = null;
-    }
+	/**
+	 * return new MCQ Question
+	 *
+	 * @param phrasing
+	 *            phrasing of question
+	 * @param language
+	 *            Language of question
+	 * @param author
+	 *            Person how represente the author of question
+	 * @param type
+	 *            Type of question
+	 * @param answers
+	 *            represente the list of answer of the question
+	 */
+	public Question(String phrasing, String language, Person author, QuestionType type, List<Answer> answers)
+			throws Exception {
+		this.phrasing = Objects.requireNonNull(phrasing);
+		this.language = Objects.requireNonNull(language);
+		this.author = Objects.requireNonNull(author);
+		this.type = Objects.requireNonNull(type);
 
-    /**
-     * return new Question T/F or Y/N
-     *
-     * @param phrasing phrasing of question
-     * @param language Language of question
-     * @param author   Person how represente the author of question
-     * @param type     Type of question
-     */
-    public Question(String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
-        this.phrasing = Objects.requireNonNull(phrasing);
-        this.language = Objects.requireNonNull(language);
-        this.author = Objects.requireNonNull(author);
-        this.type = Objects.requireNonNull(type);
-        this.isCorrect = Objects.requireNonNull(isCorrect);
-    }
+		for (Answer answer : answers)
+			answer.setQuestionIfNull(this);
 
-    /**
-     * return Question Free
-     *
-     * @param phrasing phrasing of question
-     * @param language Language of question
-     * @param author   Person how represente the author of question
-     * @param type     Type of question
-     * @Param answer   the answer of the free question
-     */
-    public Question(String phrasing, String language, Person author, QuestionType type, Answer answer) throws Exception {
-        this.phrasing = Objects.requireNonNull(phrasing);
-        this.language = Objects.requireNonNull(language);
-        this.author = Objects.requireNonNull(author);
-        this.type = Objects.requireNonNull(type);
-        this.answers = new ArrayList<>();
-        answer.setQuestionIfNull(this);
-        this.answers.add(answer);
-    }
+		this.answers = Objects.requireNonNull(answers);
+	}
 
+	/**
+	 * Returns this Question’s id.
+	 *
+	 * @return not <code>null</code>.
+	 */
 
-    /**
-     * return new MCQ Question
-     *
-     * @param phrasing phrasing of question
-     * @param language Language of question
-     * @param author   Person how represente the author of question
-     * @param type     Type of question
-     * @param answers  represente the list of answer of the question
-     */
-    public Question(String phrasing, String language, Person author, QuestionType type, List<Answer> answers) throws Exception {
-        this.phrasing = Objects.requireNonNull(phrasing);
-        this.language = Objects.requireNonNull(language);
-        this.author = Objects.requireNonNull(author);
-        this.type = Objects.requireNonNull(type);
+	public int getId() {
+		return id;
+	}
 
-        for (Answer answer : answers)
-            answer.setQuestionIfNull(this);
+	/**
+	 * Returns this Question’s language.
+	 *
+	 * @return String not null.
+	 */
 
-        this.answers = Objects.requireNonNull(answers);
-    }
+	public String getLanguage() {
+		return language;
+	}
 
+	/**
+	 * Returns this Question’s author.
+	 *
+	 * @return Person not null and immuable.
+	 */
 
-    /**
-     * Returns this Question’s id.
-     *
-     * @return not <code>null</code>.
-     */
+	public Person getAuthor() {
+		return author;
+	}
 
-    public int getId() {
-        return id;
-    }
+	/**
+	 * Returns this Question’s type.
+	 *
+	 * @return String not null.
+	 */
 
-    /**
-     * Returns this Question’s language.
-     *
-     * @return String not null.
-     */
+	public QuestionType getType() {
 
-    public String getLanguage() {
-        return language;
-    }
+		return type;
+	}
 
-    /**
-     * Returns this Question’s author.
-     *
-     * @return Person not null and immuable.
-     */
+	/**
+	 * Returns this Question’s phrasing.
+	 *
+	 * @return String not <code>null</code>.
+	 */
 
-    public Person getAuthor() {
-        return author;
-    }
+	public String getPhrasing() {
 
-    /**
-     * Returns this Question’s type.
-     *
-     * @return String not null.
-     */
+		return this.phrasing;
+	}
 
-    public QuestionType getType() {
+	/**
+	 * Returns this Question’s answers.
+	 *
+	 * @return String can be null, if the Question is TF/ YN / QCM
+	 */
+	public List<Answer> getAnswers() {
 
-        return type;
-    }
+		if (this.answers == null)
+			return null;
 
-    /**
-     * Returns this Question’s phrasing.
-     *
-     * @return String not <code>null</code>.
-     */
+		return Collections.unmodifiableList(this.answers);
+	}
 
-    public String getPhrasing() {
+	/**
+	 * @Return boolean
+	 */
+	public boolean getCorrect() {
 
-        return this.phrasing;
-    }
+		return isCorrect;
+	}
 
-    /**
-     * Returns this Question’s answers.
-     *
-     * @return String can be null, if the Question is TF/ YN / QCM
-     */
-    public List<Answer> getAnswers() {
+	public boolean equals(Question question) {
 
-        if(this.answers==null) return null;
+		if (question == this)
+			return true;
+		if (question != null && (question.getClass().equals(this.getClass()))) {
 
-        return Collections.unmodifiableList(this.answers);
-    }
+			return (this.phrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
+					&& (this.id == question.getId()) && (this.getCorrect() == question.getCorrect())
+					&& (this.getLanguage().equals(question.getLanguage())));
 
-    /**
-     * @Return boolean
-     */
-    public boolean getCorrect() {
-
-        return isCorrect;
-    }
-
-
-    public boolean equals(Question question) {
-
-        if (question == this) return true;
-        if (question != null && (question.getClass().equals(this.getClass()))) {
-
-            return (this.phrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
-                    && (this.id == question.getId()) && (this.getCorrect() == question.getCorrect())
-                    && (this.getLanguage().equals(question.getLanguage())));
-
-        }
-        return false;
-    }
-
-
-
-
+		}
+		return false;
+	}
 
 }

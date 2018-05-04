@@ -11,10 +11,9 @@ import javax.transaction.Transactional;
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Improvement;
 
-
 @RequestScoped
 public class ImprovementService {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -30,7 +29,7 @@ public class ImprovementService {
 	public void persist(Improvement improvement) {
 		em.persist(improvement);
 	}
-	
+
 	@Transactional
 	public Improvement findImprovement(int id) {
 		return em.find(Improvement.class, id);

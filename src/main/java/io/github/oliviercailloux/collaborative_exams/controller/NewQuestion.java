@@ -2,8 +2,13 @@ package io.github.oliviercailloux.collaborative_exams.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.CookieParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -39,7 +44,8 @@ public class NewQuestion {
 
 		if (cookie == null) {
 			if (form.getFirst("idAuthor").isEmpty())
-				throw new Exception("Both Cookie and the input Author Id's field are null, please log-in or register again.");
+				throw new Exception(
+						"Both Cookie and the input Author Id's field are null, please log-in or register again.");
 
 			idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
 		} else {

@@ -1,7 +1,5 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity;
 
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
-
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,65 +9,65 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
-@JsonbPropertyOrder({"idPersonTag", "question","tag"})
+@JsonbPropertyOrder({ "idPersonTag", "question", "tag" })
 @Entity
 @XmlRootElement(name = "author")
 public class PersonTag {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @XmlAttribute
-    private int idPersonTag;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
+	private int idPersonTag;
 
-    @XmlElement(name = "question")
-    private Question question;
+	@XmlElement(name = "question")
+	private Question question;
 
-    @XmlElement(name = "author")
-    private Person author;
+	@XmlElement(name = "author")
+	private Person author;
 
-    @XmlElement(name="tag")
-    private String tag;
+	@XmlElement(name = "tag")
+	private String tag;
 
+	public PersonTag(Question question, Person author, String tag) {
+		this.question = question;
+		this.author = author;
+		this.tag = tag;
+	}
 
-    public PersonTag(Question question, Person author, String tag) {
-        this.question = question;
-        this.author = author;
-        this.tag = tag;
-    }
+	public PersonTag() {
+	}
 
-    public PersonTag() {
-    }
+	public int getIdPersonTag() {
+		return idPersonTag;
+	}
 
-    public int getIdPersonTag() {
-        return idPersonTag;
-    }
+	public Question getQuestion() {
+		return question;
+	}
 
-    public Question getQuestion() {
-        return question;
-    }
+	public Person getAuthor() {
+		return author;
+	}
 
-    public Person getAuthor() {
-        return author;
-    }
+	public String getTag() {
+		return tag;
+	}
 
-    public String getTag() {
-        return tag;
-    }
+	public void setIdPersonTag(int idPersonTag) {
+		this.idPersonTag = idPersonTag;
+	}
 
-    public void setIdPersonTag(int idPersonTag) {
-        this.idPersonTag = idPersonTag;
-    }
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
+	public void setAuthor(Person author) {
+		this.author = author;
+	}
 
-    public void setAuthor(Person author) {
-        this.author = author;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 }

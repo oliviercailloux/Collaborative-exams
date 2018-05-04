@@ -1,9 +1,8 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
-
 /**
  * 
- * this respresente the Type of response of question 
+ * this respresente the Type of response of question
  * 
  * @author badga
  *

@@ -14,7 +14,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 @RequestScoped
 public class PersonService {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -30,12 +30,11 @@ public class PersonService {
 	public void persist(Person person) {
 		em.persist(person);
 	}
-	
+
 	@Transactional
 	public Person findPerson(int id) {
 		return em.find(Person.class, id);
 	}
-
 
 	@Transactional
 	public Person findPersonByEmail(String email) throws Exception {
@@ -47,6 +46,5 @@ public class PersonService {
 		return results.get(0);
 
 	}
-
 
 }

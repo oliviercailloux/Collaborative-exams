@@ -22,7 +22,7 @@ public class UserAcces {
 
 	@Inject
 	PersonService personService;
-	
+
 	private java.net.URI location;
 
 	@POST
@@ -32,12 +32,14 @@ public class UserAcces {
 			throws Exception {
 		location = new java.net.URI("../index.html");
 		// new registration
-		if(email==null) throw new Exception("Email est null !");
-		
+		if (email == null)
+			throw new Exception("Email est null !");
+
 		if (authorId == null) {
 			Person author = new Person(email);
 			personService.persist(author);
-			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100000, false);
+			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100000,
+					false);
 			return Response.temporaryRedirect(location).cookie(cookie).build();
 		}
 		// user already logged-in
@@ -48,13 +50,15 @@ public class UserAcces {
 	@Path("/login")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response login(@CookieParam("authorId") String authorId, @FormParam("email") String email) throws Exception {
-		
-		if(email==null) throw new Exception("Email est null !");
+
+		if (email == null)
+			throw new Exception("Email est null !");
 		location = new java.net.URI("../index.html");
 		// new connection
 		if (authorId == null) {
 			Person author = personService.findPersonByEmail(email);
-			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100000, false);
+			NewCookie cookie = new NewCookie("authorId", String.valueOf(author.getId()), "/", "", "comment", 100000,
+					false);
 			return Response.temporaryRedirect(location).cookie(cookie).build();
 		}
 		// user already logged-in

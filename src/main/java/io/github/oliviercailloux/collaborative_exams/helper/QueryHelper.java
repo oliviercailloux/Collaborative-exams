@@ -1,14 +1,10 @@
 package io.github.oliviercailloux.collaborative_exams.helper;
 
-import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
-
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 @RequestScoped

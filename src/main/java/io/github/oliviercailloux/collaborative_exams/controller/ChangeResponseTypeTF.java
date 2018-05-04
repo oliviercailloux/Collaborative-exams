@@ -1,69 +1,78 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
-
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.CookieParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
-
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
 /**
- * Jax-RS Servlet that allows to change a Yes/no question to a True/false question
+ * Jax-RS Servlet that allows to change a Yes/no question to a True/false
+ * question
  */
 @Path("ChangeResponseTypeTF")
 public class ChangeResponseTypeTF {
 
-    @Inject
-    private QuestionService questionService;
+	@Inject
+	private QuestionService questionService;
 
-    @Inject
-    private PersonService personService;
+	@Inject
+	private PersonService personService;
 
-    /**
-     * @param form                  that contains the idQuestion and the new authorId that can be null if cookie is set
-     * @param cookie contains the new authorId if the cookie is set
-     * @return the new Id of the question after modification
-     * @throws Exception if the type of the question is already TF or the type cannot be changed to TF or IdQuestion is invalid
-     */
-    @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie) throws Exception {
-        int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
-        int newAuthorId;
-        
-        if (cookie == null) {
+	/**
+	 * @param form
+	 *            that contains the idQuestion and the new authorId that can be null
+	 *            if cookie is set
+	 * @param cookie
+	 *            contains the new authorId if the cookie is set
+	 * @return the new Id of the question after modification
+	 * @throws Exception
+	 *             if the type of the question is already TF or the type cannot be
+	 *             changed to TF or IdQuestion is invalid
+	 */
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
+			throws Exception {
+		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
+		int newAuthorId;
+
+		if (cookie == null) {
 			if (form.getFirst("idAuthor").isEmpty())
-				throw new Exception("Both Cookie and the input Author Id's field are null, please log-in or register again.");
+				throw new Exception(
+						"Both Cookie and the input Author Id's field are null, please log-in or register again.");
 
 			newAuthorId = Integer.valueOf(form.getFirst("idAuthor"));
 		} else {
 			newAuthorId = Integer.valueOf(cookie.getValue());
 		}
-        
-        Question question = questionService.findQuestion(idQuestion);
-        Person newAuthor = personService.findPerson(newAuthorId);
-        Question modifiedQuestion;
-        QuestionType questionType = question.getType();
 
-        if (questionType == QuestionType.YN) {
-            modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, QuestionType.TF,
-                    question.getCorrect());
-        } else if (questionType == QuestionType.TF) {
-            throw new Exception("Question type is already TF ! ");
-        } else throw new Exception("This type of question can't change from" + question.getType() + " to TF");
+		Question question = questionService.findQuestion(idQuestion);
+		Person newAuthor = personService.findPerson(newAuthorId);
+		Question modifiedQuestion;
+		QuestionType questionType = question.getType();
 
-        questionService.persist(modifiedQuestion);
-        return String.valueOf(modifiedQuestion.getId());
+		if (questionType == QuestionType.YN) {
+			modifiedQuestion = new Question(question.getPhrasing(), question.getLanguage(), newAuthor, QuestionType.TF,
+					question.getCorrect());
+		} else if (questionType == QuestionType.TF) {
+			throw new Exception("Question type is already TF ! ");
+		} else
+			throw new Exception("This type of question can't change from" + question.getType() + " to TF");
 
-    }
+		questionService.persist(modifiedQuestion);
+		return String.valueOf(modifiedQuestion.getId());
+
+	}
 }
-	
