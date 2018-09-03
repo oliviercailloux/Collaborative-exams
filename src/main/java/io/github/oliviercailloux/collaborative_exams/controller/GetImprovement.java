@@ -24,11 +24,9 @@ public class GetImprovement {
 
 	/**
 	 *
-	 * @param id
-	 *            represent the id of the Improvement relation
+	 * @param id represent the id of the Improvement relation
 	 * @return the relation well formatted in json
-	 * @throws Exception
-	 *             if the relation is not found
+	 * @throws Exception if the relation is not found
 	 */
 	@Path("/?id={id}")
 	@GET

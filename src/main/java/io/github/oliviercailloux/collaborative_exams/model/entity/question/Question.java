@@ -105,14 +105,10 @@ public class Question {
 	/**
 	 * return new Question T/F or Y/N
 	 *
-	 * @param phrasing
-	 *            phrasing of question
-	 * @param language
-	 *            Language of question
-	 * @param author
-	 *            Person how represente the author of question
-	 * @param type
-	 *            Type of question
+	 * @param phrasing phrasing of question
+	 * @param language Language of question
+	 * @param author   Person how represente the author of question
+	 * @param type     Type of question
 	 */
 	public Question(String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
 		this.phrasing = Objects.requireNonNull(phrasing);
@@ -125,14 +121,10 @@ public class Question {
 	/**
 	 * return Question Free
 	 *
-	 * @param phrasing
-	 *            phrasing of question
-	 * @param language
-	 *            Language of question
-	 * @param author
-	 *            Person how represente the author of question
-	 * @param type
-	 *            Type of question
+	 * @param phrasing phrasing of question
+	 * @param language Language of question
+	 * @param author   Person how represente the author of question
+	 * @param type     Type of question
 	 * @Param answer the answer of the free question
 	 */
 	public Question(String phrasing, String language, Person author, QuestionType type, Answer answer)
@@ -149,16 +141,11 @@ public class Question {
 	/**
 	 * return new MCQ Question
 	 *
-	 * @param phrasing
-	 *            phrasing of question
-	 * @param language
-	 *            Language of question
-	 * @param author
-	 *            Person how represente the author of question
-	 * @param type
-	 *            Type of question
-	 * @param answers
-	 *            represente the list of answer of the question
+	 * @param phrasing phrasing of question
+	 * @param language Language of question
+	 * @param author   Person how represente the author of question
+	 * @param type     Type of question
+	 * @param answers  represente the list of answer of the question
 	 */
 	public Question(String phrasing, String language, Person author, QuestionType type, List<Answer> answers)
 			throws Exception {

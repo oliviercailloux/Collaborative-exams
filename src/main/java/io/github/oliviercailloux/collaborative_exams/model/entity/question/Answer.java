@@ -57,8 +57,7 @@ public class Answer {
 	 * add question to answers if question is null , else throw new exception, for
 	 * add
 	 *
-	 * @param question
-	 *            the question how have this answer
+	 * @param question the question how have this answer
 	 */
 	public void setQuestionIfNull(Question question) throws Exception {
 		if (this.question == null) {

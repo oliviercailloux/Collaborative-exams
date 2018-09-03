@@ -26,8 +26,7 @@ public class NewPerson {
 
 	/**
 	 * 
-	 * @param email
-	 *            : contains the email sent by the form
+	 * @param email : contains the email sent by the form
 	 * @return : the object person in Json
 	 * @throws Exception
 	 */

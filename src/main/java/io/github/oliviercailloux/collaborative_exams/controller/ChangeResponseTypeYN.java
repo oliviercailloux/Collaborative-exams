@@ -30,15 +30,12 @@ public class ChangeResponseTypeYN {
 	private PersonService personService;
 
 	/**
-	 * @param form
-	 *            that contains the idQuestion and the new authorId that can be null
-	 *            if cookie is set
-	 * @param cookie
-	 *            contains the new authorId if the cookie is set
+	 * @param form   that contains the idQuestion and the new authorId that can be
+	 *               null if cookie is set
+	 * @param cookie contains the new authorId if the cookie is set
 	 * @return the new Id of the question after modification
-	 * @throws Exception
-	 *             if the type of the question is already YN or the type cannot be
-	 *             changed to YN or IdQuestion is invalid
+	 * @throws Exception if the type of the question is already YN or the type
+	 *                   cannot be changed to YN or IdQuestion is invalid
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)

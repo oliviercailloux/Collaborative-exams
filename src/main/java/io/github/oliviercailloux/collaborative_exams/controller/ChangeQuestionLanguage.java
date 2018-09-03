@@ -34,14 +34,11 @@ public class ChangeQuestionLanguage {
 
 	/**
 	 *
-	 * @param form
-	 *            : contains a questionId, authorId that can be null if the cookie
-	 *            is set and the newLanguage
-	 * @param authorIdFromCookie
-	 *            : contains the new authorId that can be null
+	 * @param form               : contains a questionId, authorId that can be null
+	 *                           if the cookie is set and the newLanguage
+	 * @param authorIdFromCookie : contains the new authorId that can be null
 	 * @return the Id of the new Question
-	 * @throws Exception
-	 *             if the questionId is invalid
+	 * @throws Exception if the questionId is invalid
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)

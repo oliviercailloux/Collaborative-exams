@@ -39,12 +39,11 @@ public class NewImprovement {
 
 	/**
 	 * 
-	 * @param form
-	 *            contains the question id of the two questions and the author id
+	 * @param form contains the question id of the two questions and the author id
 	 * @return the Id of the new improvement relation
-	 * @throws Exception
-	 *             if one / both of the questions is / are null or the author is
-	 *             null or the two questions don't have a sameAbility relation
+	 * @throws Exception if one / both of the questions is / are null or the author
+	 *                   is null or the two questions don't have a sameAbility
+	 *                   relation
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
