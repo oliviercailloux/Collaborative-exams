@@ -30,7 +30,6 @@ public class QuestionXML {
 	public static void QuestionToXML(Question question, String FILEPATH) throws NullPointerException, IllegalArgumentException, Exception {
 		try {
 			SchemaFactory sf = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-			//Schema schema = sf.newSchema(new File("C:/Users/acer/Documents/M2-SITN/JEE/Projet_2019/Collaborative-exams/collaborative-exams/src/test/java/io/github/oliviercailloux/collaborative_exams/helper/CDMFR-ext1.0.xsd"));
 			System.out.println("ok");
 
 			/**
@@ -87,10 +86,9 @@ public class QuestionXML {
 	public static Question unmarshallerXml(Question question,String FILEPATH) throws JAXBException, FileNotFoundException {
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(Question.class);
-
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		Question objectUnmarshalled = (Question) jaxbUnmarshaller.unmarshal(new FileReader(FILEPATH));
-		return objectUnmarshalled;
+		Question questiontUnmarshalled = (Question) jaxbUnmarshaller.unmarshal(new FileReader(FILEPATH));
+		return questiontUnmarshalled;
 
 	}
 

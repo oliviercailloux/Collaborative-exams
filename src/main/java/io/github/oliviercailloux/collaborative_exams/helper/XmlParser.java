@@ -10,7 +10,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 /**
- * @author Sid
+ * @author sidou 
+ * 
+ * 
  */
 public class XmlParser {
 
