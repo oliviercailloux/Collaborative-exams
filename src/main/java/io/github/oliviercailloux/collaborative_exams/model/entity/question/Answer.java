@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
+import java.io.Serializable;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
@@ -15,65 +16,76 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Answer is immuable, you can add the question the first time
  */
-@JsonbPropertyOrder({ "id", "text", "correct" })
+@JsonbPropertyOrder({"id", "text", "correct"})
 @Entity
 @XmlRootElement(name = "answer")
-public class Answer {
+public class Answer implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@XmlAttribute
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @XmlAttribute
+    private int id;
 
-	@Column(nullable = false)
-	@XmlElement
-	private boolean correct;
+    @Column(nullable = false)
+    @XmlElement
+    private boolean correct;
+    
+    //compteur qui s'incremente de 1 chaque choix que cette reponse participe a un QCM
+    @Column(nullable = false)
+    @XmlElement
+    private int countParticipat;
 
-	@Column(nullable = false)
-	@XmlElement
-	private String text;
+        //compteur qui s'incremente de 1 chaque choix que cette reponse a été selectionée par un utilisateur
+    @Column(nullable = false)
+    @XmlElement
+    private int countSelect;
 
-	@ManyToOne
-	private Question question;
+    @Column(nullable = false)
+    @XmlElement
+    private String text;
 
-	public Answer() {
+    @ManyToOne
+    private Question question;
 
-	}
+    public Answer() {
 
-	public Answer(String text, boolean correct) {
-		this.correct = correct;
-		this.text = text;
-	}
+    }
 
-	public boolean isCorrect() {
-		return correct;
-	}
+    public Answer(String text, boolean correct) {
+        this.correct = correct;
+        this.text = text;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public boolean isCorrect() {
+        return correct;
+    }
 
-	/**
-	 * add question to answers if question is null , else throw new exception, for
-	 * add
-	 *
-	 * @param question the question how have this answer
-	 */
-	public void setQuestionIfNull(Question question) throws Exception {
-		if (this.question == null) {
-			this.question = question;
-		} else {
-			throw new Exception("the Answer is already linked to a Question and it's immuable");
-		}
-	}
+    public String getText() {
+        return text;
+    }
 
-	public int getId() {
-		return id;
-	}
+    /**
+     * add question to answers if question is null , else throw new exception,
+     * for add
+     *
+     * @param question the question how have this answer
+     * @throws java.lang.Exception
+     */
+    public void setQuestionIfNull(Question question) throws Exception {
+        if (this.question == null) {
+            this.question = question;
+        } else {
+            throw new Exception("the Answer is already linked to a Question and it's immuable");
+        }
+    }
 
-	@JsonbTransient
-	public Question getQuestion() {
-		return this.question;
-	}
+    public int getId() {
+        return id;
+    }
+
+    @JsonbTransient
+    public Question getQuestion() {
+        return this.question;
+    }
 
 }
