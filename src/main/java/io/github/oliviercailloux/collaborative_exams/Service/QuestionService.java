@@ -1,12 +1,20 @@
 package io.github.oliviercailloux.collaborative_exams.Service;
 
+
+/**
+ * @author modified by Mohamed
+ */
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+
+import com.sun.istack.logging.Logger;
+import com.sun.mail.util.MailLogger;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
@@ -15,6 +23,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 
 @RequestScoped
 public class QuestionService {
+
 
 	@PersistenceContext
 	private EntityManager em;
@@ -26,7 +35,7 @@ public class QuestionService {
 	public List<Question> getAll() {
 		return em.createQuery(helper.selectAll(Question.class)).getResultList();
 	}
-
+	
 	@Transactional
 	public void persist(Question question) {
 		if (null == em.find(Person.class, question.getAuthor().getId())) {
@@ -49,5 +58,32 @@ public class QuestionService {
 
 		return questionResult;
 	}
+	
+	@Transactional
+	public boolean deletAllQuestion() throws Exception {
+		//TypedQuery<Question> query = em.createQuery("SELECT * FROM Question);
+		List<Question> question = em.createQuery(helper.selectAll(Question.class)).getResultList();
+		
+		for(Question q : question){
+			Question QuestionDeleted =em.merge(q);
+			em.remove(QuestionDeleted);
+		}
+		if (!question.isEmpty())
+			return false;
+		return true;
+			
+		
+	
+	}
+	
+	@Transactional
+	public void deletById(int id) throws Exception{
+		Question questionResult = em.find(Question.class, id);
+		if (questionResult == null)
+			throw new Exception("id ou question inexistante.");
+		em.merge(questionResult);
+		em.remove(questionResult);
+	}
+
 
 }
