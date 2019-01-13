@@ -10,6 +10,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answe
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
+import org.junit.Before;
 
 /**
  *
@@ -17,23 +18,18 @@ import junit.framework.TestCase;
  */
 public class AnswerServiceTest extends TestCase {
 
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AnswerServiceTest(String testName) {
-        super(testName);
-    }
+    AnswerService service = new AnswerService();
+    List<Answer> listeAnswers = new ArrayList<>();
 
-    public void testEasyDifficulty() {
-        AnswerService service = new AnswerService();
-        List<Answer> listeAnswers = new ArrayList<>();
-
+    @Before
+    @Override
+    public void setUp() {
         listeAnswers.add(new Answer("Reponse1", false, 10, 3));
         listeAnswers.add(new Answer("Reponse2", false, 10, 5));
         listeAnswers.add(new Answer("Reponse3", false, 10, 7));
+    }
 
+    public void testEasyDifficulty() {
         service.getEasyDifficultyAnswer(listeAnswers);
 
         assertEquals(service.getEasyDifficultyAnswer(listeAnswers).size(), 1);
@@ -41,13 +37,6 @@ public class AnswerServiceTest extends TestCase {
     }
 
     public void testMediumDifficulty() {
-        AnswerService service = new AnswerService();
-        List<Answer> listeAnswers = new ArrayList<>();
-
-        listeAnswers.add(new Answer("Reponse1", false, 10, 3));
-        listeAnswers.add(new Answer("Reponse2", false, 10, 5));
-        listeAnswers.add(new Answer("Reponse3", false, 10, 7));
-
         service.getMediumDifficultyAnswer(listeAnswers);
 
         assertEquals(service.getMediumDifficultyAnswer(listeAnswers).size(), 1);
@@ -55,13 +44,6 @@ public class AnswerServiceTest extends TestCase {
     }
 
     public void testHardDifficulty() {
-        AnswerService service = new AnswerService();
-        List<Answer> listeAnswers = new ArrayList<>();
-
-        listeAnswers.add(new Answer("Reponse1", false, 10, 3));
-        listeAnswers.add(new Answer("Reponse2", false, 10, 5));
-        listeAnswers.add(new Answer("Reponse3", false, 10, 7));
-
         service.getHardDifficultyAnswer(listeAnswers);
 
         assertEquals(service.getHardDifficultyAnswer(listeAnswers).size(), 1);

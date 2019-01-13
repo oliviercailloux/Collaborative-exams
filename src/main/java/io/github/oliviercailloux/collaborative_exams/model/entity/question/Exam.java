@@ -71,6 +71,9 @@ public class Exam implements Serializable {
     }
 
     public List<Question> getListeQuestions() {
+        if (listQuestions == null) {
+            listQuestions = new ArrayList<>();
+        }
         return listQuestions;
     }
 

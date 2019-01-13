@@ -104,6 +104,10 @@ public class Question implements Serializable {
         phrasing = null;
     }
 
+    public Question(String phrasing) {
+        this.phrasing = phrasing;
+    }
+
     /**
      * return new Question T/F or Y/N
      *
@@ -216,12 +220,10 @@ public class Question implements Serializable {
      * @return String can be null, if the Question is TF/ YN / QCM
      */
     public List<Answer> getAnswers() {
-
         if (this.answers == null) {
-            return null;
+            return answers = new ArrayList<>();
         }
-
-        return Collections.unmodifiableList(this.answers);
+        return answers;
     }
 
     /**
