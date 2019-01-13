@@ -15,13 +15,15 @@ import com.sun.mail.util.MailLogger;
 
 import javax.xml.validation.Schema;
 
+import io.github.oliviercailloux.collaborative_exams.controller.GetQuestionTest;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 /**
  * @author Mohamed 
  */
 public class QuestionXML {
-	//private final static Logger LOGGER = Logger.getLogger(MailLogger.class.getName(),null);
+	//@SuppressWarnings("unused")
+	//private static final Logger LOGGER = Logger.getLogger(GetQuestionTest.class.getCanonicalName());
 
 	public QuestionXML(){
 		super();
@@ -33,24 +35,24 @@ public class QuestionXML {
 			System.out.println("ok");
 
 			/**
-			 *  creation d'un JAXB  pour la class Question
+			 *  creat JAXB  for  class Question
 			 */
 			JAXBContext context = JAXBContext.newInstance(Question.class);
 
 			/**
-			 * Creation du marshaller context
+			 * Creat marshaller context
 			 */
 			Marshaller marshaller = context.createMarshaller();
 
 			/**
-			 *  le Marshaller utilisera le codage UTF-8 lors de la génération de données XML 
+			 *  Marshaller will use UTF-8 encoding when generating XML data 
 			 */
 
 			marshaller.setProperty("jaxb.encoding", "UTF-8") ;
 
 			/**
 			 * setting the property to show xml format output
-			 * indique au Marshaller de générer le code XML avec l’indentation appropriée
+			 * tells the Marshaller to generate XML with the appropriate indentation
 			 * 
 			 */
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -78,7 +80,7 @@ public class QuestionXML {
      * @param question
      * @param FILEPATH
      *
-     * supprimer XML avec JAXB en un objet Java,
+     * Delet XML with JAXB in a objet Java,
      * @return 
      * 
      */

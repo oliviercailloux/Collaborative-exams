@@ -18,10 +18,10 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Quest
 
 /**
  * @author Mohamed
- * Servlet that allows to delete question from BDD 
+ * Servlet that allows to refresh DB 
  */
-@Path("Delete")
-public class DeletQuestion {
+@Path("DeletQuestionPerson")
+public class DeletAllQuestionPerson {
 	private boolean isdelet ; 
 
 	@Inject
@@ -31,28 +31,19 @@ public class DeletQuestion {
 	private PersonService personService;
 	
 	
+//	
+//	@Path("allQuestPerson")
+//	@GET
+//	@Consumes(MediaType.TEXT_PLAIN)
+//	@Produces(MediaType.TEXT_PLAIN)
+//	public boolean questDeleted() throws Exception {
+//		this.isdelet= questionService.deletAllQuestion();
+//		 personService.deletAllPerson();
+//		if(!isdelet)
+//			throw new Exception("Questions is not deleted from DB");
+//		return isdelet;
+//		
+//		
+//	}
 	
-	@Path("allQuestions")
-	@GET
-	@Consumes(MediaType.TEXT_PLAIN)
-	@Produces(MediaType.TEXT_PLAIN)
-	public boolean questDeleted() throws Exception {
-		
-		this.isdelet = questionService.deletAllQuestion();
-		if(!isdelet)
-			throw new Exception("Questions is not deleted from DB");
-		return isdelet;
-		
-	
-		
-	}
-	
-	@Path("/byId")
-	@GET
-	@Consumes(MediaType.TEXT_PLAIN)
-	@Produces(MediaType.APPLICATION_JSON)
-	public void  questionDeletedById(@QueryParam("id") int id) throws Exception {
-		questionService.deletById(id);
-		
-	}
 }

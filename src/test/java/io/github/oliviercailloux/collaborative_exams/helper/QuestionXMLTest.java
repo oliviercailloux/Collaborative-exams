@@ -53,25 +53,25 @@ public class QuestionXMLTest {
 	    	File fic = new File("questionXMl");
 	    	SAXReader reader =  new SAXReader() ;
 	    	 /**
-	    	  *  lecture de ce fichier à l'aide de ce reader, et construction d'un objet Document
+	    	  *  read this file using this reader, and build a Document object
 	    	  */
 	    	
 	    	Document doc = reader.read(fic) ;
 	    	
 	    	/**
-	    	 *  construction de l'élément racine du document XML
+	    	 * constructing the root element of the XML document
 	    	 * 
 	    	 */
 	    	Element root = doc.getRootElement() ;
 
 	    	 /** 
-	    	  * lecture des attributs de l'élément racine
+	    	  * read attributes of the root element
 	    	  * 
 	    	  */
 	    	List<Element> attributes = root.attributes() ;
 
 	    	 /**
-	    	  *  lecture des sous-élément de la racine
+	    	  *  reading the sub-element of the root
 	    	  * 
 	    	  */
 	    	List<Element> elements = root.elements() ;
