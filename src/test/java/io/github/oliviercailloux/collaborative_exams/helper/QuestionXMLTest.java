@@ -49,14 +49,14 @@ public class QuestionXMLTest {
 
 	    @Test
 	    public void testObjectToXml() throws NullPointerException, IllegalArgumentException, Exception {
-	    	QuestionXML.QuestionToXML(question, "questionXMl");
+	    	QuestionXML.QuestionToXML(question, "src/main/java/io/github/oliviercailloux/collaborative_exams/controller/questionXMl");
 	    	//File fic = new File("questionXMl");
 	    	SAXReader reader =  new SAXReader() ;
 	    	 /**
 	    	  *  read this file using this reader, and build a Document object
 	    	  */
 	    	
-	    	Document doc = reader.read("questionXMl") ;
+	    	Document doc = reader.read("src/main/java/io/github/oliviercailloux/collaborative_exams/controller/questionXMl") ;
 	    	
 	    	/**
 	    	 * constructing the root element of the XML document
