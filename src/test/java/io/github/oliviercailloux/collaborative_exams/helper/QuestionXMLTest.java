@@ -43,14 +43,14 @@ public class QuestionXMLTest {
 	 
 	    @After
 	    public void tearDown() throws FileNotFoundException, JAXBException {
-	    	question = QuestionXML.unmarshallerXml(question, "./questionXml");
+	    	question = QuestionXML.unmarshallerXml(question, "src/main/java/io/github/oliviercailloux/collaborative_exams/controller/questionXMl");
 	    }
 	     
 
 	    @Test
 	    public void testObjectToXml() throws NullPointerException, IllegalArgumentException, Exception {
 	    	QuestionXML.QuestionToXML(question, "src/main/java/io/github/oliviercailloux/collaborative_exams/controller/questionXMl");
-	    	//File fic = new File("questionXMl");
+	    	File fic = new File("questionXMl");
 	    	SAXReader reader =  new SAXReader() ;
 	    	 /**
 	    	  *  read this file using this reader, and build a Document object
