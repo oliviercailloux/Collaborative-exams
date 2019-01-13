@@ -56,22 +56,26 @@ public class PersonService {
 	}
 	
 	@Transactional
-	public void deletAllPerson(){
+	public boolean deletAllPerson(){
 		List<Person> query = em.createQuery(helper.selectAll(Person.class)).getResultList();
 		for (Person p : query){
 			Person PersonDeleted =em.merge(p);
 			em.remove(PersonDeleted);
 			
 		}
+		if (!query.isEmpty())
+			return false;
+		return true;
 	}
 	
 	@Transactional
-	public void deletPersonById(int id) throws Exception{
+	public boolean deletPersonById(int id) throws Exception{
 		Person personResult = em.find(Person.class, id);
 		if (personResult == null)
-			throw new Exception("id person inexistante.");
+			return false;
 		em.merge(personResult);
 		em.remove(personResult);
+		return true;
 	}
 
 }

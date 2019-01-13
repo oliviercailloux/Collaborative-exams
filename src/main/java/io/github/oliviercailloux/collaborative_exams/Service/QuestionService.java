@@ -77,13 +77,24 @@ public class QuestionService {
 	}
 	
 	@Transactional
-	public void deletById(int id) throws Exception{
+	public boolean deletById(int id) throws Exception{
 		Question questionResult = em.find(Question.class, id);
 		if (questionResult == null)
-			throw new Exception("id ou question inexistante.");
+			return false;
 		em.merge(questionResult);
 		em.remove(questionResult);
+		return true;
 	}
+	
 
-
+	@Transactional
+	public boolean deletByAuthor(Person p) throws Exception{
+		Question questionResult = em.find(Question.class, p);
+		if (questionResult == null)
+			return false;
+		em.merge(questionResult);
+		em.remove(questionResult);
+		return false;
+	}
+   
 }

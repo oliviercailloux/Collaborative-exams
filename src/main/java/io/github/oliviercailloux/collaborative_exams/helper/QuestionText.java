@@ -1,10 +1,13 @@
 package io.github.oliviercailloux.collaborative_exams.helper;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
@@ -47,5 +50,11 @@ public class QuestionText {
 			return jsonb.toJson(question);
 		}
 	}
-
+    
+	public static String MessageTonJson(Object o) throws Exception{
+		 ObjectMapper mapperObj = new ObjectMapper();   
+	            String jsonStr = mapperObj.writeValueAsString(o);
+	            return jsonStr;
+	           
+	}
 }
