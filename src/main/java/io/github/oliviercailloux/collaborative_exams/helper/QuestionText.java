@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.collaborative_exams.helper;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.json.bind.Jsonb;

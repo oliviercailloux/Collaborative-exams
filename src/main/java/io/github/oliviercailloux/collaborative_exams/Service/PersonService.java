@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+
 
 
 

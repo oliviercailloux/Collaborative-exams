@@ -10,12 +10,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.SchemaFactory;
 
-import com.sun.istack.logging.Logger;
-import com.sun.mail.util.MailLogger;
-
-import javax.xml.validation.Schema;
-
-import io.github.oliviercailloux.collaborative_exams.controller.GetQuestionTest;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 /**
