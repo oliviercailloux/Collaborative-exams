@@ -1,3 +1,5 @@
+package io.github.oliviercailloux.collaborative_exams;
+
 
 
 import java.io.IOException;
@@ -7,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import helper.QueryHelper;
-import service.AuthorService;
+import io.github.oliviercailloux.collaborative_exams.Service.AuthorService;
+import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
+
 
 /**
  * Servlet implementation class AuthentificationServlet

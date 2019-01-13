@@ -1,3 +1,5 @@
+package io.github.oliviercailloux.collaborative_exams;
+
 
 
 import java.io.IOException;

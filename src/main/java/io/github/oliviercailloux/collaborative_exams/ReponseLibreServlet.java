@@ -1,3 +1,5 @@
+package io.github.oliviercailloux.collaborative_exams;
+
 
 
 import java.io.IOException;
@@ -11,10 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controler.EditDistanceRecursive;
-import helper.QueryHelper;
-import model.Author;
-import service.AuthorService;
+import io.github.oliviercailloux.collaborative_exams.controller.EditDistanceRecursive;
+
+
 
 /**
  * Servlet implementation class addNewAuthorServlet

@@ -1,4 +1,4 @@
-package helper;
+package io.github.oliviercailloux.collaborative_exams.helper;
 
 
 import javax.persistence.EntityManagerFactory;

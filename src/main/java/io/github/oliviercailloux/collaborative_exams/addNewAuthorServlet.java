@@ -1,3 +1,5 @@
+package io.github.oliviercailloux.collaborative_exams;
+
 
 
 import java.io.IOException;
@@ -11,9 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import helper.QueryHelper;
-import model.Author;
-import service.AuthorService;
+import io.github.oliviercailloux.collaborative_exams.Service.AuthorService;
+import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
+import io.github.oliviercailloux.collaborative_exams.model.entity.Author;
+
 
 /**
  * Servlet implementation class addNewAuthorServlet
@@ -80,7 +83,7 @@ public class addNewAuthorServlet extends HttpServlet {
 			as.persist(author);
 			this.getServletContext().getRequestDispatcher( "/Success.jsp" ).forward( request, response );
 			Author auth = as.findAuthor(5);
-			System.out.print(auth.getId() +" "+auth.getMail());
+			System.out.print(auth.getId() +" "+auth.getEmail());
 			
 
 			

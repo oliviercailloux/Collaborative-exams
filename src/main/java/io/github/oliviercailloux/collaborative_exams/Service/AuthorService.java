@@ -1,16 +1,17 @@
-package service;
+package io.github.oliviercailloux.collaborative_exams.Service;
 
 import java.util.List;
 
-import javax.jdo.annotations.Transactional;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
-import helper.QueryHelper;
-import model.Author;
+import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
+import io.github.oliviercailloux.collaborative_exams.model.entity.Author;
 
-
+@RequestScoped
 public class AuthorService {
 
 	private QueryHelper helper;

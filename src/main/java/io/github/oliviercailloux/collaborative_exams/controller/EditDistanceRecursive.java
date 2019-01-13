@@ -1,4 +1,4 @@
-package controler;
+package io.github.oliviercailloux.collaborative_exams.controller;
 
 import java.util.Arrays;
 

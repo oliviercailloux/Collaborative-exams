@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 @RequestScoped
-public class QueryHelper {
+public class QueryHelper2 {
 
 	@PersistenceUnit
 	private EntityManagerFactory emf;
