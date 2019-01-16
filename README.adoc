@@ -1,22 +1,19 @@
-= Collaborative exams
-:sectanchors:
+# projetJEE
+Projet JEE - Collaborative exams
 
-image:https://travis-ci.org/badga/Collaborative-exams.svg?branch=master["Build Status", link="https://travis-ci.org/badga/Collaborative-exams"]
+Le lien renvoyant vers le plan prévisionnel de livraison établi le mardi 31/12/2018 pour le dimanche 13/01/2019 (Date de rendu de la première itération) 
 
-A Java project developed during the https://github.com/oliviercailloux/java-course[Java course] taught at Université Paris-Dauphine (in http://www.mido.dauphine.fr/[MIDO] M2 MIAGE). The code is jointly copyrighted by Olivier Cailloux and the following students:
+https://drive.google.com/drive/folders/19jIBFKxkvKN9ybRf4fdhcKoNXdR6FNsb
 
-* Jeff Azzam
-* Sid Ahmed Imloul
-* Sofiath Lanignan
-* Lamine Tamendjari
-* Omar Yaghi
-* Abdelmadjid Yous
+Aparté d'Amine : 
 
-The code is hereby published under the MIT License, with their permission.
+Après avoir étudié la globalité du code fourni, nous avons constaté que la plupart des fonctionnalités ont été implémentées.
 
-== Original description
-Ce projet permettra à des enseignants de créer des ensembles de questions et réponses. Ces questions peuvent être réutilisées par d’autres enseignants et combinées pour créer des questionnaires ou des sondages. Les étudiants pourront se servir de ces ensembles de questions pour s’entrainer.
+Notre travail se basera principalement sur les tests et l'implémentation des fonctionnalités manquantes.
 
-=== Retrouvez notre application en suivant le lien ci dessous
-http://collaborative-exams.eu-gb.mybluemix.net/
+Concernant les fonctionnalités existantes, nous proposons de les améliorer, s'assurer que le code est bien relié aux interfaces graphiques (chose qui n'a pas été accomplie à ce jour) et proposer de nouvelles fonctionnalités tel que l'authentification des auteurs.
+
+Au sujet du plan prévisionnel, il pourrait être amené à changer selon l'état d'avancement lors des différentes itérations et la difficulté des fonctionnalités à implémenter.
+
+ 
 
