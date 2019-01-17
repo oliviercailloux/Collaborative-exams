@@ -28,7 +28,9 @@ Ainsi, nous ne faisons pas la différence entre les personnes qui créent des qu
 * Niveau de difficulté : Pour les QCM, les réponses proposées auront un niveau de difficulté. Les réponses fausses aurons deux compteurs, un pour compter le nombre de participation aux examens, et l'autre pour compter le nombre de fois qu'elle a été sélectionnée par les candidat. le ratio [nombre participation / nombre de sélection ] donne le degré de corrélation entre cette réponse et la bonne réponse, et donc si le ratio est proche de 1 la réponse aura une forte probabilité d'être choisi. Si cette réponse apparaît dans l'examen, on dit que la question est difficile.
 
 
-Remarque : au début toute les réponse sont proposées au même niveau de corrélation, après un certain nombre d'utilisation
+
+*Remarque*
+au début toute les réponse sont proposées au même niveau de corrélation, après un certain nombre d'utilisation
 
 *Mohamed*
 
@@ -82,7 +84,9 @@ Création de regroupement de questions appelé Examen selon la matière, le chap
 
 
 * Creation examen : Implémenter un examen qui permet, avec un GUI rudimentaire ou en ligne de commande, la création d'examens (chaque examen se compose de plusieurs types de questions) pour que les candidats puissent passer les examens
-*Remarque* : ceci n'inclue pas la partie passage d'examen.
+
+
+*Remarque* ceci n'inclue pas la partie passage d'examen.
 
 
 *Mohamed*
@@ -107,7 +111,9 @@ Création de regroupement de questions appelé Examen selon la matière, le chap
 
 
 
-*Remarque*De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilité de récupérer la question dans le format qu’il souhaite (Json ou XML).  Je voudrais que vous me confirmiez svp, si c’est bien ça que vous attendez de cette fonctionnalité.
+*Remarque*
+
+De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilité de récupérer la question dans le format qu’il souhaite (Json ou XML).  Je voudrais que vous me confirmiez svp, si c’est bien ça que vous attendez de cette fonctionnalité.
 
 *Alexandre*
 
@@ -133,6 +139,16 @@ Implémenter des entités JPA et les méthodes permettant d’écrire et de lire
 
 
 *Remarque* ceci n'inclue pas la partie correction d'examen
+
+
+*Khaled* 
+* Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
+
+
+*Remarque*
+
+ceci n'inclue pas la partie correction d'examen
+
 
 *Mohamed*
 
