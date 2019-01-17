@@ -41,7 +41,7 @@ Remarque : au début toute les réponse sont proposées au même niveau de corr�
 * Servlet Delet:   Ajouter une servlet qui permet aux autor de supprimer les questions de leur choix dans la BDD avec un cookie qui mémorise id personne. la suppression se fait soit avec un id questions, suppression total,par un id author... Dans la servlet elle permet aussi au enseignants de supprimer les examens qui seront créés (1)
 
 
-*Valentin
+*Valentin*
 
 
 
