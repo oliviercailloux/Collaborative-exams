@@ -1,17 +1,19 @@
-Première itération 
+= Première itération 
 
-Amine 
+*Amine* 
 
-Création d'un nouvel auteur en renseignant un formulaire
-Authentification d'un auteur à l'aide de ses identifiants
-Création des Servlets associés aux auteurs
-Création d'une vue permettant l'authentification
-Création d'une vue permettant l'insertion des données lors de la création d’un nouvel auteur
-Insérer les nouveaux auteurs dans la BDD
-Gérer en JSON et XML les auteurs 
+* Création d'un nouvel auteur en renseignant un formulaire
+* Authentification d'un auteur à l'aide de ses identifiants
+* Création des Servlets associés aux auteurs
+* Création d'une vue permettant l'authentification
+* Création d'une vue permettant l'insertion des données lors de la création d’un nouvel auteur
+* Insérer les nouveaux auteurs dans la BDD
+* Gérer en JSON et XML les auteurs 
 
 
-Remarque
+*Remarque*
+
+
 
 Il s’agit d’une fonctionnalité proposée car à ce jour, cette dernière n’a pas été traitée.
 Ainsi, nous ne faisons pas la différence entre les personnes qui créent des questions (Auteurs) et celles qui utilisent les questions pour s'entraîner.
@@ -19,91 +21,141 @@ Ainsi, nous ne faisons pas la différence entre les personnes qui créent des qu
 
 
 
-Khaled 
-Niveau de difficulté : Pour les QCM, les réponses proposées auront un niveau de difficulté. Les réponses fausses aurons deux compteurs, un pour compter le nombre de participation aux examens, et l'autre pour compter le nombre de fois qu'elle a été sélectionnée par les candidat. le ratio [nombre participation / nombre de sélection ] donne le degré de corrélation entre cette réponse et la bonne réponse, et donc si le ratio est proche de 1 la réponse aura une forte probabilité d'être choisi. Si cette réponse apparaît dans l'examen, on dit que la question est difficile.
+*Khaled*
+
+
+
+* Niveau de difficulté : Pour les QCM, les réponses proposées auront un niveau de difficulté. Les réponses fausses aurons deux compteurs, un pour compter le nombre de participation aux examens, et l'autre pour compter le nombre de fois qu'elle a été sélectionnée par les candidat. le ratio [nombre participation / nombre de sélection ] donne le degré de corrélation entre cette réponse et la bonne réponse, et donc si le ratio est proche de 1 la réponse aura une forte probabilité d'être choisi. Si cette réponse apparaît dans l'examen, on dit que la question est difficile.
+
+
 Remarque : au début toute les réponse sont proposées au même niveau de corrélation, après un certain nombre d'utilisation
 
-Mohamed
-Question Xml : Lire et écrire une question en XML, et les relations de votre modèle. Chaque relation peut être représentée comme un ensemble de triplets associé à une personne(1)
-
-Faire les différentes conversion en Xml (QuestionText)
+*Mohamed*
 
 
-Servlet Delet:   Ajouter une servlet qui permet aux autor de supprimer les questions de leur choix dans la BDD avec un cookie qui mémorise id personne. la suppression se fait soit avec un id questions, suppression total,par un id author... Dans la servlet elle permet aussi au enseignants de supprimer les examens qui seront créés (1)
+* Question Xml : Lire et écrire une question en XML, et les relations de votre modèle. Chaque relation peut être représentée comme un ensemble de triplets associé à une personne(1)
+
+* Faire les différentes conversion en Xml (QuestionText)
 
 
-Valentin
-Gestion des questions : Un utilisateur peut indiquer sur chaque question: un coefficient pour chaque question, la matière, le chapitre associé et le niveau recommandé
+* Servlet Delet:   Ajouter une servlet qui permet aux autor de supprimer les questions de leur choix dans la BDD avec un cookie qui mémorise id personne. la suppression se fait soit avec un id questions, suppression total,par un id author... Dans la servlet elle permet aussi au enseignants de supprimer les examens qui seront créés (1)
+
+
+*Valentin
+
+
+
+* Gestion des questions : Un utilisateur peut indiquer sur chaque question: un coefficient pour chaque question, la matière, le chapitre associé et le niveau recommandé
 Création de regroupement de questions appelé Examen selon la matière, le chapitre ou le niveau recommandé (de CP à Terminale)
-Les examens seront exportables en fichier .pdf
-Création de la page Author reprenant les noms des auteurs des questions et divers statistiques
-Création de la page About Us qui reprendra les tâches et fonctionnalités developpés par chacun des membres du groupe
-Création de la page Contact Us avec les coordonnées nécessaires de chaque membre ainsi que les liens utiles
+* Les examens seront exportables en fichier .pdf
+* Création de la page Author reprenant les noms des auteurs des questions et divers statistiques
+* Création de la page About Us qui reprendra les tâches et fonctionnalités developpés par chacun des membres du groupe
+* Création de la page Contact Us avec les coordonnées nécessaires de chaque membre ainsi que les liens utiles
 
-Katia
-ServletsModify: ChangeResponseTypeTF(id orig, new author id): new id et ChangeResponseTypeYN(id orig, new author id). Change la réponse à une question en créant une nouvelle question qui a un autre type de réponse (c-à-d Y/N ou T/F) et en renvoyant son nouvel id. ChangeQuestionLanguage(id orig, new author id, new language): new id ( modifier les classes existantes par rapport à ce qu’il a été demandé dans l’énoncé, récupération des paramètres soumis dans le formulaire HTML)
-
-Alexandre
- Online :
-Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
-UseDB :
-Modifier les servlets pour qu’ils écrivent dans et lisent la BD. (1)
+*Katia*
 
 
-Deuxième itération 
 
-Amine 
+* ServletsModify: ChangeResponseTypeTF(id orig, new author id): new id et ChangeResponseTypeYN(id orig, new author id). Change la réponse à une question en créant une nouvelle question qui a un autre type de réponse (c-à-d Y/N ou T/F) et en renvoyant son nouvel id. 
 
-Gestion des réponses (particulièrement les réponses libres en utilisant la distance de Leveinstein) Dans la partie correction
-La relation SameAbility (ServletAbilities)
+* ChangeQuestionLanguage(id orig, new author id, new language): new id ( modifier les classes existantes par rapport à ce qu’il a été demandé dans l’énoncé, récupération des paramètres soumis dans le formulaire HTML)
 
-Khaled 
-Creation examen : Implémenter un examen qui permet, avec un GUI rudimentaire ou en ligne de commande, la création d'examens (chaque examen se compose de plusieurs types de questions) pour que les candidats puissent passer les examens
-Remarque : ceci n'inclue pas la partie passage d'examen.
+*Alexandre*
 
 
-Mohamed
-RelationsMultiFormat : Servlet GetSameAbility(person id): ensemble de triplets ; et de même pour les autres relations, et de même pour Set. La relation peut être récupérée ou envoyée au format XML ou JSON. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni (1)
-Servlet Personne : faire une doGet des autor qui sont stocké dans la base de données en format Json ou Xml ( Point ? )
 
-Valentin
-Gestion des examens approfondie : Intégration du système d'authentification développé lors de la première itération pour gérer les accès aux professeurs seulement
-Implémentation d'algorithmes spécifiques et complexes pour une meilleure gestion des examens comme le K-Means algorithm  
+* Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
+* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BD. (1)
 
-Katia
-QuestionMultiFormat: Récupérer une question à partir de son id, en format XML ou JSON. Introduire une question en multiples formats. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre.
-Remarque: De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilité de récupérer la question dans le format qu’il souhaite (Json ou XML).  Je voudrais que vous me confirmiez svp, si c’est bien ça que vous attendez de cette fonctionnalité.
 
-Alexandre 
-SetDB1 :
+= Deuxième itération
+
+
+
+*Amine*
+
+* Gestion des réponses (particulièrement les réponses libres en utilisant la distance de Leveinstein) Dans la partie correction
+* La relation SameAbility (ServletAbilities)
+
+*Khaled*
+
+
+
+* Creation examen : Implémenter un examen qui permet, avec un GUI rudimentaire ou en ligne de commande, la création d'examens (chaque examen se compose de plusieurs types de questions) pour que les candidats puissent passer les examens
+*Remarque* : ceci n'inclue pas la partie passage d'examen.
+
+
+*Mohamed*
+
+
+
+* RelationsMultiFormat : Servlet GetSameAbility(person id): ensemble de triplets ; et de même pour les autres relations, et de même pour Set. La relation peut être récupérée ou envoyée au format XML ou JSON. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni (1)
+* Servlet Personne : faire une doGet des autor qui sont stocké dans la base de données en format Json ou Xml ( Point ? )
+
+*Valentin*
+
+
+
+* Gestion des examens approfondie : Intégration du système d'authentification développé lors de la première itération pour gérer les accès aux professeurs seulement
+* Implémentation d'algorithmes spécifiques et complexes pour une meilleure gestion des examens comme le K-Means algorithm  
+
+*Katia*
+
+
+
+* QuestionMultiFormat: Récupérer une question à partir de son id, en format XML ou JSON. Introduire une question en multiples formats. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre.
+
+
+
+*Remarque*De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilité de récupérer la question dans le format qu’il souhaite (Json ou XML).  Je voudrais que vous me confirmiez svp, si c’est bien ça que vous attendez de cette fonctionnalité.
+
+*Alexandre*
+
+
+* SetDB1 :
 Implémenter des entités JPA et les méthodes permettant d’écrire et de lire depuis la BD les questions. (1)
-SetDB2 :
+* SetDB2 :
 Implémenter des entités JPA et les méthodes permettant d’écrire et de lire depuis la BD le reste du modèle : relations, tags, … (1)
 
-Troisième itération 
+= Troisième itération
 
-Amine 
-
-Gérer la relation Improvement
-Gérer la relation asSubtleAs
-Créer les interfaces nécessaires 
+*Amine*
 
 
-Khaled 
-Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
-Remarque : ceci n'inclue pas la partie correction d'examen
+* Gérer la relation Improvement
+* Gérer la relation asSubtleAs
+* Créer les interfaces nécessaires 
 
-Mohamed
-Modifier Examen : changer les sujets d'exams qui seront créer par khaled. Tel que cette opération est accessible que pour les enseignants. l'enseignant peut soit changer le niveau de difficulté d'une question, changer une question... avec cookie qui mémorise id d'un enseignant(1)
 
-Valentin
-Gestion de la partie Author : Intégration d'une API de Data Visualisation dans la partie Author pour obtenir des statistiques poussées et intéressantes sous forme de diagrammes, de courbes et de graphiques
 
-Katia
-Question par thème: Chaque personne peut associer un thème (info, math, economie....) à chaque question (y compris celles dont la personne n’est pas auteur). Et afficher toutes les questions qui concernent un thème données
 
-Alexandre
-Datavisualisation :
+* Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
+
+
+*Remarque* ceci n'inclue pas la partie correction d'examen
+
+*Mohamed*
+
+
+
+* Modifier Examen : changer les sujets d'exams qui seront créer par khaled. Tel que cette opération est accessible que pour les enseignants. l'enseignant peut soit changer le niveau de difficulté d'une question, changer une question... avec cookie qui mémorise id d'un enseignant(1)
+
+*Valentin*
+
+
+
+* Gestion de la partie Author : Intégration d'une API de Data Visualisation dans la partie Author pour obtenir des statistiques poussées et intéressantes sous forme de diagrammes, de courbes et de graphiques
+
+*Katia*
+
+
+
+* Question par thème: Chaque personne peut associer un thème (info, math, economie....) à chaque question (y compris celles dont la personne n’est pas auteur). Et afficher toutes les questions qui concernent un thème données
+
+*Alexandre*
+
+
+* Datavisualisation :
 Dashboards contenant des statistiques sur les réponses reçues dans la BDD. (1)
 
 
