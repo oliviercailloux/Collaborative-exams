@@ -17,29 +17,49 @@ import javax.xml.bind.annotation.XmlRootElement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 /**
- * This Class represent a Person Person is Immuable
+ * This Class represent a Author Author is Immuable
  *
- * @author badga & Sid
+ * @author Amine
  */
 @JsonbPropertyOrder({ "id", "email" })
 @Entity
-@XmlRootElement(name = "author")
-public class Person {
+@XmlRootElement(name = "Author")
+public class Author {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@XmlAttribute
 	/**
-	 * Represents the person's Id
+	 * Represents the Author's Id
 	 */
 	private int id;
 	
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	@OneToMany(mappedBy = "author")
 	private List<Question> questions;
 
 	/**
-	 * Represents the person's email
+	 * Represents the Author's email
 	 */
 	@Column(nullable = false)
 	@XmlElement
@@ -50,23 +70,24 @@ public class Person {
 	@XmlElement
 	private String mdp;
 
-	public Person() {
+	public Author() {
 
 	}
 
 	/**
-	 * Construct a Person
+	 * Construct a Author
 	 *
 	 * @param email
 	 */
-	public Person(String email) {
+	public Author(String email ,String mdp) {
 
 		this.email = email;
+		this.mdp = mdp;
 
 	}
 
 	/**
-	 * Returns this Person Id.
+	 * Returns this Author Id.
 	 *
 	 * @return Int not <code>null</code>.
 	 */
@@ -76,7 +97,7 @@ public class Person {
 	}
 
 	/**
-	 * Returns this Person email.
+	 * Returns this Author email.
 	 *
 	 * @return String not <code>null</code>.
 	 */
@@ -86,7 +107,7 @@ public class Person {
 	}
 
 	/**
-	 * @return this person's questions list
+	 * @return this Author's questions list
 	 */
 	@JsonbTransient
 	public List<Question> getQuestions() {
