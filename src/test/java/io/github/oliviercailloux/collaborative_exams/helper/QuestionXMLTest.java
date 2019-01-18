@@ -80,6 +80,8 @@ public class QuestionXMLTest {
 	    	assertEquals(root.elementText("type"),this.type);
 	    	
 	    	
+	    	
+	    	
 	    	//System.out.println(attributes.get(0)+"\n");
 	    	//System.out.println(elements.get(0)+"\n");
 	 
