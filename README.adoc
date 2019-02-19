@@ -8,7 +8,7 @@ Question
 
 
 
-Servlet NewQuestion(question): id, qui reçoit une question en format JSON ; servlet GetQuestion(id): question, qui envoie une question à partir de son id. (1)
+* Servlet NewQuestion(question): id, qui reçoit une question en format JSON ; servlet GetQuestion(id): question, qui envoie une question à partir de son id. (1)
 
 
 *Remarque*
