@@ -32,7 +32,7 @@ au début toute les réponse sont proposées au même niveau de corrélation, ap
 *Mohamed*
 
 
-* Question Xml : Lire et écrire une question en XML, et les relations de votre modèle. Chaque relation peut être représentée comme un ensemble de triplets associé à une personne(1)
+* Question Xml : Représentation des questions sur un schéma XML (lecture et écriture). Chaque relation peut être représentée comme un ensemble de triplets associé à une personne
 
 * Faire les différentes conversion en Xml (QuestionText)
 
