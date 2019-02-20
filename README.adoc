@@ -59,6 +59,8 @@ Création de regroupement de questions appelé Examen selon la matière, le chap
 
 * ChangeQuestionLanguage(id orig, new author id, new language): new id ( modifier les classes existantes par rapport à ce qu’il a été demandé dans l’énoncé, récupération des paramètres soumis dans le formulaire HTML)
 
+* Ajout de tests unitaires (Question, Person)
+
 *Alexandre*
 
 
