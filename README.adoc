@@ -34,7 +34,7 @@ au début toute les réponse sont proposées au même niveau de corrélation, ap
 
 * Question Xml : Représentation des questions sur un schéma XML (lecture et écriture). Chaque relation peut être représentée comme un ensemble de triplets associé à une personne
 
-* Faire les différentes conversion en Xml (QuestionText)
+* Faire les différentes conversion en Xml (QuestionText). Et ajout Tests unitaires pour GetQuestion(id).
 
 
 * Servlet Delet:   Ajouter une servlet qui permet aux autor de supprimer les questions de leur choix dans la BDD avec un cookie qui mémorise id personne. la suppression se fait soit avec un id questions, suppression total,par un id author... Dans la servlet elle permet aussi au enseignants de supprimer les examens qui seront créés (1)
