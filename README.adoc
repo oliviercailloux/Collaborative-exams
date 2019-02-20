@@ -174,3 +174,20 @@ ceci n'inclue pas la partie correction d'examen
 Dashboards contenant des statistiques sur les réponses reçues dans la BDD. (1)
 
 
+
+
+
+
+= Les anciens collaborateurs
+
+Jeff Azzam
+
+Sid Ahmed Imloul
+
+Sofiath Lanignan
+
+Lamine Tamendjari
+
+Omar Yaghi
+
+Abdelmadjid Yous
