@@ -8,7 +8,7 @@ Question
 
 
 
-* Servlet NewQuestion(question): id, qui reçoit une question en format JSON ; servlet GetQuestion(id): question, qui envoie une question à partir de son id. (1)
+
 
 
 *Remarque*
@@ -26,8 +26,6 @@ Implémentation des tests unitaires associés au fur et à mesure.
 
 
 
-*Remarque*
-au début toute les réponse sont proposées au même niveau de corrélation, après un certain nombre d'utilisation
 
 *Mohamed*
 
@@ -75,6 +73,7 @@ Création de regroupement de questions appelé Examen selon la matière, le chap
 
 *Amine*
 
+* Servlet NewQuestion(question): id, qui reçoit une question en format JSON ; servlet GetQuestion(id): question, qui envoie une question à partir de son id. (1)
 * Gestion des réponses (particulièrement les réponses libres en utilisant la distance de Leveinstein) Dans la partie correction
 * La relation SameAbility (ServletAbilities)
 
