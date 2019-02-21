@@ -25,6 +25,9 @@ Implémentation des tests unitaires associés au fur et à mesure.
 * Niveau de difficulté : Pour les QCM, les réponses proposées auront un niveau de difficulté. Les réponses fausses aurons deux compteurs, un pour compter le nombre de participation aux examens, et l'autre pour compter le nombre de fois qu'elle a été sélectionnée par les candidat. le ratio [nombre participation / nombre de sélection ] donne le degré de corrélation entre cette réponse et la bonne réponse, et donc si le ratio est proche de 1 la réponse aura une forte probabilité d'être choisi. Si cette réponse apparaît dans l'examen, on dit que la question est difficile.
 
 
+*Remaque*
+
+au début les question sont toutes faciles, après un certain nombre d'utilisation, le ratio aura de plus en plus de sens avec un nombre de population important.
 
 
 *Mohamed*
