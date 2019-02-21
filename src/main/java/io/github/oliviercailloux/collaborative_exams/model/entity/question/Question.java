@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import java.io.Serializable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * This Class represents Question
@@ -30,9 +31,11 @@ import javax.persistence.ManyToMany;
  *
  * @author badga & Sid
  */
-@JsonbPropertyOrder({"id", "author", "phrasing", "language", "type", "isCorrect", "answers"})
+@JsonbPropertyOrder({"id", "author", "questionPhrasing", "language", "type", "isCorrect", "answers"})
 @XmlRootElement
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question q")})
 public class Question implements Serializable {
 
     @Id
@@ -41,13 +44,13 @@ public class Question implements Serializable {
     private int id;
 
     /**
-     * represent the phrasing of the question
+     * represent the questionPhrasing of the question
      * <p>
      * Not <code>null</code>.
      */
     @XmlElement
     @Column(nullable = false)
-    private final String phrasing;
+    private final QuestionPhrasing questionPhrasing;
 
     /**
      * represent the language of Question
@@ -59,6 +62,9 @@ public class Question implements Serializable {
     @Column(nullable = false)
     private String language;
 
+    @XmlElement
+    @Column(nullable = false)
+    private DifficultyType difficultyType;
     /**
      * respresente the Author
      *
@@ -75,6 +81,14 @@ public class Question implements Serializable {
      */
     @Column(nullable = true)
     private boolean isCorrect;
+
+    @Column(nullable = false)
+    @XmlElement
+    private int countSelection = 0;
+
+    @Column(nullable = false)
+    @XmlElement
+    private int countCorrectAnswer = 0;
 
     /**
      * Respresent the type of question
@@ -101,23 +115,23 @@ public class Question implements Serializable {
      */
     public Question() {
 
-        phrasing = null;
+        questionPhrasing = null;
     }
 
-    public Question(String phrasing) {
-        this.phrasing = phrasing;
+    public Question(QuestionPhrasing questionPhrasing) {
+        this.questionPhrasing = questionPhrasing;
     }
 
     /**
      * return new Question T/F or Y/N
      *
-     * @param phrasing phrasing of question
+     * @param questionPhrasing questionPhrasing of question
      * @param language Language of question
      * @param author Person how represente the author of question
      * @param type Type of question
      */
-    public Question(String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
-        this.phrasing = Objects.requireNonNull(phrasing);
+    public Question(QuestionPhrasing questionPhrasing, String language, Person author, QuestionType type, boolean isCorrect) {
+        this.questionPhrasing = Objects.requireNonNull(questionPhrasing);
         this.language = Objects.requireNonNull(language);
         this.author = Objects.requireNonNull(author);
         this.type = Objects.requireNonNull(type);
@@ -127,15 +141,15 @@ public class Question implements Serializable {
     /**
      * return Question Free
      *
-     * @param phrasing phrasing of question
+     * @param questionPhrasing questionPhrasing of question
      * @param language Language of question
      * @param author Person how represente the author of question
      * @param type Type of question
      * @Param answer the answer of the free question
      */
-    public Question(String phrasing, String language, Person author, QuestionType type, Answer answer)
+    public Question(QuestionPhrasing questionPhrasing, String language, Person author, QuestionType type, Answer answer)
             throws Exception {
-        this.phrasing = Objects.requireNonNull(phrasing);
+        this.questionPhrasing = Objects.requireNonNull(questionPhrasing);
         this.language = Objects.requireNonNull(language);
         this.author = Objects.requireNonNull(author);
         this.type = Objects.requireNonNull(type);
@@ -147,15 +161,16 @@ public class Question implements Serializable {
     /**
      * return new MCQ Question
      *
-     * @param phrasing phrasing of question
+     * @param questionPhrasing questionPhrasing of question
      * @param language Language of question
      * @param author Person how represente the author of question
      * @param type Type of question
      * @param answers represente the list of answer of the question
+     * @throws java.lang.Exception
      */
-    public Question(String phrasing, String language, Person author, QuestionType type, List<Answer> answers)
+    public Question(QuestionPhrasing questionPhrasing, String language, Person author, QuestionType type, List<Answer> answers)
             throws Exception {
-        this.phrasing = Objects.requireNonNull(phrasing);
+        this.questionPhrasing = Objects.requireNonNull(questionPhrasing);
         this.language = Objects.requireNonNull(language);
         this.author = Objects.requireNonNull(author);
         this.type = Objects.requireNonNull(type);
@@ -167,6 +182,12 @@ public class Question implements Serializable {
         this.answers = Objects.requireNonNull(answers);
     }
 
+    public Question(QuestionPhrasing questionPhrasing, int countCorrectAnswer, int countSelection) {
+        this.questionPhrasing = questionPhrasing;
+        this.countCorrectAnswer = countCorrectAnswer;
+        this.countSelection = countSelection;
+    }
+
     /**
      * Returns this Question’s id.
      *
@@ -174,6 +195,30 @@ public class Question implements Serializable {
      */
     public int getId() {
         return id;
+    }
+
+    public int getCountSelection() {
+        return countSelection;
+    }
+
+    public void setCountSelection(int countSelection) {
+        this.countSelection = countSelection;
+    }
+
+    public int getCountCorrectAnswer() {
+        return countCorrectAnswer;
+    }
+
+    public void setCountCorrectAnswer(int countCorrectAnswer) {
+        this.countCorrectAnswer = countCorrectAnswer;
+    }
+
+    public DifficultyType getDifficultyType() {
+        return difficultyType;
+    }
+
+    public void setDifficultyType(DifficultyType difficultyType) {
+        this.difficultyType = difficultyType;
     }
 
     /**
@@ -205,13 +250,13 @@ public class Question implements Serializable {
     }
 
     /**
-     * Returns this Question’s phrasing.
+     * Returns this Question’s questionPhrasing.
      *
-     * @return String not <code>null</code>.
+     * @return QuestionPhrasing not <code>null</code>.
      */
-    public String getPhrasing() {
+    public QuestionPhrasing getPhrasing() {
 
-        return this.phrasing;
+        return this.questionPhrasing;
     }
 
     /**
@@ -241,7 +286,7 @@ public class Question implements Serializable {
         }
         if (question != null && (question.getClass().equals(this.getClass()))) {
 
-            return (this.phrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
+            return (this.questionPhrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
                     && (this.id == question.getId()) && (this.getCorrect() == question.getCorrect())
                     && (this.getLanguage().equals(question.getLanguage())));
 

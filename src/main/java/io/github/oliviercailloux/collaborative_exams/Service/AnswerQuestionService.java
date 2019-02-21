@@ -32,13 +32,13 @@ public class AnswerQuestionService {
 
     @Transactional
     public void persist(AnswerQuestion answerQuestion) {
-        em.persist(updateCountAnswerSelect(answerQuestion));
+        em.persist(updateCountCorrectAnswer(answerQuestion));
     }
 
-    public AnswerQuestion updateCountAnswerSelect(AnswerQuestion answerQuestion) {
-        if (!answerQuestion.getAnswer().isCorrect()) {
-            // un condidat a selectionné une reponse Fausse, alors on augmante le membre de selection de 1
-            answerQuestion.getAnswer().setCountSelect(answerQuestion.getAnswer().getCountSelect() + 1);
+    public AnswerQuestion updateCountCorrectAnswer(AnswerQuestion answerQuestion) {
+        if (answerQuestion.getAnswer().isCorrect()) {
+            // un condidat a selectionné une reponse Correcte, alors on augmante le membre de CountCorrect
+            answerQuestion.getQuestion().setCountCorrectAnswer(answerQuestion.getQuestion().getCountCorrectAnswer() + 1);
             if (em != null) {
                 em.persist(answerQuestion.getAnswer());
             }

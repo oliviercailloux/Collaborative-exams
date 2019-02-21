@@ -34,7 +34,7 @@ public class ExamService {
 
     @Transactional
     public void persist(Exam exam) {
-        em.persist(updateCountParticipeForEachAnswer(exam));
+        em.persist(updateCountSelectForEachQuestion(exam));
     }
 
     @Transactional
@@ -42,17 +42,10 @@ public class ExamService {
         em.find(Exam.class, id);
     }
 
-    public Exam updateCountParticipeForEachAnswer(Exam exam) {
+    public Exam updateCountSelectForEachQuestion(Exam exam) {
         for (Question question : exam.getListeQuestions()) {
-            for (Answer answer : question.getAnswers()) {
-                if (!answer.isCorrect()) {
-                    // un Enseignant a fait participé une reponse Fausse, alors on augmante le membre de participation de 1
-                    answer.setCountParticipat(answer.getCountParticipat() + 1);
-                    if (em != null) {
-                        em.persist(answer);
-                    }
-                }
-            }
+            // Losqu'un prof selectionne une question, cette derniere incremonte la variable Count selection du nombre de candidat
+            question.setCountSelection(question.getCountSelection() + exam.getNumberCandidate());
         }
         return exam;
     }

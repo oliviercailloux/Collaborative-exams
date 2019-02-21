@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Khaled
  */
-@JsonbPropertyOrder({"id", "topic, questions"})
+@JsonbPropertyOrder({"id", "phrasing"})
 @Entity
-@XmlRootElement(name = "exam")
-public class Exam implements Serializable {
+@XmlRootElement(name = "questionPhrasing")
+public class QuestionPhrasing implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,11 +38,7 @@ public class Exam implements Serializable {
 
     @Column(nullable = false)
     @XmlElement
-    private String topic;
-
-    @Column(nullable = false)
-    @XmlElement
-    private int numberCandidate;
+    private String phrasing;
 
     @ManyToMany(cascade = {
         CascadeType.PERSIST,
@@ -54,48 +50,31 @@ public class Exam implements Serializable {
     )
     private List<Question> listQuestions = new ArrayList<>();
 
-    public Exam() {
-
+    public QuestionPhrasing() {
     }
 
-    public Exam(String topic) {
-        this.topic = topic;
-    }
-
-    public Exam(String topic, int numberCandidate) {
-        this.topic = topic;
-        this.numberCandidate = numberCandidate;
+    public QuestionPhrasing(String phrasing) {
+        this.phrasing = phrasing;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getPhrasing() {
+        return phrasing;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setPhrasing(String phrasing) {
+        this.phrasing = phrasing;
     }
 
-    public int getNumberCandidate() {
-        return numberCandidate;
-    }
-
-    public void setNumberCandidate(int numberCandidate) {
-        this.numberCandidate = numberCandidate;
-    }
-
-    public List<Question> getListeQuestions() {
-        if (listQuestions == null) {
-            listQuestions = new ArrayList<>();
-        }
+    public List<Question> getListQuestions() {
         return listQuestions;
     }
 
-    public void setListeQuestions(List<Question> listeQuestions) {
-        this.listQuestions = listeQuestions;
+    public void setListQuestions(List<Question> listQuestions) {
+        this.listQuestions = listQuestions;
     }
 
 }

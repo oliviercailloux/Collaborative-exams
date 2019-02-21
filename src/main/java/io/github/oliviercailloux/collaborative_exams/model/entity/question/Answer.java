@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,8 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @JsonbPropertyOrder({"id", "text", "correct"})
 @Entity
 @XmlRootElement(name = "answer")
-@NamedQueries({
-    @NamedQuery(name = "Answer.findByIdQuestion", query = "SELECT a FROM Answer a WHERE a.question.id = :idQuestion ")})
 public class Answer implements Serializable {
 
     @Id
@@ -34,23 +30,9 @@ public class Answer implements Serializable {
     @XmlElement
     private boolean correct;
 
-    //compteur qui s'incremente de 1 chaque choix que cette reponse participe a un QCM
-    @Column(nullable = false)
-    @XmlElement
-    private int countParticipat;
-
-    //compteur qui s'incremente de 1 chaque choix que cette reponse a été selectionée par un utilisateur
-    @Column(nullable = false)
-    @XmlElement
-    private int countSelect;
-
     @Column(nullable = false)
     @XmlElement
     private String text;
-
-    @XmlElement
-    @Column(nullable = false)
-    private DifficultyType difficultyType;
 
     @ManyToOne
     private Question question;
@@ -62,37 +44,6 @@ public class Answer implements Serializable {
     public Answer(String text, boolean correct) {
         this.correct = correct;
         this.text = text;
-    }
-
-    public Answer(String text, boolean correct, int countParticipat, int countSelect) {
-        this.countParticipat = countParticipat;
-        this.countSelect = countSelect;
-        this.correct = correct;
-        this.text = text;
-    }
-
-    public int getCountParticipat() {
-        return countParticipat;
-    }
-
-    public void setCountParticipat(int countParticipat) {
-        this.countParticipat = countParticipat;
-    }
-
-    public int getCountSelect() {
-        return countSelect;
-    }
-
-    public void setCountSelect(int countSelect) {
-        this.countSelect = countSelect;
-    }
-
-    public DifficultyType getDifficultyType() {
-        return difficultyType;
-    }
-
-    public void setDifficultyType(DifficultyType difficultyType) {
-        this.difficultyType = difficultyType;
     }
 
     public boolean isCorrect() {

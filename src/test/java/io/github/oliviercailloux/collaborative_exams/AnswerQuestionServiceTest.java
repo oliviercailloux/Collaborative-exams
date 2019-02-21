@@ -24,10 +24,14 @@ public class AnswerQuestionServiceTest extends TestCase {
                     new Person("a@a.a"),
                     new Exam(),
                     new Question(),
-                    new Answer("answer", false));
+                    new Answer("answer", true));
 
+    /**
+     * Tester si après qu'un candidat selectionne la bonne reponse le compteur
+     * s'incremonte
+     */
     public void testIncrementCountSelect() {
-        new AnswerQuestionService().updateCountAnswerSelect(answerQuestion);
-        assertEquals(answerQuestion.getAnswer().getCountSelect(), 1);
+        new AnswerQuestionService().updateCountCorrectAnswer(answerQuestion);
+        assertEquals(answerQuestion.getQuestion().getCountCorrectAnswer(), 1);
     }
 }
