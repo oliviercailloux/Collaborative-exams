@@ -202,14 +202,14 @@ Dashboards contenant des statistiques sur les réponses reçues dans la BDD. (1)
 
 = Les anciens collaborateurs
 
-Jeff Azzam
+* Jeff Azzam
 
-Sid Ahmed Imloul
+* Sid Ahmed Imloul
 
-Sofiath Lanignan
+* Sofiath Lanignan
 
-Lamine Tamendjari
+* Lamine Tamendjari
 
-Omar Yaghi
+* Omar Yaghi
 
-Abdelmadjid Yous
+* Abdelmadjid Yous
