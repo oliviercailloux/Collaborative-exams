@@ -22,27 +22,28 @@ Implémentation des tests unitaires associés au fur et à mesure.
 
 
 
-* Niveau de difficulté : Introduire une nouvelle notion QuestionPhrasing, une class contenant (id, phrasing), par la suite la class existante Question  contiendra (id, QuestionPhrasing, … answers, … ParticipateCounter, CorrectAnswersCounter) 
-Exemple : 
+* Niveau de difficulté : Introduire deux nouvelle notions QuestionPhrasing et stats, deux class QuestionPhrasing (id, phrasing) et Stats(id, CountSelect, CountCorrectAnswer), par la suite la class existante Question  contiendra (id, QuestionPhrasing, Stats, … answers, …) 
+
+*Exemple : *
 Instance de QuestionPhrasing qp1 : "combien font 2+2 ?".
 Instance de Question q1 : "combien font 2+2 ?" 4 ; 6 ; 8 ; 0 ?
 Instance de Question q2 : "combien font 2+2 ?" 0 ; 4 ?
 (q1 et q2 contiennent chacune une référence vers qp1)
 Pour un examen : 
-ParticipateCounter = nombre de candidats participants à l’examen
-CorrectAnswersCounter = Un compteur pour calculer le nombre de candidats qui ont donné une bonne réponse.
+CountSelect = nombre de candidats participants à l’examen
+CountCorrectAnswer = Un compteur pour calculer le nombre de candidats qui ont donné une bonne réponse.
 
 
 *Exemple :*
 Pour une Question 
 Exam 1 (20 participants, 10 ont donné la bonne réponse)
 ParticipateCounter = 20
-CorrectAnswersCounter = 10
+CountCorrectAnswer = 10
 Exam 1 (30 participants, 20 ont donné la bonne réponse)
-ParticipateCounter = 20+30 = 50
-CorrectAnswersCounter = 10+20 = 30
+CountSelect = 20+30 = 50
+CountCorrectAnswer = 10+20 = 30
 Ainsi de suite.
-Le ratio [CorrectAnswersCounter / ParticipateCounter ] donne le niveau de difficulté de la question (0-0,33 hard; 0,33-0,66 Medium;  0,66-1 Easy)
+Le ratio [CountCorrectAnswer / CountSelect ] donne le niveau de difficulté de la question (0-0,33 hard; 0,33-0,66 Medium;  0,66-1 Easy)
 
 
 *Remaque*
