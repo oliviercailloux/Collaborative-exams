@@ -85,7 +85,6 @@ Création de regroupement de questions appelé Examen selon la matière, le chap
 
 
 * Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
-* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BD. (1)
 
 
 = Deuxième itération
@@ -139,10 +138,8 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 *Alexandre*
 
 
-* SetDB1 :
-Implémenter des entités JPA et les méthodes permettant d’écrire et de lire depuis la BD les questions. (1)
-* SetDB2 :
-Implémenter des entités JPA et les méthodes permettant d’écrire et de lire depuis la BD le reste du modèle : relations, tags, … (1)
+* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BD. (1)
+* Autre fonctionnalité à définir plus tard : Pour atteindre les 3 points nécessaires (0,5)
 
 = Troisième itération
 
@@ -193,7 +190,7 @@ ceci n'inclue pas la partie correction d'examen
 
 
 * Datavisualisation :
-Dashboards contenant des statistiques sur les réponses reçues dans la BDD. (1)
+Dashboards sur les données de la BDD. (1)
 
 
 
