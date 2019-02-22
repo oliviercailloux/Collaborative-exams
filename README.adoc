@@ -138,7 +138,7 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 *Alexandre*
 
 
-* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BD. (1)
+* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
 * Autre fonctionnalité à définir plus tard : Pour atteindre les 3 points nécessaires (0,5)
 
 = Troisième itération
@@ -189,8 +189,7 @@ ceci n'inclue pas la partie correction d'examen
 *Alexandre*
 
 
-* Datavisualisation :
-Dashboards sur les données de la BDD. (1)
+* Datavisualisation : Dashboards sur les données de la BDD. (1)
 
 
 
