@@ -1,0 +1,18 @@
+﻿language: java
+git:
+  depth: 1
+jdk:
+  - openjdk8
+dist: trusty
+cache:
+  directories:
+    - $HOME/.m2
+
+deploy:
+  provider: bluemixcloudfoundry
+  skip_cleanup: true
+  username: alexandre.cote@dauphine.eu
+  password: $BLUEMIX_PASSWORD
+  organization: alexandre.cote@dauphine.eu
+  space: dev
+  region: eu-gb
