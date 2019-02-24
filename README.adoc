@@ -62,13 +62,11 @@ au début les question sont toutes faciles, après un certain nombre d'utilisati
 *Valentin*
 
 
+* Gestion des questions : Implémentation de PersonalTags
+Chaque personne peut associer un identifiant personnel à chaque question (y compris celles dont la personne n’est pas auteur). La paire (personne, identifiant) doit être unique. Chaque personne peut associer un ensemble de sujets à chaque question (exemple : Math, Java, Programmation). Ces sujets sont personnels. (Donc deux personnes peuvent indiquer des sujets différents pour une même question.) Servlets Get et Set correspondantes. (1)
 
-* Gestion des questions : Un utilisateur peut indiquer sur chaque question: un coefficient pour chaque question, la matière, le chapitre associé et le niveau recommandé
-Création de regroupement de questions appelé Examen selon la matière, le chapitre ou le niveau recommandé (de CP à Terminale)
-* Les examens seront exportables en fichier .pdf
-* Création de la page Author reprenant les noms des auteurs des questions et divers statistiques
-* Création de la page About Us qui reprendra les tâches et fonctionnalités developpés par chacun des membres du groupe
-* Création de la page Contact Us avec les coordonnées nécessaires de chaque membre ainsi que les liens utiles
+*Remarque*
+La création d'un servlet permettant d'exporter un examen en .pdf se fera dans la seconde itération.
 
 *Katia*
 
@@ -119,12 +117,11 @@ Création de regroupement de questions appelé Examen selon la matière, le chap
 *Valentin*
 
 
-
-* Gestion des examens approfondie : Intégration du système d'authentification développé lors de la première itération pour gérer les accès aux professeurs seulement
+* Les examens seront exportables en fichier .pdf vià un servlet Exportpdf. Un Examen sera le regroupement de plusieurs questions.
 * Implémentation d'algorithmes spécifiques et complexes pour une meilleure gestion des examens comme le K-Means algorithm  
 
-*Katia*
 
+*Katia*
 
 
 * QuestionMultiFormat: Récupérer une question à partir de son id, en format XML ou JSON. Introduire une question en multiples formats. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre.
