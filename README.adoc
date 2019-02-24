@@ -54,7 +54,7 @@ au début les question sont toutes faciles, après un certain nombre d'utilisati
 *Mohamed*
 
 
-* Question Xml : Représentation des questions sur un schéma XML (lecture et écriture). Chaque relation peut être représentée comme un ensemble de triplets associé à une personne
+* Question Xml : Représentation des questions sur un schéma XML (lecture et écriture).
 
 * Faire les différentes conversion en Xml (QuestionText). Et ajout Tests unitaires pour GetQuestion(id).
 
