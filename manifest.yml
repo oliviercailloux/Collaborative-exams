@@ -2,5 +2,5 @@ applications:
  - name: examcollab
    path: target/examcollab.war
    instances: 1
-   memory: 250M
-   disk_quota: 250M
+   memory: 256M
+   disk_quota: 256M
