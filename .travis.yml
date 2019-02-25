@@ -16,9 +16,6 @@ deploy:
   organization: alexandre.cote@dauphine.eu
   space: dev
   region: eu-gb
-
-# safelist
-branches:
-  only:
-  - master
-  - alex
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^master|alex
