@@ -17,4 +17,7 @@ deploy:
   space: dev
   region: eu-gb
 
-
+# safelist
+branches:
+  only:
+  - master
