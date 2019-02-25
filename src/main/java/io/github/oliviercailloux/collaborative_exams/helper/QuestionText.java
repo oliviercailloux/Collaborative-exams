@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -16,6 +17,8 @@ import javax.xml.bind.JAXBElement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.istack.logging.Logger;
+import com.sun.mail.util.MailLogger;
+
 import javax.xml.namespace.QName ;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
@@ -29,7 +32,7 @@ import javax.xml.bind.Marshaller;
 public class QuestionText {
 	private static ObjectMapper mapper = new ObjectMapper();
 
-	private static final Logger LOGGER = Logger.getLogger(QuestionText.class.getName(),null);
+	private static final Logger LOGGER = Logger.getLogger(MailLogger.class);
 
 	public static Question JsonToQuestion(String json) throws Exception {
 
