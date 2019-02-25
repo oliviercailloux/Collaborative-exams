@@ -2,3 +2,6 @@ applications:
  - name: examcollab
    path: target/examcollab.war
    instances: 1
+quota_definitions:
+   default:
+      memory_limit: 255M
