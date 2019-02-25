@@ -16,9 +16,9 @@ import javax.xml.bind.JAXBElement;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.istack.logging.Logger;
-import com.sun.mail.util.MailLogger;
 
+import com.sun.mail.util.MailLogger;
+import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
@@ -32,7 +32,7 @@ import javax.xml.bind.Marshaller;
 public class QuestionText {
 	private static ObjectMapper mapper = new ObjectMapper();
 
-	private static final Logger LOGGER = Logger.getLogger(MailLogger.class);
+	private static final Logger LOGGER = Logger.getLogger(MailLogger.class.getName());
 
 	public static Question JsonToQuestion(String json) throws Exception {
 
