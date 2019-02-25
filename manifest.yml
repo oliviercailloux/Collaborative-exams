@@ -5,4 +5,4 @@ applications:
    memory: 256M
    disk_quota: 256M
 services:
-  - sqldatabase
+ - sqldatabase
