@@ -11,13 +11,11 @@ import javax.json.bind.JsonbBuilder;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.sun.mail.util.MailLogger;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
 
-import org.codehaus.jettison.json.JSONObject;
+
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import javax.xml.bind.Marshaller;
