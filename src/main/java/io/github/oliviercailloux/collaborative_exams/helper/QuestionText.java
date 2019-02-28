@@ -1,25 +1,23 @@
 package io.github.oliviercailloux.collaborative_exams.helper;
 
-import java.io.IOException;
+
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbConfig;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
-
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.sun.mail.util.MailLogger;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
+
+import org.codehaus.jettison.json.JSONObject;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import javax.xml.bind.Marshaller;
@@ -30,46 +28,54 @@ import javax.xml.bind.Marshaller;
  */
 @ApplicationScoped
 public class QuestionText {
-	private static ObjectMapper mapper = new ObjectMapper();
+
+
+	//private static ObjectWriter  mapper = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
 	private static final Logger LOGGER = Logger.getLogger(MailLogger.class.getName());
-
+	
+	/**
+	 * 
+	 * @return new Instance JsonBuilder
+	 */
+	public static Jsonb getCreate(){
+        
+        return JsonbBuilder.create();
+    }
+	
+    /**
+     * Convert Json To Question
+     * @param json
+     * @return
+     * @throws Exception
+     */
 	public static Question JsonToQuestion(String json) throws Exception {
 
-		try {
-			return mapper.readValue(json, Question.class);
-		} catch (IOException e) {
-			LOGGER.severe("Error to cast  JSON to Question" + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		}
+		  return getCreate().fromJson(json, Question.class);
+		
 	}
-
+     /**
+      *  Convert Question To Json 
+      * @param question
+      * @return Question Json
+      */
 	public static String QuestionToJson(Question question) throws Exception {
-
-		try {
-			return mapper.writeValueAsString(question);
-		} catch (JsonProcessingException e) {
-			LOGGER.severe("Error to cast QUESTION to OBJECT" + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		}
+	
+	 return  getCreate().toJson(question);
 	}
+	
+	
+	
      /** Methode to convert JSON to Object
       * 
       * @param className
       * @param json
-      * @return
+      * @return Object <T>
       * @throws Exception
       */
 	public static <T> T JsonToObject(Class<T> className, String json) throws Exception {
-		try {
-			return mapper.readValue(json, className);
-		} catch (IOException e) {
-			LOGGER.severe("Error to cast " + className + " JSON to OBJECT" + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		}
+		
+			return getCreate().fromJson(json, className);
 	}
 
 	/**
@@ -80,20 +86,18 @@ public class QuestionText {
 	 * @throws Exception
 	 */
 	public static <T> String ObjectToJson(Class<T> className, T object) throws Exception {
-		try {
-			return mapper.writeValueAsString(object);
-		} catch (JsonProcessingException e) {
-			LOGGER.severe("Error to cast " + className + " JSON to OBJECT" + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		}
+		 return  getCreate().toJson(object);
 	}
-
+    
+	/**
+	 * convert List of Question to Json
+	 * @param question
+	 * @return Json String
+	 * @throws Exception
+	 */
 	public static String QuestionsToJson(List<Question> question) throws Exception {
-
-		try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-			return jsonb.toJson(question);
-		}
+          
+		return getCreate().toJson(question);
 	}
 	/**
 	 * convert Json To array Object
@@ -104,7 +108,7 @@ public class QuestionText {
 	 */
 	
 	public <T> List <T> JsonToObjectList(String json,Class <T []> className) throws Exception{
-		T[] objects = mapper.readValue(json, className);
+		T[] objects= getCreate().fromJson(json, className);
 		return Arrays.asList(objects);
 	}
 	/**
@@ -115,14 +119,9 @@ public class QuestionText {
 	 */
 	
 	public <T> List <String> ObjectListToJson(Class <T []> className) throws Exception{
-		try{
-		String objects = mapper.writeValueAsString(className);
+		String objects =  getCreate().toJson(className);
 		return Arrays.asList(objects);
-		} catch(JsonProcessingException e) {
-			LOGGER.severe("Error to cast " + className + " ObjectList to Json" + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		}
+	
 	}
 	/**
 	 *  Convert Object To Xml
