@@ -27,7 +27,7 @@ public class QuestionXml {
 	public static void QuestionToXML(Question question, String FILEPATH) throws NullPointerException, IllegalArgumentException, Exception {
 		try {
 			SchemaFactory sf = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-			Schema schema = sf.newSchema(new File("test.xsd"));
+			Schema schema = sf.newSchema(new File("NewShemas.xsd"));
 			System.out.println("ok");
 
 			/**
