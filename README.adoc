@@ -17,12 +17,7 @@ Il faut aussi écrire les tests unitaires.
 
 Implémentation des tests unitaires associés au fur et à mesure.
 
-
-
-
 *Khaled*
-
-
 
 * Niveau de difficulté : Introduire deux nouvelle notions QuestionPhrasing et stats, deux class QuestionPhrasing (id, phrasing) et Stats(id, CountSelect, CountCorrectAnswer), par la suite la class existante Question  contiendra (id, QuestionPhrasing, Stats, … answers, …) 
 
@@ -35,7 +30,6 @@ Pour un examen :
 CountSelect = nombre de candidats participants à l’examen
 CountCorrectAnswer = Un compteur pour calculer le nombre de candidats qui ont donné une bonne réponse.
 
-
 *Exemple :*
 Pour une Question 
 Exam 1 (20 participants, 10 ont donné la bonne réponse)
@@ -47,22 +41,17 @@ CountCorrectAnswer = 10+20 = 30
 Ainsi de suite.
 Le ratio [CountCorrectAnswer / CountSelect ] donne le niveau de difficulté de la question (0-0,33 hard; 0,33-0,66 Medium;  0,66-1 Easy)
 
-
 *Remaque*
 
 au début les question sont toutes faciles, après un certain nombre d'utilisation, le ratio aura de plus en plus de sens avec un nombre de population important.
 
-
 *Mohamed*
-
 
 * Question Xml : Représentation des questions sur un schéma XML (lecture et écriture).
 
 * Faire les différentes conversion en Xml (QuestionText). Et ajout Tests unitaires pour GetQuestion(id).
 
-
 *Valentin*
-
 
 * Gestion des questions : Implémentation de PersonalTags
 Chaque personne peut associer un identifiant personnel à chaque question (y compris celles dont la personne n’est pas auteur). La paire (personne, identifiant) doit être unique. Chaque personne peut associer un ensemble de sujets à chaque question (exemple : Math, Java, Programmation). Ces sujets sont personnels. (Donc deux personnes peuvent indiquer des sujets différents pour une même question.) Servlets Get et Set correspondantes. (1)
@@ -73,7 +62,6 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 *Katia*
 
 
-
 * ServletsModify: ChangeResponseTypeTF(id orig, new author id): new id et ChangeResponseTypeYN(id orig, new author id). Change la réponse à une question en créant une nouvelle question qui a un autre type de réponse (c-à-d Y/N ou T/F) et en renvoyant son nouvel id. 
 
 * ChangeQuestionLanguage(id orig, new author id, new language): new id ( modifier les classes existantes par rapport à ce qu’il a été demandé dans l’énoncé, récupération des paramètres soumis dans le formulaire HTML)
@@ -82,14 +70,9 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 
 *Alexandre*
 
-
-
 * Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
 
-
 = Deuxième itération
-
-
 
 *Amine*
 
@@ -99,17 +82,11 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 
 *Khaled*
 
-
-
 * Creation examen : Implémenter un examen qui permet, avec un GUI rudimentaire ou en ligne de commande, la création d'examens (chaque examen se compose de plusieurs types de questions) pour que les candidats puissent passer les examens
-
 
 *Remarque* ceci n'inclue pas la partie passage d'examen.
 
-
 *Mohamed*
-
-
 
 * RelationsMultiFormat : Servlet GetSameAbility(person id): ensemble de triplets ; et de même pour les autres relations, et de même pour Set. La relation peut être récupérée ou envoyée au format XML ou JSON. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni (1)
 * Servlet Personne : faire une doGet des autor qui sont stocké dans la base de données en format Json ou Xml ( Point ? )
@@ -118,24 +95,18 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 
 *Valentin*
 
-
 * Les examens seront exportables en fichier .pdf vià un servlet Exportpdf. Un Examen sera le regroupement de plusieurs questions.
 * Implémentation d'algorithmes spécifiques et complexes pour une meilleure gestion des examens comme le K-Means algorithm  
 
-
 *Katia*
 
-
 * QuestionMultiFormat: Récupérer une question à partir de son id, en format XML ou JSON. Introduire une question en multiples formats. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre.
-
-
 
 *Remarque*
 
 De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilité de récupérer la question dans le format qu’il souhaite (Json ou XML).  Je voudrais que vous me confirmiez svp, si c’est bien ça que vous attendez de cette fonctionnalité.
 
 *Alexandre*
-
 
 * UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
 * Autre fonctionnalité à définir plus tard : Pour atteindre les 3 points nécessaires (0,5)
@@ -144,56 +115,40 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 
 *Amine*
 
-
 * Gérer la relation Improvement
 * Gérer la relation asSubtleAs
-* Créer les interfaces nécessaires 
-
-
-
+* Créer les interfaces nécessaires
 
 * Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
 
-
 *Remarque* ceci n'inclue pas la partie correction d'examen
-
 
 *Khaled* 
 * Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
 
-
 *Remarque*
 
-ceci n'inclue pas la partie correction d'examen
-
+Ceci n'inclue pas la partie correction d'examen
 
 *Mohamed*
-
-
 
 * Modifier Examen : changer les sujets d'exams qui seront créer par khaled. Tel que cette opération est accessible que pour les enseignants. l'enseignant peut soit changer le niveau de difficulté d'une question, changer une question... avec cookie qui mémorise id d'un enseignant(1)
 
 *Valentin*
 
-
-
 * Gestion de la partie Author : Intégration d'une API de Data Visualisation dans la partie Author pour obtenir des statistiques poussées et intéressantes sous forme de diagrammes, de courbes et de graphiques
 
 *Katia*
-
-
 
 * Question par thème: Chaque personne peut associer un thème (info, math, economie....) à chaque question (y compris celles dont la personne n’est pas auteur). Et afficher toutes les questions qui concernent un thème données
 
 *Alexandre*
 
-
 * Datavisualisation : Dashboards sur les données de la BDD. (1)
 
+= URL du site web
 
-
-
-
+https://examcollab.eu-gb.mybluemix.net/
 
 = Les anciens collaborateurs
 
