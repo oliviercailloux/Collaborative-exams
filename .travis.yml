@@ -7,6 +7,12 @@ dist: trusty
 cache:
   directories:
     - $HOME/.m2
+    
+#branches to build
+branches:
+  only:
+  - master
+  - alex
 
 deploy:
   provider: bluemixcloudfoundry
@@ -16,6 +22,3 @@ deploy:
   organization: alexandre.cote@dauphine.eu
   space: dev
   region: eu-gb
-  on:
-    all_branches: true
-    condition: $TRAVIS_BRANCH =~ ^master|alex #remove alex from the condition after release 3
