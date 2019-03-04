@@ -1,8 +1,8 @@
 applications:
  - name: examcollab
    path: target/examcollab.war
-   instances: 1
-   memory: 128M #remettre 256 une fois le TP JPA terminé
-   disk_quota: 128M #remettre 256 une fois le TP JPA terminé
+   instances: 0
+   memory: 0M #remettre 256 une fois le TP JPA terminé
+   disk_quota: 0M #remettre 256 une fois le TP JPA terminé
    services:
    - sqldatabase
