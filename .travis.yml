@@ -15,10 +15,7 @@ deploy:
   password: $BLUEMIX_PASSWORD
   organization: alexandre.cote@dauphine.eu
   space: dev
-  region: eu-g
-
-#branches to build
-branches:
-  only:
-    - alex
-    #- master
+  region: eu-gb
+  on:	
+    all_branches: true	
+    condition: $TRAVIS_BRANCH =~ ^alex #condition: $TRAVIS_BRANCH =~ ^alex|master #si besoin
