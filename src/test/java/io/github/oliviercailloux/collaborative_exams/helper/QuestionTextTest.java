@@ -19,6 +19,7 @@ public class QuestionTextTest {
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams-0.0.1.war")
 				.addPackage(QuestionTextTest.class.getPackage());
+				.addPackages(true, "org.apache.deltaspike");
 		return war;
 	}
 
