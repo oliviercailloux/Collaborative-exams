@@ -11,7 +11,6 @@ cache:
 #branches to build
 branches:
   only:
-  - master
   - alex
 
 deploy:
