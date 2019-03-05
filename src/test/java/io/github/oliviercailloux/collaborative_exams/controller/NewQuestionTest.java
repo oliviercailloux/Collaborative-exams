@@ -25,8 +25,7 @@ public class NewQuestionTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams.war")
-				.addPackage(NewQuestionTest.class.getPackage())
-				.addPackages(true, "org.apache.deltaspike");
+				.addPackage(NewQuestionTest.class.getPackage());
 
 		return war;
 	}
