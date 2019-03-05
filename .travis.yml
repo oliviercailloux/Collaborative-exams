@@ -7,12 +7,6 @@ dist: trusty
 cache:
   directories:
     - $HOME/.m2
-    
-#branches to build
-branches:
-  only:
-    - alex
-    #- master
 
 deploy:
   provider: bluemixcloudfoundry
@@ -22,3 +16,8 @@ deploy:
   organization: alexandre.cote@dauphine.eu
   space: dev
   region: eu-gb
+
+branches:
+  only:
+    - alex
+    #- master
