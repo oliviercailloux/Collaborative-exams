@@ -23,7 +23,8 @@ public class ChangeQuestionLanguaugeTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams-0.0.1.war")
-				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage());
+				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage())
+				.addPackages(true, "org.apache.deltaspike");
 		return war;
 	}
 
