@@ -11,8 +11,8 @@ cache:
 #branches to build
 branches:
   only:
-  - master
-  - alex
+    - master
+    - alex
 
 deploy:
   provider: bluemixcloudfoundry
@@ -21,4 +21,4 @@ deploy:
   password: $BLUEMIX_PASSWORD
   organization: alexandre.cote@dauphine.eu
   space: dev
-  region: eu-gb
+  region: eu-g
