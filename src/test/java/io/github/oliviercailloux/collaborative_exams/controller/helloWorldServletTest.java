@@ -23,8 +23,7 @@ public class helloWorldServletTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams-0.0.1.war")
-				.addPackage(helloWorldServletTest.class.getPackage())
-				.addPackages(true, "org.apache.deltaspike");
+				.addPackage(helloWorldServletTest.class.getPackage());
 		return war;
 	}
 
