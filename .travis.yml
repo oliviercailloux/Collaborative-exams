@@ -7,11 +7,12 @@ dist: trusty
 cache:
   directories:
     - $HOME/.m2
+    
 #branches to build
 branches:
   only:
-  - master
-  - alex
+    - master
+    - alex
 
 deploy:
   provider: bluemixcloudfoundry
