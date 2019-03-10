@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.collaborative_exams.helper;
 
 
+import java.io.FileNotFoundException;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,8 @@ import javax.json.bind.JsonbBuilder;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+
 import com.sun.mail.util.MailLogger;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
@@ -110,15 +113,15 @@ public class QuestionText {
 		return Arrays.asList(objects);
 	}
 	/**
-	 * Convert ObjectList to Json
-	 * @param className
-	 * @return
+	 * this method converts a list of objects into JSON
+	 * @param objets
+	 * @return Json
 	 * @throws Exception
 	 */
 	
-	public <T> List <String> ObjectListToJson(Class <T []> className) throws Exception{
-		String objects =  getCreate().toJson(className);
-		return Arrays.asList(objects);
+	public <T> String ObjectListToJson(List <T []> objets) throws Exception{
+		String objects =  getCreate().toJson(objets);
+		return  objects;
 	
 	}
 	/**
@@ -127,8 +130,8 @@ public class QuestionText {
 	 * @param name
 	 * @return String format XML
 	 */
-	public static String convertObjectToXML(Object object,String name) {
-        try {
+	public static String convertObjectToXML(Object object,String name) throws JAXBException, FileNotFoundException {
+        
             StringWriter stringWriter = new StringWriter();
             JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
             Marshaller marshaller = jaxbContext.createMarshaller();
@@ -138,10 +141,7 @@ public class QuestionText {
             marshaller.marshal(root, stringWriter);
             String result = stringWriter.toString();
             return result;
-      }catch (Exception e) {
-    	  LOGGER.severe("Error to convert ObjectList to XML" + e.getMessage());
-          e.printStackTrace();
-      }
-      return null;
+   
   }
+	
 }
