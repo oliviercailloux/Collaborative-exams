@@ -46,14 +46,14 @@ public class ChangeQuestionLanguage {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getModifQuestionID(@FormParam("idQuestion") String idQuestion, @FormParam("newAuthorId") String newAuthorId, @FormParam("newAuthorId") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
+	public String getModifQuestionID(@FormParam("idQuestion") Integer idQuestion, @FormParam("newAuthorId") Integer newAuthorId, @FormParam("newLanguage") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
 			throws Exception {
 
 		int newIdAuthor;
 		int QuestionId = Integer.valueOf(idQuestion);
 
 		if (authorIdFromCookie == null) {
-			if (newAuthorId.isEmpty()) throw new Exception(
+			if (newAuthorId == null) throw new Exception(
 						"Both Cookie and the input Author Id's field are null, please log-in or register again.");
 			newIdAuthor = Integer.valueOf(newAuthorId);
 		} else {

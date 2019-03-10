@@ -42,14 +42,14 @@ public class ChangeResponseTypeYN {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getYNquestionID(@FormParam("idQuestion") String idQuestion, @FormParam("idAuthor") String newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
+	public String getYNquestionID(@FormParam("idQuestion") Integer idQuestion, @FormParam("idAuthor") Integer newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
 			throws Exception {
 
 		int QuestionId = Integer.valueOf(idQuestion);
 		int newAuthorId;
 
 		if (cookieIdAuthor == null) {
-			if (newIdAuthor.isEmpty())
+			if (newIdAuthor == null)
 				throw new Exception("Both Cookie and the input Author Id's field are null, please log-in or register again.");
 
 			newAuthorId = Integer.valueOf(newIdAuthor);
