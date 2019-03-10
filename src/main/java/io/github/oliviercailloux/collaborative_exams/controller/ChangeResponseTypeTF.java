@@ -41,7 +41,7 @@ public class ChangeResponseTypeTF {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public int getTFquestionID(@FormParam("idQuestion") String idQuestion, @FormParam("idAuthor") String newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
+	public String getTFquestionID(@FormParam("idQuestion") String idQuestion, @FormParam("idAuthor") String newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
 			throws Exception {
 		int QuestionId = Integer.valueOf(idQuestion);
 		int newAuthorId;
@@ -69,7 +69,7 @@ public class ChangeResponseTypeTF {
 			throw new Exception("This type of question can't change from" + question.getType() + " to TF");
 
 		questionService.persist(modifiedQuestion);
-		return Integer.valueOf(modifiedQuestion.getId());
+		return String.valueOf(modifiedQuestion.getId());
 
 	}
 }

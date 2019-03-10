@@ -42,7 +42,7 @@ public class ChangeResponseTypeYN {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public int getYNquestionID(@FormParam("idQuestion") String idQuestion, @FormParam("idAuthor") String newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
+	public String getYNquestionID(@FormParam("idQuestion") String idQuestion, @FormParam("idAuthor") String newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
 			throws Exception {
 
 		int QuestionId = Integer.valueOf(idQuestion);
@@ -74,7 +74,7 @@ public class ChangeResponseTypeYN {
 			throw new Exception("This type of question can't change");
 
 		questionService.persist(modifiedQuestion);
-		return Integer.valueOf(modifiedQuestion.getId());
+		return String.valueOf(modifiedQuestion.getId());
 
 	}
 }

@@ -46,7 +46,7 @@ public class ChangeQuestionLanguage {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public int getModifQuestionID(@FormParam("idQuestion") String idQuestion, @FormParam("newAuthorId") String newAuthorId, @FormParam("newAuthorId") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
+	public String getModifQuestionID(@FormParam("idQuestion") String idQuestion, @FormParam("newAuthorId") String newAuthorId, @FormParam("newAuthorId") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
 			throws Exception {
 
 		int newIdAuthor;
@@ -87,6 +87,6 @@ public class ChangeQuestionLanguage {
 			throw new Exception("Invalid Question Id ! ");
 		}
 		questionService.persist(modifiedQuestion);
-		return Integer.valueOf(modifiedQuestion.getId());
+		return String.valueOf(modifiedQuestion.getId());
 	}
 }
