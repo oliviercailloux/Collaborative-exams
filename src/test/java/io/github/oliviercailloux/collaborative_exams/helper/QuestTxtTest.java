@@ -24,6 +24,7 @@ public class QuestTxtTest {
 	private Question q1;
 	private Answer ans;
 	private Person p1;
+	
 	@Before
 	@NotNull
 	public void setUp() throws Exception {
@@ -60,15 +61,7 @@ public class QuestTxtTest {
 	 public void testXmlToObject() throws JAXBException, FileNotFoundException {
 		  QuestionXml.unmarshallerXml(q1, "questionTest.xml");
 	    }
-	
-	@Test
-	public void testJsonToObject() throws Exception{
-		jsonQuestion  =" {\"id\":0,\"author\":{\"id\":0},\"phrasing\":\"2 * 2 = 4 ?\",\"language\":\"Francais\",\"type\":\"TF\",\"answers\":[{\"id\":0,\"text\":\"True\",\"correct\":true}],\"correct\":false}";
-		Object jsOb = QuestionText.JsonToObject(Question.class, jsonQuestion);
-		assertNotNull(jsOb);
-		
-		
-	}
+
 	}
 
 
