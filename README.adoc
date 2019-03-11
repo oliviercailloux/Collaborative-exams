@@ -110,10 +110,10 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 
 * UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
 * Correction des warnings et exceptions au cours du build (0,5)
-Résolus à ce jour :
-deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
-warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
-A corriger :
+* Résolus à ce jour :
+* deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
+* warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
+* A corriger :
 Travis indique un warning (Deprecated) lors du déploiement
 SEVERE: Exception during lifecycle processing
 org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
