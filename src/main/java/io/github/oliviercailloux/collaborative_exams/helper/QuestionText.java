@@ -30,9 +30,6 @@ import javax.xml.bind.Marshaller;
 @ApplicationScoped
 public class QuestionText {
 
-
-	//private static ObjectWriter  mapper = new ObjectMapper().writer().withDefaultPrettyPrinter();
-
 	private static final Logger LOGGER = Logger.getLogger(MailLogger.class.getName());
 	
 	/**
