@@ -3,10 +3,10 @@ package io.github.oliviercailloux.collaborative_exams.controller;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 
@@ -41,8 +41,8 @@ public class ChangeResponseTypeYN {
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getYNquestionID(@FormParam("idQuestion") Integer idQuestion, @FormParam("idAuthor") Integer newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getYNquestionID(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("idAuthor") Integer newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
 			throws Exception {
 
 		int QuestionId = Integer.valueOf(idQuestion);

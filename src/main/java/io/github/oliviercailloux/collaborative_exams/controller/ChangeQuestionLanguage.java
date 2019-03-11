@@ -6,10 +6,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 
@@ -45,8 +45,8 @@ public class ChangeQuestionLanguage {
 	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getModifQuestionID(@FormParam("idQuestion") Integer idQuestion, @FormParam("newAuthorId") Integer newAuthorId, @FormParam("newLanguage") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getModifQuestionID(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("newAuthorId") Integer newAuthorId, @QueryParam("newLanguage") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
 			throws Exception {
 
 		int newIdAuthor;
