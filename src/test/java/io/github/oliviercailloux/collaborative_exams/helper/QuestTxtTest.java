@@ -19,17 +19,18 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answe
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
-public class QuestTxtTest {
+public class QuestTxtTest<T> {
 	private String jsonQuestion ;
 	private Question q1;
 	private Answer ans;
-	private Person p1, personne2;
+	private Person p1;
+	 private   T  personne2;
 	@Before
 	@NotNull
 	public void setUp() throws Exception {
 		
 	    p1 = new Person();
-	    personne2 = new Person("mohamed.hamzaoui@dauphine.eu");
+	    personne2 = (T) new Person("mohamed.hamzaoui@dauphine.eu");
 	    ans =new Answer("True", true);
 		q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);	
 	}
@@ -78,7 +79,7 @@ public class QuestTxtTest {
 	JsonReader reader = Json.createReader(new StringReader(JsonObejct));
 	JsonObject jsonObject = reader.readObject();
 	assertTrue(jsonObject.containsKey("id"));
-	assertEquals(personne2.getEmail(),jsonObject.getString("email"));
+	assertEquals(((Person) personne2).getEmail(),jsonObject.getString("email"));
   }
 	}
 
