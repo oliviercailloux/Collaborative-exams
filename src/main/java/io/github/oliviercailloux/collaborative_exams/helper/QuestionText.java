@@ -83,7 +83,7 @@ public class QuestionText {
 	 * @return
 	 * @throws Exception
 	 */
-	public static <T> String ObjectToJson(T object) throws Exception {
+	public static <T> String ObjectToJson(Class<T> className,T object) throws Exception {
 		 return  getCreate().toJson(object);
 	}
     
