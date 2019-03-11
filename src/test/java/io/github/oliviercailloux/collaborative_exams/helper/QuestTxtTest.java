@@ -24,6 +24,7 @@ public class QuestTxtTest {
 	private Question q1;
 	private Answer ans;
 	private Person p1;
+	
 	@Before
 	@NotNull
 	public void setUp() throws Exception {
@@ -60,6 +61,7 @@ public class QuestTxtTest {
 	 public void testXmlToObject() throws JAXBException, FileNotFoundException {
 		  QuestionXml.unmarshallerXml(q1, "questionTest.xml");
 	    }
+
 	}
 
 
