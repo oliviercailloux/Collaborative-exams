@@ -66,7 +66,7 @@ public class QuestTxtTest<T> {
    @Test
 	public void testJsonToObject() throws Exception{
 		jsonQuestion  =" {\"id\":0,\"author\":{\"id\":0},\"phrasing\":\"2 * 2 = 4 ?\",\"language\":\"Francais\",\"type\":\"TF\",\"answers\":[{\"id\":0,\"text\":\"True\",\"correct\":true}],\"correct\":false}";
-		Object jsOb = QuestionText.JsonToObject(Question.class, jsonQuestion);
+		T jsOb = (T) QuestionText.JsonToObject(Question.class, jsonQuestion);
 		assertNotNull(jsOb);
 		
 		
