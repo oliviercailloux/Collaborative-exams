@@ -109,7 +109,17 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 *Alexandre*
 
 * UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
-* Autre fonctionnalité à définir plus tard : Pour atteindre les 3 points nécessaires (0,5)
+* Correction des warnings et exceptions au cours du build (0,5)
+Résolus à ce jour :
+deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
+warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
+A corriger :
+Travis indique un warning (Deprecated) lors du déploiement
+SEVERE: Exception during lifecycle processing
+org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
+Exception 0 :
+java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
+
 
 = Troisième itération
 
