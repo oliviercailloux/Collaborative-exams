@@ -19,18 +19,17 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answe
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
-public class QuestTxtTest<T> {
+public class QuestTxtTest {
 	private String jsonQuestion ;
 	private Question q1;
 	private Answer ans;
 	private Person p1;
-	 private   T  personne2;
+	
 	@Before
 	@NotNull
 	public void setUp() throws Exception {
 		
 	    p1 = new Person();
-	    personne2 = (T) new Person("mohamed.hamzaoui@dauphine.eu");
 	    ans =new Answer("True", true);
 		q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);	
 	}
@@ -62,25 +61,7 @@ public class QuestTxtTest<T> {
 	 public void testXmlToObject() throws JAXBException, FileNotFoundException {
 		  QuestionXml.unmarshallerXml(q1, "questionTest.xml");
 	    }
-	
-   @Test
-	public void testJsonToObject() throws Exception{
-		jsonQuestion  =" {\"id\":0,\"author\":{\"id\":0},\"phrasing\":\"2 * 2 = 4 ?\",\"language\":\"Francais\",\"type\":\"TF\",\"answers\":[{\"id\":0,\"text\":\"True\",\"correct\":true}],\"correct\":false}";
-		T jsOb = (T) QuestionText.JsonToObject(Question.class, jsonQuestion);
-		assertNotNull(jsOb);
-		
-		
-	}
 
-  @Test
-  public void testObjectToJson() throws Exception{
-    String JsonObejct= QuestionText.ObjectToJson(personne2);
-     assertNotNull(JsonObejct);
-	JsonReader reader = Json.createReader(new StringReader(JsonObejct));
-	JsonObject jsonObject = reader.readObject();
-	assertTrue(jsonObject.containsKey("id"));
-	assertEquals(((Person) personne2).getEmail(),jsonObject.getString("email"));
-  }
 	}
 
 
