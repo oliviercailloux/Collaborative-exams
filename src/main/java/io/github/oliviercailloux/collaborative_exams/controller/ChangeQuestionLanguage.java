@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -44,7 +43,6 @@ public class ChangeQuestionLanguage {
 	 * @throws Exception if the questionId is invalid 
 	 */
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getModifQuestionID(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("newAuthorId") Integer newAuthorId, @QueryParam("newLanguage") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
 			throws Exception {

@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -39,7 +38,6 @@ public class ChangeResponseTypeTF {
 	 *                   cannot be changed to TF or IdQuestion is invalid
 	 */
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getTFquestionID(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("idAuthor") Integer newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
 			throws Exception {

@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -40,7 +39,6 @@ public class ChangeResponseTypeYN {
 	 *                   cannot be changed to YN or IdQuestion is invalid
 	 */
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getYNquestionID(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("idAuthor") Integer newIdAuthor, @CookieParam("authorId") Cookie cookieIdAuthor)
 			throws Exception {
