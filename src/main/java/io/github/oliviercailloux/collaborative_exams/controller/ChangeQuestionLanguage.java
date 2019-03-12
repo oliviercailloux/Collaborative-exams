@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
@@ -34,33 +33,33 @@ public class ChangeQuestionLanguage {
 
 	/**
 	 *
-	 * @param form               : contains a questionId, authorId that can be null
-	 *                           if the cookie is set and the newLanguage
+	 *	Using @FormParam inject form data in method arguments
+	 *
+	 * @param idQuestion
+	 * @param newAutorId
+	 * @param newLanguage
 	 * @param authorIdFromCookie : contains the new authorId that can be null
-	 * @return the Id of the new Question
-	 * @throws Exception if the questionId is invalid
+	 * @return id of modified question
+	 * @throws Exception if the questionId is invalid 
 	 */
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie authorIdFromCookie)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getModifQuestionID(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("newAuthorId") Integer newAuthorId, @QueryParam("newLanguage") String newLanguage, @CookieParam("authorId") Cookie authorIdFromCookie)
 			throws Exception {
 
-		int newAuthorId;
-		int idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
-		String newLanguage = form.getFirst("newLanguage");
+		int newIdAuthor;
+		int QuestionId = Integer.valueOf(idQuestion);
 
 		if (authorIdFromCookie == null) {
-			if (form.getFirst("newAuthorId").isEmpty())
-				throw new Exception(
+			if (newAuthorId == null) throw new Exception(
 						"Both Cookie and the input Author Id's field are null, please log-in or register again.");
-			newAuthorId = Integer.valueOf(form.getFirst("newAuthorId"));
+			newIdAuthor = Integer.valueOf(newAuthorId);
 		} else {
-			newAuthorId = Integer.valueOf(authorIdFromCookie.getValue());
+			newIdAuthor = Integer.valueOf(authorIdFromCookie.getValue());
 		}
 
-		Question question = questionService.findQuestion(idQuestion);
-		Person newAuthor = personService.findPerson(newAuthorId);
+		Question question = questionService.findQuestion(QuestionId);
+		Person newAuthor = personService.findPerson(newIdAuthor);
 
 		QuestionType questionType = question.getType();
 		Question modifiedQuestion;

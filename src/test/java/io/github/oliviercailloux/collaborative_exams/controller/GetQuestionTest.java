@@ -15,15 +15,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class ChangeQuestionLanguaugeTest {
+public class GetQuestionTest {
 
 	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(ChangeQuestionLanguaugeTest.class.getCanonicalName());
+	private static final Logger LOGGER = Logger.getLogger(GetQuestionTest.class.getCanonicalName());
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams-0.0.1.war")
-				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage());
+				.addPackage(GetQuestionTest.class.getPackage());
 		return war;
 	}
 
@@ -33,28 +33,18 @@ public class ChangeQuestionLanguaugeTest {
 	@Test
 	public void getQuestionServletTest() throws Exception {
 		final Client client = ClientBuilder.newClient();
-
 		/*
-		 * WebTarget target =
-		 * client.target(baseURL.toString()).path("/rest/ChangeQuestionLanguage");
-		 * 
-		 * 
-		 * MultivaluedMap<String,String> params = new MultivaluedHashMap<>();
-		 * params.add("id", "2"); params.add("idAuthor", "1"); params.add("lang",
-		 * "English");
-		 * 
-		 * for(String key : params.keySet()) { target = target.queryParam(key,
-		 * params.getFirst(key)); }
-		 * 
+		 * final WebTarget target =
+		 * client.target(baseURL.toString()).path("/rest/Questions/Get/"+1);
 		 * 
 		 * LOGGER.info(target.getUri().toString());
 		 * 
 		 * final String Result =
 		 * target.request(MediaType.APPLICATION_JSON).get(String.class);
 		 * 
-		 * //assertEquals(QuestionText.QuestionToJson(data.getQuestionByID(2 * 100)),
-		 * Result);
+		 * assertEquals("Aucune Question n'existe sous cette identifiant", Result);
 		 */
+
 		client.close();
 	}
 
