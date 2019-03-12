@@ -49,5 +49,42 @@ public class QuestionService {
 
 		return questionResult;
 	}
+	
+	@Transactional
+	public boolean deletAllQuestion() throws Exception {
+		List<Question> question = em.createQuery(helper.selectAll(Question.class)).getResultList();
+		
+		for(Question q : question){
+			Question QuestionDeleted =em.merge(q);
+			em.remove(QuestionDeleted);
+		}
+		if (!question.isEmpty())
+			return false;
+		return true;
+			
+		
+	
+	}
+	
+	@Transactional
+	public boolean deletById(int id) throws Exception{
+		Question questionResult = em.find(Question.class, id);
+		if (questionResult == null)
+			return false;
+		em.merge(questionResult);
+		em.remove(questionResult);
+		return true;
+	}
+	
+
+	@Transactional
+	public boolean deletByAuthor(Person p) throws Exception{
+		Question questionResult = em.find(Question.class, p);
+		if (questionResult == null)
+			return false;
+		em.merge(questionResult);
+		em.remove(questionResult);
+		return false;
+	}
 
 }
