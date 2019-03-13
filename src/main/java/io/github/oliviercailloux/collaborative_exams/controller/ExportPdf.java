@@ -37,8 +37,6 @@ public class ExportPdf {
 	        Font.BOLD);
 	private static Font soustitre = new Font(Font.FontFamily.TIMES_ROMAN, 14,
 	        Font.BOLD);
-	private static Font titreQuestion = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-	        Font.BOLD);
 	private static Font smalltext = new Font(Font.FontFamily.TIMES_ROMAN, 8,
 	        Font.NORMAL);
 	
@@ -59,37 +57,45 @@ public class ExportPdf {
 	@Inject
 	private Question question;
 	private QuestionService questionservice;
-	private String printquestion = "";
 
 
 	@GET
 	@Transactional
 	@Produces(MediaType.TEXT_PLAIN)
-	public void ExportPdf() {
+	public void GetExportPdf() {
 		try {
 	    	System.out.println("Access Path" + FILE);
 	        Document document = new Document();
 	        PdfWriter.getInstance(document, new FileOutputStream(FILE));
 	        document.open();
-
-	        PdfPTable table = new PdfPTable(3);
-		    table.setWidthPercentage(100);
-		    Calendar prevYear = Calendar.getInstance();
-		    prevYear.add(Calendar.YEAR, -1);
-		    table.addCell(getCell("Plateforme Collaborative Examens", PdfPCell.ALIGN_LEFT));
-		    table.addCell(getCell("", PdfPCell.ALIGN_CENTER));
-		    table.addCell(getCell("Année scolaire : " + prevYear.get(Calendar.YEAR) + "/" + Calendar.getInstance().get(Calendar.YEAR)+"", PdfPCell.ALIGN_RIGHT));
-		    document.add(table);
-	        
-			final List<Question> listquestions = questionservice.getAll();
-			for (final Question question : listquestions) {
-				
-				Paragraph preface = new Paragraph("", titre);
-			    PdfPTable table0 = new PdfPTable(3);
-			    table0.setWidthPercentage(100);
-			    table0.addCell(getCell(question.getPhrasing(), PdfPCell.ALIGN_LEFT));
-			    document.add(table0);
-			}
+		        PdfPTable table = new PdfPTable(3);
+			    table.setWidthPercentage(100);
+			    Calendar prevYear = Calendar.getInstance();
+			    prevYear.add(Calendar.YEAR, -1);
+			    table.addCell(getCell("Plateforme Collaborative Examens", PdfPCell.ALIGN_LEFT));
+			    table.addCell(getCell("", PdfPCell.ALIGN_CENTER));
+			    table.addCell(getCell("Année scolaire : " + prevYear.get(Calendar.YEAR) + "/" + Calendar.getInstance().get(Calendar.YEAR)+"", PdfPCell.ALIGN_RIGHT));
+			    document.add(table);
+			    Paragraph preface2 = new Paragraph("EXAMEN ECRIT", titre);
+			    preface2.setAlignment(Paragraph.ALIGN_CENTER);
+			    document.add(preface2);
+			    Paragraph preface3 = new Paragraph("Culture Générale", soustitre);
+			    preface3.setAlignment(Paragraph.ALIGN_CENTER);
+			    document.add(preface3);
+			    Paragraph preface4 = new Paragraph("Aucun document autorisé. Durée de l'examen 2 deux heures.", smalltext);
+			    addEmptyLine(preface4, 3);
+			    document.add(preface4);
+					final List<Question> listquestions = questionservice.getAll();
+					for (final Question question : listquestions) {
+						
+						Paragraph preface = new Paragraph("", titre);
+					    PdfPTable table0 = new PdfPTable(3);
+					    table0.setWidthPercentage(100);
+					    table0.addCell(getCell(question.getPhrasing(), PdfPCell.ALIGN_LEFT));
+					    document.add(table0);
+					    addEmptyLine(preface, 3);
+					    document.add(preface);
+					}
 	        document.close();
 	    } catch (Exception e) {
 	        e.printStackTrace();
