@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
@@ -49,6 +50,27 @@ public class QuestionService {
 
 		return questionResult;
 	}
+	@Transactional
+	public List<Question> findPersonQuestion(Person pers) throws Exception {
+		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.pers = :author", Question.class);
+		query.setParameter("author", pers);
+		List<Question> results = query.getResultList();
+		if (results.isEmpty())
+			throw new Exception("No question for this Person.");
+		return results;
+	}
+	
+	@Transactional
+	public void deleteAllPersonQuestion(Person pers) throws Exception {
+		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.pers = :author", Question.class);
+		query.setParameter("author", pers);
+		List<Question> results = query.getResultList();
+		for(Question q : results){
+			Question QuestionDeleted =em.merge(q);
+			em.remove(QuestionDeleted);
+		}
+		
+	}
 	
 	@Transactional
 	public boolean deletAllQuestion() throws Exception {
@@ -60,7 +82,7 @@ public class QuestionService {
 		}
 		if (!question.isEmpty())
 			return false;
-		return true;
+		    return true;
 			
 		
 	
@@ -70,21 +92,21 @@ public class QuestionService {
 	public boolean deletById(int id) throws Exception{
 		Question questionResult = em.find(Question.class, id);
 		if (questionResult == null)
-			return false;
-		em.merge(questionResult);
-		em.remove(questionResult);
-		return true;
+		   return false;
+		   em.merge(questionResult);
+		   em.remove(questionResult);
+		   return true;
 	}
 	
 
 	@Transactional
 	public boolean deletByAuthor(Person p) throws Exception{
-		Question questionResult = em.find(Question.class, p);
+		Question questionResult = em.find(Question.class, p.getId());
 		if (questionResult == null)
-			return false;
-		em.merge(questionResult);
-		em.remove(questionResult);
-		return false;
+		   return false;
+		   em.merge(questionResult);
+		   em.remove(questionResult);
+		   return true;
 	}
 
 }
