@@ -141,4 +141,25 @@ public class QuestionText {
    
   }
 	
+	/**
+	 *  Convert Question To Xml
+	 * @param question
+	 * @return String format XML
+	 */
+	public static String convertQuestionToXML(Question question) throws JAXBException{
+		
+	    String xmlQuestion = "";
+	    
+	    JAXBContext context = JAXBContext.newInstance(Question.class);
+	    Marshaller m = context.createMarshaller();
+
+	    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
+
+	    StringWriter sw = new StringWriter();
+	    m.marshal(question, sw);
+	    xmlQuestion = sw.toString();
+
+	    return xmlQuestion;
+	}
+	
 }
