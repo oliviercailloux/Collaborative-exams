@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.oliviercailloux.y2017</groupId>
-    <artifactId>collaborative-exams</artifactId>
+    <artifactId>examcollab</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
@@ -72,6 +72,13 @@
             <version>4.1.2</version>
             <scope>test</scope>
         </dependency>
+             
+        <dependency>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http2</artifactId>
+            <version>2.3.23</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>javax.json.bind</groupId>
@@ -90,7 +97,7 @@
             <artifactId>javax.json</artifactId>
             <version>1.1</version>
         </dependency>
-
+        
     </dependencies>
 
     <dependencyManagement>

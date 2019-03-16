@@ -1,4 +1,4 @@
-﻿language: java
+language: java
 git:
   depth: 1
 jdk:
@@ -11,10 +11,11 @@ cache:
 deploy:
   provider: bluemixcloudfoundry
   skip_cleanup: true
-  username: sid-ahmed.imloul@dauphine.eu
+  username: alexandre.cote@dauphine.eu
   password: $BLUEMIX_PASSWORD
-  organization: sid-ahmed.imloul@dauphine.eu
+  organization: alexandre.cote@dauphine.eu
   space: dev
   region: eu-gb
-
-
+  on:	
+    all_branches: true	
+    condition: $TRAVIS_BRANCH =~ ^alex2 #condition: $TRAVIS_BRANCH =~ ^alex|master #si besoin
