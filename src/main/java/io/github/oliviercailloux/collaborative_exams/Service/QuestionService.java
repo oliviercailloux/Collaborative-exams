@@ -61,7 +61,7 @@ public class QuestionService {
 	}
 	
 	@Transactional
-	public void deleteAllPersonQuestion(Person pers) throws Exception {
+	public void deleteAllQuestions(Person pers) throws Exception {
 		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.pers = :author", Question.class);
 		query.setParameter("author", pers);
 		List<Question> results = query.getResultList();
@@ -73,40 +73,30 @@ public class QuestionService {
 	}
 	
 	@Transactional
-	public boolean deletAllQuestion() throws Exception {
+	public void deletAllQuestions() throws Exception {
 		List<Question> question = em.createQuery(helper.selectAll(Question.class)).getResultList();
 		
 		for(Question q : question){
 			Question QuestionDeleted =em.merge(q);
 			em.remove(QuestionDeleted);
 		}
-		if (!question.isEmpty())
-			return false;
-		    return true;
-			
-		
 	
 	}
 	
 	@Transactional
-	public boolean deletById(int id) throws Exception{
+	public void deletById(int id) throws Exception{
 		Question questionResult = em.find(Question.class, id);
-		if (questionResult == null)
-		   return false;
 		   em.merge(questionResult);
 		   em.remove(questionResult);
-		   return true;
 	}
 	
 
 	@Transactional
-	public boolean deletByAuthor(Person p) throws Exception{
+	public void deletByAuthor(Person p) throws Exception{
 		Question questionResult = em.find(Question.class, p.getId());
-		if (questionResult == null)
-		   return false;
 		   em.merge(questionResult);
 		   em.remove(questionResult);
-		   return true;
+		   
 	}
 
 }

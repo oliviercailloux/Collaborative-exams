@@ -8,7 +8,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 
@@ -40,9 +39,9 @@ public class servletGetAbility {
 	@Path("/{idQuestion1}/{idQuestion2}/{idAuthor}")
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getSameAbility(@PathParam("idAuthor") int idAuthor, @PathParam("idQuestion1") int idQuestion1,
-			@PathParam("idQuestion2") int idQuestion2, @CookieParam("authorId") Cookie cookieIdAuthor, @PathParam("format") String format) throws Exception {
+			@PathParam("idQuestion2") int idQuestion2, @CookieParam("authorId") Cookie cookieIdAuthor) throws Exception {
 		
         int newAuthorId;
         Integer id = (Integer)idAuthor;
@@ -57,11 +56,9 @@ public class servletGetAbility {
 			newAuthorId = Integer.valueOf(cookieIdAuthor.getValue());
 		}
 
-		SameAbility sameAbility = sameAbilityService.isSameAbility(personService.findPerson(newAuthorId),questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
-		if (format== "JSON")
+		    SameAbility sameAbility = sameAbilityService.isSameAbility(personService.findPerson(newAuthorId),questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
 			samAbility=  QuestionText.ObjectToJson(SameAbility.class, sameAbility);
-		else if (format == "XML")
-			samAbility=  QuestionText.convertObjectToXML(sameAbility, "same.xml");
+
 			
 		return samAbility;
 	}
