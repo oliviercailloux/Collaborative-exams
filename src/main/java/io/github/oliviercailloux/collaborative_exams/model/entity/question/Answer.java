@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,8 +32,8 @@ public class Answer {
 	@XmlElement
 	private String text;
 
-	@ManyToOne
-	private Question question;
+	//@ManyToOne
+	private IQuestion question;
 
 	public Answer() {
 
@@ -59,7 +58,7 @@ public class Answer {
 	 *
 	 * @param question the question how have this answer
 	 */
-	public void setQuestionIfNull(Question question) throws Exception {
+	public void setQuestionIfNull(IQuestion question) throws Exception {
 		if (this.question == null) {
 			this.question = question;
 		} else {
@@ -72,7 +71,7 @@ public class Answer {
 	}
 
 	@JsonbTransient
-	public Question getQuestion() {
+	public IQuestion getQuestion() {
 		return this.question;
 	}
 

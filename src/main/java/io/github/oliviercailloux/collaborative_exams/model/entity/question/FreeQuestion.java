@@ -1,22 +1,16 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
@@ -26,13 +20,13 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
  * <p>
  * Question is immuable
  *
- * @author badga & Sid
+ * @author Amine BOUKALA
  */
-@JsonbPropertyOrder({ "id", "author", "phrasing", "language", "type", "isCorrect", "answers" })
+@JsonbPropertyOrder({ "id", "author", "phrasing", "language", "type", "isCorrect", "answer" })
 
 @XmlRootElement
 @Entity
-public class Question {
+public class FreeQuestion implements IQuestion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -86,37 +80,20 @@ public class Question {
 	private QuestionType type;
 
 	/**
-	 * Represent the possible answers of a MQC Question
+	 * We consider that a free question 
 	 */
 
-	//@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
-	@XmlElementWrapper(name = "answers")
-	@XmlElement(name = "answer")
-	private List<Answer> answers;
-
-	/**
-	 * Returns a new Question. Not <code>null</code>.
-	 */
-	public Question() {
+	@XmlElement
+	@Column(nullable = false)
+	private Answer answer;
+	
+	
+	
+	public FreeQuestion() {
 
 		phrasing = null;
 	}
 
-	/**
-	 * return new Question T/F or Y/N
-	 *
-	 * @param phrasing phrasing of question
-	 * @param language Language of question
-	 * @param author   Person how represente the author of question
-	 * @param type     Type of question
-	 */
-	public Question(String phrasing, String language, Person author, QuestionType type, boolean isCorrect) {
-		this.phrasing = Objects.requireNonNull(phrasing);
-		this.language = Objects.requireNonNull(language);
-		this.author = Objects.requireNonNull(author);
-		this.type = Objects.requireNonNull(type);
-		this.isCorrect = Objects.requireNonNull(isCorrect);
-	}
 
 	/**
 	 * return Question Free
@@ -127,38 +104,15 @@ public class Question {
 	 * @param type     Type of question
 	 * @Param answer the answer of the free question
 	 */
-	public Question(String phrasing, String language, Person author, QuestionType type, Answer answer)
+	public FreeQuestion(String phrasing, String language, Person author, QuestionType type, Answer answer)
 			throws Exception {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);
 		this.type = Objects.requireNonNull(type);
-		this.answers = new ArrayList<>();
-		//answer.setQuestionIfNull(this);
-		this.answers.add(answer);
+		this.answer = Objects.requireNonNull(answer);
 	}
 
-	/**
-	 * return new MCQ Question
-	 *
-	 * @param phrasing phrasing of question
-	 * @param language Language of question
-	 * @param author   Person how represente the author of question
-	 * @param type     Type of question
-	 * @param answers  represente the list of answer of the question
-	 */
-	public Question(String phrasing, String language, Person author, QuestionType type, List<Answer> answers)
-			throws Exception {
-		this.phrasing = Objects.requireNonNull(phrasing);
-		this.language = Objects.requireNonNull(language);
-		this.author = Objects.requireNonNull(author);
-		this.type = Objects.requireNonNull(type);
-
-		for (Answer answer : answers)
-			//answer.setQuestionIfNull(this);
-
-		this.answers = Objects.requireNonNull(answers);
-	}
 
 	/**
 	 * Returns this Question’s id.
@@ -217,12 +171,12 @@ public class Question {
 	 *
 	 * @return String can be null, if the Question is TF/ YN / QCM
 	 */
-	public List<Answer> getAnswers() {
+	public Answer getAnswer() {
 
-		if (this.answers == null)
+		if (this.answer == null)
 			return null;
 
-		return Collections.unmodifiableList(this.answers);
+		return this.answer;
 	}
 
 	/**
@@ -233,7 +187,7 @@ public class Question {
 		return isCorrect;
 	}
 
-	public boolean equals(Question question) {
+	public boolean equals(FreeQuestion question) {
 
 		if (question == this)
 			return true;
@@ -246,5 +200,14 @@ public class Question {
 		}
 		return false;
 	}
+
+
+	@Override
+	public boolean equals(Question question) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 
 }
