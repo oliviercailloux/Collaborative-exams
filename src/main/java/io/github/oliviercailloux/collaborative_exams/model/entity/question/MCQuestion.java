@@ -21,7 +21,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 /**
  * This Class represents Question
  * <p>
- * Question is immuable
+ * Question is immutable
  *
  * @author Amine BOUKALA
  */
@@ -190,11 +190,7 @@ public class MCQuestion implements IQuestion {
 		return this.phrasing;
 	}
 
-	/**
-	 * Returns this Question’s answers.
-	 *
-	 * @return String can be null, if the Question is TF/ YN / QCM
-	 */
+
 	public List<Answer> getPropositions() {
 
 		if (this.answers == null)
@@ -216,12 +212,4 @@ public class MCQuestion implements IQuestion {
 		}
 		return false;
 	}
-
-
-	@Override
-	public boolean equals(Question question) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

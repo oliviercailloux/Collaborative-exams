@@ -16,13 +16,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
- * This Class represents Question
+ * This Class represents FreeQuestion
  * <p>
- * Question is immuable
+ * 
+ * 
  *
  * @author Amine BOUKALA
  */
-@JsonbPropertyOrder({ "id", "author", "phrasing", "language", "type", "isCorrect", "answer" })
+@JsonbPropertyOrder({ "id", "author", "phrasing", "language", "type", "answer" })
 
 @XmlRootElement
 @Entity
@@ -31,7 +32,7 @@ public class FreeQuestion implements IQuestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@XmlAttribute
-	private int id;
+	private  int id;
 
 	/**
 	 * represent the phrasing of the question
@@ -40,7 +41,7 @@ public class FreeQuestion implements IQuestion {
 	 */
 	@XmlElement
 	@Column(nullable = false)
-	private final String phrasing;
+	private  String phrasing;
 
 	/**
 	 * represent the language of Question
@@ -50,7 +51,7 @@ public class FreeQuestion implements IQuestion {
 	 */
 	@XmlElement
 	@Column(nullable = false)
-	private String language;
+	private  String language;
 
 	/**
 	 * respresente the Author
@@ -60,15 +61,8 @@ public class FreeQuestion implements IQuestion {
 
 	@ManyToOne
 	@XmlElement(name = "author")
-	private Person author;
+	private  Person author;
 
-	/**
-	 * respresente if the response whas correct in T/F or Y/N question
-	 * <p>
-	 * Null if type of question is Free or QCM
-	 */
-	@Column(nullable = true)
-	private boolean isCorrect;
 
 	/**
 	 * Respresent the type of question
@@ -77,23 +71,14 @@ public class FreeQuestion implements IQuestion {
 	 */
 	@XmlElement
 	@Column(nullable = false)
-	private QuestionType type;
+	private  QuestionType type;
 
-	/**
-	 * We consider that a free question 
-	 */
+
 
 	@XmlElement
 	@Column(nullable = false)
-	private Answer answer;
+	private  Answer answer;
 	
-	
-	
-	public FreeQuestion() {
-
-		phrasing = null;
-	}
-
 
 	/**
 	 * return Question Free
@@ -104,18 +89,24 @@ public class FreeQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @Param answer the answer of the free question
 	 */
-	public FreeQuestion(String phrasing, String language, Person author, QuestionType type, Answer answer)
-			throws Exception {
+	public FreeQuestion(int id, String phrasing, String language, Person author, QuestionType type, Answer answer)
+	{
+		this.id = Objects.requireNonNull(id);
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);
 		this.type = Objects.requireNonNull(type);
 		this.answer = Objects.requireNonNull(answer);
 	}
-
+	
+	
+	public FreeQuestion()
+	{
+	}
+	
 
 	/**
-	 * Returns this Question’s id.
+	 * Returns this FreeQuestion’s id.
 	 *
 	 * @return not <code>null</code>.
 	 */
@@ -179,34 +170,7 @@ public class FreeQuestion implements IQuestion {
 		return this.answer;
 	}
 
-	/**
-	 * @Return boolean
-	 */
-	public boolean getCorrect() {
 
-		return isCorrect;
-	}
-
-	public boolean equals(FreeQuestion question) {
-
-		if (question == this)
-			return true;
-		if (question != null && (question.getClass().equals(this.getClass()))) {
-
-			return (this.phrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
-					&& (this.id == question.getId()) && (this.getCorrect() == question.getCorrect())
-					&& (this.getLanguage().equals(question.getLanguage())));
-
-		}
-		return false;
-	}
-
-
-	@Override
-	public boolean equals(Question question) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 
