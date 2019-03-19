@@ -121,7 +121,9 @@
                   <i class="fa fa-edit"> Change Type to YN</i>
                 </button>
 
-
+				<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#questionMultiFormat">
+                  <i class="fa fa-edit"> Question Multi-Format </i>
+                </button>
 
                 <br><br>
     
@@ -465,6 +467,50 @@
         </div>
       </div>
     </div>                                  
+   
+   
+   <!-- Question multi format-->
+    <div class="modal fade" id="questionMultiFormat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Question Multi-Format</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+ <div class="container">
+  <form action="rest/QuestionMultiFormat" method="GET">
+  <div class="form-group">
+      <label for="idQuestion">Question ID:</label>
+      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
+    </div>
+    <div class="form-group">
+      <label for="newAuthorId">Author ID:</label>
+      <input class="form-control" id="idAuthor" placeholder="Enter New Author ID..." name="idAuthor">
+    </div>
+    <div class="form-group">
+ 	<label for="content-1">Format:</label>
+        <select class="form-control" id="format" name="format">
+  			<option name="format" value="-1" >Choose...</option>
+    		<option name="Json" value="Json" >Json</option>
+			<option name="XML" value="XML">XML</option>
+   		</select>
+    </div>
+</div></div>
+        <form action="rest/Questions/get" method="GET">
+            <input type="submit" class="form-control" name="id" value="Display the question">
+        </form>
+	<div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+   
     
         <!-- Delete Modal-->
     <div class="modal fade" id="deleteQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
