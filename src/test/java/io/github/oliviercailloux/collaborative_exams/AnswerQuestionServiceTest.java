@@ -18,6 +18,7 @@ import junit.framework.TestCase;
  * @author Khaled
  */
 public class AnswerQuestionServiceTest extends TestCase {
+// tester si le fait qu'une personne reponde faux provoque une incrementation dans le countSelect
 
     AnswerQuestion answerQuestion
             = new AnswerQuestion("",
@@ -28,6 +29,6 @@ public class AnswerQuestionServiceTest extends TestCase {
 
     public void testIncrementCountSelect() {
         new AnswerQuestionService().updateCountAnswerSelect(answerQuestion);
-        assertEquals(answerQuestion.getAnswer().getCountSelect(), 1);
+        assertEquals(answerQuestion.getAnswer().getStats().getCountSelect(), 1);
     }
 }

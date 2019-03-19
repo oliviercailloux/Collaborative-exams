@@ -38,7 +38,7 @@ public class AnswerQuestionService {
     public AnswerQuestion updateCountAnswerSelect(AnswerQuestion answerQuestion) {
         if (!answerQuestion.getAnswer().isCorrect()) {
             // un condidat a selectionné une reponse Fausse, alors on augmante le membre de selection de 1
-            answerQuestion.getAnswer().setCountSelect(answerQuestion.getAnswer().getCountSelect() + 1);
+            answerQuestion.getAnswer().getStats().setCountSelect(answerQuestion.getAnswer().getStats().getCountSelect() + 1);
             if (em != null) {
                 em.persist(answerQuestion.getAnswer());
             }

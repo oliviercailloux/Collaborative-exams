@@ -7,6 +7,7 @@ package io.github.oliviercailloux.collaborative_exams;
 
 import io.github.oliviercailloux.collaborative_exams.Service.AnswerService;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.Stats;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
@@ -24,9 +25,9 @@ public class AnswerServiceTest extends TestCase {
     @Before
     @Override
     public void setUp() {
-        listeAnswers.add(new Answer("Reponse1", false, 10, 3));
-        listeAnswers.add(new Answer("Reponse2", false, 10, 5));
-        listeAnswers.add(new Answer("Reponse3", false, 10, 7));
+        listeAnswers.add(new Answer("Reponse1", false, new Stats(10, 3)));
+        listeAnswers.add(new Answer("Reponse2", false, new Stats(10, 5)));
+        listeAnswers.add(new Answer("Reponse3", false, new Stats(10, 7)));
     }
 
     public void testEasyDifficulty() {

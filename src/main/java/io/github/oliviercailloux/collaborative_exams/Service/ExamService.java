@@ -47,7 +47,7 @@ public class ExamService {
             for (Answer answer : question.getAnswers()) {
                 if (!answer.isCorrect()) {
                     // un Enseignant a fait participé une reponse Fausse, alors on augmante le membre de participation de 1
-                    answer.setCountParticipat(answer.getCountParticipat() + 1);
+                    answer.getStats().setCountParticipat(answer.getStats().getCountParticipat() + 1);
                     if (em != null) {
                         em.persist(answer);
                     }

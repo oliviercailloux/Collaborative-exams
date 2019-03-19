@@ -83,7 +83,7 @@ public class AnswerService {
         List<Answer> listeAnswersOut = new ArrayList<>();
         double ratio;
         for (Answer answer : listeAnswersIn) {
-            ratio = (double) answer.getCountSelect() / (double) answer.getCountParticipat();
+            ratio = (double) answer.getStats().getCountSelect() / (double) answer.getStats().getCountParticipat();
             if (ratio >= 0.66) {
                 answer.setDifficultyType(DifficultyType.Easy);
                 listeAnswersOut.add(answer);
@@ -104,7 +104,7 @@ public class AnswerService {
         List<Answer> listeAnswersOut = new ArrayList<>();
         double ratio;
         for (Answer answer : listeAnswersIn) {
-            ratio = (double) answer.getCountSelect() / (double) answer.getCountParticipat();
+            ratio = (double) answer.getStats().getCountSelect() / (double) answer.getStats().getCountParticipat();
             if (0.66 > ratio && ratio >= 0.33) {
                 answer.setDifficultyType(DifficultyType.Easy);
                 listeAnswersOut.add(answer);
@@ -125,7 +125,7 @@ public class AnswerService {
         List<Answer> listeAnswersOut = new ArrayList<>();
         double ratio;
         for (Answer answer : listeAnswersIn) {
-            ratio = (double) answer.getCountSelect() / (double) answer.getCountParticipat();
+            ratio = (double) answer.getStats().getCountSelect() / (double) answer.getStats().getCountParticipat();
             if (0.33 > ratio) {
                 answer.setDifficultyType(DifficultyType.Easy);
                 listeAnswersOut.add(answer);

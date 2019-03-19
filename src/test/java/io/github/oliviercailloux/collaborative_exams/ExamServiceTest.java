@@ -64,7 +64,7 @@ public class ExamServiceTest extends TestCase {
     public void testIncrementCountParticipate() {
         for (Question question : exam.getListeQuestions()) {
             for (Answer answer : question.getAnswers()) {
-                countParticipat = countParticipat + answer.getCountParticipat();
+                countParticipat = countParticipat + answer.getStats().getCountParticipat();
             }
         }
         assertEquals(countParticipat, 6);
