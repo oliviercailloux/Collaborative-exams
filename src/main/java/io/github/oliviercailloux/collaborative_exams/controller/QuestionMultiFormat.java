@@ -22,7 +22,6 @@ public class QuestionMultiFormat {
 	@Path("QuestionMultiFormat")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	
 	public Question getQuestion(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("idAuthor") Integer authorId, 
 			@CookieParam("authorId") Cookie cookieIdAuthor)throws Exception {
 			
