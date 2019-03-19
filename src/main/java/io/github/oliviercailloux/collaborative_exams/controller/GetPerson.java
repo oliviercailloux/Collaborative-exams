@@ -15,8 +15,7 @@ import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
- * @author Mohamed
- * JAX-RS Servlet that allows you to recover people from the BDD
+ * @author Mohamed JAX-RS Servlet that allows you to recover people from the BDD
  */
 @Path("Person")
 public class GetPerson {
@@ -53,5 +52,5 @@ public class GetPerson {
 		Person pers = personService.findPerson(id);
 		return QuestionText.ObjectToJson(Person.class, pers);
 	}
-	
+
 }

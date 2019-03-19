@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
-
 @RequestScoped
 public class PersonService {
 
@@ -21,7 +20,7 @@ public class PersonService {
 
 	@Inject
 	private QueryHelper helper;
-	
+
 	@Inject
 	private QuestionService questionService;
 
@@ -39,9 +38,9 @@ public class PersonService {
 	public Person findPerson(int id) {
 		return em.find(Person.class, id);
 	}
-	
+
 	@Transactional
-	public Person findPerson(String email){
+	public Person findPerson(String email) {
 		return em.find(Person.class, email);
 	}
 
@@ -55,25 +54,18 @@ public class PersonService {
 		return results.get(0);
 
 	}
-	
-	
+
 	@Transactional
-	public void deletAllPersons() throws Exception{
-		List<Person> person = em.createQuery(helper.selectAll(Person.class)).getResultList(); 
-		
-		for (Person p : person){
-		if(questionService.findPersonQuestion(p).isEmpty()){
-			Person PersonDeleted =em.merge(p);
-			em.remove(PersonDeleted);
-		}
-		    questionService.deleteAllQuestions(p);
-		    Person PersonDeleted =em.merge(p);
+	public void deletAllPersons() throws Exception {
+		List<Person> person = em.createQuery(helper.selectAll(Person.class)).getResultList();
+		for (Person p : person) {
+			Person PersonDeleted = em.merge(p);
 			em.remove(PersonDeleted);
 		}
 	}
-	
+
 	@Transactional
-	public void deletPersonById(int id) throws Exception{
+	public void deletPersonById(int id) throws Exception {
 		Person personResult = em.find(Person.class, id);
 		em.merge(personResult);
 		em.remove(personResult);
