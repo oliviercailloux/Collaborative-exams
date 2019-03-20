@@ -43,7 +43,7 @@ public class QuestionXMLTest {
 	 
 	    @After
 	    public void tearDown() throws FileNotFoundException, JAXBException {
-	    	question = QuestionXML.unmarshallerXml(question, "src/main/java/io/github/oliviercailloux/collaborative_exams/controller/questionXMl");
+//	    	question = QuestionXML.unmarshallerXml(question, "src/main/java/io/github/oliviercailloux/collaborative_exams/controller/questionXMl");
 	    }
 	     
 
