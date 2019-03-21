@@ -54,15 +54,15 @@ public class QuestionTest {
 
 	}
 
-	 @Test
-	 public void testObjectToXml() throws NullPointerException, IllegalArgumentException, Exception {
-		     QuestionXml.QuestionToXML(q1,"questionTest.xml");
-	    }
-
-	 @Test
-	 public void testXmlToObject() throws JAXBException, FileNotFoundException {
-		  QuestionXml.unmarshallerXml(q1, "questionTest.xml");
-	    }
+//	 @Test
+//	 public void testObjectToXml() throws NullPointerException, IllegalArgumentException, Exception {
+//		     QuestionXml.QuestionToXML(q1,"questionTest.xml");
+//	    }
+//
+//	 @Test
+//	 public void testXmlToObject() throws JAXBException, FileNotFoundException {
+//		  QuestionXml.unmarshallerXml(q1, "questionTest.xml");
+//	    }
 
 	   @Test
 		public void testJsonToObject() throws Exception{

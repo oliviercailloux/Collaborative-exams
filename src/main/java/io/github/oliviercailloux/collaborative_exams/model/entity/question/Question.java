@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import javax.persistence.ManyToMany;
 
 /**
  * This Class represents Question
@@ -94,13 +95,21 @@ public class Question {
 	@XmlElement(name = "answer")
 	private List<Answer> answers;
 
-	/**
-	 * Returns a new Question. Not <code>null</code>.
-	 */
-	public Question() {
+	    @ManyToMany(mappedBy = "listQuestions")
+    private List<Exam> listExams = new ArrayList<>();
 
-		phrasing = null;
-	}
+    /**
+     * Returns a new Question. Not <code>null</code>.
+     */
+    public Question() {
+
+        phrasing = null;
+    }
+
+    public Question(String phrasing) {
+        this.phrasing = phrasing;
+    }
+
 
 	/**
 	 * return new Question T/F or Y/N
@@ -220,9 +229,9 @@ public class Question {
 	public List<Answer> getAnswers() {
 
 		if (this.answers == null)
-			return null;
+			return answers = new ArrayList<>();
 
-		return Collections.unmodifiableList(this.answers);
+		return answers;
 	}
 
 	/**
@@ -246,5 +255,12 @@ public class Question {
 		}
 		return false;
 	}
+    public List<Exam> getListExams() {
+        return listExams;
+    }
+
+    public void setListExams(List<Exam> listExams) {
+        this.listExams = listExams;
+    }
 
 }
