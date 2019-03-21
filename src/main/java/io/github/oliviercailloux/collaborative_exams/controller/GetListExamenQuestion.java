@@ -45,12 +45,6 @@ public class GetListExamenQuestion {
 		return cell;
 	}
 
-	private static void addEmptyLine(Paragraph paragraph, int number) {
-		for (int i = 0; i < number; i++) {
-			paragraph.add(new Paragraph(" "));
-		}
-	}
-
 	@Inject
 	QuestionService questionService;
 
@@ -88,7 +82,9 @@ public class GetListExamenQuestion {
 		preface3.setAlignment(Paragraph.ALIGN_CENTER);
 		document.add(preface3);
 		Paragraph preface4 = new Paragraph("Aucun document autorisé. Durée de l'examen 2 deux heures.", Smalltext);
-		addEmptyLine(preface4, 3);
+		preface3.add(new Paragraph(" "));
+		preface3.add(new Paragraph(" "));
+		preface3.add(new Paragraph(" "));
 		document.add(preface4);
 
 		for (int i = 0; i < jArray.size(); i++) {
@@ -101,7 +97,9 @@ public class GetListExamenQuestion {
 				table0.setWidthPercentage(100);
 				table0.addCell(getCell(question.getPhrasing(), PdfPCell.ALIGN_LEFT));
 				document.add(table0);
-				addEmptyLine(preface, 3);
+				preface3.add(new Paragraph(" "));
+				preface3.add(new Paragraph(" "));
+				preface3.add(new Paragraph(" "));
 				document.add(preface);
 			} catch (EntityNotFoundException e) {
 				e.getMessage();
