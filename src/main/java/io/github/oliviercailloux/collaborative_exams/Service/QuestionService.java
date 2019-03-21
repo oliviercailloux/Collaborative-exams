@@ -13,7 +13,6 @@ import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
-import io.github.oliviercailloux.y2018.ducheminvalentin.jpa_ducheminvalentin.Comment;
 
 @RequestScoped
 public class QuestionService {
@@ -51,14 +50,14 @@ public class QuestionService {
 
 		return questionResult;
 	}
-	
-    public Question findById(Integer id) {
-        Question question = em.find(Question.class, id);
-        if (question == null) {
-            throw new EntityNotFoundException("Impossible de trouver la question ayant l'id :  "
-                + id + ". Merci de corriger votre demande.");
-        }
-        return question;
-    }
+
+	public Question findById(Integer id) {
+		Question question = em.find(Question.class, id);
+		if (question == null) {
+			throw new EntityNotFoundException(
+					"Impossible de trouver la question ayant l'id :  " + id + ". Merci de corriger votre demande.");
+		}
+		return question;
+	}
 
 }
