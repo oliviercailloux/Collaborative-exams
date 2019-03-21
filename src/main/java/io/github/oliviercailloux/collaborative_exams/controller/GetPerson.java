@@ -33,10 +33,8 @@ public class GetPerson {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getPerson() throws Exception {
 		List<Person> allPerson = personService.getAll();
-		String result = "";
-		for (Person p : allPerson)
-			result += QuestionText.ObjectToJson(Person.class, p);
-		return result;
+		return QuestionText.ObjectToJson(allPerson);
+
 	}
 
 	/**

@@ -6,9 +6,9 @@ import javax.ws.rs.CookieParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.PersonTagService;
@@ -30,12 +30,10 @@ public class NewPersonTag {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String newPersonTag(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
-			throws Exception {
+	public String newPersonTag(@QueryParam("idQuestion") Integer idQuestion, @QueryParam("idAuthor") Integer idAuthor,
+			@QueryParam("tag") String tag, @CookieParam("authorId") Cookie cookie)
 
-		Integer idQuestion = Integer.valueOf(form.getFirst("idQuestion"));
-		Integer idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
-		String tag = form.getFirst("tag");
+			throws Exception {
 
 		int AuthorId;
 
@@ -45,7 +43,7 @@ public class NewPersonTag {
 				throw new Exception(
 						"Both Cookie and the input Author Id's field are null, please log-in or register again.");
 
-			AuthorId = Integer.valueOf(form.getFirst("idAuthor"));
+			AuthorId = Integer.valueOf(idAuthor);
 		} else {
 			AuthorId = Integer.valueOf(cookie.getValue());
 		}
