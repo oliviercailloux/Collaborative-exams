@@ -88,10 +88,7 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 
 *Mohamed*
 
-* RelationsMultiFormat : Servlet GetSameAbility(person id): ensemble de triplets ; et de même pour les autres relations, et de même pour Set. La relation peut être récupérée ou envoyée au format XML ou JSON. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni (1)
-* Servlet Personne : faire une doGet des autor qui sont stocké dans la base de données en format Json ou Xml ( Point ? )
-
-* Servlet Delet:   Ajouter  servlet qui permet aux autor de supprimer les questions de leur choix dans la BDD avec un cookie qui mémorise id personne. la suppression se fait soit avec un id questions, suppression total,par un id author... Dans la servlet elle permet aussi au enseignants de supprimer les examens qui seront créés ( Point ?)- nouvelle fonctionnalité
+*Aaméliorer la création d'un PersnnelTag et l'ajout d'un servlet Set pour ce dernier. De plus, implémenter un servlet getPerson et en fin un servlet qui permet de supprimer les données dans la BD ( les questions, les personnes ... )
 
 *Valentin*
 
