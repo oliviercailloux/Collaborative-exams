@@ -35,19 +35,13 @@ public class YesNoQuestion extends MCQuestion {
 	
 	
 
-	/* 
-	 * We assume that the right answer is in the first in position
-	 * 
-	 * 
-	 */
 	public Answer getRightAnswer()
 	{
-		if(this.answers != null)
-		{
-			return this.answers.get(0);
-		}
 		
-		return null;
+		
+		return this.answers.get(0);
+		
+		
 	}
 	public YesNoQuestion() {}
 	
