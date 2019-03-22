@@ -6,6 +6,7 @@ import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 
@@ -23,8 +24,8 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 @Entity
 public class YesNoQuestion extends MCQuestion {
 
-	public YesNoQuestion(String phrasing, String language, Person author, QuestionType type, Answer rightAnswer, Answer wrongAnswer)
-			throws Exception {
+	public YesNoQuestion(String phrasing, Language language, Person author, QuestionType type, Answer rightAnswer, Answer wrongAnswer)
+	 {
 		
 		super(phrasing, language, author, type);
 		rightAnswer.setQuestionIfNull(this);
@@ -32,12 +33,8 @@ public class YesNoQuestion extends MCQuestion {
 		this.answers = Objects.requireNonNull(answers);
 	}
 	
-	//non-private zero argument constructor
 	
-	public YesNoQuestion()
-	{
-		
-	}
+
 	/* 
 	 * We assume that the right answer is in the first in position
 	 * 

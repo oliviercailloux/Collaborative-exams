@@ -4,6 +4,8 @@ import java.util.Objects;
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 
@@ -19,7 +21,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 @Entity 
 public class TrueFalseQuestion extends MCQuestion {
 
-	public TrueFalseQuestion(String phrasing, String language, Person author, QuestionType type, Answer rightAnswer, Answer wrongAnswer)
+	public TrueFalseQuestion(String phrasing, Language language, Person author, QuestionType type, Answer rightAnswer, Answer wrongAnswer)
 			throws Exception {
 		
 		super(phrasing, language, author, type);

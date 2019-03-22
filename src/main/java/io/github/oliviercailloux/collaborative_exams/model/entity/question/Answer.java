@@ -58,12 +58,12 @@ public class Answer {
 	 *
 	 * @param question the question how have this answer
 	 */
-	public void setQuestionIfNull(IQuestion question) throws Exception {
+	public void setQuestionIfNull(IQuestion question) {
 		if (this.question == null) {
 			this.question = question;
-		} else {
-			throw new Exception("the Answer is already linked to a Question and it's immuable");
 		}
+		
+		
 	}
 
 	public int getId() {

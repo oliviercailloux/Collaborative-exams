@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
@@ -51,7 +52,7 @@ public class FreeQuestion implements IQuestion {
 	 */
 	@XmlElement
 	@Column(nullable = false)
-	private  String language;
+	private  Language language;
 
 	/**
 	 * respresente the Author
@@ -89,7 +90,7 @@ public class FreeQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @Param answer the answer of the free question
 	 */
-	public FreeQuestion(int id, String phrasing, String language, Person author, QuestionType type, Answer answer)
+	public FreeQuestion(int id, String phrasing, Language language, Person author, QuestionType type, Answer answer)
 	{
 		this.id = Objects.requireNonNull(id);
 		this.phrasing = Objects.requireNonNull(phrasing);
@@ -97,11 +98,6 @@ public class FreeQuestion implements IQuestion {
 		this.author = Objects.requireNonNull(author);
 		this.type = Objects.requireNonNull(type);
 		this.answer = Objects.requireNonNull(answer);
-	}
-	
-	
-	public FreeQuestion()
-	{
 	}
 	
 
@@ -121,7 +117,7 @@ public class FreeQuestion implements IQuestion {
 	 * @return String not null.
 	 */
 
-	public String getLanguage() {
+	public Language getLanguage() {
 		return language;
 	}
 

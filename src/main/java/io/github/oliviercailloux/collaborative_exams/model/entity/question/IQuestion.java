@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
@@ -16,9 +17,9 @@ public interface IQuestion {
 	/**
 	 * Returns this Question’s language.
 	 *
-	 * @return String not null.
+	 * @return Language not null.
 	 */
-	public String getLanguage();
+	public Language getLanguage();
 	/**
 	 * Returns this Question’s author.
 	 *

@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 /**
@@ -53,7 +54,7 @@ public class MCQuestion implements IQuestion {
 	 */
 	@XmlElement
 	@Column(nullable = false)
-	private String language;
+	private Language language;
 
 	/**
 	 * respresente the Author
@@ -88,11 +89,6 @@ public class MCQuestion implements IQuestion {
 	/**
 	 * Returns a new Question. Not <code>null</code>.
 	 */
-	public MCQuestion() {
-
-		phrasing = null;
-	}
-
 	
 	/**
 	 * return new MCQ Question
@@ -103,8 +99,8 @@ public class MCQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @param answers  represente the list of answer of the question
 	 */
-	public MCQuestion(String phrasing, String language, Person author, QuestionType type)
-			throws Exception {
+	public MCQuestion(String phrasing, Language language, Person author, QuestionType type)
+	 {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);
@@ -123,8 +119,8 @@ public class MCQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @param answers  represente the list of answer of the question
 	 */
-	public MCQuestion(String phrasing, String language, Person author, QuestionType type, List<Answer> answers)
-			throws Exception {
+	public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers)
+	 {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);
@@ -154,7 +150,7 @@ public class MCQuestion implements IQuestion {
 	 * @return String not null.
 	 */
 
-	public String getLanguage() {
+	public Language getLanguage() {
 		return language;
 	}
 
@@ -197,19 +193,5 @@ public class MCQuestion implements IQuestion {
 			return null;
 
 		return Collections.unmodifiableList(this.answers);
-	}
-
-	public boolean equals(MCQuestion question) {
-
-		if (question == this)
-			return true;
-		if (question != null && (question.getClass().equals(this.getClass()))) {
-
-			return (this.phrasing.equals(question.getPhrasing()) && this.author.equals(question.getAuthor())
-					&& (this.id == question.getId())
-					&& (this.getLanguage().equals(question.getLanguage())));
-
-		}
-		return false;
 	}
 }
