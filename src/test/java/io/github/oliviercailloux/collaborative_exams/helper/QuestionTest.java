@@ -41,7 +41,7 @@ public class QuestionTest {
 	    q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);
 	    person2=new Person(1,"mohamed.hamzaoui@dauphine.eu");
 	    person3=new Person(2,"test@dauphine.eu");
-	    listPerson.add( person2);
+	    listPerson.add(person2);
 	    listPerson.add(person3);
 	 
 			
@@ -89,8 +89,6 @@ public class QuestionTest {
 		String resultat = "";
 		String JsonObejct = QuestionText.ObjectToJson(listPerson);
 		assertNotNull(JsonObejct);
-		System.out.println(JsonObejct);
-
 		URL urlFile = getClass().getResource("/ALlPersonsJson.json");
 		BufferedReader in = new BufferedReader(new InputStreamReader(urlFile.openStream()));
 		String inputLine;
