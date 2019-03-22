@@ -195,4 +195,13 @@ public class MCQuestion implements IQuestion {
 
 		return Collections.unmodifiableList(this.answers);
 	}
+	@Override
+	public List<Answer> getAnswers() {
+		// TODO Auto-generated method stub
+		
+		if (this.answers == null)
+			return null;
+
+		return Collections.unmodifiableList(this.answers);
+	}
 }

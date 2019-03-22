@@ -18,8 +18,7 @@ import com.sun.mail.util.MailLogger;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
 
-
-
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import javax.xml.bind.Marshaller;
 /**
@@ -57,7 +56,7 @@ public class QuestionText {
       * @param question
       * @return Question Json
       */
-	public static String QuestionToJson(Question question) throws Exception {
+	public static String QuestionToJson(IQuestion question) throws Exception {
 	
 	 return  getCreate().toJson(question);
 	}

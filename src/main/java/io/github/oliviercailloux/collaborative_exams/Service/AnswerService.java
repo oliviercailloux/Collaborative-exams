@@ -31,7 +31,7 @@ public class AnswerService {
 	}
 
 	@Transactional
-	public void findAnswer(int id) {
-		em.find(Answer.class, id);
+	public Answer findAnswer(int id) {
+		return em.find(Answer.class, id);
 	}
 }
