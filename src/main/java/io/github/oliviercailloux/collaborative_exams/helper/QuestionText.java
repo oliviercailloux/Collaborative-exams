@@ -9,7 +9,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-
+import javax.json.bind.JsonbConfig;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -18,8 +18,7 @@ import com.sun.mail.util.MailLogger;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
 
-
-
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import javax.xml.bind.Marshaller;
 /**
@@ -89,7 +88,10 @@ public class QuestionText {
 	
 	public static <T> String ObjectToJson(List<T> object) throws Exception {
         
-		return getCreate().toJson(object);
+	       try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+	            return jsonb.toJson(object);
+	        }
+	   
 	}
     
 	/**

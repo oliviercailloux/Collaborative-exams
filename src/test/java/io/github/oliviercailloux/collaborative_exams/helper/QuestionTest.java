@@ -5,8 +5,13 @@ package io.github.oliviercailloux.collaborative_exams.helper;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.net.URL;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -25,15 +30,21 @@ public class QuestionTest {
 	private String jsonQuestion ;
 	private Question q1;
 	private Answer ans;
-	private Person p1,person2;
+	private Person p1,person2,person3;
+	List<Person> listPerson= new ArrayList<Person>();
 	@Before
 	@NotNull
 	public void setUp() throws Exception {
 
 	    p1 = new Person();
-	    person2=new Person("mohamed.hamzaoui@dauphine.eu");
 	    ans =new Answer("True", true);
-		q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);	
+	    q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);
+	    person2=new Person(1,"mohamed.hamzaoui@dauphine.eu");
+	    person3=new Person(2,"test@dauphine.eu");
+	    listPerson.add( person2);
+	    listPerson.add(person3);
+	 
+			
 	}
 
 
@@ -72,6 +83,28 @@ public class QuestionTest {
 			
 			
 		}
+	   
+	@Test
+	public void testObjectToListPersonsJson() throws Exception {
+		String resultat = "";
+		String JsonObejct = QuestionText.ObjectToJson(listPerson);
+		assertNotNull(JsonObejct);
+		System.out.println(JsonObejct);
+
+		URL urlFile = getClass().getResource("/ALlPersonsJson.json");
+		BufferedReader in = new BufferedReader(new InputStreamReader(urlFile.openStream()));
+		String inputLine;
+		while ((inputLine = in.readLine()) != null) {
+			resultat += inputLine + "\n";
+		}
+
+		int lentIndex = resultat.length();
+		lentIndex = resultat.lastIndexOf('\n', lentIndex - 1);
+		String chaine = resultat.substring(0, lentIndex);
+		in.close();
+		assertEquals(JsonObejct, chaine);
+
+	}
 
 	  @Test
 	  public void testObjectToJson() throws Exception{
