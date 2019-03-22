@@ -107,6 +107,7 @@ public class MCQuestion implements IQuestion {
 		this.type = Objects.requireNonNull(type);
 
 	}
+	public MCQuestion() {}
 	
 	
 	

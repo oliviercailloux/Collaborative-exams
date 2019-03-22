@@ -165,6 +165,8 @@ public class FreeQuestion implements IQuestion {
 
 		return this.answer;
 	}
+	
+	public FreeQuestion() {}
 
 
 

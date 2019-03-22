@@ -49,6 +49,7 @@ public class YesNoQuestion extends MCQuestion {
 		
 		return null;
 	}
+	public YesNoQuestion() {}
 	
 	
 }
