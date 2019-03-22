@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import java.io.Serializable;
-import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,9 +15,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Khaled
  */
-@JsonbPropertyOrder({"id", "topic"})
 @Entity
-@XmlRootElement(name = "exam")
+@XmlRootElement(name = "stats")
 public class Stats implements Serializable {
 
     @Id
@@ -31,36 +24,25 @@ public class Stats implements Serializable {
     @XmlAttribute
     private int id;
 
-    //compteur qui s'incremente de 1 chaque choix que cette reponse participe a un QCM
+    //count number of candidates
     @Column(nullable = false)
     @XmlElement
-    private int countParticipat;
+    private int countParticipat = 0;
 
-    //compteur qui s'incremente de 1 chaque choix que cette reponse a été selectionée par un utilisateur
+    //count number of numbre of selection ot answer by candidates
     @Column(nullable = false)
     @XmlElement
-    private int countSelect;
+    private int countSelect = 0;
 
     @OneToOne(mappedBy = "answer")
     private Answer answer;
 
     public Stats() {
-
-    }
-
-    public Stats(Answer answer) {
-        this.answer = answer;
     }
 
     public Stats(int countParticipat, int countSelect) {
         this.countParticipat = countParticipat;
         this.countSelect = countSelect;
-    }
-
-    public Stats(int countParticipat, int countSelect, Answer answer) {
-        this.countParticipat = countParticipat;
-        this.countSelect = countSelect;
-        this.answer = answer;
     }
 
     public int getId() {

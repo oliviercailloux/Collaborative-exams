@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +14,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * It's an immutable class
  *
  * @author Khaled
  */
-@JsonbPropertyOrder({"id", "topic"})
+@JsonbPropertyOrder({"id", "nom"})
 @Entity
 @XmlRootElement(name = "exam")
 public class Exam implements Serializable {
@@ -38,7 +36,11 @@ public class Exam implements Serializable {
 
     @Column(nullable = false)
     @XmlElement
-    private String topic;
+    private String nom;
+
+    @ManyToOne
+    @XmlElement(name = "author")
+    private Person author;
 
     @ManyToMany(cascade = {
         CascadeType.PERSIST,
@@ -48,37 +50,30 @@ public class Exam implements Serializable {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private List<Question> listQuestions = new ArrayList<>();
+    private List<Question> listQuestions;
 
     public Exam() {
 
     }
 
-    public Exam(String topic) {
-        this.topic = topic;
+    public Exam(String nom) {
+        this.nom = nom;
+        this.listQuestions = new ArrayList<>();
     }
 
     public int getId() {
         return id;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getNom() {
+        return nom;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public Person getAuthor() {
+        return author;
     }
 
     public List<Question> getListeQuestions() {
-        if (listQuestions == null) {
-            listQuestions = new ArrayList<>();
-        }
         return listQuestions;
     }
-
-    public void setListeQuestions(List<Question> listeQuestions) {
-        this.listQuestions = listeQuestions;
-    }
-
 }

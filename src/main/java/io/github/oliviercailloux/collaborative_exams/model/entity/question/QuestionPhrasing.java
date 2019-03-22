@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import java.io.Serializable;
@@ -21,10 +16,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * It's an immutable class
  *
  * @author Khaled
  */
-@JsonbPropertyOrder({"id", "topic"})
+@JsonbPropertyOrder({"id", "phrasing"})
 @Entity
 @XmlRootElement(name = "questionPhrasing")
 public class QuestionPhrasing implements Serializable {
@@ -36,40 +32,30 @@ public class QuestionPhrasing implements Serializable {
 
     @Column(nullable = false)
     @XmlElement
-    private String topic;
+    private String phrasing;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> listQuestions = new ArrayList<>();
 
     public QuestionPhrasing() {
+        this.listQuestions = new ArrayList<>();
 
     }
 
     public QuestionPhrasing(String topic) {
-        this.topic = topic;
+        this.listQuestions = new ArrayList<>();
+        this.phrasing = topic;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public String getPhrasing() {
+        return phrasing;
     }
 
     public List<Question> getListeQuestions() {
-        if (listQuestions == null) {
-            listQuestions = new ArrayList<>();
-        }
         return listQuestions;
     }
-
-    public void setListeQuestions(List<Question> listeQuestions) {
-        this.listQuestions = listeQuestions;
-    }
-
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.oliviercailloux.collaborative_exams.Service;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
@@ -37,8 +32,8 @@ public class AnswerQuestionService {
 
     public AnswerQuestion updateCountAnswerSelect(AnswerQuestion answerQuestion) {
         if (!answerQuestion.getAnswer().isCorrect()) {
-            // un condidat a selectionné une reponse Fausse, alors on augmante le membre de selection de 1
             answerQuestion.getAnswer().getStats().setCountSelect(answerQuestion.getAnswer().getStats().getCountSelect() + 1);
+            // this verification is only for test (to not start the server and update the database)
             if (em != null) {
                 em.persist(answerQuestion.getAnswer());
             }

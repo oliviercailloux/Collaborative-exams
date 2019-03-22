@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.oliviercailloux.collaborative_exams.Service;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
@@ -46,8 +41,8 @@ public class ExamService {
         for (Question question : exam.getListeQuestions()) {
             for (Answer answer : question.getAnswers()) {
                 if (!answer.isCorrect()) {
-                    // un Enseignant a fait participé une reponse Fausse, alors on augmante le membre de participation de 1
                     answer.getStats().setCountParticipat(answer.getStats().getCountParticipat() + 1);
+                    // this verification is only for test (to not start the server and update the database)
                     if (em != null) {
                         em.persist(answer);
                     }

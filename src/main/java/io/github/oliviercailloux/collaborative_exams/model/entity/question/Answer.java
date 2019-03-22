@@ -39,7 +39,7 @@ public class Answer implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stats_id", referencedColumnName = "id")
-    private Stats stats;
+    private Stats stats = new Stats();
 
     @Column(nullable = false)
     @XmlElement
@@ -76,9 +76,6 @@ public class Answer implements Serializable {
     }
 
     public Stats getStats() {
-        if (stats == null) {
-            stats = new Stats(0, 0);
-        }
         return stats;
     }
 
