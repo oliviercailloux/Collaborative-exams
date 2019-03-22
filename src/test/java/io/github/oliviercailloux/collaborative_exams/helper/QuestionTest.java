@@ -41,7 +41,7 @@ public class QuestionTest {
 	    q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);
 	    person2=new Person(1,"mohamed.hamzaoui@dauphine.eu");
 	    person3=new Person(2,"test@dauphine.eu");
-	    listPerson.add(person2);
+	    listPerson.add( person2);
 	    listPerson.add(person3);
 	 
 			
@@ -84,25 +84,16 @@ public class QuestionTest {
 			
 		}
 	   
-	@Test
-	public void testObjectToListPersonsJson() throws Exception {
-		String resultat = "";
-		String JsonObejct = QuestionText.ObjectToJson(listPerson);
-		assertNotNull(JsonObejct);
-		URL urlFile = getClass().getResource("/ALlPersonsJson.json");
-		BufferedReader in = new BufferedReader(new InputStreamReader(urlFile.openStream()));
-		String inputLine;
-		while ((inputLine = in.readLine()) != null) {
-			resultat += inputLine + "\n";
-		}
-
-		int lentIndex = resultat.length();
-		lentIndex = resultat.lastIndexOf('\n', lentIndex - 1);
-		String chaine = resultat.substring(0, lentIndex);
-		in.close();
-		assertEquals(JsonObejct, chaine);
-
-	}
+		  @Test 
+		  public void testObjectToListPersonsJson() throws Exception{
+			  String res="";
+			  String ss = "[{\"id\":1,\"email\":\"mohamed.hamzaoui@dauphine.eu\"},{\"id\":2,\"email\":\"test@dauphine.eu\"}]";
+			  String JsonObejct = QuestionText.ObjectToJson(listPerson);
+			  System.out.println(JsonObejct);
+			  assertNotNull(JsonObejct);
+			  assertEquals(JsonObejct, ss);
+			  
+		  }
 
 	  @Test
 	  public void testObjectToJson() throws Exception{

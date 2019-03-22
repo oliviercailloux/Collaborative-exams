@@ -87,10 +87,7 @@ public class QuestionText {
 	}
 	
 	public static <T> String ObjectToJson(List<T> object) throws Exception {
-        
-	       try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-	            return jsonb.toJson(object);
-	        }
+	       return getCreate().toJson(object);
 	   
 	}
     
