@@ -5,8 +5,13 @@ package io.github.oliviercailloux.collaborative_exams.helper;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.net.URL;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -25,15 +30,21 @@ public class QuestionTest {
 	private String jsonQuestion ;
 	private Question q1;
 	private Answer ans;
-	private Person p1,person2;
+	private Person p1,person2,person3;
+	List<Person> listPerson= new ArrayList<Person>();
 	@Before
 	@NotNull
 	public void setUp() throws Exception {
 
 	    p1 = new Person();
-	    person2=new Person("mohamed.hamzaoui@dauphine.eu");
 	    ans =new Answer("True", true);
-		q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);	
+	    q1 =new Question("2 * 2 = 4 ?", "Francais", p1, QuestionType.TF, ans);
+	    person2=new Person(1,"mohamed.hamzaoui@dauphine.eu");
+	    person3=new Person(2,"test@dauphine.eu");
+	    listPerson.add( person2);
+	    listPerson.add(person3);
+	 
+			
 	}
 
 
@@ -72,6 +83,17 @@ public class QuestionTest {
 			
 			
 		}
+	   
+		  @Test 
+		  public void testObjectToListPersonsJson() throws Exception{
+			  String res="";
+			  String ss = "[{\"id\":1,\"email\":\"mohamed.hamzaoui@dauphine.eu\"},{\"id\":2,\"email\":\"test@dauphine.eu\"}]";
+			  String JsonObejct = QuestionText.ObjectToJson(listPerson);
+			  System.out.println(JsonObejct);
+			  assertNotNull(JsonObejct);
+			  assertEquals(JsonObejct, ss);
+			  
+		  }
 
 	  @Test
 	  public void testObjectToJson() throws Exception{
