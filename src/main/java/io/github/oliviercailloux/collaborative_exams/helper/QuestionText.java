@@ -56,7 +56,7 @@ public class QuestionText {
       * @param question
       * @return Question Json
       */
-	public static String QuestionToJson(IQuestion question) throws Exception {
+	public static String QuestionToJson(Question question) throws Exception {
 	
 	 return  getCreate().toJson(question);
 	}

@@ -12,10 +12,9 @@ import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 @RequestScoped
-public class QuestionService {
+public class IQuestionService {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -24,12 +23,12 @@ public class QuestionService {
 	private QueryHelper helper;
 
 	@Transactional
-	public List<Question> getAll() {
-		return em.createQuery(helper.selectAll(Question.class)).getResultList();
+	public List<IQuestion> getAll() {
+		return em.createQuery(helper.selectAll(IQuestion.class)).getResultList();
 	}
 
 	@Transactional
-	public void persist(Question question) {
+	public void persist(IQuestion question) {
 		if (null == em.find(Person.class, question.getAuthor().getId())) {
 			em.persist(question.getAuthor());
 		}
@@ -43,8 +42,8 @@ public class QuestionService {
 	}
 
 	@Transactional
-	public Question findQuestion(int id) throws Exception {
-		Question questionResult = em.find(Question.class, id);
+	public IQuestion findQuestion(int id) throws Exception {
+		IQuestion questionResult = em.find(IQuestion.class, id);
 		if (questionResult == null)
 			throw new Exception("Aucune question correspondante.");
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<question id="0">
+    <phrasing>2 * 2 = 4 ?</phrasing>
+    <language>Francais</language>
+    <author id="0"/>
+    <type>TF</type>
+    <answers>
+        <answer id="0">
+            <correct>true</correct>
+            <text>True</text>
+        </answer>
+    </answers>
+</question>

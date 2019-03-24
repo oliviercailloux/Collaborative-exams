@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
 import io.github.oliviercailloux.collaborative_exams.Service.AnswerService;
+import io.github.oliviercailloux.collaborative_exams.Service.IQuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
@@ -31,7 +32,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.question.YesNo
 public class NewQuestion {
 
 	@Inject
-	private QuestionService questionService;
+	private IQuestionService questionService;
 
 	@Inject
 	private PersonService personService;
@@ -44,7 +45,7 @@ public class NewQuestion {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String addQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
+	public void addQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
 			throws Exception {
 
 		String type = form.getFirst("type");
@@ -135,7 +136,7 @@ public class NewQuestion {
 
 		questionService.persist(question);
 
-		return QuestionText.QuestionToJson(question);
+		//return QuestionText.QuestionToJson(question);
 	}
 
 }
