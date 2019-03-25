@@ -36,7 +36,6 @@ public class Answer implements Serializable {
     @Column(nullable = false)
     @XmlElement
     private boolean correct;
-    
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stats_id", referencedColumnName = "id")
@@ -51,7 +50,7 @@ public class Answer implements Serializable {
     private DifficultyType difficultyType;
 
     @ManyToOne
-    private Question question;
+    private IQuestion question;
 
     public Answer() {
 
@@ -99,7 +98,7 @@ public class Answer implements Serializable {
      * @param question the question how have this answer
      * @throws java.lang.Exception
      */
-    public void setQuestionIfNull(Question question) throws Exception {
+    public void setQuestionIfNull(IQuestion question) throws Exception {
         if (this.question == null) {
             this.question = question;
         } else {
@@ -112,7 +111,7 @@ public class Answer implements Serializable {
     }
 
     @JsonbTransient
-    public Question getQuestion() {
+    public IQuestion getQuestion() {
         return this.question;
     }
 
