@@ -54,7 +54,12 @@ public class Person {
 	 * @param email
 	 */
 	public Person(String email) {
+		this.email = email;
 
+	}
+    
+	public Person(int id,String email) {
+        this.id=id;
 		this.email = email;
 
 	}
@@ -68,6 +73,7 @@ public class Person {
 	public int getId() {
 		return id;
 	}
+	
 
 	/**
 	 * Returns this Person email.

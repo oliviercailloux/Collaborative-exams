@@ -36,6 +36,7 @@ public class Answer implements Serializable {
     @Column(nullable = false)
     @XmlElement
     private boolean correct;
+    
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stats_id", referencedColumnName = "id")
