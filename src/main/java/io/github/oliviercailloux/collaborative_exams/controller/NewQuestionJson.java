@@ -30,7 +30,7 @@ public class NewQuestionJson {
 		Question question = questionAdapter.adaptFromJson(questionJson);
 		questionService.persist(question);
 
-		return QuestionText.questionToJson(question);
+		return QuestionText.QuestionToJson(question);
 	}
 
 }

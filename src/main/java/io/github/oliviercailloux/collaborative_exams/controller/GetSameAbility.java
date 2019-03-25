@@ -42,7 +42,7 @@ public class GetSameAbility {
 
 		SameAbility sameAbility = sameAbilityService.isSameAbility(personService.findPerson(idAuthor),
 				questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
-		return QuestionText.objectToJson(SameAbility.class, sameAbility);
+		return QuestionText.ObjectToJson(SameAbility.class, sameAbility);
 
 	}
 }
