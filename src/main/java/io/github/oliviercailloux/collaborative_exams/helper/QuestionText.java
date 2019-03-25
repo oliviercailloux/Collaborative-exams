@@ -9,6 +9,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -17,6 +18,7 @@ import com.sun.mail.util.MailLogger;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
 
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 import javax.xml.bind.Marshaller;
 /**
@@ -44,7 +46,7 @@ public class QuestionText {
      * @return
      * @throws Exception
      */
-	public static Question jsonToQuestion(String json) throws Exception {
+	public static Question JsonToQuestion(String json) throws Exception {
 
 		  return getCreate().fromJson(json, Question.class);
 		
@@ -54,7 +56,7 @@ public class QuestionText {
       * @param question
       * @return Question Json
       */
-	public static String questionToJson(Question question) throws Exception {
+	public static String QuestionToJson(Question question) throws Exception {
 	
 	 return  getCreate().toJson(question);
 	}
@@ -68,7 +70,7 @@ public class QuestionText {
       * @return Object <T>
       * @throws Exception
       */
-	public static <T> T jsonToObject(Class<T> className, String json) throws Exception {
+	public static <T> T JsonToObject(Class<T> className, String json) throws Exception {
 		
 			return getCreate().fromJson(json, className);
 	}
@@ -80,11 +82,11 @@ public class QuestionText {
 	 * @return
 	 * @throws Exception
 	 */
-	public static <T> String objectToJson(Class<T> className,T object) throws Exception {
+	public static <T> String ObjectToJson(Class<T> className,T object) throws Exception {
 		 return  getCreate().toJson(object);
 	}
 	
-	public static <T> String objectToJson(List<T> object) throws Exception {
+	public static <T> String ObjectToJson(List<T> object) throws Exception {
 	       return getCreate().toJson(object);
 	   
 	}
@@ -95,7 +97,7 @@ public class QuestionText {
 	 * @return Json String
 	 * @throws Exception
 	 */
-	public static String questionsToJson(List<Question> question) throws Exception {
+	public static String QuestionsToJson(List<Question> question) throws Exception {
           
 		return getCreate().toJson(question);
 	}
@@ -107,7 +109,7 @@ public class QuestionText {
 	 * @throws Exception
 	 */
 	
-	public <T> List <T> jsonToObjectList(String json,Class <T []> className) throws Exception{
+	public <T> List <T> JsonToObjectList(String json,Class <T []> className) throws Exception{
 		T[] objects= getCreate().fromJson(json, className);
 		return Arrays.asList(objects);
 	}
@@ -118,7 +120,7 @@ public class QuestionText {
 	 * @throws Exception
 	 */
 	
-	public <T> String objectListToJson(List <T []> objets) throws Exception{
+	public <T> String ObjectListToJson(List <T []> objets) throws Exception{
 		String objects =  getCreate().toJson(objets);
 		return  objects;
 	
