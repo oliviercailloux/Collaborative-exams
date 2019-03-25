@@ -172,10 +172,6 @@ public class FreeQuestion implements IQuestion {
 	public List<Answer> getAnswers() {
 		
 		List<Answer> answers= new ArrayList<Answer>(); 
-
-		if (this.answer == null)
-			return null;
-
 		answers.add(this.answer);
 		return answers;
 	}

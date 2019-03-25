@@ -39,7 +39,7 @@ public class QuestionTest {
 
 	@Test
 	public void testQuestionToJson() throws Exception{
-		jsonQuestion= QuestionText.QuestionToJson(q1);
+		jsonQuestion= QuestionText.questionToJson(q1);
 		assertNotNull(jsonQuestion);
 		JsonReader reader = Json.createReader(new StringReader(jsonQuestion));
 		JsonObject jsonObject = reader.readObject();
@@ -49,7 +49,7 @@ public class QuestionTest {
 	@Test
 	public void testJsonToQuestion() throws Exception{
     jsonQuestion  =" {\"id\":0,\"author\":{\"id\":0},\"phrasing\":\"2 * 2 = 4 ?\",\"language\":\"Francais\",\"type\":\"TF\",\"answers\":[{\"id\":0,\"text\":\"True\",\"correct\":true}],\"correct\":false}";
-	Question testQuestionconvert= 	QuestionText.JsonToQuestion(jsonQuestion);
+	Question testQuestionconvert= 	QuestionText.jsonToQuestion(jsonQuestion);
 	assertNotNull(testQuestionconvert);
 
 	}
@@ -67,7 +67,7 @@ public class QuestionTest {
 	   @Test
 		public void testJsonToObject() throws Exception{
 			jsonQuestion  =" {\"id\":0,\"author\":{\"id\":0},\"phrasing\":\"2 * 2 = 4 ?\",\"language\":\"Francais\",\"type\":\"TF\",\"answers\":[{\"id\":0,\"text\":\"True\",\"correct\":true}],\"correct\":false}";
-			Object jsOb = QuestionText.JsonToObject(Question.class, jsonQuestion);
+			Object jsOb = QuestionText.jsonToObject(Question.class, jsonQuestion);
 			assertNotNull(jsOb);
 			
 			
@@ -75,7 +75,7 @@ public class QuestionTest {
 
 	  @Test
 	  public void testObjectToJson() throws Exception{
-	    String JsonObejct= QuestionText.ObjectToJson(Person.class,person2);
+	    String JsonObejct= QuestionText.objectToJson(Person.class,person2);
 	     assertNotNull(JsonObejct);
 		JsonReader reader = Json.createReader(new StringReader(JsonObejct));
 		JsonObject jsonObject = reader.readObject();

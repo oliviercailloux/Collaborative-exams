@@ -38,7 +38,7 @@ public class NewPerson {
 		Person author = new Person(email);
 		personService.persist(author);
 
-		return QuestionText.ObjectToJson(Person.class, author);
+		return QuestionText.objectToJson(Person.class, author);
 	}
 
 }

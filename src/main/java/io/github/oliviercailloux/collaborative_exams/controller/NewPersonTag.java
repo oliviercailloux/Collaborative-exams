@@ -46,7 +46,7 @@ public class NewPersonTag {
 				personService.findPerson(idAuthor), tag);
 		personTagService.persist(personTag);
 
-		return QuestionText.ObjectToJson(PersonTag.class, personTag);
+		return QuestionText.objectToJson(PersonTag.class, personTag);
 
 	}
 

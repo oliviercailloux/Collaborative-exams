@@ -13,21 +13,18 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 
-import com.sun.mail.util.MailLogger;
-import java.util.logging.Logger;
 import javax.xml.namespace.QName ;
 
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 import javax.xml.bind.Marshaller;
 /**
  * 
- * @author Mohamed
+ * @author Amine
  *
  */
 @ApplicationScoped
-public class QuestionText {
+public class IQuestionText {
 
-	private static final Logger LOGGER = Logger.getLogger(MailLogger.class.getName());
 	
 	/**
 	 * 
@@ -44,9 +41,9 @@ public class QuestionText {
      * @return
      * @throws Exception
      */
-	public static Question jsonToQuestion(String json) throws Exception {
+	public static IQuestion jsonToQuestion(String json) throws Exception {
 
-		  return getCreate().fromJson(json, Question.class);
+		  return getCreate().fromJson(json, IQuestion.class);
 		
 	}
      /**
@@ -54,7 +51,7 @@ public class QuestionText {
       * @param question
       * @return Question Json
       */
-	public static String questionToJson(Question question) throws Exception {
+	public static String questionToJson(IQuestion question) throws Exception {
 	
 	 return  getCreate().toJson(question);
 	}
@@ -95,7 +92,7 @@ public class QuestionText {
 	 * @return Json String
 	 * @throws Exception
 	 */
-	public static String questionsToJson(List<Question> question) throws Exception {
+	public static String questionsToJson(List<IQuestion> question) throws Exception {
           
 		return getCreate().toJson(question);
 	}

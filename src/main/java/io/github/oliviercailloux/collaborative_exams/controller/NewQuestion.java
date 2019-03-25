@@ -16,9 +16,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import io.github.oliviercailloux.collaborative_exams.Service.AnswerService;
 import io.github.oliviercailloux.collaborative_exams.Service.IQuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
-import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
-import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
-import io.github.oliviercailloux.collaborative_exams.model.entity.Language.ConvertLanguage;
+import io.github.oliviercailloux.collaborative_exams.helper.IQuestionText;
+import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.FreeQuestion;
@@ -43,9 +42,9 @@ public class NewQuestion {
 
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public void addQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
+	public String addQuestion(MultivaluedMap<String, String> form, @CookieParam("authorId") Cookie cookie)
 			throws Exception {
 
 		String type = form.getFirst("type");
@@ -95,7 +94,7 @@ public class NewQuestion {
 
 
 
-			question = new TrueFalseQuestion(phrasing, ConvertLanguage.convertLanguage(language), author, qType, answer1, answer2);
+			question = new TrueFalseQuestion(phrasing, Language.valueOf(language), author, qType, answer1, answer2);
 			break;
 
 		case "YN":
@@ -107,14 +106,14 @@ public class NewQuestion {
 			 answer1 = answerService.findAnswer(idAnswer1);
 			 answer2 = answerService.findAnswer(idAnswer2);
 			
-			 question = new YesNoQuestion(phrasing, ConvertLanguage.convertLanguage(language), author, qType, answer1, answer2);
+			 question = new YesNoQuestion(phrasing, Language.valueOf(language), author, qType, answer1, answer2);
 			break;
 
 		case "Free":
 			qType = QuestionType.Free;
 			int idAnswer = Integer.valueOf(form.getFirst("idAnswer"));
 			Answer answer = answerService.findAnswer(idAnswer);
-			question = new FreeQuestion(phrasing, ConvertLanguage.convertLanguage(language), author, qType, answer);
+			question = new FreeQuestion(phrasing,Language.valueOf(language), author, qType, answer);
 			break;
 
 		case "QCM":
@@ -126,7 +125,7 @@ public class NewQuestion {
 				 answer = answerService.findAnswer(Integer.parseInt(s));
 				 answers.add(answer);
 			}
-			question = new MCQuestion(phrasing, ConvertLanguage.convertLanguage(language), author, qType, answers);
+			question = new MCQuestion(phrasing,Language.valueOf(language), author, qType, answers);
 			break;
 
 		default:
@@ -136,7 +135,7 @@ public class NewQuestion {
 
 		questionService.persist(question);
 
-		//return QuestionText.QuestionToJson(question);
+		return IQuestionText.questionToJson(question);
 	}
 
 }

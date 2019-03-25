@@ -35,7 +35,7 @@ public class GetPersonalTag {
 		List<PersonTag> tags = persontagservice.getAll();
 		String result = "";
 		for (PersonTag p : tags)
-			result += QuestionText.ObjectToJson(PersonTag.class, p);
+			result += QuestionText.objectToJson(PersonTag.class, p);
 		return result;
 	}
 
@@ -50,7 +50,7 @@ public class GetPersonalTag {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getPersonTag(@PathParam("id") int id) throws Exception {
 		PersonTag tags = persontagservice.findPersonTag(id);
-		return QuestionText.ObjectToJson(PersonTag.class, tags);
+		return QuestionText.objectToJson(PersonTag.class, tags);
 	}
 
 }

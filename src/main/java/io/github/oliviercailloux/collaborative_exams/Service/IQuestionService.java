@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
-import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 
@@ -29,9 +28,7 @@ public class IQuestionService {
 
 	@Transactional
 	public void persist(IQuestion question) {
-		if (null == em.find(Person.class, question.getAuthor().getId())) {
-			em.persist(question.getAuthor());
-		}
+		em.persist(question.getAuthor());
 		em.persist(question);
 
 		for (Answer a : question.getAnswers()) {
@@ -45,7 +42,7 @@ public class IQuestionService {
 	public IQuestion findQuestion(int id) throws Exception {
 		IQuestion questionResult = em.find(IQuestion.class, id);
 		if (questionResult == null)
-			throw new Exception("Aucune question correspondante.");
+			throw new IllegalArgumentException("Aucune question correspondante.");
 
 		return questionResult;
 	}

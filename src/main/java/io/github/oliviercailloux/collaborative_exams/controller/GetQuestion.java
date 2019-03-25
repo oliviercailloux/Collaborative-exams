@@ -12,15 +12,20 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
-import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.Service.IQuestionService;
+import io.github.oliviercailloux.collaborative_exams.helper.IQuestionText;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 
-@Path("Questions")
+/*
+ * 
+ * @author Amine BOUKALA
+ */
+
+@Path("IQuestions")
 public class GetQuestion {
 
 	@Inject
-	QuestionService questionService;
+	IQuestionService questionService;
 
 	@Context
 	HttpServletRequest request;
@@ -30,8 +35,8 @@ public class GetQuestion {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getQuestions() throws Exception {
-		List<Question> questions = questionService.getAll();
-		return QuestionText.QuestionsToJson(questions);
+		List<IQuestion> questions = questionService.getAll();
+		return IQuestionText.questionsToJson(questions);
 	}
 
 	@Path("/get")
@@ -39,7 +44,7 @@ public class GetQuestion {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getQuestion(@QueryParam("id") int id) throws Exception {
-		Question question = questionService.findQuestion(id);
-		return QuestionText.QuestionToJson(question);
+		IQuestion question = questionService.findQuestion(id);
+		return IQuestionText.questionToJson(question);
 	}
 }

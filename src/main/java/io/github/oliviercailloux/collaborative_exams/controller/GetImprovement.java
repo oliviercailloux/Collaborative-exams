@@ -34,7 +34,7 @@ public class GetImprovement {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getImprovement(@PathParam("id") int id) throws Exception {
 		Improvement improvement = improvementService.findImprovement(id);
-		return QuestionText.ObjectToJson(Improvement.class, improvement);
+		return QuestionText.objectToJson(Improvement.class, improvement);
 	}
 
 }
