@@ -22,7 +22,7 @@ public class ChangeQuestionLanguaugeTest {
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
-		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams-0.0.1.war")
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage());
 		return war;
 	}
