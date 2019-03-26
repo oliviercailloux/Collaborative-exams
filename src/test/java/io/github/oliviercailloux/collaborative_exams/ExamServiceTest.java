@@ -53,7 +53,9 @@ public class ExamServiceTest extends TestCase {
         exam.getListeQuestions().add(question2);
         exam.getListeQuestions().add(question3);
 
-        new ExamService().updateCountParticipeForEachAnswer(exam);
+        ExamService examService = new ExamService();
+        examService.setTestMode(true);
+        examService.updateCountParticipeForEachAnswer(exam);
     }
 
     public void testIncrementCountParticipate() {

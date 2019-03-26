@@ -16,6 +16,8 @@ import javax.transaction.Transactional;
  */
 public class ExamService {
 
+    private boolean testMode = false;
+
     @PersistenceContext
     private EntityManager em;
 
@@ -37,13 +39,17 @@ public class ExamService {
         em.find(Exam.class, id);
     }
 
+    public void setTestMode(boolean testMode) {
+        this.testMode = testMode;
+    }
+
     public Exam updateCountParticipeForEachAnswer(Exam exam) {
         for (Question question : exam.getListeQuestions()) {
             for (Answer answer : question.getAnswers()) {
                 if (!answer.isCorrect()) {
                     answer.getStats().setCountParticipat(answer.getStats().getCountParticipat() + 1);
                     // this verification is only for test (to not start the server and update the database)
-                    if (em != null) {
+                    if (!testMode) {
                         em.persist(answer);
                     }
                 }

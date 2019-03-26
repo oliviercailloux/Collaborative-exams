@@ -90,12 +90,14 @@ public class Question {
 	 * Represent the possible answers of a MQC Question
 	 */
 
-	//@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
 	@XmlElementWrapper(name = "answers")
 	@XmlElement(name = "answer")
 	private List<Answer> answers;
 
 	    @ManyToMany(mappedBy = "listQuestions")
+//            @XmlElementWrapper(name = "listExams")
+//	@XmlElement(name = "listExams")
     private List<Exam> listExams = new ArrayList<>();
 
     /**
@@ -259,8 +261,5 @@ public class Question {
         return listExams;
     }
 
-    public void setListExams(List<Exam> listExams) {
-        this.listExams = listExams;
-    }
 
 }
