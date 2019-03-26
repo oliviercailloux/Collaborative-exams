@@ -108,9 +108,9 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 *Alexandre*
 
 * Correction des warnings et exceptions au cours du build (0,5)
-[RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
-[RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
-[A CORRIGER] :
+* [RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
+* [RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
+* [A CORRIGER] :
 Travis indique un warning (Deprecated) lors du déploiement
 SEVERE: Exception during lifecycle processing
 org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
@@ -154,7 +154,7 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Alexandre*
 
-Fonctionnalité "UseDB" déplacée en itération 3 car bug d'indisponibilité du service de BDD sur IBM Cloud. Non résolu même après tickets au support d'IBM Cloud, question sur Github, et question sur travis-ci.community
+* Fonctionnalité "UseDB" déplacée en itération 3 car bug d'indisponibilité du service de BDD sur IBM Cloud. Non résolu même après tickets au support d'IBM Cloud, question sur Github, et question sur travis-ci.community
 * UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
 * Datavisualisation : Dashboards sur les données de la BDD. (1)
 
