@@ -18,7 +18,8 @@ public class QuestionTextTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
-				.addPackage(QuestionTextTest.class.getPackage());
+				.addPackage(QuestionTextTest.class.getPackage())
+				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 		return war;
 	}
 
