@@ -107,7 +107,6 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 
 *Alexandre*
 
-* 
 * Correction des warnings et exceptions au cours du build (0,5)
 [RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
 [RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
