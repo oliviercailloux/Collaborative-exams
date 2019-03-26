@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement(name = "stats")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Stats implements Serializable {
 
     @Id
@@ -25,13 +28,13 @@ public class Stats implements Serializable {
     private int id;
 
     //count number of candidates
-    @Column(nullable = false)
     @XmlElement
+    @Column(nullable = false)
     private int countParticipat = 0;
 
     //count number of numbre of selection ot answer by candidates
-    @Column(nullable = false)
     @XmlElement
+    @Column(nullable = false)
     private int countSelect = 0;
 
     @OneToOne(mappedBy = "answer")

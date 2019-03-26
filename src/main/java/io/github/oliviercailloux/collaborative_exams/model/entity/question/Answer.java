@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,9 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Answer is immuable, you can add the question the first time
  */
-@JsonbPropertyOrder({"id", "text", "correct"})
+@JsonbPropertyOrder({"id", "text", "correct", "difficultyType", "question"})
 @Entity
 @XmlRootElement(name = "answer")
+@XmlAccessorType(XmlAccessType.NONE)
 @NamedQueries({
     @NamedQuery(name = "Answer.findByIdQuestion", query = "SELECT a FROM Answer a WHERE a.question.id = :idQuestion ")})
 public class Answer implements Serializable {
