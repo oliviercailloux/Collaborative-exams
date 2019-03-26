@@ -43,19 +43,11 @@ public class QuestionService {
 	}
 
 	@Transactional
-	public Question findQuestion(int id) throws Exception {
-		Question questionResult = em.find(Question.class, id);
-		if (questionResult == null)
-			throw new Exception("Aucune question correspondante.");
-
-		return questionResult;
-	}
-
-	public Question findById(Integer id) {
+	public Question findQuestion(Integer id) {
 		Question question = em.find(Question.class, id);
 		if (question == null) {
 			throw new EntityNotFoundException(
-					"Impossible de trouver la question ayant l'id :  " + id + ". Merci de corriger votre demande.");
+					"Unable to find valid id :  " + id + ". Please, make a new request with valid id.");
 		}
 		return question;
 	}
