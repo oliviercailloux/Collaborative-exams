@@ -21,6 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * This Class represents Question
@@ -33,6 +35,8 @@ import javax.persistence.ManyToMany;
 
 @XmlRootElement
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Question.findByListIdQuestion", query = "SELECT q FROM Question q WHERE q.id in (:listIdQuestion) ")})
 public class Question {
 
 	@Id

@@ -43,6 +43,13 @@ public class ExamService {
         this.testMode = testMode;
     }
 
+    public void constructExam(Exam exam, List<Integer> listIdQuestion) {
+        List<Question> listQuestion = em.createNamedQuery("Question.findByListIdQuestion").setParameter("listIdQuestion", listIdQuestion).getResultList();
+        for (Question q : listQuestion) {
+            exam.getListeQuestions().add(q);
+        }
+    }
+
     public Exam updateCountParticipeForEachAnswer(Exam exam) {
         for (Question question : exam.getListeQuestions()) {
             for (Answer answer : question.getAnswers()) {
