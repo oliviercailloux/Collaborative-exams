@@ -24,7 +24,7 @@ public class ChangeQuestionLanguaugeTest {
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage())
-				.addAsManifestResource(EmptyAsset.INSTANCE, "WEB-INF/beans.xml");
+				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 		return war;
 	}
 
