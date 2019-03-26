@@ -98,7 +98,18 @@
             <artifactId>javax.json</artifactId>
             <version>1.1</version>
         </dependency>
-        
+             
+         <dependency>
+             <groupId>org.apache.deltaspike.core</groupId>
+             <artifactId>deltaspike-core-api</artifactId>
+             <scope>compile</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.apache.deltaspike.core</groupId>
+             <artifactId>deltaspike-core-impl</artifactId>
+             <scope>runtime</scope>
+         </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -110,32 +121,17 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+        
+            <dependency>
+                     <groupId>org.apache.deltaspike.distribution</groupId>
+                     <artifactId>distributions-bom</artifactId>
+                     <version>${deltaspike.version}</version>
+                     <type>pom</type>
+                     <scope>import</scope>
+            </dependency>                 
+                 
         </dependencies>
     </dependencyManagement>
-         
- <dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.deltaspike.distribution</groupId>
-            <artifactId>distributions-bom</artifactId>
-            <version>${deltaspike.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-
-<dependency>
-    <groupId>org.apache.deltaspike.core</groupId>
-    <artifactId>deltaspike-core-api</artifactId>
-    <scope>compile</scope>
-</dependency>
-
-<dependency>
-    <groupId>org.apache.deltaspike.core</groupId>
-    <artifactId>deltaspike-core-impl</artifactId>
-    <scope>runtime</scope>
-</dependency>
 
     <build>
         <finalName>${project.artifactId}</finalName>
