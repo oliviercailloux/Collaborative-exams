@@ -9,7 +9,6 @@ import javax.ws.rs.client.ClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset; 
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -26,7 +25,6 @@ public class GetQuestionTest {
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(GetQuestionTest.class.getPackage())
-				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
 				.addPackages(true, "org.apache.deltaspike")
 				.addAsWebInfResource("beans.xml");
 		return war;
