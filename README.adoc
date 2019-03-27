@@ -107,7 +107,7 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 
 *Alexandre*
 
-* Correction des warnings et exceptions au cours du build (0,5)
+* Correction des warnings et exceptions au cours du build (0,25)
 * [RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
 * [RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
 
@@ -148,15 +148,17 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Alexandre*
 
-* Correction de l'exception déplacée en itération 3 car solution non trouvée : BESOIN D'AIDE
-* Correction des warnings et exceptions au cours du build (0,5)
+* Correction des warnings et exceptions au cours du build. Correction de l'exception déplacée en itération 3 car solution non trouvée : BESOIN D'AIDE (0,5)
 * [A CORRIGER] :
 Travis indique un warning (Deprecated) lors du déploiement
 SEVERE: Exception during lifecycle processing
 org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
 Exception 0 :
 java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
-* Fonctionnalité "UseDB" déplacée en itération 3 car bug d'indisponibilité du service de BDD sur IBM Cloud. Non résolu même après tickets au support d'IBM Cloud, question sur Github, et question sur travis-ci.community
+* Recherche sur les bugs concernant la fonctionnalité "UseDB" (0,5)
+* Fonctionnalité "UseDB" déplacée en itération 3 du fait de deux problèmes arrivés l'un après l'autre qui ne m'ont pas permis de faire des tests. Problème 1 : déploiement échoue sans erreur même après questions sur stackoverflow et travis-ci.community. Problème 2 : indisponibilité du service de BDD sur IBM Cloud non résolu même après tickets au support d'IBM Cloud (je vous montrerai lorsque nous nous verrons).
+https://stackoverflow.com/questions/55114271/travis-ci-deployment-of-a-jax-rs-application-fails-without-any-error
+https://travis-ci.community/t/deployment-of-a-jax-rs-application-fails-without-any-error/2622
 * UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
 * Datavisualisation : Dashboards sur les données de la BDD. (1)
 
