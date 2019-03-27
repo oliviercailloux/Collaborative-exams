@@ -128,29 +128,7 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-        
-            <dependency>
-                     <groupId>org.apache.deltaspike.distribution</groupId>
-                     <artifactId>distributions-bom</artifactId>
-                     <version>1.8.2</version>
-                     <type>pom</type>
-                     <scope>import</scope>
-            </dependency>
-                 
-         <dependency>
-             <groupId>org.apache.deltaspike.core</groupId>
-             <artifactId>deltaspike-core-api</artifactId>
-             <type>pom</type>
-             <scope>import</scope>
-         </dependency>
-
-         <dependency>
-             <groupId>org.apache.deltaspike.core</groupId>
-             <artifactId>deltaspike-core-impl</artifactId>
-             <type>pom</type>
-             <scope>import</scope>
-         </dependency>
-        </dependencies>
+         </dependencies>
     </dependencyManagement>
 
     <build>
