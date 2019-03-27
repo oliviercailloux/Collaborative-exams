@@ -1,6 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
-import java.io.File;
+//import java.io.File;
 
 import java.net.URL;
 import java.util.logging.Logger;
@@ -14,14 +14,24 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset; 
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-//import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-//import org.jboss.shrinkwrap.resolver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class ChangeQuestionLanguaugeTest {
+	
+	@SuppressWarnings("unused")
+	private static final Logger LOGGER = Logger.getLogger(ChangeQuestionLanguaugeTest.class.getCanonicalName());
 
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() {
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
+				.addPackage(NewQuestionTest.class.getPackage())
+				.addPackages(true, "org.apache.deltaspike")
+				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
+
+	return war;
+/*
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(ChangeQuestionLanguaugeTest.class.getCanonicalName());
 
@@ -32,6 +42,7 @@ public class ChangeQuestionLanguaugeTest {
 		//final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war").addPackage(ChangeQuestionLanguaugeTest.class.getPackage()).addPackages(true, "org.apache.deltaspike").addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml").addAsLibraries(libs);
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war").addPackage(ChangeQuestionLanguaugeTest.class.getPackage()).addPackages(true, "org.apache.deltaspike").addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 		return war;
+		*/
 	}
 
 	@ArquillianResource
