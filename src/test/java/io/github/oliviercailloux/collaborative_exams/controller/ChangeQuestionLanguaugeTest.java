@@ -26,7 +26,7 @@ public class ChangeQuestionLanguaugeTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
-				.addPackage(NewQuestionTest.class.getPackage())
+				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage())
 				.addPackages(true, "org.apache.deltaspike")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 
