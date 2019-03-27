@@ -29,8 +29,8 @@ public class ChangeQuestionLanguaugeTest {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage())
 				.addPackages(true, "org.apache.deltaspike")
-				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
-				.addAsLibraries(libs)
+				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml")
+				.addAsLibraries(libs);
 		return war;
 	}
 
