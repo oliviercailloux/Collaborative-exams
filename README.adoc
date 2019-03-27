@@ -149,9 +149,8 @@ Ceci n'inclue pas la partie correction d'examen
 *Alexandre*
 
 * [BESOIN D'AIDE] Correction de l'exception au cours du build décrite ci-dessous déplacée en itération 3 car solution non trouvée (0,5)
-* [A CORRIGER] 
-Travis indique un warning (Deprecated) lors du déploiement
-SEVERE: Exception during lifecycle processing
+* [A CORRIGER] Travis indique un warning (Deprecated) lors du déploiement
+* SEVERE: Exception during lifecycle processing
 org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
 Exception 0 :
 java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
