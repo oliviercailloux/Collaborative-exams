@@ -16,9 +16,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.QuestionAdapter;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.JsonArray;
-import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -28,9 +29,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 
 @Path("ExportPdf")
+@RequestScoped
 public class GetListExamenQuestion {
-
-	private Document document;
 
 	final Font Title = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD);
 	final Font Subtitles = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
@@ -44,7 +44,7 @@ public class GetListExamenQuestion {
 		return cell;
 	}
 
-	public Document createTitleDocument() throws DocumentException {
+	public Document createTitleDocument(Document document) throws DocumentException {
 		document.open();
 		PdfPTable table = new PdfPTable(3);
 		table.setWidthPercentage(100);
@@ -70,22 +70,19 @@ public class GetListExamenQuestion {
 		return document;
 	}
 
-	public Document createBodyDocument(JsonArray questionIdsAsJson) throws DocumentException {
+	public Document createBodyDocument(JsonArray questionIdsAsJson, Document document) throws DocumentException {
 		document.open();
 		for (int i = 0; i < questionIdsAsJson.size(); i++) {
-			try {
-				// Find an question that is not exists in the database will
-				// throw an exception.
-				Question question = questionService.findQuestion(questionIdsAsJson.getInt(i));
-				Paragraph preface = new Paragraph("", Title);
-				PdfPTable table0 = new PdfPTable(3);
-				table0.setWidthPercentage(100);
-				table0.addCell(getCell(question.getPhrasing(), PdfPCell.ALIGN_LEFT));
-				document.add(table0);
-				document.add(preface);
-			} catch (EntityNotFoundException e) {
-				e.getMessage();
-			}
+			// Find an question that is not exists in the database will
+			// throw an exception.
+			Question question = questionService.findQuestion(questionIdsAsJson.getInt(i));
+			Paragraph preface = new Paragraph("", Title);
+			PdfPTable table0 = new PdfPTable(3);
+			table0.setWidthPercentage(100);
+			table0.addCell(getCell(question.getPhrasing(), PdfPCell.ALIGN_LEFT));
+			document.add(table0);
+			document.add(preface);
+
 		}
 		document.close();
 		return document;
@@ -102,14 +99,15 @@ public class GetListExamenQuestion {
 	@Produces("application/pdf")
 	public Response asPdf(JsonArray questionIdsAsJson) throws IOException, DocumentException {
 
+		Document document = new Document();
 		File file = new File("C:\\tmp\\givelistExamenQuestion.pdf");
 		FileInputStream fileInputStream = new FileInputStream(file);
 		PdfWriter.getInstance(document, new FileOutputStream(file));
 		ResponseBuilder responseBuilder = Response.ok((Object) fileInputStream);
 		responseBuilder.type("application/pdf");
 		responseBuilder.header("Content-Disposition", "filename=givelistExamenQuestion.pdf");
-		document = createTitleDocument();
-		document = createBodyDocument(questionIdsAsJson);
+		createTitleDocument(document);
+		createBodyDocument(questionIdsAsJson, document);
 		return responseBuilder.build();
 
 	}
