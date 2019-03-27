@@ -148,8 +148,8 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Alexandre*
 
-* Correction des warnings et exceptions au cours du build. Correction de l'exception déplacée en itération 3 car solution non trouvée : BESOIN D'AIDE (0,5)
-* [A CORRIGER] :
+* [BESOIN D'AIDE] Correction de l'exception au cours du build décrite ci-dessous déplacée en itération 3 car solution non trouvée (0,5)
+* [A CORRIGER] 
 Travis indique un warning (Deprecated) lors du déploiement
 SEVERE: Exception during lifecycle processing
 org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
@@ -159,8 +159,8 @@ java.lang.IllegalStateException: Could not find beans for Type=class org.apache.
 * Fonctionnalité "UseDB" déplacée en itération 3 du fait de deux problèmes arrivés l'un après l'autre qui ne m'ont pas permis de faire des tests. Problème 1 : déploiement échoue sans erreur même après questions sur stackoverflow et travis-ci.community. Problème 2 : indisponibilité du service de BDD sur IBM Cloud non résolu même après tickets au support d'IBM Cloud (je vous montrerai lorsque nous nous verrons).
 https://stackoverflow.com/questions/55114271/travis-ci-deployment-of-a-jax-rs-application-fails-without-any-error
 https://travis-ci.community/t/deployment-of-a-jax-rs-application-fails-without-any-error/2622
-* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
-* Datavisualisation : Dashboards sur les données de la BDD. (1)
+* [A FAIRE si bug service BDD résolu] UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
+* [A FAIRE si UseDB terminé] Datavisualisation : Dashboards sur les données de la BDD. (1)
 
 = URL du site web
 
