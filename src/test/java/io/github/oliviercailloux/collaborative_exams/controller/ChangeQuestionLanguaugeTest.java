@@ -27,7 +27,7 @@ public class ChangeQuestionLanguaugeTest {
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
-		final File[] libs = Maven.resolver().loadPomFromFile("pom.xml")importRuntimeAndTestDependencies().resolve().withTransitivity().asFile();
+		final File[] libs = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeAndTestDependencies().resolve().withTransitivity().asFile();
 		
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war").addPackage(ChangeQuestionLanguaugeTest.class.getPackage()).addPackages(true, "org.apache.deltaspike").addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml").addAsLibraries(libs);
 		return war;
