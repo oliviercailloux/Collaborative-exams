@@ -20,6 +20,8 @@ public class QuestionTextTest {
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(QuestionTextTest.class.getPackage())
+				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
+				.addPackages(true, "org.apache.deltaspike")
 				.addAsWebInfResource("beans.xml");
 		return war;
 	}
