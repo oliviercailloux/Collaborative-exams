@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -21,9 +20,8 @@ public class QuestionTextTest {
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(QuestionTextTest.class.getPackage())
-				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
 				.addPackages(true, "org.apache.deltaspike")
-				.addAsWebInfResource("beans.xml");
+				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 		return war;
 	}
 
