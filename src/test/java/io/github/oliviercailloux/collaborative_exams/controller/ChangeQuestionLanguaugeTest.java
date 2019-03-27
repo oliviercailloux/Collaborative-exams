@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
+import java.io.File;
+
 import java.net.URL;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset; 
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
