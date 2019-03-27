@@ -148,7 +148,7 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Alexandre*
 
-* Correction de l'exception déplacée en itération 3 car solution non trouvée
+* Correction de l'exception déplacée en itération 3 car solution non trouvée : BESOIN D'AIDE
 * Correction des warnings et exceptions au cours du build (0,5)
 * [A CORRIGER] :
 Travis indique un warning (Deprecated) lors du déploiement
