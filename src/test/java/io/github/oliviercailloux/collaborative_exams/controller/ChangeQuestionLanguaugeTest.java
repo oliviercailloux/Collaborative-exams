@@ -27,7 +27,7 @@ public class ChangeQuestionLanguaugeTest {
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
-		final File[] libs = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().resolve()
+		final File[] libs = Maven.resolver().loadPomFromFile("pom.xml")importRuntimeAndTestDependencies().resolve()
 				.withTransitivity().asFile();
 		
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
