@@ -25,8 +25,6 @@ public class GetQuestionTest {
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(GetQuestionTest.class.getPackage())
-				.addPackages(true, "org.apache.deltaspike")
-				.addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 		return war;
 	}
 
