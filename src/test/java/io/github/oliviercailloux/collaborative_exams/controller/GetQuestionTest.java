@@ -24,7 +24,7 @@ public class GetQuestionTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
-				.addPackage(GetQuestionTest.class.getPackage())
+				.addPackage(GetQuestionTest.class.getPackage());
 		return war;
 	}
 
