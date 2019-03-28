@@ -125,13 +125,10 @@ java.lang.IllegalStateException: Could not find beans for Type=class org.apache.
 
 *Amine*
 
-* Gérer la relation Improvement
-* Gérer la relation asSubtleAs
-* Créer les interfaces nécessaires
+* ServletAbilities
 
-* Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
+Stocker une relation « same ability » entre questions, associée à une personne. Une personne peut indiquer qu’une question interroge, à son avis, sur la même compétence qu’une autre. (On pourra l’utiliser pour éviter que ces questions figurent dans le même test.) Servlet SameAbility(person id, id question 1, id question 2, sameAbility: boolean) et servlet GetSameAbility(person id, id question 1, id question 2): boolean. La relation est réflexive et symétrique (donc inutile de stocker les parties réflexives et déduire ce qu’on peut de la symétrie). (1)
 
-*Remarque* ceci n'inclue pas la partie correction d'examen
 
 *Khaled* 
 * Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
