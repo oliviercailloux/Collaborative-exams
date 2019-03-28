@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 
 import io.github.oliviercailloux.collaborative_exams.Service.IQuestionService;
 import io.github.oliviercailloux.collaborative_exams.helper.IQuestionAdapter;
-import io.github.oliviercailloux.collaborative_exams.helper.IQuestionText;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 
 @Path("NewQuestionJson")
@@ -25,12 +24,13 @@ public class NewQuestionJson {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String addBook(JsonObject questionJson) throws Exception {
+	public int newQuestionJson(JsonObject questionJson) throws Exception {
 
 		IQuestion question = questionAdapter.adaptFromJson(questionJson);
 		questionService.persist(question);
-
-		return IQuestionText.questionToJson(question);
+		//return IQuestionText.questionToJson(question);
+		
+		return question.getId();
 	}
 
 }
