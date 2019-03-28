@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
+//import java.io.File;
+
 import java.net.URL;
 import java.util.logging.Logger;
 
@@ -10,21 +12,35 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class ChangeQuestionLanguaugeTest {
-
+	
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(ChangeQuestionLanguaugeTest.class.getCanonicalName());
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
-		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams-0.0.1.war")
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(ChangeQuestionLanguaugeTest.class.getPackage());
+
+	return war;
+/*
+	@SuppressWarnings("unused")
+	private static final Logger LOGGER = Logger.getLogger(ChangeQuestionLanguaugeTest.class.getCanonicalName());
+
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() {
+		//final File[] libs = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeAndTestDependencies().resolve().withTransitivity().asFile();
+		
+		//final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war").addPackage(ChangeQuestionLanguaugeTest.class.getPackage()).addPackages(true, "org.apache.deltaspike").addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml").addAsLibraries(libs);
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war").addPackage(ChangeQuestionLanguaugeTest.class.getPackage()).addPackages(true, "org.apache.deltaspike").addAsManifestResource(EmptyAsset.INSTANCE, "META-INF/beans.xml");
 		return war;
+		*/
 	}
 
 	@ArquillianResource
