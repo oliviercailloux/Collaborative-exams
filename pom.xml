@@ -97,35 +97,6 @@
             <artifactId>javax.json</artifactId>
             <version>1.1</version>
         </dependency>
-             
-         <dependency>
-             <groupId>org.apache.deltaspike.core</groupId>
-             <artifactId>deltaspike-core-api</artifactId>
-             <version>1.8.2</version>
-             <scope>compile</scope>
-         </dependency>
-
-         <dependency>
-             <groupId>org.apache.deltaspike.core</groupId>
-             <artifactId>deltaspike-core-impl</artifactId>
-             <version>1.8.2</version>
-             <scope>runtime</scope>
-         </dependency>
-             
-         <dependency>
-             <groupId>org.apache.deltaspike.distribution</groupId>
-             <artifactId>distributions-bom</artifactId>
-             <version>1.8.2</version>
-             <type>pom</type>
-             <scope>test</scope>
-         </dependency>
-             
-         <dependency>
-	     <groupId>org.apache.deltaspike.test</groupId>
-	     <artifactId>test-utils</artifactId>
-	     <version>1.8.2</version>
-	     <scope>test</scope>
-	 </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -137,15 +108,6 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-                      
-            <dependency>
-            	<groupId>org.apache.deltaspike.distribution</groupId>
-            	<artifactId>distributions-bom</artifactId>
-            	<version>1.8.2</version>
-            	<type>pom</type>
-            	<scope>import</scope>
-            </dependency>
-         </dependencies>
     </dependencyManagement>
 
     <build>
