@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * This Class represents Question
@@ -30,6 +32,8 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 @XmlRootElement
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "MCQuestion.findByListIdQuestion", query = "SELECT q FROM MCQuestion q WHERE q.id in (:listIdQuestion) ")})
 public class MCQuestion implements IQuestion {
 
 	@Id
@@ -107,6 +111,10 @@ public class MCQuestion implements IQuestion {
 		this.type = Objects.requireNonNull(type);
 
 	}
+	public MCQuestion(String phrasing,List<Answer> answers) {
+            this.phrasing = phrasing;
+            this.answers = answers;
+        }
 	public MCQuestion() {}
 	
 	
@@ -195,4 +203,8 @@ public class MCQuestion implements IQuestion {
 
 		return Collections.unmodifiableList(this.answers);
 	}
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }     
 }

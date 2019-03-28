@@ -3,7 +3,8 @@ package io.github.oliviercailloux.collaborative_exams;
 import io.github.oliviercailloux.collaborative_exams.Service.ExamService;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Exam;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.MCQuestion;
+import java.util.ArrayList;
 import junit.framework.TestCase;
 import org.junit.Before;
 
@@ -17,9 +18,9 @@ public class ExamServiceTest extends TestCase {
 
     Exam exam = new Exam("exam1");
 
-    Question question1 = new Question("question1");
-    Question question2 = new Question("question2");
-    Question question3 = new Question("question3");
+    MCQuestion question1 = new MCQuestion("question1", new ArrayList<>());
+    MCQuestion question2 = new MCQuestion("question2", new ArrayList<>());
+    MCQuestion question3 = new MCQuestion("question3", new ArrayList<>());
 
     Answer answer11 = new Answer("answer11", true);
     Answer answer12 = new Answer("answer12", false);
@@ -59,8 +60,8 @@ public class ExamServiceTest extends TestCase {
     }
 
     public void testIncrementCountParticipate() {
-        for (Question question : exam.getListeQuestions()) {
-            for (Answer answer : question.getAnswers()) {
+        for (MCQuestion question : exam.getListeQuestions()) {
+            for (Answer answer : question.getPropositions()) {
                 countParticipat = countParticipat + answer.getStats().getCountParticipat();
             }
         }

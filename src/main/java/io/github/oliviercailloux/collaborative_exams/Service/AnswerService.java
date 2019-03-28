@@ -11,40 +11,41 @@ import javax.transaction.Transactional;
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.DifficultyType;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.MCQuestion;
 import java.util.ArrayList;
 
 @RequestScoped
 public class AnswerService {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	@Inject
-	private QueryHelper helper;
+    @Inject
+    private QueryHelper helper;
 
-	@Transactional
-	public List<Answer> getAll() {
-		return em.createQuery(helper.selectAll(Answer.class)).getResultList();
-	}
+    @Transactional
+    public List<Answer> getAll() {
+        return em.createQuery(helper.selectAll(Answer.class)).getResultList();
+    }
 
-	@Transactional
-	public void persist(Answer Answer) {
-		em.persist(Answer);
-	}
+    @Transactional
+    public void persist(Answer Answer) {
+        em.persist(Answer);
+    }
 
-	@Transactional
-	public void findAnswer(int id) {
-		em.find(Answer.class, id);
-	}
-            /**
+    @Transactional
+    public void findAnswer(int id) {
+        em.find(Answer.class, id);
+    }
+
+    /**
      *
      * @param question
      * @return la liste des reponse difficile selon la question
      *
      */
     @Transactional
-    public List<Answer> findAnswerByHardDifficultyAndQuestion(Question question) {
+    public List<Answer> findAnswerByHardDifficultyAndQuestion(MCQuestion question) {
         return getHardDifficultyAnswer((List<Answer>) em.createNamedQuery("Answer.findByIdQuestion").setParameter("idQuestion", question.getId()).getResultList());
     }
 
@@ -55,7 +56,7 @@ public class AnswerService {
      *
      */
     @Transactional
-    public List<Answer> findAnswerByMediumDifficultyAndQuestion(Question question) {
+    public List<Answer> findAnswerByMediumDifficultyAndQuestion(MCQuestion question) {
         return getMediumDifficultyAnswer((List<Answer>) em.createNamedQuery("Answer.findByIdQuestion").setParameter("idQuestion", question.getId()).getResultList());
     }
 
@@ -66,7 +67,7 @@ public class AnswerService {
      *
      */
     @Transactional
-    public List<Answer> findAnswerByEasyDifficultyAndQuestion(Question question) {
+    public List<Answer> findAnswerByEasyDifficultyAndQuestion(MCQuestion question) {
         return getEasyDifficultyAnswer((List<Answer>) em.createNamedQuery("Answer.findByIdQuestion").setParameter("idQuestion", question.getId()).getResultList());
     }
 

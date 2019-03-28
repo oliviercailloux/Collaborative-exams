@@ -35,8 +35,6 @@ import javax.persistence.NamedQuery;
 
 @XmlRootElement
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Question.findByListIdQuestion", query = "SELECT q FROM Question q WHERE q.id in (:listIdQuestion) ")})
 public class Question {
 
     @Id
