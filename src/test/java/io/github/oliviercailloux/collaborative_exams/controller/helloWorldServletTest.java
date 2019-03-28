@@ -24,7 +24,7 @@ public class helloWorldServletTest {
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
 		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
-				.addPackage(helloWorldServletTest.class.getPackage())
+				.addPackage(helloWorldServletTest.class.getPackage());
 		return war;
 	}
 
