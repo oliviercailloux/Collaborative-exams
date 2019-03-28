@@ -5,6 +5,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -43,12 +44,13 @@ public class QuestionService {
 	}
 
 	@Transactional
-	public Question findQuestion(int id) throws Exception {
-		Question questionResult = em.find(Question.class, id);
-		if (questionResult == null)
-			throw new Exception("Aucune question correspondante.");
-
-		return questionResult;
+	public Question findQuestion(int id) {
+		Question question = em.find(Question.class, id);
+		if (question == null) {
+			throw new EntityNotFoundException(
+					"Unable to find id :  " + id + ". Please, make a new request with id.");
+		}
+		return question;
 	}
 
 	@Transactional
