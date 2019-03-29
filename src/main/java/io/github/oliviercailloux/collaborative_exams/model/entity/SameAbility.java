@@ -36,8 +36,13 @@ public class SameAbility {
 		this.question2 = q2;
 		this.author = author;
 	}
+	
+	/*
+	 * 
+	 * Cette ancienne implémentation n'est pas bonne à mon avis !
+	 */
 
-	public boolean isSameAbility(Question q1, Question q2) {
+	/*public boolean isSameAbility(Question q1, Question q2) {
 		if (question1.equals(q1) && question2.equals(q2)) {
 			return true;
 		} else if (question1.equals(q2) && question2.equals(q1)) {
@@ -46,5 +51,6 @@ public class SameAbility {
 
 		return false;
 	}
+	*/
 
 }

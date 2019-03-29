@@ -5,9 +5,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
@@ -25,13 +24,9 @@ public class NewSameAbility {
 	private SameAbilityService sameAbilityService;
 
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String newSameAbility(MultivaluedMap<String, String> form) throws Exception {
-
-		int idQuestion1 = Integer.valueOf(form.getFirst("idQuestion1"));
-		int idQuestion2 = Integer.valueOf(form.getFirst("idQuestion2"));
-		int idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
+	public void newSameAbility(@QueryParam("idQuestion1") Integer idQuestion1, @QueryParam("idQuestion2") Integer idQuestion2, @QueryParam("idAuthor") Integer idAuthor) throws Exception {
 
 		if (questionService.findQuestion(idQuestion1) == null)
 			throw new Exception("the question id :" + idQuestion1 + "is null.");
@@ -52,7 +47,6 @@ public class NewSameAbility {
 
 		sameAbilityService.persist(s);
 
-		return "id 1" + idQuestion1 + "id 2" + idQuestion2 + "id author" + idAuthor;
 
 	}
 
