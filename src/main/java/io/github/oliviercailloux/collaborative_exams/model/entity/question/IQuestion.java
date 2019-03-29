@@ -1,6 +1,8 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 
+import java.util.List;
+
 import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
@@ -38,5 +40,7 @@ public interface IQuestion {
 	 * @return String not <code>null</code>.
 	 */
 	public String getPhrasing();
+	
+	public List<Answer> getAnswers() ;
 
 }

@@ -120,7 +120,7 @@ public class MCQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @param answers  represente the list of answer of the question
 	 */
-	public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers)
+	public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers) throws Exception
 	 {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
@@ -187,12 +187,9 @@ public class MCQuestion implements IQuestion {
 		return this.phrasing;
 	}
 
-
-	public List<Answer> getPropositions() {
-
-		if (this.answers == null)
-			return null;
-
+	@Override
+	public List<Answer> getAnswers() {
+		// TODO Auto-generated method stub
 		return Collections.unmodifiableList(this.answers);
 	}
 }

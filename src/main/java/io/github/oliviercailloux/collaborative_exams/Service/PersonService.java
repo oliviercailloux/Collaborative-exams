@@ -21,6 +21,9 @@ public class PersonService {
 	@Inject
 	private QueryHelper helper;
 
+	@Inject
+	private QuestionService questionService;
+
 	@Transactional
 	public List<Person> getAll() {
 		return em.createQuery(helper.selectAll(Person.class)).getResultList();
@@ -37,14 +40,35 @@ public class PersonService {
 	}
 
 	@Transactional
-	public Person findPersonByEmail(String email) throws Exception {
+	public Person findPerson(String email) {
+		return em.find(Person.class, email);
+	}
+
+	@Transactional
+	public Person findPersonByEmail(String email) {
 		TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p WHERE p.email = :email", Person.class);
 		query.setParameter("email", email);
 		List<Person> results = query.getResultList();
 		if (results.isEmpty())
-			throw new Exception("Aucun utilisateur correspondant.");
+			return null;
 		return results.get(0);
 
+	}
+
+	@Transactional
+	public void deletAllPersons() throws Exception {
+		List<Person> person = em.createQuery(helper.selectAll(Person.class)).getResultList();
+		for (Person p : person) {
+			Person PersonDeleted = em.merge(p);
+			em.remove(PersonDeleted);
+		}
+	}
+
+	@Transactional
+	public void deletPersonById(int id) throws Exception {
+		Person personResult = em.find(Person.class, id);
+		em.merge(personResult);
+		em.remove(personResult);
 	}
 
 }

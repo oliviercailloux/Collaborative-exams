@@ -5,12 +5,15 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
 
 @RequestScoped
@@ -42,12 +45,61 @@ public class QuestionService {
 	}
 
 	@Transactional
-	public Question findQuestion(int id) throws Exception {
-		Question questionResult = em.find(Question.class, id);
-		if (questionResult == null)
-			throw new Exception("Aucune question correspondante.");
+	public Question findQuestion(int id) {
+		Question question = em.find(Question.class, id);
+		if (question == null) {
+			throw new EntityNotFoundException(
+					"Unable to find id :  " + id + ". Please, make a new request with id.");
+		}
+		return question;
+	}
 
-		return questionResult;
+	@Transactional
+	public List<Question> findPersonQuestion(Person pers) throws Exception {
+		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.pers = :author", Question.class);
+		query.setParameter("author", pers);
+		List<Question> results = query.getResultList();
+		if (results.isEmpty())
+			throw new Exception("No question for this Person.");
+		return results;
+	}
+
+	@Transactional
+	public void deleteAllQuestions(Person pers) throws Exception {
+		TypedQuery<Question> query = em.createQuery("SELECT q FROM Question q WHERE q.pers = :author", Question.class);
+		query.setParameter("author", pers);
+		List<Question> results = query.getResultList();
+		for (Question q : results) {
+			Question QuestionDeleted = em.merge(q);
+			em.remove(QuestionDeleted);
+		}
+
+	}
+
+	@Transactional
+	public void deletAllQuestions() throws Exception {
+		List<Question> question = em.createQuery(helper.selectAll(Question.class)).getResultList();
+
+		for (Question q : question) {
+			Question QuestionDeleted = em.merge(q);
+			em.remove(QuestionDeleted);
+		}
+
+	}
+
+	@Transactional
+	public void deletById(int id) throws Exception {
+		Question questionResult = em.find(Question.class, id);
+		em.merge(questionResult);
+		em.remove(questionResult);
+	}
+
+	@Transactional
+	public void deletByAuthor(Person p) throws Exception {
+		Question questionResult = em.find(Question.class, p.getId());
+		em.merge(questionResult);
+		em.remove(questionResult);
+
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 @Entity
 @XmlRootElement(name = "RelationSameAbility")
@@ -46,5 +47,14 @@ public class SameAbility {
 
 		return false;
 	}
+	
+	
+	public Person getPersonAbility(){
+		return this.author;
+	}
+	public Question getQuestionAbility(){
+		return this.question1;
+	}
+	
 
 }

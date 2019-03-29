@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
@@ -90,9 +92,8 @@ public class FreeQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @Param answer the answer of the free question
 	 */
-	public FreeQuestion(int id, String phrasing, Language language, Person author, QuestionType type, Answer answer)
+	public FreeQuestion(String phrasing, Language language, Person author, QuestionType type, Answer answer)
 	{
-		this.id = Objects.requireNonNull(id);
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);
 		this.author = Objects.requireNonNull(author);
@@ -167,6 +168,13 @@ public class FreeQuestion implements IQuestion {
 	}
 	
 	public FreeQuestion() {}
+	
+	public List<Answer> getAnswers() {
+		
+		List<Answer> answers= new ArrayList<Answer>(); 
+		answers.add(this.answer);
+		return answers;
+	}
 
 
 
