@@ -8,29 +8,29 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
-import io.github.oliviercailloux.collaborative_exams.helper.QuestionAdapter;
-import io.github.oliviercailloux.collaborative_exams.helper.QuestionText;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.Service.IQuestionService;
+import io.github.oliviercailloux.collaborative_exams.helper.IQuestionAdapter;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.IQuestion;
 
 @Path("NewQuestionJson")
 public class NewQuestionJson {
 
 	@Inject
-	QuestionService questionService;
+	IQuestionService questionService;
 
 	@Inject
-	QuestionAdapter questionAdapter;
+	IQuestionAdapter questionAdapter;
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String addBook(JsonObject questionJson) throws Exception {
+	public int newQuestionJson(JsonObject questionJson) throws Exception {
 
-		Question question = questionAdapter.adaptFromJson(questionJson);
+		IQuestion question = questionAdapter.adaptFromJson(questionJson);
 		questionService.persist(question);
-
-		return QuestionText.QuestionToJson(question);
+		//return IQuestionText.questionToJson(question);
+		
+		return question.getId();
 	}
 
 }
