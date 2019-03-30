@@ -11,13 +11,11 @@ import javax.ws.rs.core.MediaType;
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
-import io.github.oliviercailloux.collaborative_exams.model.entity.SameAbility;
 
 /**
- * Jax-RS servlet that allows to get a same ability relation between two
- * question for an author !
+
  * 
- * @author Sid
+ * @author Amine
  *
  */
 @Path("GetSameAbility")
@@ -41,13 +39,10 @@ public class GetSameAbility {
 		if(idQuestion1 == idQuestion2)
 			return true;
 		
-		SameAbility sameAbility = sameAbilityService.isSameAbility(personService.findPerson(idAuthor),
+		boolean sameAbility = sameAbilityService.isSameAbility(personService.findPerson(idAuthor),
 				questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
 		
-		if(sameAbility != null)
-			return true;
-		else
-			return false;
+		return sameAbility;
 
 	}
 }
