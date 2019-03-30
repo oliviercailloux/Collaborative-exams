@@ -87,4 +87,13 @@ public class SameAbility {
 	}
 	*/
 
+	
+	
+	public Person getPersonAbility(){
+		return this.author;
+	}
+	public Question getQuestionAbility(){
+		return this.question1;
+	}
+
 }
