@@ -33,12 +33,11 @@ public class AnswerService {
         em.persist(Answer);
     }
 
-    @Transactional
-    public void findAnswer(int id) {
-        em.find(Answer.class, id);
-    }
 
-    /**
+	@Transactional
+	public Answer findAnswer(int id) {
+		return em.find(Answer.class, id);
+	}
      *
      * @param question
      * @return la liste des reponse difficile selon la question

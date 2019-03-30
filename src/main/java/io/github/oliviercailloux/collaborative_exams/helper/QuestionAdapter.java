@@ -63,7 +63,7 @@ public class QuestionAdapter implements JsonbAdapter<Question, JsonObject> {
 			qType = QuestionType.QCM;
 
 			JsonArray Janswers = obj.getJsonArray("answers");
-			List<Answer> answers = new ArrayList();
+			List<Answer> answers = new ArrayList<Answer>();
 			for (int i = 0; i < Janswers.size(); i++)
 				answers.add(answerAdapter.adaptFromJson(Janswers.getJsonObject(i)));
 

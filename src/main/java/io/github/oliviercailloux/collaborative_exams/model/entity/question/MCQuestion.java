@@ -195,12 +195,9 @@ public class MCQuestion implements IQuestion {
 		return this.phrasing;
 	}
 
-
-	public List<Answer> getPropositions() {
-
-		if (this.answers == null)
-			return null;
-
+	@Override
+	public List<Answer> getAnswers() {
+		// TODO Auto-generated method stub
 		return Collections.unmodifiableList(this.answers);
 	}
 
