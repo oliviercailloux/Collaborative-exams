@@ -36,6 +36,40 @@ public class SameAbility {
 		this.question2 = q2;
 		this.author = author;
 	}
+
+	public boolean equals(SameAbility obj) {
+		
+		/*
+		 * L'id de la première question est forcément plus petit que celui de la deuxième question car les objets SameAbility ont été ajoutés de la sorte.
+		 */
+		
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SameAbility other = obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!(author.getId() == other.author.getId()))
+			return false;
+
+		if (question1 == null) {
+			if (other.question1 != null)
+				return false;
+		} else if (!(question1.getId() == other.question1.getId()))
+			return false;
+		if (question2 == null) {
+			if (other.question2 != null)
+				return false;
+		} else if (!(question2.getId() == other.question2.getId()))
+			return false;
+		return true;
+	}
+	
+	
 	
 	/*
 	 * 
