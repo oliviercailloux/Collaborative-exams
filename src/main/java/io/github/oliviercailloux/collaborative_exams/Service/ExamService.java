@@ -52,7 +52,7 @@ public class ExamService {
 
     public Exam updateCountParticipeForEachAnswer(Exam exam) {
         for (MCQuestion question : exam.getListeQuestions()) {
-            for (Answer answer : question.getPropositions()) {
+            for (Answer answer : question.getListAnswers()) {
                 if (!answer.isCorrect()) {
                     answer.getStats().setCountParticipat(answer.getStats().getCountParticipat() + 1);
                     // this verification is only for test (to not start the server and update the database)

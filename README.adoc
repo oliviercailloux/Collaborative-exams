@@ -70,7 +70,7 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 
 *Alexandre*
 
-* Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
+* [FAIT] Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
 
 = Deuxième itération
 
@@ -107,30 +107,19 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 
 *Alexandre*
 
-* UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
-* Correction des warnings et exceptions au cours du build (0,5)
-* Résolus à ce jour :
-* deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
-* warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
-* A corriger :
-Travis indique un warning (Deprecated) lors du déploiement
-SEVERE: Exception during lifecycle processing
-org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
-Exception 0 :
-java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
+* Correction des warnings et exceptions au cours du build (0,25)
+* [RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
+* [RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
 
 
 = Troisième itération
 
 *Amine*
 
-* Gérer la relation Improvement
-* Gérer la relation asSubtleAs
-* Créer les interfaces nécessaires
+* ServletAbilities
 
-* Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
+Stocker une relation « same ability » entre questions, associée à une personne. Une personne peut indiquer qu’une question interroge, à son avis, sur la même compétence qu’une autre. (On pourra l’utiliser pour éviter que ces questions figurent dans le même test.) Servlet SameAbility(person id, id question 1, id question 2, sameAbility: boolean) et servlet GetSameAbility(person id, id question 1, id question 2): boolean. La relation est réflexive et symétrique (donc inutile de stocker les parties réflexives et déduire ce qu’on peut de la symétrie). (1)
 
-*Remarque* ceci n'inclue pas la partie correction d'examen
 
 *Khaled* 
 * Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
@@ -156,7 +145,18 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Alexandre*
 
-* Datavisualisation : Dashboards sur les données de la BDD. (1)
+* [BESOIN D'AIDE] Correction de l'exception au cours du build décrite ci-dessous déplacée en itération 3 car solution non trouvée (0,5)
+* [A CORRIGER] Travis indique un warning (Deprecated) lors du déploiement
+* SEVERE: Exception during lifecycle processing
+org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
+Exception 0 :
+java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
+* Recherche sur les bugs concernant la fonctionnalité "UseDB" (0,5)
+* Fonctionnalité "UseDB" déplacée en itération 3 du fait de deux problèmes arrivés l'un après l'autre qui ne m'ont pas permis de faire des tests. Problème 1 : déploiement échoue sans erreur même après questions sur stackoverflow et travis-ci.community. Problème 2 : indisponibilité du service de BDD sur IBM Cloud non résolu même après tickets au support d'IBM Cloud (je vous montrerai lorsque nous nous verrons).
+https://stackoverflow.com/questions/55114271/travis-ci-deployment-of-a-jax-rs-application-fails-without-any-error
+https://travis-ci.community/t/deployment-of-a-jax-rs-application-fails-without-any-error/2622
+* [A FAIRE si bug service BDD résolu] UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
+* [A FAIRE si UseDB terminé] Datavisualisation : Dashboards sur les données de la BDD. (1)
 
 = URL du site web
 

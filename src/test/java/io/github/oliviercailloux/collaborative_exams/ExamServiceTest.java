@@ -38,17 +38,17 @@ public class ExamServiceTest extends TestCase {
     @Override
     public void setUp() {
 
-        question1.getAnswers().add(answer11);
-        question1.getAnswers().add(answer12);
-        question1.getAnswers().add(answer13);
+        question1.getListAnswers().add(answer11);
+        question1.getListAnswers().add(answer12);
+        question1.getListAnswers().add(answer13);
 
-        question2.getAnswers().add(answer21);
-        question2.getAnswers().add(answer22);
-        question2.getAnswers().add(answer23);
+        question2.getListAnswers().add(answer21);
+        question2.getListAnswers().add(answer22);
+        question2.getListAnswers().add(answer23);
 
-        question3.getAnswers().add(answer31);
-        question3.getAnswers().add(answer32);
-        question3.getAnswers().add(answer33);
+        question3.getListAnswers().add(answer31);
+        question3.getListAnswers().add(answer32);
+        question3.getListAnswers().add(answer33);
 
         exam.getListeQuestions().add(question1);
         exam.getListeQuestions().add(question2);
@@ -61,7 +61,7 @@ public class ExamServiceTest extends TestCase {
 
     public void testIncrementCountParticipate() {
         for (MCQuestion question : exam.getListeQuestions()) {
-            for (Answer answer : question.getPropositions()) {
+            for (Answer answer : question.getListAnswers()) {
                 countParticipat = countParticipat + answer.getStats().getCountParticipat();
             }
         }

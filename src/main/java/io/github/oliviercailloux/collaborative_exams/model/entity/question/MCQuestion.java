@@ -28,7 +28,7 @@ import javax.persistence.NamedQuery;
  *
  * @author Amine BOUKALA
  */
-@JsonbPropertyOrder({ "id", "author", "phrasing", "language", "type", "answers" })
+@JsonbPropertyOrder({"id", "author", "phrasing", "language", "type", "answers"})
 
 @XmlRootElement
 @Entity
@@ -36,175 +36,162 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "MCQuestion.findByListIdQuestion", query = "SELECT q FROM MCQuestion q WHERE q.id in (:listIdQuestion) ")})
 public class MCQuestion implements IQuestion {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@XmlAttribute
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @XmlAttribute
+    private int id;
 
-	/**
-	 * represent the phrasing of the question
-	 * <p>
-	 * Not <code>null</code>.
-	 */
-	@XmlElement
-	@Column(nullable = false)
-	private String phrasing;
+    /**
+     * represent the phrasing of the question
+     * <p>
+     * Not <code>null</code>.
+     */
+    @XmlElement
+    @Column(nullable = false)
+    private String phrasing;
 
-	/**
-	 * represent the language of Question
-	 * <p>
-	 * <p>
-	 * Not <code>null</code>, may be empty.
-	 */
-	@XmlElement
-	@Column(nullable = false)
-	private Language language;
+    /**
+     * represent the language of Question
+     * <p>
+     * <p>
+     * Not <code>null</code>, may be empty.
+     */
+    @XmlElement
+    @Column(nullable = false)
+    private Language language;
 
-	/**
-	 * respresente the Author
-	 *
-	 * @see Person Not <code>null</code>.
-	 */
+    /**
+     * respresente the Author
+     *
+     * @see Person Not <code>null</code>.
+     */
+    @ManyToOne
+    @XmlElement(name = "author")
+    private Person author;
 
-	@ManyToOne
-	@XmlElement(name = "author")
-	private Person author;
+    /**
+     * Respresent the type of question
+     *
+     * @see QuestionType Not <code>null</code>.
+     */
+    @XmlElement
+    @Column(nullable = false)
+    private QuestionType type;
 
+    /**
+     * Represent the possible answers of a MQC Question
+     */
+    //@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @XmlElementWrapper(name = "answers")
+    @XmlElement(name = "answer")
+    protected List<Answer> answers;
 
+    /**
+     * Returns a new Question. Not <code>null</code>.
+     */
+    /**
+     * return new MCQ Question
+     *
+     * @param phrasing phrasing of question
+     * @param language Language of question
+     * @param author Person how represente the author of question
+     * @param type Type of question
+     * @param answers represente the list of answer of the question
+     */
+    public MCQuestion(String phrasing, Language language, Person author, QuestionType type) {
+        this.phrasing = Objects.requireNonNull(phrasing);
+        this.language = Objects.requireNonNull(language);
+        this.author = Objects.requireNonNull(author);
+        this.type = Objects.requireNonNull(type);
 
-	/**
-	 * Respresent the type of question
-	 *
-	 * @see QuestionType Not <code>null</code>.
-	 */
-	@XmlElement
-	@Column(nullable = false)
-	private QuestionType type;
+    }
 
-	/**
-	 * Represent the possible answers of a MQC Question
-	 */
+    public MCQuestion(String phrasing, List<Answer> answers) {
+        this.phrasing = phrasing;
+        this.answers = answers;
+    }
 
-	//@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
-	@XmlElementWrapper(name = "answers")
-	@XmlElement(name = "answer")
-	protected List<Answer> answers;
+    public MCQuestion() {
+    }
 
-	/**
-	 * Returns a new Question. Not <code>null</code>.
-	 */
-	
-	/**
-	 * return new MCQ Question
-	 *
-	 * @param phrasing phrasing of question
-	 * @param language Language of question
-	 * @param author   Person how represente the author of question
-	 * @param type     Type of question
-	 * @param answers  represente the list of answer of the question
-	 */
-	public MCQuestion(String phrasing, Language language, Person author, QuestionType type)
-	 {
-		this.phrasing = Objects.requireNonNull(phrasing);
-		this.language = Objects.requireNonNull(language);
-		this.author = Objects.requireNonNull(author);
-		this.type = Objects.requireNonNull(type);
+    /**
+     * return new MCQ Question
+     *
+     * @param phrasing phrasing of question
+     * @param language Language of question
+     * @param author Person how represente the author of question
+     * @param type Type of question
+     * @param answers represente the list of answer of the question
+     */
+    public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers) throws Exception {
+        this.phrasing = Objects.requireNonNull(phrasing);
+        this.language = Objects.requireNonNull(language);
+        this.author = Objects.requireNonNull(author);
+        this.type = Objects.requireNonNull(type);
 
-	}
-	public MCQuestion(String phrasing,List<Answer> answers) {
-            this.phrasing = phrasing;
-            this.answers = answers;
+        for (Answer answer : answers) {
+            answer.setQuestionIfNull(this);
         }
-	public MCQuestion() {}
-	
-	
-	
-	/**
-	 * return new MCQ Question
-	 *
-	 * @param phrasing phrasing of question
-	 * @param language Language of question
-	 * @param author   Person how represente the author of question
-	 * @param type     Type of question
-	 * @param answers  represente the list of answer of the question
-	 */
-	public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers) throws Exception
-	 {
-		this.phrasing = Objects.requireNonNull(phrasing);
-		this.language = Objects.requireNonNull(language);
-		this.author = Objects.requireNonNull(author);
-		this.type = Objects.requireNonNull(type);
 
-		for (Answer answer : answers)
-			answer.setQuestionIfNull(this);
+        this.answers = Objects.requireNonNull(answers);
+    }
 
-		this.answers = Objects.requireNonNull(answers);
-	}
-	
-	
+    /**
+     * Returns this Question’s id.
+     *
+     * @return not <code>null</code>.
+     */
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * Returns this Question’s id.
-	 *
-	 * @return not <code>null</code>.
-	 */
+    /**
+     * Returns this Question’s language.
+     *
+     * @return String not null.
+     */
+    public Language getLanguage() {
+        return language;
+    }
 
-	public int getId() {
-		return id;
-	}
+    /**
+     * Returns this Question’s author.
+     *
+     * @return Person not null and immuable.
+     */
+    public Person getAuthor() {
+        return author;
+    }
 
-	/**
-	 * Returns this Question’s language.
-	 *
-	 * @return String not null.
-	 */
+    /**
+     * Returns this Question’s type.
+     *
+     * @return String not null.
+     */
+    public QuestionType getType() {
 
-	public Language getLanguage() {
-		return language;
-	}
+        return type;
+    }
 
-	/**
-	 * Returns this Question’s author.
-	 *
-	 * @return Person not null and immuable.
-	 */
+    /**
+     * Returns this Question’s phrasing.
+     *
+     * @return String not <code>null</code>.
+     */
+    @Override
+    public String getPhrasing() {
 
-	public Person getAuthor() {
-		return author;
-	}
+        return this.phrasing;
+    }
 
-	/**
-	 * Returns this Question’s type.
-	 *
-	 * @return String not null.
-	 */
-
-	public QuestionType getType() {
-
-		return type;
-	}
-
-	/**
-	 * Returns this Question’s phrasing.
-	 *
-	 * @return String not <code>null</code>.
-	 */
-
-	public String getPhrasing() {
-
-		return this.phrasing;
-	}
-
-
-	public List<Answer> getPropositions() {
-
-		if (this.answers == null)
-			return null;
-
-		return Collections.unmodifiableList(this.answers);
-	}
-
+    @Override
     public List<Answer> getAnswers() {
+        // TODO Auto-generated method stub
+        return Collections.unmodifiableList(this.answers);
+    }
+
+    public List<Answer> getListAnswers() {
         return answers;
-    }     
+    }
+
 }
