@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity.question;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -90,7 +89,6 @@ public class Question {
     /**
      * Represent the possible answers of a MQC Question
      */
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     @XmlElementWrapper(name = "answers")
     @XmlElement(name = "answer")
     private List<Answer> answers;

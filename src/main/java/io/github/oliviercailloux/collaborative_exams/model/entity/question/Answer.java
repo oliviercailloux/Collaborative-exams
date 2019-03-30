@@ -27,8 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement(name = "answer")
 @XmlAccessorType(XmlAccessType.NONE)
-@NamedQueries({
-    @NamedQuery(name = "Answer.findByIdQuestion", query = "SELECT a FROM Answer a WHERE a.question.id = :idQuestion ")})
+
 public class Answer implements Serializable {
 
     @Id
@@ -52,7 +51,6 @@ public class Answer implements Serializable {
     @Column(nullable = false)
     private DifficultyType difficultyType;
 
-    @ManyToOne
     private IQuestion question;
 
     public Answer() {

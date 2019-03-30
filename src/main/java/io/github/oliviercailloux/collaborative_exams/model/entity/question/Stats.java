@@ -37,7 +37,6 @@ public class Stats implements Serializable {
     @Column(nullable = false)
     private int countSelect = 0;
 
-    @OneToOne(mappedBy = "answer")
     private Answer answer;
 
     public Stats() {
