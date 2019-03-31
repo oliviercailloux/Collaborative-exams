@@ -54,6 +54,20 @@ public class AnswerQuestion implements Serializable {
         this.answer = answer;
     }
 
+    public AnswerQuestion(Person author, Exam exam, IQuestion question, Answer answer) {
+        this.author = author;
+        this.exam = exam;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    public AnswerQuestion(Person author, Exam exam, IQuestion question, String text) {
+        this.author = author;
+        this.exam = exam;
+        this.question = question;
+        this.text = text;
+    }
+
     public Integer getId() {
         return id;
     }

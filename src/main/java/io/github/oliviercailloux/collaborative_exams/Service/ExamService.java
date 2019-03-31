@@ -35,8 +35,8 @@ public class ExamService {
     }
 
     @Transactional
-    public void findExam(int id) {
-        em.find(Exam.class, id);
+    public Exam findExam(int id) {
+        return em.find(Exam.class, id);
     }
 
     public void setTestMode(boolean testMode) {
