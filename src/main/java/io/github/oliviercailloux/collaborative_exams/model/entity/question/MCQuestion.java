@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import java.io.Serializable;
 
 /**
  * This Class represents Question
@@ -30,7 +31,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 
 @XmlRootElement
 @Entity
-public class MCQuestion implements IQuestion {
+public class MCQuestion implements IQuestion, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -92,7 +93,6 @@ public class MCQuestion implements IQuestion {
      * @param language Language of question
      * @param author Person how represente the author of question
      * @param type Type of question
-     * @param answers represente the list of answer of the question
      */
     public MCQuestion(String phrasing, Language language, Person author, QuestionType type) {
         this.phrasing = Objects.requireNonNull(phrasing);
@@ -118,17 +118,16 @@ public class MCQuestion implements IQuestion {
      * @param author Person how represente the author of question
      * @param type Type of question
      * @param answers represente the list of answer of the question
+     * @throws java.lang.Exception
      */
     public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers) throws Exception {
         this.phrasing = Objects.requireNonNull(phrasing);
         this.language = Objects.requireNonNull(language);
         this.author = Objects.requireNonNull(author);
         this.type = Objects.requireNonNull(type);
-
         for (Answer answer : answers) {
             answer.setQuestionIfNull(this);
         }
-
         this.answers = Objects.requireNonNull(answers);
     }
 
@@ -137,6 +136,7 @@ public class MCQuestion implements IQuestion {
      *
      * @return not <code>null</code>.
      */
+    @Override
     public int getId() {
         return id;
     }
@@ -146,6 +146,7 @@ public class MCQuestion implements IQuestion {
      *
      * @return String not null.
      */
+    @Override
     public Language getLanguage() {
         return language;
     }
@@ -155,6 +156,7 @@ public class MCQuestion implements IQuestion {
      *
      * @return Person not null and immuable.
      */
+    @Override
     public Person getAuthor() {
         return author;
     }
@@ -164,6 +166,7 @@ public class MCQuestion implements IQuestion {
      *
      * @return String not null.
      */
+    @Override
     public QuestionType getType() {
 
         return type;
@@ -174,14 +177,13 @@ public class MCQuestion implements IQuestion {
      *
      * @return String not <code>null</code>.
      */
+    @Override
     public String getPhrasing() {
-
         return this.phrasing;
     }
 
     @Override
     public List<Answer> getAnswers() {
-        // TODO Auto-generated method stub
         return Collections.unmodifiableList(this.answers);
     }
 
