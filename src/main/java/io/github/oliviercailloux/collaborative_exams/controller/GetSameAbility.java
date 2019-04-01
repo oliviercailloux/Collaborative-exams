@@ -13,7 +13,7 @@ import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
 
 /**
-
+ * 
  * 
  * @author Amine
  *
@@ -36,12 +36,12 @@ public class GetSameAbility {
 	@Produces(MediaType.TEXT_PLAIN)
 	public boolean getSameAbility(@QueryParam("idAuthor") int idAuthor, @QueryParam("idQuestion1") int idQuestion1,
 			@QueryParam("idQuestion2") int idQuestion2) throws Exception {
-		if(idQuestion1 == idQuestion2)
+		if (idQuestion1 == idQuestion2)
 			return true;
-		
+
 		boolean sameAbility = sameAbilityService.isSameAbility(personService.findPerson(idAuthor),
 				questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
-		
+
 		return sameAbility;
 
 	}

@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,19 +33,16 @@ public class SameAbility {
 	}
 
 	public SameAbility(Question question1, Question question2, Person author) {
-		
+
 		/*
 		 * this.question1.id est inférieur à this.question2.id
 		 */
 		Question q1, q2;
-		
-		if(question1.getId()<question2.getId())
-		{
+
+		if (question1.getId() < question2.getId()) {
 			q1 = question1;
 			q2 = question2;
-		}
-		else
-		{
+		} else {
 			q1 = question2;
 			q2 = question1;
 		}
@@ -54,23 +50,24 @@ public class SameAbility {
 		this.question2 = q2;
 		this.author = author;
 	}
-	public Person getPersonAbility(){
+
+	public Person getPersonAbility() {
 		return this.author;
 	}
-	
+
 	/*
 	 * retourne la question possèdant l'id inférieur
 	 */
-	
-	public Question getQuestion1Ability(){
+
+	public Question getQuestion1Ability() {
 		return this.question1;
 	}
-	
+
 	/*
 	 * retourne la question possèdant l'id supérieur
 	 */
-	
-	public Question getQuestion2Ability(){
+
+	public Question getQuestion2Ability() {
 		return this.question2;
 	}
 }

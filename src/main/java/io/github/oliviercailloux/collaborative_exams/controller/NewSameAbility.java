@@ -1,4 +1,5 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
+
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -21,7 +22,8 @@ public class NewSameAbility {
 	private SameAbilityService sameAbilityService;
 
 	@POST
-	public void newSameAbility(@QueryParam("idQuestion1") Integer idQuestion1, @QueryParam("idQuestion2") Integer idQuestion2, @QueryParam("idAuthor") Integer idAuthor) throws Exception {
+	public void newSameAbility(@QueryParam("idQuestion1") Integer idQuestion1,
+			@QueryParam("idQuestion2") Integer idQuestion2, @QueryParam("idAuthor") Integer idAuthor) throws Exception {
 
 		if (questionService.findQuestion(idQuestion1) == null)
 			throw new NotFoundException("the question id :" + idQuestion1 + " doesn't exist.");
@@ -36,30 +38,28 @@ public class NewSameAbility {
 			throw new IllegalArgumentException("You indicated the same id Question for both of the questions.");
 
 		}
-		
+
 		/*
-		 * On positionne d'abord la question avec l'id le plus petit afin d'optimiser la recherche
+		 * On positionne d'abord la question avec l'id le plus petit afin d'optimiser la
+		 * recherche
 		 */
-		int q1,q2;
-		
+		int q1, q2;
+
 		q1 = Math.min(idQuestion1, idQuestion2);
 		q2 = Math.max(idQuestion1, idQuestion2);
-		
-		SameAbility s = new SameAbility(questionService.findQuestion(q1),
-		questionService.findQuestion(q2), personService.findPerson(idAuthor));
-		
 
-	
+		SameAbility s = new SameAbility(questionService.findQuestion(q1), questionService.findQuestion(q2),
+				personService.findPerson(idAuthor));
+
 		/*
-		 *  Test if the object is already in database
+		 * Test if the object is already in database
 		 */
-		
-		if(sameAbilityService.isSameAbility(personService.findPerson(idAuthor), questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2)))
-		{
+
+		if (sameAbilityService.isSameAbility(personService.findPerson(idAuthor),
+				questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2))) {
 			throw new IllegalArgumentException("This relation already exists.");
 		}
 		sameAbilityService.persist(s);
-
 
 	}
 
