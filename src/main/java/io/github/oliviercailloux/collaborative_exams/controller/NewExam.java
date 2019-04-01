@@ -20,7 +20,6 @@ import javax.ws.rs.core.MediaType;
  * @author Khaled
  */
 public class NewExam {
-
     @Inject
     ExamService examService;
 
@@ -49,5 +48,4 @@ public class NewExam {
         }
         return listId;
     }
-
 }

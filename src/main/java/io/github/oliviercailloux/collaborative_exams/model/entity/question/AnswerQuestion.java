@@ -38,7 +38,7 @@ public class AnswerQuestion implements Serializable {
     private Exam exam;
 
     @OneToOne
-    private Question question;
+    private IQuestion question;
 
     @OneToOne
     private Answer answer;
@@ -46,12 +46,26 @@ public class AnswerQuestion implements Serializable {
     public AnswerQuestion() {
     }
 
-    public AnswerQuestion(String text, Person author, Exam exam, Question question, Answer answer) {
+    public AnswerQuestion(String text, Person author, Exam exam, IQuestion question, Answer answer) {
         this.text = text;
         this.author = author;
         this.exam = exam;
         this.question = question;
         this.answer = answer;
+    }
+
+    public AnswerQuestion(Person author, Exam exam, IQuestion question, Answer answer) {
+        this.author = author;
+        this.exam = exam;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    public AnswerQuestion(Person author, Exam exam, IQuestion question, String text) {
+        this.author = author;
+        this.exam = exam;
+        this.question = question;
+        this.text = text;
     }
 
     public Integer getId() {
@@ -82,20 +96,12 @@ public class AnswerQuestion implements Serializable {
         this.exam = exam;
     }
 
-    public Question getQuestion() {
+    public IQuestion getQuestion() {
         return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     public Answer getAnswer() {
         return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
     }
 
 }
