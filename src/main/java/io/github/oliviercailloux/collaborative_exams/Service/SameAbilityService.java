@@ -39,7 +39,7 @@ public class SameAbilityService {
 	public SameAbility findSameAbility(int id) {
 		return em.find(SameAbility.class, id);
 	}
-
+	
 	@Transactional
 	public boolean isSameAbility(Person idAuthor, Question idQuestion1, Question idQuestion2) {
 		

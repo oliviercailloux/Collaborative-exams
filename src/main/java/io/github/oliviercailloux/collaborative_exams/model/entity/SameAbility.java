@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.collaborative_exams.model.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,65 +33,44 @@ public class SameAbility {
 	public SameAbility() {
 	}
 
-	public SameAbility(Question q1, Question q2, Person author) {
+	public SameAbility(Question question1, Question question2, Person author) {
+		
+		/*
+		 * this.question1.id est inférieur à this.question2.id
+		 */
+		Question q1, q2;
+		
+		if(question1.getId()<question2.getId())
+		{
+			q1 = question1;
+			q2 = question2;
+		}
+		else
+		{
+			q1 = question2;
+			q2 = question1;
+		}
 		this.question1 = q1;
 		this.question2 = q2;
 		this.author = author;
 	}
-
-	public boolean equals(SameAbility obj) {
-		
-		/*
-		 * L'id de la première question est forcément plus petit que celui de la deuxième question car les objets SameAbility ont été ajoutés de la sorte.
-		 */
-		
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SameAbility other = obj;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!(author.getId() == other.author.getId()))
-			return false;
-
-		if (question1 == null) {
-			if (other.question1 != null)
-				return false;
-		} else if (!(question1.getId() == other.question1.getId()))
-			return false;
-		if (question2 == null) {
-			if (other.question2 != null)
-				return false;
-		} else if (!(question2.getId() == other.question2.getId()))
-			return false;
-		return true;
-	}
-	
-	
-	
-	/*
-	 * 
-	 * Cette ancienne implémentation n'est pas bonne à mon avis !
-	 */
-
-	/*public boolean isSameAbility(Question q1, Question q2) {
-		if (question1.equals(q1) && question2.equals(q2)) {
-			return true;
-		} else if (question1.equals(q2) && question2.equals(q1)) {
-			return true;
-		}
-
-		return false;
-	}*/
-  
 	public Person getPersonAbility(){
 		return this.author;
 	}
-	public Question getQuestionAbility(){
+	
+	/*
+	 * retourne la question possèdant l'id inférieur
+	 */
+	
+	public Question getQuestion1Ability(){
 		return this.question1;
+	}
+	
+	/*
+	 * retourne la question possèdant l'id supérieur
+	 */
+	
+	public Question getQuestion2Ability(){
+		return this.question2;
 	}
 }
