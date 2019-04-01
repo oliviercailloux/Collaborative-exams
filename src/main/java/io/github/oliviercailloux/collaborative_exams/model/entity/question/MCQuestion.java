@@ -120,7 +120,7 @@ public class MCQuestion implements IQuestion {
 	 * @param type     Type of question
 	 * @param answers  represente the list of answer of the question
 	 */
-	public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers)
+	public MCQuestion(String phrasing, Language language, Person author, QuestionType type, List<Answer> answers) throws Exception
 	 {
 		this.phrasing = Objects.requireNonNull(phrasing);
 		this.language = Objects.requireNonNull(language);

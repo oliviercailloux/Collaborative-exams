@@ -26,7 +26,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 @Entity
 public class YesNoQuestion extends MCQuestion {
 
-	public YesNoQuestion(String phrasing, Language language, Person author, QuestionType type, Answer rightAnswer, Answer wrongAnswer)
+	public YesNoQuestion(String phrasing, Language language, Person author, QuestionType type, Answer rightAnswer, Answer wrongAnswer) throws Exception
 	 {
 		
 		super(phrasing, language, author, type);

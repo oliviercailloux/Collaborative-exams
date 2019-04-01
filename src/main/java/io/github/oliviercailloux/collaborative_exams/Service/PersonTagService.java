@@ -43,6 +43,19 @@ public class PersonTagService {
 	}
 
 	@Transactional
+	public PersonTag findPersonTag(Question idQuestion) throws Exception {
+		TypedQuery<PersonTag> query = em.createQuery("SELECT p FROM PersonTag p WHERE p.question = :idQuestion",
+				PersonTag.class);
+		query.setParameter("idQuestion", idQuestion);
+		List<PersonTag> result = query.getResultList();
+		if (result.isEmpty())
+			return null;
+		else
+			return result.get(0);
+
+	}
+
+	@Transactional
 	public PersonTag findPersonTag(Question idQuestion, Person idAuthor) {
 		TypedQuery<PersonTag> query = em.createQuery(
 				"SELECT p FROM PersonTag p WHERE p.question = :idQuestion and p.author = :idAuthor", PersonTag.class);
