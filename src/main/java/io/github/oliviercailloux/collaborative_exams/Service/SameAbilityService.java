@@ -44,11 +44,11 @@ public class SameAbilityService {
 	public boolean isSameAbility(Person idAuthor, Question idQuestion1, Question idQuestion2) {
 
 		/*
-		 * idQuestion1 est forcément plus petit que idQuestion2 car traitement pris en
-		 * compte lors
+		 * idQuestion1 < idQuestion2
+
 		 */
 
-		// Car relation réflexive
+		// The relation is reflexive
 		if (idQuestion1.getId() == idQuestion2.getId())
 			return true;
 

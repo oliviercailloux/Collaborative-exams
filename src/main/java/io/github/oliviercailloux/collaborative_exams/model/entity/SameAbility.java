@@ -35,7 +35,7 @@ public class SameAbility {
 	public SameAbility(Question question1, Question question2, Person author) {
 
 		/*
-		 * this.question1.id est inférieur à this.question2.id
+		 * this.question1.id < this.question2.id
 		 */
 		Question q1, q2;
 
@@ -55,17 +55,10 @@ public class SameAbility {
 		return this.author;
 	}
 
-	/*
-	 * retourne la question possèdant l'id inférieur
-	 */
 
 	public Question getQuestion1Ability() {
 		return this.question1;
 	}
-
-	/*
-	 * retourne la question possèdant l'id supérieur
-	 */
 
 	public Question getQuestion2Ability() {
 		return this.question2;

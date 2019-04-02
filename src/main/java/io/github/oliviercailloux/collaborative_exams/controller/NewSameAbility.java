@@ -40,8 +40,7 @@ public class NewSameAbility {
 		}
 
 		/*
-		 * On positionne d'abord la question avec l'id le plus petit afin d'optimiser la
-		 * recherche
+		 * q1 < q2
 		 */
 		int q1, q2;
 
