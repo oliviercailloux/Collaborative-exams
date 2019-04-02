@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -61,6 +62,17 @@ public class QuestionService {
 		List<Question> results = query.getResultList();
 		if (results.isEmpty())
 			throw new Exception("No question for this Person.");
+		return results;
+	}
+	
+	@Transactional
+	public List<Question> findQuestionTag(Person author, String tag) throws Exception {
+		Query query = em.createQuery("SELECT q FROM PersonTag pt JOIN pt.question q WHERE pt.tag = :tag and pt.author = :author");
+		query.setParameter("idAuthor", author);
+		query.setParameter("tag", tag);
+		List<Question> results = query.getResultList();
+		if (results.isEmpty())
+			throw new Exception("No question for this tag.");
 		return results;
 	}
 
