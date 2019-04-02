@@ -65,9 +65,9 @@ public class NewImprovement {
 		if (personService.findPerson(idAuthor) == null)
 			throw new Exception("the author id :" + idAuthor + "is null");
 
-		SameAbility sameability = SameAbilityService.isSameAbility(personService.findPerson(idAuthor),
+		boolean sameability = SameAbilityService.isSameAbility(personService.findPerson(idAuthor),
 				questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2));
-		if (sameability == null)
+		if (sameability == false)
 			throw new Exception("this questions don't have the same ability");
 
 		Improvement improvement = new Improvement(questionService.findQuestion(idQuestion1),

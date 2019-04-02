@@ -32,29 +32,35 @@ public class SameAbility {
 	public SameAbility() {
 	}
 
-	public SameAbility(Question q1, Question q2, Person author) {
+	public SameAbility(Question question1, Question question2, Person author) {
+
+		/*
+		 * this.question1.id < this.question2.id
+		 */
+		Question q1, q2;
+
+		if (question1.getId() < question2.getId()) {
+			q1 = question1;
+			q2 = question2;
+		} else {
+			q1 = question2;
+			q2 = question1;
+		}
 		this.question1 = q1;
 		this.question2 = q2;
 		this.author = author;
 	}
 
-	public boolean isSameAbility(Question q1, Question q2) {
-		if (question1.equals(q1) && question2.equals(q2)) {
-			return true;
-		} else if (question1.equals(q2) && question2.equals(q1)) {
-			return true;
-		}
-
-		return false;
-	}
-	
-	
-	public Person getPersonAbility(){
+	public Person getPersonAbility() {
 		return this.author;
 	}
-	public Question getQuestionAbility(){
+
+
+	public Question getQuestion1Ability() {
 		return this.question1;
 	}
-	
 
+	public Question getQuestion2Ability() {
+		return this.question2;
+	}
 }
