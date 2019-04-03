@@ -36,7 +36,7 @@ public class NewPersonTag {
 
 		if (cookie == null) {
 			if (idAuthor == null)
-				throw new Exception("Both Cookie and the input Author Id's field are null, please log-in or register again.");
+				throw new WebApplicationException("Both Cookie and the input Author Id's field are null, please log-in or register again.");
 			AuthorId = idAuthor;
 		} else {
 			AuthorId = Integer.valueOf(cookie.getValue());
