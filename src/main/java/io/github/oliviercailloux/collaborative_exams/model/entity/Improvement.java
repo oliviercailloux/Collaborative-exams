@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,12 +20,15 @@ public class Improvement {
 	@XmlAttribute
 	private int idImprovement;
 
+	@OneToOne
 	@XmlElement(name = "question")
 	private Question question1;
 
+	@OneToOne
 	@XmlElement(name = "question")
 	private Question question2;
 
+	@OneToOne
 	@XmlElement(name = "author")
 	private Person author;
 

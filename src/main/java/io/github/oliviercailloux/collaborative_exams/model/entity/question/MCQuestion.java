@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -81,7 +82,7 @@ public class MCQuestion implements IQuestion {
 	 * Represent the possible answers of a MQC Question
 	 */
 
-	//@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+	@OneToMany
 	@XmlElementWrapper(name = "answers")
 	@XmlElement(name = "answer")
 	protected List<Answer> answers;

@@ -30,7 +30,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class Answer implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @XmlAttribute
     private int id;

@@ -20,6 +20,7 @@ import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  * This Class represents Question
@@ -61,16 +62,16 @@ public class Question {
     private String language;
 
     /**
-     * respresente the Author
+     * Represent the Author
      *
      * @see Person Not <code>null</code>.
      */
-    @ManyToOne
     @XmlElement(name = "author")
+    @Column(nullable = false)
     private Person author;
 
     /**
-     * respresente if the response whas correct in T/F or Y/N question
+     * Represent if the response whas correct in T/F or Y/N question
      * <p>
      * Null if type of question is Free or QCM
      */
@@ -89,17 +90,18 @@ public class Question {
     /**
      * Represent the possible answers of a MQC Question
      */
+    @ManyToMany
     @XmlElementWrapper(name = "answers")
     @XmlElement(name = "answer")
     private List<Answer> answers;
 
     @ManyToMany(mappedBy = "listQuestions")
-//            @XmlElementWrapper(name = "listExams")
+//  @XmlElementWrapper(name = "listExams")
 //	@XmlElement(name = "listExams")
     private List<Exam> listExams = new ArrayList<>();
 
     /**
-     * Returns a new Question. Not <code>null</code>.
+     * Return a new Question. Not <code>null</code>.
      */
     public Question() {
 
@@ -111,7 +113,7 @@ public class Question {
     }
 
     /**
-     * return new Question T/F or Y/N
+     * Return new Question T/F or Y/N
      *
      * @param phrasing phrasing of question
      * @param language Language of question
@@ -127,7 +129,7 @@ public class Question {
     }
 
     /**
-     * return Question Free
+     * Return Question Free
      *
      * @param phrasing phrasing of question
      * @param language Language of question
@@ -147,7 +149,7 @@ public class Question {
     }
 
     /**
-     * return new MCQ Question
+     * Return new MCQ Question
      *
      * @param phrasing phrasing of question
      * @param language Language of question
@@ -169,7 +171,7 @@ public class Question {
     }
 
     /**
-     * Returns this Question’s id.
+     * Return this Question’s id.
      *
      * @return not <code>null</code>.
      */
@@ -178,7 +180,7 @@ public class Question {
     }
 
     /**
-     * Returns this Question’s language.
+     * Return this Question’s language.
      *
      * @return String not null.
      */
@@ -187,7 +189,7 @@ public class Question {
     }
 
     /**
-     * Returns this Question’s author.
+     * Return this Question’s author.
      *
      * @return Person not null and immuable.
      */
@@ -196,7 +198,7 @@ public class Question {
     }
 
     /**
-     * Returns this Question’s type.
+     * Return this Question’s type.
      *
      * @return String not null.
      */
@@ -206,7 +208,7 @@ public class Question {
     }
 
     /**
-     * Returns this Question’s phrasing.
+     * Return this Question’s phrasing.
      *
      * @return String not <code>null</code>.
      */
@@ -216,7 +218,7 @@ public class Question {
     }
 
     /**
-     * Returns this Question’s answers.
+     * Return this Question’s answers.
      *
      * @return String can be null, if the Question is TF/ YN / QCM
      */

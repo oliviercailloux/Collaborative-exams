@@ -34,6 +34,7 @@ public class Person {
 	 */
 	private int id;
 
+	@Column
 	@OneToMany(mappedBy = "author")
 	private List<Question> questions;
 

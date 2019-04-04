@@ -5,6 +5,7 @@ import java.util.List;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Language;
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.QuestionType;
 
 /**
  * This Class represents Question
