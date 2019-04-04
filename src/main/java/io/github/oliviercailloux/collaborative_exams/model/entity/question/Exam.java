@@ -50,7 +50,7 @@ public class Exam implements Serializable {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private List<Question> listQuestions;
+    private List<MCQuestion> listQuestions;
 
     public Exam() {
 
@@ -73,7 +73,7 @@ public class Exam implements Serializable {
         return author;
     }
 
-    public List<Question> getListeQuestions() {
+    public List<MCQuestion> getListeQuestions() {
         return listQuestions;
     }
 }

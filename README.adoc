@@ -137,11 +137,13 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Valentin*
 
-* Gestion de la partie Author : Intégration d'une API de Data Visualisation dans la partie Author pour obtenir des statistiques poussées et intéressantes sous forme de diagrammes, de courbes et de graphiques
+* Correction des problèmes de compilation sur les serveurs GlassFish et WildFly (1)
+* Elaboration du diagramme de classe ainsi qu'une documentation spécifique pour comprendre et faire tourner le projet (1)
+* [A FAIRE s'il reste du temps] Création du test unitaire pour GetListExamenQuestion.java (création du pdf). (1)
 
 *Katia*
 
-* Question par thème: Chaque personne peut associer un thème (info, math, economie....) à chaque question (y compris celles dont la personne n’est pas auteur). Et afficher toutes les questions qui concernent un thème données
+* Question par thème: Un servlet qui permet à chaque personne de récupérer toutes les questions qu'il a associé à un thème (tag) donné (info, math, economie....).
 
 *Alexandre*
 

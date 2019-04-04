@@ -100,6 +100,10 @@ public class AnswerQuestion implements Serializable {
         return question;
     }
 
+    public void setQuestion(IQuestion question) {
+        this.question = question;
+    }
+
     public Answer getAnswer() {
         return answer;
     }
