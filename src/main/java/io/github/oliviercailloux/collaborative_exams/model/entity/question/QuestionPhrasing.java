@@ -35,7 +35,7 @@ public class QuestionPhrasing implements Serializable {
     private String phrasing;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Question> listQuestions = new ArrayList<>();
+    private List<IQuestion> listQuestions = new ArrayList<>();
 
     public QuestionPhrasing() {
         this.listQuestions = new ArrayList<>();
@@ -55,7 +55,7 @@ public class QuestionPhrasing implements Serializable {
         return phrasing;
     }
 
-    public List<Question> getListeQuestions() {
+    public List<IQuestion> getListeQuestions() {
         return listQuestions;
     }
 }
