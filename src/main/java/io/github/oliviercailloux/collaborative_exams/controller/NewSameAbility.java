@@ -1,13 +1,10 @@
 package io.github.oliviercailloux.collaborative_exams.controller;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-
+import javax.ws.rs.QueryParam;
 import io.github.oliviercailloux.collaborative_exams.Service.PersonService;
 import io.github.oliviercailloux.collaborative_exams.Service.QuestionService;
 import io.github.oliviercailloux.collaborative_exams.Service.SameAbilityService;
@@ -25,34 +22,43 @@ public class NewSameAbility {
 	private SameAbilityService sameAbilityService;
 
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String newSameAbility(MultivaluedMap<String, String> form) throws Exception {
-
-		int idQuestion1 = Integer.valueOf(form.getFirst("idQuestion1"));
-		int idQuestion2 = Integer.valueOf(form.getFirst("idQuestion2"));
-		int idAuthor = Integer.valueOf(form.getFirst("idAuthor"));
+	public void newSameAbility(@QueryParam("idQuestion1") Integer idQuestion1,
+			@QueryParam("idQuestion2") Integer idQuestion2, @QueryParam("idAuthor") Integer idAuthor) throws Exception {
 
 		if (questionService.findQuestion(idQuestion1) == null)
-			throw new Exception("the question id :" + idQuestion1 + "is null.");
+			throw new NotFoundException("the question id :" + idQuestion1 + " doesn't exist.");
 
 		if (questionService.findQuestion(idQuestion2) == null)
-			throw new Exception("the question id :" + idQuestion2 + "is null.");
+			throw new NotFoundException("the question id :" + idQuestion2 + " doesn't exist.");
 
 		if (personService.findPerson(idAuthor) == null)
-			throw new Exception("the author id :" + idAuthor + "is null.");
+			throw new NotFoundException("the author id :" + idAuthor + " doesn't exist.");
 
 		if (idQuestion1 == idQuestion2) {
-			throw new Exception("You indicated the same id Question for both of the questions.");
+			throw new IllegalArgumentException("You indicated the same id Question for both of the questions.");
 
 		}
 
-		SameAbility s = new SameAbility(questionService.findQuestion(idQuestion1),
-				questionService.findQuestion(idQuestion2), personService.findPerson(idAuthor));
+		/*
+		 * q1 < q2
+		 */
+		int q1, q2;
 
+		q1 = Math.min(idQuestion1, idQuestion2);
+		q2 = Math.max(idQuestion1, idQuestion2);
+
+		SameAbility s = new SameAbility(questionService.findQuestion(q1), questionService.findQuestion(q2),
+				personService.findPerson(idAuthor));
+
+		/*
+		 * Test if the object is already in database
+		 */
+
+		if (sameAbilityService.isSameAbility(personService.findPerson(idAuthor),
+				questionService.findQuestion(idQuestion1), questionService.findQuestion(idQuestion2))) {
+			throw new IllegalArgumentException("This relation already exists.");
+		}
 		sameAbilityService.persist(s);
-
-		return "id 1" + idQuestion1 + "id 2" + idQuestion2 + "id author" + idAuthor;
 
 	}
 

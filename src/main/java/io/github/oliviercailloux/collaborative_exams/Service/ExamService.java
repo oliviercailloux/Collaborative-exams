@@ -3,7 +3,7 @@ package io.github.oliviercailloux.collaborative_exams.Service;
 import io.github.oliviercailloux.collaborative_exams.helper.QueryHelper;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Answer;
 import io.github.oliviercailloux.collaborative_exams.model.entity.question.Exam;
-import io.github.oliviercailloux.collaborative_exams.model.entity.question.Question;
+import io.github.oliviercailloux.collaborative_exams.model.entity.question.MCQuestion;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -35,8 +35,8 @@ public class ExamService {
     }
 
     @Transactional
-    public void findExam(int id) {
-        em.find(Exam.class, id);
+    public Exam findExam(int id) {
+        return em.find(Exam.class, id);
     }
 
     public void setTestMode(boolean testMode) {
@@ -44,15 +44,15 @@ public class ExamService {
     }
 
     public void constructExam(Exam exam, List<Integer> listIdQuestion) {
-        List<Question> listQuestion = em.createNamedQuery("Question.findByListIdQuestion").setParameter("listIdQuestion", listIdQuestion).getResultList();
-        for (Question q : listQuestion) {
+        List<MCQuestion> listQuestion = em.createNamedQuery("MCQuestion.findByListIdQuestion").setParameter("listIdQuestion", listIdQuestion).getResultList();
+        for (MCQuestion q : listQuestion) {
             exam.getListeQuestions().add(q);
         }
     }
 
     public Exam updateCountParticipeForEachAnswer(Exam exam) {
-        for (Question question : exam.getListeQuestions()) {
-            for (Answer answer : question.getAnswers()) {
+        for (MCQuestion question : exam.getListeQuestions()) {
+            for (Answer answer : question.getListAnswers()) {
                 if (!answer.isCorrect()) {
                     answer.getStats().setCountParticipat(answer.getStats().getCountParticipat() + 1);
                     // this verification is only for test (to not start the server and update the database)

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,6 +18,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import io.github.oliviercailloux.collaborative_exams.model.entity.Person;
+import io.github.oliviercailloux.collaborative_exams.model.entity.PersonTag;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,8 +36,6 @@ import javax.persistence.OneToOne;
 
 @XmlRootElement
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Question.findByListIdQuestion", query = "SELECT q FROM Question q WHERE q.id in (:listIdQuestion) ")})
 public class Question {
 
     @Id
@@ -100,6 +101,8 @@ public class Question {
 //	@XmlElement(name = "listExams")
     private List<Exam> listExams = new ArrayList<>();
 
+    @ManyToOne
+	private PersonTag personTag;
     /**
      * Return a new Question. Not <code>null</code>.
      */
