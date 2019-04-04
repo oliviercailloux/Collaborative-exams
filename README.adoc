@@ -139,12 +139,6 @@ java.lang.IllegalStateException: Could not find beans for Type=class org.apache.
 
 Ceci n'inclue pas la partie correction d'examen
 
-*Mohamed*
-
-* RelationsMultiFormat : Servlet GetSameAbility(person id): ensemble de triplets ; et de même pour les autres relations, et de même pour Set. La relation peut être récupérée ou envoyée au format XML ou JSON. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni (1)
-
-* Modifier Examen : changer les sujets d'exams qui seront créer par khaled. Tel que cette opération est accessible que pour les enseignants. l'enseignant peut soit changer le niveau de difficulté d'une question, changer une question... avec cookie qui mémorise id d'un enseignant(1)
-* RelationsMultiFormat : Servlet GetSameAbility(person id): ensemble de triplets ; et de même pour les autres relations, et de même pour Set. La relation peut être récupérée ou envoyée au format XML ou JSON. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni (1)
 
 *Valentin*
 
