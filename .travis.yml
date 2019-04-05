@@ -18,4 +18,4 @@ deploy:
   region: eu-gb
   on:	
     all_branches: true	
-    condition: $TRAVIS_BRANCH =~ ^master #condition: $TRAVIS_BRANCH =~ ^alex|master #si besoin
+    condition: $TRAVIS_BRANCH =~ ^master|alex3 #condition: $TRAVIS_BRANCH =~ ^alex|master #si besoin
