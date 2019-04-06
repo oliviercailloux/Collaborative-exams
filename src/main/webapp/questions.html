@@ -198,7 +198,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="rest/NewQuestion" method="post">
+  <form action="/rest/NewQuestion" method="post">
     <div class="form-group">
       <label for="phrasing">Phasing:</label>
       <input class="form-control" id="phrasing" placeholder="Type your question..." name="phrasing">
@@ -267,7 +267,7 @@
 
                <br>
             
-              <form action="IQuestions/get" method="GET">
+              <form action="/rest/IQuestions/get" method="GET">
               <label for="content-1">ID:</label>
               <input type="text" class="form-control" name="id" placeholder="Enter question id...">
           <input type="submit" value="Display the Question from ID !" />
@@ -275,7 +275,7 @@
         
         <br>
             
-  <form action="/IQuestions/all" method="get">
+  <form action="/rest/IQuestions/all" method="get">
     <input type="submit"  value="Display all Questions" />
   </form>
 
@@ -297,7 +297,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="/NewSameAbility" method="post">
+  <form action="/rest/NewSameAbility" method="post">
     <div class="form-group">
       <label for="authorID">Author ID:</label>
       <input class="form-control" id="idAuthor" placeholder="Enter Author ID..." name="idAuthor">
@@ -334,7 +334,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="/NewImprovement" method="post" id="NewImprovement">
+  <form action="/rest/NewImprovement" method="post" id="NewImprovement">
     <div class="form-group">
       <label for="authorID">Author ID:</label>
       <input class="form-control" id="idAuthor" placeholder="Enter Author ID..." name="idAuthor">
@@ -370,7 +370,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="/ChangeQuestionLanguage" method="post">
+  <form action="/rest/ChangeQuestionLanguage" method="post">
     <div class="form-group">
       <label for="idQuestion">Question ID:</label>
       <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
@@ -407,7 +407,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="/ChangeResponseTypeTF" method="post">
+  <form action="/rest/ChangeResponseTypeTF" method="post">
      <div class="form-group">
       <label for="idQuestion">Question ID:</label>
       <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
@@ -438,7 +438,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-  <form action="/ChangeResponseTypeYN" method="post">
+  <form action="/rest/ChangeResponseTypeYN" method="post">
   <div class="form-group">
       <label for="idQuestion">Question ID:</label>
       <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
@@ -472,7 +472,7 @@
           </div>
           <div class="modal-body">
  <div class="container">
-  <form action="/Multi/QuestionMultiFormat" method="GET">
+  <form action="/rest/Multi/QuestionMultiFormat" method="GET">
   <div class="form-group">
       <label for="idQuestion">Question ID:</label>
       <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
@@ -490,7 +490,7 @@
    		</select>
     </div>
 </div></div>
-        <form action="/IQuestions/get" method="GET">
+        <form action="/rest/IQuestions/get" method="GET">
             <input type="submit" class="form-control" name="id" value="Display the question">
         </form>
 	<div class="modal-footer">
