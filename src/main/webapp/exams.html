@@ -101,9 +101,10 @@
 	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addGetListQuestionsExamModal">
      	<i class="fa fa-plus"> Get the Questions list of an Exam</i>
 	</button>
+	<br><br>
 
-		
-    
+
+
 
       <div class="card mb-3">
         <div class="card-header">
@@ -124,7 +125,7 @@
                 <tr>
 		  <td>1</td>
                   <td>Exam 1</td>	
-                  <td>Question 1 <br> Question 2 <br> Question 3</td>
+                  <td>Question 1</td>
 		  <td><a data-toggle="modal" data-target="#editExamModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteExamModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>
                 </tr>
                 <tr>
@@ -160,6 +161,73 @@
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
     </a>
+
+
+
+	<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addExamModal">
+    	<i class="fa fa-plus"> Add Exam</i>
+	</button>
+		
+	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addGetListQuestionsExamModal">
+		
+		
+	<!-- add Exam Modal-->
+	<div class="modal fade" id="addExamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+          	</div>
+	<div class="modal-body">
+		<div class="container">
+	<form action="/rest/NewQuestion" method="post">
+    <div class="form-group">
+      <label for="phrasing">Phasing:</label>
+      <input class="form-control" id="phrasing" placeholder="Type your question..." name="phrasing">
+    </div>
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input class="form-control" id="author" placeholder="Type your name..." name="idAuthor">
+    </div>
+      <div class="form-group">
+      <label for="language">Language:</label>
+      <input class="form-control" id="language" placeholder="Type your language..." name="language">
+    </div>
+      <div class="form-group">
+       <label for="type">Type:</label>
+      <select class="form-control" id="type" name="type">
+      <option name="truefalse" value="-1" >Choose...</option>
+        <option name="truefalse" value="TF" >True/False</option>
+        <option name="yesno" value="YN">Yes/No</option>
+        <option name="multiple" value="QCM">Multiple Choice</option>
+        <option name="free" value="Free">Free</option>
+      </select>
+    </div>
+    <div class="form-group" name="yesnoinput" id="yesnoinput">
+    <label class="radio-inline">
+      <input type="radio" name="isCorrect"> Yes
+    </label>
+    &nbsp;&nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="isCorrect"> No
+    </label>
+    </div>
+    <div class="form-group" name="truefalseinput" id="truefalseinput">
+    <label class="radio-inline">
+      <input type="radio" name="isCorrect"> True 
+    </label>
+    &nbsp;&nbsp;
+    <label class="radio-inline">
+      <input type="radio" name="isCorrect"> False
+    </label>
+    </div>
+    <div class="form-group">
+    <textarea class="form-control" id="freeinput" name="freeAnswer"></textarea>
+    </div>
+
     
     <!-- Delete Modal-->
     <div class="modal fade" id="deleteExamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
