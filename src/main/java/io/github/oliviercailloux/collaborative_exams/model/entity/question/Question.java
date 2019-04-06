@@ -104,7 +104,7 @@ public class Question {
     @ManyToOne
 	private PersonTag personTag;
     /**
-     * Return a new Question. Not <code>null</code>.
+     * Returns a new Question. Not <code>null</code>.
      */
     public Question() {
 
