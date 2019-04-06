@@ -88,95 +88,78 @@
 
 
   <div class="content-wrapper">
-
-
-
-
-
-
-
-	<div class="container-fluid">
-
-	<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addQuestionModal">
-    	<i class="fa fa-plus"> Add Question</i>
-	</button>
-	<br>
-	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addAbilityModal">
-     	<i class="fa fa-plus"> Add Same Ability</i>
-	</button>
-	<br>
-	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addImprovementModal">
-	<i class="fa fa-plus"> Add Improvement</i>
-	</button>
-	<br>
-	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#editLanguageModal">
-	<i class="fa fa-edit"> Edit Language</i>
-	</button>
-	<br>
-	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#changeTypeTFModal">
-	<i class="fa fa-edit"> Change Type to TF</i>
-	</button>
-	<br>
-	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#changeTypeYNModal">
-	<i class="fa fa-edit"> Change Type to YN</i>
-	</button>
-	<br>
-	<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#questionMultiFormat">
-	<i class="fa fa-edit"> Question Multi-Format </i>
-	</button>
-	<br><br>
     
+	  
+	  
 
  <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i style="margin-top: 10px;" class="fa fa-table"></i> Questions
-		
-		
-	</div>	
+          <i style="margin-top: 10px;" class="fa fa-table"></i> Dashboard Questions
+	</div>
         <div class="card-body">	
           <div class="table-responsive">	
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">	
               <thead>	
                 <tr>	
-                  <th>Phrasing</th>	
-                  <th>Author</th>	
-                  <th>Language</th>	
-                  <th>Type</th>	
-                  <th>Actions</th>	
+                  <th>Type of Question</th>
+                  <th>Number in the Database</th>
                 </tr>	
               </thead>	
               <tbody>	
                 <tr>	
-                  <td>los autos pueden volar</td>	
-                  <td>Jeff</td>	
-                  <td>ES</td>	
-                  <td>True/False</td>	
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>              	
-                </tr>	
+                  <td>ALL existing Questions</td>	
+                  <td>40</td>      	
+                </tr>
                 <tr>	
-                  <td>Est-ce que Bill Gates est le fondateur de Apple?</td>	
-                  <td>Sid</td>	
-                  <td>FR</td>	
+                  <td>True/False</td>	
+                  <td>10</td>      	
+                </tr>
+                <tr>	
                   <td>Yes/No</td>	
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>	
+                  <td>10</td>      	
+                </tr>
                 <tr>	
-                  <td>Michael Bruce</td>	
-                  <td>Madjid</td>	
-                  <td>EN</td>	
                   <td>Multiple Choice</td>	
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>	
-                </tr>	
+                  <td>10</td>      	
+                </tr>
                 <tr>	
-                  <td>Faut-il avoir des super pouvoir pour etre un superhero</td>	
-                  <td>Bruce Wayne</td>	
-                  <td>FR</td>	
-                  <td>True/False</td>	
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>	
+                  <td>Free</td>	
+                  <td>10</td>      	
+                </tr>	
               </tbody>	
             </table>	
           </div>	
-        </div>	
+        </div>
+	      
+
+ <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i style="margin-top: 10px;" class="fa fa-table"></i> Dashboard Exams
+	</div>
+        <div class="card-body">	
+          <div class="table-responsive">	
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">	
+              <thead>	
+                <tr>	
+                  <th>Type of Exams</th>
+                  <th>Number in the Database</th>
+                </tr>	
+              </thead>	
+              <tbody>	
+                <tr>	
+                  <td>ALL Exams</td>	
+                  <td>5</td>      	
+                </tr>
+              </tbody>	
+            </table>	
+          </div>	
+        </div>
+	      
+	      
+	      
+	      
       </div>
 		
         
