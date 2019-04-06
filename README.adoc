@@ -162,7 +162,13 @@ Ceci n'inclue pas la partie correction d'examen
 
 * [ANNULÉ POUR CAUSE DE BUGS] UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (0 point)
 * [ANNULÉ POUR CAUSE DE BUGS] Datavisualisation : Dashboards sur les données de la BDD. (0 point)
-* [A FAIRE] Ecriture des formulaires d'ajout de questions et d'examens, écriture des pages manquantes du site (1,5 points)
+* [FAIT] Écriture des pages manquantes du site, écriture et mise à jour des boutons, formulaires, tableaux (1,5 points)
+* Mise à jour de la page index.html qui correspond à l'onglet "Dashboards" : dashboards sur les questions, exams, et authors
+* Mise à jour de la page questions.html qui correspond à l'onglet "Questions" : tableau, boutons et formulaires créés ou mis à jour pour correspondre aux servlets existants
+* Création de la page exams.html qui correspond à l'onglet "Exams" : tableau, création de boutons et formulaires pour correspondre aux servlets existants
+* Création de la page authors.html qui correspond à l'onglet "Authors" : tableau, création de boutons et formulaires pour correspondre aux servlets existants
+* Page about.html qui correspond à l'onglet "About Us" : création commencée en itération 1 et terminée
+* Page contact.html qui correspond à l'onglet "Contact Us" : création commencée en itération 1 et terminée
 
 = URL du site web
 
