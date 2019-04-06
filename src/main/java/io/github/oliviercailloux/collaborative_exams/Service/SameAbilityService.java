@@ -41,19 +41,42 @@ public class SameAbilityService {
 	}
 
 	@Transactional
-	public SameAbility isSameAbility(Person idAuthor, Question idQuestion1, Question idQuestion2) {
-		TypedQuery<SameAbility> query = em.createQuery(
-				"SELECT s FROM SameAbility s WHERE s.author = :idAuthor and ((s.question1 = :idQuestion1 and s.question2 = :idQuestion2) or (s.question1 = :idQuestion2 and s.question2 = :idQuestion1)   )",
-				SameAbility.class);
+	public boolean isSameAbility(Person idAuthor, Question idQuestion1, Question idQuestion2) {
 
-		query.setParameter("idAuthor", idAuthor);
-		query.setParameter("idQuestion1", idQuestion1);
-		query.setParameter("idQuestion2", idQuestion2);
+		/*
+		 * idQuestion1 < idQuestion2
+
+		 */
+
+		// The relation is reflexive
+		if (idQuestion1.getId() == idQuestion2.getId())
+			return true;
+
+		TypedQuery<SameAbility> query;
+
+		if (idQuestion1.getId() < idQuestion2.getId()) {
+			query = em.createQuery(
+					"SELECT s FROM SameAbility s WHERE (s.author = :idAuthor and) ((s.question1 = :idQuestion1 and s.question2 = :idQuestion2))",
+					SameAbility.class);
+
+			query.setParameter("idAuthor", idAuthor);
+			query.setParameter("idQuestion1", idQuestion1);
+			query.setParameter("idQuestion2", idQuestion2);
+
+		} else {
+			query = em.createQuery(
+					"SELECT s FROM SameAbility s WHERE (s.author = :idAuthor and) ((s.question1 = :idQuestion2 and s.question2 = :idQuestion1))",
+					SameAbility.class);
+
+			query.setParameter("idAuthor", idAuthor);
+			query.setParameter("idQuestion1", idQuestion2);
+			query.setParameter("idQuestion2", idQuestion1);
+		}
 
 		List<SameAbility> results = query.getResultList();
 		if (results.isEmpty())
-			return null;
+			return false;
 		else
-			return results.get(0);
+			return true;
 	}
 }
