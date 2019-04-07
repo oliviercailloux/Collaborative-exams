@@ -70,7 +70,7 @@ La création d'un servlet permettant d'exporter un examen en .pdf se fera dans l
 
 *Alexandre*
 
-* [FAIT] Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5)
+* [FAIT] Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5 point)
 
 = Deuxième itération
 
@@ -107,9 +107,22 @@ De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilit�
 
 *Alexandre*
 
-* Correction des warnings et exceptions au cours du build (0,25)
+* Correction des warnings et exceptions au cours du build (0,25 point)
 * [RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
 * [RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
+* [RECHERCHE COMPLEXE EFFECTUÉE SANS SUCCÈS] Correction de l'exception au cours du build décrite ci-dessous déplacée en itération 3 car solution non trouvée (1,25 points)
+* Travis indique un warning (Deprecated) lors du déploiement
+* SEVERE: Exception during lifecycle processing
+org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
+Exception 0 :
+java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
+https://stackoverflow.com/questions/55114271/travis-ci-deployment-of-a-jax-rs-application-fails-without-any-error
+https://travis-ci.community/t/deployment-of-a-jax-rs-application-fails-without-any-error/2622
+Recherches diverses (voir mon pull request "alex iteration 2")
+* [RECHERCHE COMPLEXE EFFECTUÉE SANS SUCCÈS) Correction des bugs concernant la fonctionnalité "UseDB" (1,25 points)
+* Fonctionnalité "UseDB" déplacée en itération 3 du fait de deux problèmes arrivés l'un après l'autre qui ne m'ont pas permis de faire des tests. Problème 1 : déploiement échoue sans erreur même après questions sur stackoverflow et travis-ci.community. Problème 2 : indisponibilité du service de BDD sur IBM Cloud non résolu même après tickets au support d'IBM Cloud (je vous montrerai lorsque nous nous verrons).
+Tickets au support
+Recherches diverses (voir mon pull request "alex iteration 2")
 
 
 = Troisième itération
@@ -141,18 +154,15 @@ Ceci n'inclue pas la partie correction d'examen
 
 *Alexandre*
 
-* [BESOIN D'AIDE] Correction de l'exception au cours du build décrite ci-dessous déplacée en itération 3 car solution non trouvée (0,5)
-* [A CORRIGER] Travis indique un warning (Deprecated) lors du déploiement
-* SEVERE: Exception during lifecycle processing
-org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
-Exception 0 :
-java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
-* Recherche sur les bugs concernant la fonctionnalité "UseDB" (0,5)
-* Fonctionnalité "UseDB" déplacée en itération 3 du fait de deux problèmes arrivés l'un après l'autre qui ne m'ont pas permis de faire des tests. Problème 1 : déploiement échoue sans erreur même après questions sur stackoverflow et travis-ci.community. Problème 2 : indisponibilité du service de BDD sur IBM Cloud non résolu même après tickets au support d'IBM Cloud (je vous montrerai lorsque nous nous verrons).
-https://stackoverflow.com/questions/55114271/travis-ci-deployment-of-a-jax-rs-application-fails-without-any-error
-https://travis-ci.community/t/deployment-of-a-jax-rs-application-fails-without-any-error/2622
-* [A FAIRE si bug service BDD résolu] UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (1)
-* [A FAIRE si UseDB terminé] Datavisualisation : Dashboards sur les données de la BDD. (1)
+* [ANNULÉ POUR CAUSE DE BUGS] UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (0 point)
+* [ANNULÉ POUR CAUSE DE BUGS] Datavisualisation : Dashboards sur les données de la BDD. (0 point)
+* [FAIT] Écriture des pages manquantes du site, écriture et mise à jour des boutons, formulaires, tableaux (1,5 points)
+* Mise à jour de la page index.html qui correspond à l'onglet "Dashboards" : dashboards sur les questions, exams, et authors
+* Mise à jour de la page questions.html qui correspond à l'onglet "Questions" : tableau, boutons et formulaires créés ou mis à jour pour correspondre aux servlets existants
+* Création de la page exams.html qui correspond à l'onglet "Exams" : tableau, création de boutons et formulaires pour correspondre aux servlets existants
+* Création de la page authors.html qui correspond à l'onglet "Authors" : tableau, création de boutons et formulaires pour correspondre aux servlets existants
+* Page about.html qui correspond à l'onglet "About Us" : création commencée en itération 1 et terminée
+* Page contact.html qui correspond à l'onglet "Contact Us" : création commencée en itération 1 et terminée
 
 = URL du site web
 

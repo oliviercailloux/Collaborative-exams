@@ -1,570 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Collaborative Exams</title>
-  <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
-</head>
-
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Collaborative Exams</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Questions">
-          <a class="nav-link" href="questions.html">
-            <i class="fa fa-fw fa-question"></i>
-            <span class="nav-link-text">Questions</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Exams">
-          <a class="nav-link" href="exams.html">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Exams</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Authors">
-          <a class="nav-link" href="authors.html">
-            <i class="fa fa-fw fa-user"></i>
-            <span class="nav-link-text">Authors</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="About Us">
-          <a class="nav-link" href="about.html">
-            <i class="fa fa-fw fa-info"></i>
-            <span class="nav-link-text">About Us</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact Us">
-          <a class="nav-link" href="contact.html">
-            <i class="fa fa-fw fa-address-book"></i>
-            <span class="nav-link-text">Contact Us</span>
-          </a>
-        </li>
-        
-      </ul>
-      <ul class="navbar-nav sidenav-toggler">
-        <li class="nav-item">
-          <a class="nav-link text-center" id="sidenavToggler">
-            <i class="fa fa-fw fa-angle-left"></i>
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-
-
-
-
-
-
-  <div class="content-wrapper">
-
-
-
-
-
-
-
-    <div class="container-fluid">
-
-    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addQuestionModal">
-                  <i class="fa fa-plus"> Add Question</i>
-                </button>
-
-      <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addAbilityModal">
-                  <i class="fa fa-plus"> Add Same Ability</i>
-                </button>
-
-                  <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#addImprovementModal">
-                  <i class="fa fa-plus"> Add Improvement</i>
-                </button>
-
-                <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#editLanguageModal">
-                  <i class="fa fa-edit"> Edit Language</i>
-                </button>
-
-                <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#changeTypeTFModal">
-                  <i class="fa fa-edit"> Change Type to TF</i>
-                </button>
-
-                <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#changeTypeYNModal">
-                  <i class="fa fa-edit"> Change Type to YN</i>
-                </button>
-
-				<button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#questionMultiFormat">
-                  <i class="fa fa-edit"> Question Multi-Format </i>
-                </button>
-
-                <br><br>
-    
-
- <!-- Example DataTables Card-->
-      <div class="card mb-3">
-        <div class="card-header">
-          <i style="margin-top: 10px;" class="fa fa-table"></i> Questions
-
-       
-               
-          </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Phrasing</th>
-                  <th>Author</th>
-                  <th>Language</th>
-                  <th>Type</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>los autos pueden volar</td>
-                  <td>Jeff</td>
-                  <td>ES</td>
-                  <td>True/False</td>
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>              
-                </tr>
-                <tr>
-                  <td>Est-ce que Bill Gates est le fondateur de Apple?</td>
-                  <td>Sid</td>
-                  <td>FR</td>
-                  <td>Yes/No</td>
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>
-                <tr>
-                  <td>Michael Bruce</td>
-                  <td>Madjid</td>
-                  <td>EN</td>
-                  <td>Multiple Choice</td>
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>
-                </tr>
-                <tr>
-                  <td>Faut-il avoir des super pouvoir pour etre un superhero</td>
-                  <td>Bruce Wayne</td>
-                  <td>FR</td>
-                  <td>True/False</td>
-                  <td><a data-toggle="modal" data-target="#editQuestionModal" href="#" style="color: #000000;" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a><a data-toggle="modal" data-target="#deleteQuestionModal" href="#" style="color: #000000; padding: 15px;" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a></div></td>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-        
-    </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-      <div class="container">
-        <div class="text-center">
-          <small>Copyright © Collaborative Exams 2018</small>
-        </div>
-      </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-        <!-- Add Question Modal-->
-    <div class="modal fade" id="addQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/NewQuestion" method="post">
-    <div class="form-group">
-      <label for="phrasing">Phasing:</label>
-      <input class="form-control" id="phrasing" placeholder="Type your question..." name="phrasing">
-    </div>
-    <div class="form-group">
-      <label for="author">Author:</label>
-      <input class="form-control" id="author" placeholder="Type your name..." name="idAuthor">
-    </div>
-      <div class="form-group">
-      <label for="language">Language:</label>
-      <input class="form-control" id="language" placeholder="Type your language..." name="language">
-    </div>
-      <div class="form-group">
-       <label for="type">Type:</label>
-      <select class="form-control" id="type" name="type">
-      <option name="truefalse" value="-1" >Choose...</option>
-        <option name="truefalse" value="TF" >True/False</option>
-        <option name="yesno" value="YN">Yes/No</option>
-        <option name="multiple" value="QCM">Multiple Choice</option>
-        <option name="free" value="Free">Free</option>
-      </select>
-    </div>
-    <div class="form-group" name="yesnoinput" id="yesnoinput">
-    <label class="radio-inline">
-      <input type="radio" name="isCorrect"> Yes
-    </label>
-    &nbsp;&nbsp;
-    <label class="radio-inline">
-      <input type="radio" name="isCorrect"> No
-    </label>
-    </div>
-    <div class="form-group" name="truefalseinput" id="truefalseinput">
-    <label class="radio-inline">
-      <input type="radio" name="isCorrect"> True 
-    </label>
-    &nbsp;&nbsp;
-    <label class="radio-inline">
-      <input type="radio" name="isCorrect"> False
-    </label>
-    </div>
-    <div class="form-group">
-    <textarea class="form-control" id="freeinput" name="freeAnswer"></textarea>
-    </div>
-
-
- <div class="form-group" id="mcinput">
-                            <label for="content-1">Veuillez entrer vos choix et cocher la ou les bonnes réponses :</label>
-                            <div class="input-group" id="input-group-1">
-                            	
-                            	<select id="content-1" name="answersCorrect">
-								<option value="true">True</option>
-								<option value="false" selected>False</option>
-								</select> &nbsp;&nbsp;
-								<input type="text" class="form-control" id="content-1" name="answersText">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" id="addContent-1" type="button"><span class="fa fa-plus"></span></button>
-                                </span>
-                            </div><!-- /input-group -->
-</div>
-          </div>
-
-          
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
-               <br>
-            
-              <form action="rest/Questions/get" method="GET">
-              <label for="content-1">ID:</label>
-              <input type="text" class="form-control" name="id" placeholder="Enter question id...">
-          <input type="submit" value="Display the Question from ID !" />
-        </form>
-        
-        <br>
-            
-  <form action="rest/Questions/all" method="get">
-    <input type="submit"  value="Display all Questions" />
-  </form>
-
-
-          
-        </div>
-      </div>
-    </div>
-  </form></div>        
-          <!-- Add Ability Modal-->
-    <div class="modal fade" id="addAbilityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Ability</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/NewSameAbility" method="post">
-    <div class="form-group">
-      <label for="authorID">Author ID:</label>
-      <input class="form-control" id="idAuthor" placeholder="Enter Author ID..." name="idAuthor">
-    </div>
-     <div class="form-group">
-      <label for="questionID1">Question ID 1:</label>
-      <input class="form-control" id="idQuestion1" placeholder="Enter Question ID 1..." name="idQuestion1">
-    </div>
-     <div class="form-group">
-      <label for="questionID2">Question ID 2:</label>
-      <input class="form-control" id="idQuestion2" placeholder="Enter Question ID 2..." name="idQuestion2">
-    </div>
- 
-   
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-    <!-- Add Improvement Modal-->
-    <div class="modal fade" id="addImprovementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Improvement</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/NewImprovement" method="post" id="NewImprovement">
-    <div class="form-group">
-      <label for="authorID">Author ID:</label>
-      <input class="form-control" id="idAuthor" placeholder="Enter Author ID..." name="idAuthor">
-    </div>
-     <div class="form-group">
-      <label for="questionID1">Question ID 1:</label>
-      <input class="form-control" id="idQuestion1" placeholder="Enter Question ID 1..." name="idQuestion1">
-    </div>
-     <div class="form-group">
-      <label for="questionID2">Question ID 2:</label>
-      <input class="form-control" id="idQuestion2" placeholder="Enter Question ID 2..." name="idQuestion2">
-    </div>
-
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-    <!-- Change Language Modal-->
-    <div class="modal fade" id="editLanguageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Language</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/ChangeQuestionLanguage" method="post">
-    <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">New Author ID:</label>
-      <input class="form-control" id="newAuthorId" placeholder="Enter New Author ID..." name="newAuthorId">
-    </div>
-     <div class="form-group">
-      <label for="newLanguage">New Language:</label>
-      <input class="form-control" id="newLanguage" placeholder="Enter New Language..." name="newLanguage">
- </div>
-    
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
-
-
-     <!-- Change Type TF Modal-->
-    <div class="modal fade" id="changeTypeTFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Change Type to TF</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/ChangeResponseTypeTF" method="post">
-     <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">New Author ID:</label>
-      <input class="form-control" id="newAuthorId" placeholder="Enter New Author ID..." name="idAuthor">
-    </div>
- 			</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-default">Submit</button>
-   </form>
-          </div>
-        </div>
-      </div>
-    </div>        
-
-     <!-- Change Type YN Modal-->
-    <div class="modal fade" id="changeTypeYNModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Change Type to YN</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-  <form action="rest/ChangeResponseTypeYN" method="post">
-  <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">New Author ID:</label>
-      <input class="form-control" id="idAuthor" placeholder="Enter New Author ID..." name="idAuthor">
-    </div>
- 
-    
-</div></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>                                  
-   
-   
-   <!-- Question multi format-->
-    <div class="modal fade" id="questionMultiFormat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Question Multi-Format</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
- <div class="container">
-  <form action="rest/QuestionMultiFormat" method="GET">
-  <div class="form-group">
-      <label for="idQuestion">Question ID:</label>
-      <input class="form-control" id="idQuestion" placeholder="Enter Question ID ..." name="idQuestion">
-    </div>
-    <div class="form-group">
-      <label for="newAuthorId">Author ID:</label>
-      <input class="form-control" id="idAuthor" placeholder="Enter New Author ID..." name="idAuthor">
-    </div>
-    <div class="form-group">
- 	<label for="content-1">Format:</label>
-        <select class="form-control" id="format" name="format">
-  			<option name="format" value="-1" >Choose...</option>
-    		<option name="Json" value="Json" >Json</option>
-			<option name="XML" value="XML">XML</option>
-   		</select>
-    </div>
-</div></div>
-        <form action="rest/Questions/get" method="GET">
-            <input type="submit" class="form-control" name="id" value="Display the question">
-        </form>
-	<div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            </form>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-   
-    
-        <!-- Delete Modal-->
-    <div class="modal fade" id="deleteQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Delete Question</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Are you sure you want to delete this question?</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-danger" href="#">Delete</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="/collaborative-exams/rest/user/logout">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
-    <script src="js/sb-admin-charts.min.js"></script>
-    <!-- Custom JavaScript-->
-    <script src="js/myfunctions.js"></script>
-  </div>
-</body>
-
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Collaborative Exams</title>
+		<!-- Bootstrap core CSS-->
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom fonts for this template-->
+		<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- Page level plugin CSS-->
+		<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+		<!-- Custom styles for this template-->
+		<link href="css/sb-admin.css" rel="stylesheet">
+	</head>
+	<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+		<!-- Navigation-->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+			<a class="navbar-brand" href="index.html">Collaborative Exams</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+					<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+						<a class="nav-link" href="index.html">
+						<i class="fa fa-fw fa-dashboard"></i>
+						<span class="nav-link-text">Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Questions">
+						<a class="nav-link" href="questions.html">
+						<i class="fa fa-fw fa-question"></i>
+						<span class="nav-link-text">Questions</span>
+						</a>
+					</li>
+					<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Exams">
+						<a class="nav-link" href="exams.html">
+						<i class="fa fa-fw fa-table"></i>
+						<span class="nav-link-text">Exams</span>
+						</a>
+					</li>
+					<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Authors">
+						<a class="nav-link" href="authors.html">
+						<i class="fa fa-fw fa-user"></i>
+						<span class="nav-link-text">Authors</span>
+						</a>
+					</li>
+					<li class="nav-item" data-toggle="tooltip" data-placement="right" title="About Us">
+						<a class="nav-link" href="about.html">
+						<i class="fa fa-fw fa-info"></i>
+						<span class="nav-link-text">About Us</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav sidenav-toggler">
+					<li class="nav-item">
+						<a class="nav-link text-center" id="sidenavToggler">
+						<i class="fa fa-fw fa-angle-left"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+						<i class="fa fa-fw fa-sign-out"></i>Logout</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="content-wrapper">
+		<div class="card mb-3">
+			<div class="card-header">
+				<i style="margin-top: 10px;" class="fa fa-table"></i> Dashboard Questions
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>Question type</th>
+								<th>Number in the Database</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>ALL existing Questions</td>
+								<td>40</td>
+							</tr>
+							<tr>
+								<td>True/False</td>
+								<td>10</td>
+							</tr>
+							<tr>
+								<td>Yes/No</td>
+								<td>10</td>
+							</tr>
+							<tr>
+								<td>Multiple Choice</td>
+								<td>10</td>
+							</tr>
+							<tr>
+								<td>Free</td>
+								<td>10</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="card mb-3">
+				<div class="card-header">
+					<i style="margin-top: 10px;" class="fa fa-table"></i> Dashboard Exams
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+							<thead>
+								<tr>
+									<th>Exam type</th>
+									<th>Number in the Database</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ALL existing Exams</td>
+									<td>5</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="card mb-3">
+					<div class="card-header">
+						<i style="margin-top: 10px;" class="fa fa-table"></i> Dashboard Authors
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+								<thead>
+									<tr>
+										<th>Author type</th>
+										<th>Number in the Database</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>ALL existing Authors</td>
+										<td>10</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid-->
+			<!-- /.content-wrapper-->
+			<footer class="sticky-footer">
+				<div class="container">
+					<div class="text-center">
+						<small>Copyright © Collaborative Exams 2018</small>
+					</div>
+				</div>
+			</footer>
+			<!-- Scroll to Top Button-->
+			<a class="scroll-to-top rounded" href="#page-top">
+			<i class="fa fa-angle-up"></i>
+			</a>
+			<!-- Logout Modal-->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+							<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+							<a class="btn btn-primary" href="/collaborative-exams/rest/user/logout">Logout</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Bootstrap core JavaScript-->
+			<script src="vendor/jquery/jquery.min.js"></script>
+			<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<!-- Core plugin JavaScript-->
+			<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+			<!-- Page level plugin JavaScript-->
+			<script src="vendor/chart.js/Chart.min.js"></script>
+			<script src="vendor/datatables/jquery.dataTables.js"></script>
+			<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+			<!-- Custom scripts for all pages-->
+			<script src="js/sb-admin.min.js"></script>
+			<!-- Custom scripts for this page-->
+			<script src="js/sb-admin-datatables.min.js"></script>
+			<script src="js/sb-admin-charts.min.js"></script>
+			<!-- Custom JavaScript-->
+			<script src="js/myfunctions.js"></script>
+		</div>
+	</body>
 </html>
