@@ -174,7 +174,7 @@ Le document "Tutoriel - Déployer votre branche du projet sur votre compte IBM C
 
 = Propositions de fonctionnalités à corriger ou créer pour le groupe suivant
 
-* De manière générale, assurer que l'intégralité du projet existant fonctionne EN LIGNE car le but est de réaliser une application en ligne.
+* De manière générale, assurer que l'intégralité du projet fonctionne EN LIGNE car le but est de réaliser une application en ligne.
 Pour que chaque membre du groupe puisse tester le code de sa branche, il peut déployer sa branche sur IBM Cloud à un URL différent de l'URL des autres membres du groupe.
 Le document "Tutoriel - Déployer votre branche du projet sur votre compte IBM Cloud.pdf" disponible sur la branche master peut vous aider pour cela.
 
@@ -186,25 +186,25 @@ SEVERE: Exception during lifecycle processing org.glassfish.deployment.common.De
 * Pour le bouton "Add question manually" de la page questions.html
 Javascript pour convertir enun objet JSON les informations d’ajout de question saisies à la main dans le formulaire et pouvoir ainsi utiliser le servlet NewQuestionJson.java qui prend en entrée un fichier JSON pour créer une question et l'ajouter à la BDD.
 
-* Assurer que chaque bouton (ajout ou modification) du site fonctionne
+* Assurer que chaque bouton du site appelle bien un formulaire et que ce formulaire soit effectif vis-à-vis de la BDD.
 
 * Pour la page questions.html :
-Afficher dynamiquement dans le tableau les nuplets de questions enregistrés dans la BDD
+Afficher dynamiquement dans le tableau les nuplets de questions enregistrés dans la BDD.
 
 * Pour la page exams.html :
-Afficher dynamiquement dans le tableau les nuplets de d'exams enregistrés dans la BDD
+Afficher dynamiquement dans le tableau les nuplets de d'exams enregistrés dans la BDD.
 
 * Pour la page authors.html :
-Afficher dynamiquement dans le tableau les nuplets d'authors enregistrés dans la BDD
+Afficher dynamiquement dans le tableau les nuplets d'authors enregistrés dans la BDD.
 
 * Pour la page questions.html :
-Pouvoir modifier et supprimer les nuplets de questions enregistrés dans la BDD à partir des boutons du tableau
+Pouvoir modifier et supprimer les nuplets de questions enregistrés dans la BDD à partir des boutons du tableau.
 
 * Pour la page exams.html :
-Pouvoir modifier et supprimer les nuplets d'exams enregistrés dans la BDD à partir des boutons du tableau
+Pouvoir modifier et supprimer les nuplets d'exams enregistrés dans la BDD à partir des boutons du tableau.
 
 * Pour la page authors.html :
-Pouvoir modifier et supprimer les nuplets d'authors enregistrés dans la BDD à partir des boutons du tableau
+Pouvoir modifier et supprimer les nuplets d'authors enregistrés dans la BDD à partir des boutons du tableau.
 
 * Pour la page index.html :
 Afficher dynamiquement le calcul des données agrégées de la BDD pour les afficher dans les dashboards.
