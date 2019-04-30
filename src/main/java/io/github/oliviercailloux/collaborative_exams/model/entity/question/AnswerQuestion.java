@@ -108,8 +108,4 @@ public class AnswerQuestion implements Serializable {
         return answer;
     }
 
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
-    }
-
 }

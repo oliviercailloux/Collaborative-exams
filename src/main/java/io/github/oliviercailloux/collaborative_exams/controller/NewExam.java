@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -29,9 +30,9 @@ public class NewExam {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String addExam(String nomExam, String listIdQuestion) throws Exception {
+    public String addExam(@QueryParam("nomExam") String nomExam, @QueryParam("listIdQuestion") String listIdQuestion) throws Exception {
         Exam exam = new Exam(nomExam);
-        examService.constructExam(exam,extractIdQuestionFromString(listIdQuestion) );
+        examService.constructExam(exam, extractIdQuestionFromString(listIdQuestion));
         examService.persist(exam);
         return "OK!!";
     }
@@ -44,5 +45,4 @@ public class NewExam {
         }
         return listId;
     }
-
 }
