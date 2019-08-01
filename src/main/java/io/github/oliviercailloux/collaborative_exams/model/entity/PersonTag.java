@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,9 +23,11 @@ public class PersonTag {
 	@XmlAttribute
 	private int idPersonTag;
 
+	@OneToOne
 	@XmlElement(name = "question")
 	private Question question;
 
+	@OneToOne
 	@XmlElement(name = "author")
 	private Person author;
 

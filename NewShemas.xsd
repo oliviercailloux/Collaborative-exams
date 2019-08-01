@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:complexType name="question">
+      <xsd:sequence>
+         <xsd:element name="phrasing" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="language" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="author" type="person" minOccurs="0"/>
+         <xsd:element name="type" type="questionType" minOccurs="0"/>
+         <xsd:element name="answers" minOccurs="0">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="answer" type="answer" minOccurs="0" maxOccurs="unbounded"/>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="id" type="xsd:int" use="required"/>
+   </xsd:complexType>
+   <xsd:complexType name="person">
+      <xsd:sequence>
+         <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+      <xsd:attribute name="id" type="xsd:int" use="required"/>
+   </xsd:complexType>
+   <xsd:complexType name="answer">
+      <xsd:sequence>
+         <xsd:element name="correct" type="xsd:boolean"/>
+         <xsd:element name="text" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+      <xsd:attribute name="id" type="xsd:int" use="required"/>
+   </xsd:complexType>
+   <xsd:element name="question" type="question"/>
+   <xsd:element name="author" type="person"/>
+   <xsd:element name="answer" type="answer"/>
+   <xsd:simpleType name="questionType">
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="TF"/>
+         <xsd:enumeration value="YN"/>
+         <xsd:enumeration value="Free"/>
+         <xsd:enumeration value="QCM"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+</xsd:schema>

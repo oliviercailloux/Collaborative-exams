@@ -12,6 +12,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset; 
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ public class NewQuestionTest {
 
 	@Deployment(testable = false)
 	public static WebArchive createDeployment() {
-		final WebArchive war = ShrinkWrap.create(WebArchive.class, "collaborative-exams.war")
+		final WebArchive war = ShrinkWrap.create(WebArchive.class, "examcollab.war")
 				.addPackage(NewQuestionTest.class.getPackage());
 
 		return war;

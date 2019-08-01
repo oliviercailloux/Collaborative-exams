@@ -14,8 +14,6 @@ A Java project developed during the https://github.com/oliviercailloux/java-cour
 
 The code is hereby published under the MIT License, with their permission.
 
-NOTE: entities are not annotated correctly (for example the link from `PersonTag` to `Person` is missing). It might be necessary to remove the entities annotation in order to deploy.
-
 == Original description
 Ce projet permettra à des enseignants de créer des ensembles de questions et réponses. Ces questions peuvent être réutilisées par d’autres enseignants et combinées pour créer des questionnaires ou des sondages. Les étudiants pourront se servir de ces ensembles de questions pour s’entrainer.
 

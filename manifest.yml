@@ -1,4 +1,6 @@
 applications:
- - name: collaborative-exams
-   path: target/collaborative-exams.war
+ - name: examcollab
+   path: target/examcollab.war
    instances: 1
+   memory: 256M
+   disk_quota: 256M
