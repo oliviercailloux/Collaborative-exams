@@ -1,178 +1,29 @@
-= Première itération 
+= Collaborative exams
+:gitHubUserName: oliviercailloux
+:groupId: io.github.{gitHubUserName}
+:artifactId: collaborative-exams
+:repository: Collaborative-exams
 
-*Amine* 
+image:https://travis-ci.com/{gitHubUserName}/{repository}.svg?branch=master["Build Status", link="https://travis-ci.com/{gitHubUserName}/{repository}"]
 
-Question
+A Java project developed during several sessions of the https://github.com/oliviercailloux/java-course[Java course] taught at Université Paris-Dauphine (in http://www.mido.dauphine.fr/[MIDO] M2 MIAGE).
 
-* Interfaces et objets pour Question et objets associés. Une question comprend un énoncé (« phrasing »), une langue, un ensemble de réponses possibles, chacune associée à l’information indiquant si cette réponse est correcte, un identifiant (int), et un auteur. Un auteur est identifié par un id (int) et a un e-mail. Utiliser un objet Person pour les auteurs. Un énoncé et une réponse sont des textes simples. L’ensemble de réponses peut être remplacé par une information « Y/N » ou « T/F » ou « free », indiquant une question oui / non, ou vrai / faux, ou de réponse libre. Créer à cet effet une interface MultipleChoiceQuestion qui étend Question. L’auteur peut associer un identifiant personnel (string) à une question. Ceci est stocké hors de l’objet Question. Cet identifiant peut changer. (La paire (auteur, identifiant) doit être unique.) Une question est immuable. (2)
+The code is hereby published under the MIT License, with the permission of the contributors.
 
-*Commentaire de M.Cailloux*
+* Jeff Azzam
+* Sid Ahmed Imloul
+* Sofiath Lanignan
+* Lamine Tamendjari
+* Omar Yaghi
+* Abdelmadjid Yous
 
+== Published at
+http://collaborative-exams.eu-gb.mybluemix.net/
+
+== TODO
 Il faut créer une hiérarchie de questions qui permettra de les gérer facilement, en parallèle de l’entité elle-même. Créer une interface IQuestion, et des types concrets FreeQuestion, FMCQuestion (Multiple Choice), qui a une méthode getPropositions (remplaçant getAnswers actuelle), YesNoQuestion qui étend MCQuestion, TrueFalseQuestion qui étend MCQuestion, etc.
 
-Il faut aussi écrire les tests unitaires.
-
-
-*Remarque*
-
-Implémentation des tests unitaires associés au fur et à mesure.
-
-*Khaled*
-
-* Niveau de difficulté : Introduire deux nouvelle notions QuestionPhrasing et stats, deux class QuestionPhrasing (id, phrasing) et Stats(id, CountSelect, CountCorrectAnswer), par la suite la class existante Question  contiendra (id, QuestionPhrasing, Stats, … answers, …) 
-
-*Exemple : *
-Instance de QuestionPhrasing qp1 : "combien font 2+2 ?".
-Instance de Question q1 : "combien font 2+2 ?" 4 ; 6 ; 8 ; 0 ?
-Instance de Question q2 : "combien font 2+2 ?" 0 ; 4 ?
-(q1 et q2 contiennent chacune une référence vers qp1)
-Pour un examen : 
-CountSelect = nombre de candidats participants à l’examen
-CountCorrectAnswer = Un compteur pour calculer le nombre de candidats qui ont donné une bonne réponse.
-
-*Exemple :*
-Pour une Question 
-Exam 1 (20 participants, 10 ont donné la bonne réponse)
-ParticipateCounter = 20
-CountCorrectAnswer = 10
-Exam 1 (30 participants, 20 ont donné la bonne réponse)
-CountSelect = 20+30 = 50
-CountCorrectAnswer = 10+20 = 30
-Ainsi de suite.
-Le ratio [CountCorrectAnswer / CountSelect ] donne le niveau de difficulté de la question (0-0,33 hard; 0,33-0,66 Medium;  0,66-1 Easy)
-
-*Remaque*
-
-au début les question sont toutes faciles, après un certain nombre d'utilisation, le ratio aura de plus en plus de sens avec un nombre de population important.
-
-*Mohamed*
-
-* Question Xml : Représentation des questions sur un schéma XML (lecture et écriture).
-
-* Faire les différentes conversion en Xml (QuestionText). Et ajout Tests unitaires pour GetQuestion(id).
-
-*Valentin*
-
-* Gestion des questions : Implémentation de PersonalTags
-Chaque personne peut associer un identifiant personnel à chaque question (y compris celles dont la personne n’est pas auteur). La paire (personne, identifiant) doit être unique. Chaque personne peut associer un ensemble de sujets à chaque question (exemple : Math, Java, Programmation). Ces sujets sont personnels. (Donc deux personnes peuvent indiquer des sujets différents pour une même question.) Servlets Get et Set correspondantes. (1)
-
-*Remarque*
-La création d'un servlet permettant d'exporter un examen en .pdf se fera dans la seconde itération.
-
-*Katia*
-
-
-* ServletsModify: ChangeResponseTypeTF(id orig, new author id): new id et ChangeResponseTypeYN(id orig, new author id). Change la réponse à une question en créant une nouvelle question qui a un autre type de réponse (c-à-d Y/N ou T/F) et en renvoyant son nouvel id. 
-
-* ChangeQuestionLanguage(id orig, new author id, new language): new id ( modifier les classes existantes par rapport à ce qu’il a été demandé dans l’énoncé, récupération des paramètres soumis dans le formulaire HTML)
-
-* Ajout de tests unitaires (Question, Person)
-
-*Alexandre*
-
-* [FAIT] Online : Faire tourner le serveur en ligne grâce au service d’IBM. (0,5 point)
-
-= Deuxième itération
-
-*Amine*
-
-* Servlet NewQuestion(question): id, qui reçoit une question en format JSON ; servlet GetQuestion(id): question, qui envoie une question à partir de son id. (1)
-* Gestion des réponses (particulièrement les réponses libres en utilisant la distance de Leveinstein) Dans la partie correction
-* La relation SameAbility (ServletAbilities)
-
-*Khaled*
-
-* Creation examen : Implémenter un examen qui permet, avec un GUI rudimentaire ou en ligne de commande, la création d'examens (chaque examen se compose de plusieurs types de questions) pour que les candidats puissent passer les examens
-
-*Remarque* ceci n'inclue pas la partie passage d'examen.
-
-*Mohamed*
-
-
-*Aaméliorer la création d'un PersnnelTag et l'ajout d'un servlet Set pour ce dernier. De plus, implémenter un servlet getPerson et en fin un servlet qui permet de supprimer les données dans la BD ( les questions, les personnes ... )
-
-
-*Valentin*
-
-* Les examens seront exportables en fichier .pdf vià un servlet Exportpdf. Un Examen sera le regroupement de plusieurs questions.
-* Implémentation d'algorithmes spécifiques et complexes pour une meilleure gestion des examens comme le K-Means algorithm  
-
-*Katia*
-
-* QuestionMultiFormat: Récupérer une question à partir de son id, en format XML ou JSON. Introduire une question en multiples formats. Transformer en REST. Cookie permet de mémoriser un id person, il est utilisé si l’id person n’est pas fourni, pour les servlets qui requièrent ce paramètre.
-
-*Remarque*
-
-De cette fonctionnalité j’ai compris que : Un utilisateur aura la possibilité de récupérer la question dans le format qu’il souhaite (Json ou XML).  Je voudrais que vous me confirmiez svp, si c’est bien ça que vous attendez de cette fonctionnalité.
-
-*Alexandre*
-
-* Correction des warnings et exceptions au cours du build (0,25 point)
-* [RESOLU] deprecated warning : tabulation manquante pour l'attribut "services" dans le travis.yml
-* [RESOLU] warning : dépendance manquante pour glassfish.grizzly dans le pom.xml
-* [RECHERCHE COMPLEXE EFFECTUÉE SANS SUCCÈS] Correction de l'exception au cours du build décrite ci-dessous déplacée en itération 3 car solution non trouvée (1,25 points)
-* Travis indique un warning (Deprecated) lors du déploiement
-* SEVERE: Exception during lifecycle processing
-org.glassfish.deployment.common.DeploymentException: CDI deployment failure:Exception List with 1 exceptions:
-Exception 0 :
-java.lang.IllegalStateException: Could not find beans for Type=class org.apache.deltaspike.core.impl.scope.window.WindowBeanHolder and qualifiers:[]
-https://stackoverflow.com/questions/55114271/travis-ci-deployment-of-a-jax-rs-application-fails-without-any-error
-https://travis-ci.community/t/deployment-of-a-jax-rs-application-fails-without-any-error/2622
-Recherches diverses (voir mon pull request "alex iteration 2")
-* [RECHERCHE COMPLEXE EFFECTUÉE SANS SUCCÈS) Correction des bugs concernant la fonctionnalité "UseDB" (1,25 points)
-* Fonctionnalité "UseDB" déplacée en itération 3 du fait de deux problèmes arrivés l'un après l'autre qui ne m'ont pas permis de faire des tests. Problème 1 : déploiement échoue sans erreur même après questions sur stackoverflow et travis-ci.community. Problème 2 : indisponibilité du service de BDD sur IBM Cloud non résolu même après tickets au support d'IBM Cloud (je vous montrerai lorsque nous nous verrons).
-Tickets au support
-Recherches diverses (voir mon pull request "alex iteration 2")
-
-
-= Troisième itération
-
-*Amine*
-
-* ServletAbilities
-
-Stocker une relation « same ability » entre questions, associée à une personne. Une personne peut indiquer qu’une question interroge, à son avis, sur la même compétence qu’une autre. (On pourra l’utiliser pour éviter que ces questions figurent dans le même test.) Servlet SameAbility(person id, id question 1, id question 2, sameAbility: boolean) et servlet GetSameAbility(person id, id question 1, id question 2): boolean. La relation est réflexive et symétrique (donc inutile de stocker les parties réflexives et déduire ce qu’on peut de la symétrie). (1)
-
-
-*Khaled* 
-* Passage d'examen : Implémenter le passage d'un examen qui permet, avec avec un GUI rudimentaire ou en ligne de commande, la création des réponses aux questions par un candidat. Ceci permet  un candidat de passer un examen en ligne et garder sa copie d'examen pour une correction (évaluation) par un enseignant
-
-*Remarque*
-
-Ceci n'inclue pas la partie correction d'examen
-
-
-*Valentin*
-
-* Correction des problèmes de compilation sur les serveurs GlassFish et WildFly (1)
-* Elaboration du diagramme de classe ainsi qu'une documentation spécifique pour comprendre et faire tourner le projet (1)
-* [A FAIRE s'il reste du temps] Création du test unitaire pour GetListExamenQuestion.java (création du pdf). (1)
-
-*Katia*
-
-* Question par thème: Un servlet qui permet à chaque personne de récupérer toutes les questions qu'il a associé à un thème (tag) donné (info, math, economie....).
-
-*Alexandre*
-
-* [ANNULÉ POUR CAUSE DE BUGS] UseDB : Modifier les servlets pour qu’ils écrivent dans et lisent la BDD. (0 point)
-* [ANNULÉ POUR CAUSE DE BUGS] Datavisualisation : Dashboards sur les données de la BDD. (0 point)
-* [FAIT] Écriture des pages manquantes du site, écriture et mise à jour des boutons, formulaires, tableaux (1,5 points)
-* Mise à jour de la page index.html qui correspond à l'onglet "Dashboards" : dashboards sur les questions, exams, et authors
-* Mise à jour de la page questions.html qui correspond à l'onglet "Questions" : tableau, boutons et formulaires créés ou mis à jour pour correspondre aux servlets existants
-* Création de la page exams.html qui correspond à l'onglet "Exams" : tableau, création de boutons et formulaires pour correspondre aux servlets existants
-* Création de la page authors.html qui correspond à l'onglet "Authors" : tableau, création de boutons et formulaires pour correspondre aux servlets existants
-* Page about.html qui correspond à l'onglet "About Us" : création commencée en itération 1 et terminée
-* Page contact.html qui correspond à l'onglet "Contact Us" : création commencée en itération 1 et terminée
-
-= URL du site web
-
-https://examcollab.eu-gb.mybluemix.net/
-
-= Tutoriel de déploiement d'une branche du projet sur IBM Cloud
-
-Le document "Tutoriel - Déployer votre branche du projet sur votre compte IBM Cloud.pdf" est disponible sur la branche master.
-
-= Propositions de fonctionnalités à corriger ou créer pour le groupe suivant
+=== Propositions de fonctionnalités à corriger ou créer pour le groupe suivant
 
 * De manière générale, assurer que l'intégralité du projet fonctionne EN LIGNE car le but est de réaliser une application en ligne.
 Pour que chaque membre du groupe puisse tester le code de sa branche, il peut déployer sa branche sur IBM Cloud à un URL différent de l'URL des autres membres du groupe.
@@ -210,16 +61,3 @@ Pouvoir modifier et supprimer les nuplets d'authors enregistrés dans la BDD à 
 Afficher dynamiquement le calcul des données agrégées de la BDD pour les afficher dans les dashboards.
 Par exemple, le nombre de questions de type True/False créées.
 
-= Anciens collaborateurs 2017-2018
-
-* Jeff Azzam
-
-* Sid Ahmed Imloul
-
-* Sofiath Lanignan
-
-* Lamine Tamendjari
-
-* Omar Yaghi
-
-* Abdelmadjid Yous
