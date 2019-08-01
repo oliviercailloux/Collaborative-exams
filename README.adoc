@@ -1,9 +1,14 @@
 = Collaborative exams
-:sectanchors:
+:gitHubUserName: oliviercailloux
+:groupId: io.github.{gitHubUserName}
+:artifactId: collaborative-exams
+:repository: Collaborative-exams
 
-image:https://travis-ci.org/badga/Collaborative-exams.svg?branch=master["Build Status", link="https://travis-ci.org/badga/Collaborative-exams"]
+image:https://travis-ci.com/{gitHubUserName}/{repository}.svg?branch=master["Build Status", link="https://travis-ci.com/{gitHubUserName}/{repository}"]
 
-A Java project developed during the https://github.com/oliviercailloux/java-course[Java course] taught at Université Paris-Dauphine (in http://www.mido.dauphine.fr/[MIDO] M2 MIAGE). The code is jointly copyrighted by Olivier Cailloux and the following students:
+A Java project developed during several sessions of the https://github.com/oliviercailloux/java-course[Java course] taught at Université Paris-Dauphine (in http://www.mido.dauphine.fr/[MIDO] M2 MIAGE).
+
+The code is hereby published under the MIT License, with the permission of the contributors.
 
 * Jeff Azzam
 * Sid Ahmed Imloul
@@ -12,11 +17,5 @@ A Java project developed during the https://github.com/oliviercailloux/java-cour
 * Omar Yaghi
 * Abdelmadjid Yous
 
-The code is hereby published under the MIT License, with their permission.
-
-== Original description
-Ce projet permettra à des enseignants de créer des ensembles de questions et réponses. Ces questions peuvent être réutilisées par d’autres enseignants et combinées pour créer des questionnaires ou des sondages. Les étudiants pourront se servir de ces ensembles de questions pour s’entrainer.
-
-=== Retrouvez notre application en suivant le lien ci dessous
+== Published at
 http://collaborative-exams.eu-gb.mybluemix.net/
-
